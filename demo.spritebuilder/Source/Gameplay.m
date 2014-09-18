@@ -44,6 +44,12 @@
 }
 
 
+- (void)back {;
+    CCScene *choiceScene = [CCBReader loadAsScene:@"ChoiceScene"];
+    CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
+    [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
+}
+
 
 // called on every touch in this scene
 - (void)redman_play{
