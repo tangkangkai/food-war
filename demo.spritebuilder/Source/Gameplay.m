@@ -16,7 +16,6 @@
     CCNode *drag_redman;
     CCNode *_redman_button;
     CCNode *_greenman_button;
-    
 }
 
 - (void)didLoadFromCCB {
