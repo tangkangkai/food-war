@@ -8,7 +8,9 @@
 
 #import "GameScene.h"
 
-@implementation GameScene
+@implementation GameScene {
+    CCTextField *_text;
+}
 
 
 - (void) didLoadFromCCB {
@@ -32,6 +34,30 @@
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
+}
+
+- (void)level1 {
+    NSLog(@"level1 button");
+    _text.fontSize = 30;
+    _text.string = @"Level 1";
+}
+
+- (void)level2 {
+    NSLog(@"level2 button");
+    _text.fontSize = 30;
+    _text.string = @"Level 2";
+}
+
+- (void)level3 {
+    NSLog(@"level3 button");
+    _text.fontSize = 30;
+    _text.string = @"Level 3";
+}
+
+- (void)level4 {
+    NSLog(@"level4 button");
+    _text.fontSize = 30;
+    _text.string = @"Level 4";
 }
 
 @end
