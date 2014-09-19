@@ -41,6 +41,7 @@
     [self reduceTotalMoney:4];
 }
 
+
 -(void)reduceTotalMoney: (int)value {
     NSLog(@"hehe");
     CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(99, 270)];
