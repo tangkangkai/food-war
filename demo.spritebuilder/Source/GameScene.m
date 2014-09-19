@@ -42,7 +42,6 @@
 }
 
 - (void)level2 {
-
     NSLog(@"level2 button");
     [self changeLevel:2];
 }
@@ -63,7 +62,6 @@
     [_text runAction:rotate];
     _text.string = [NSString stringWithFormat:@"Level %d", level];
     _text.fontSize = 30;
-    
 }
 
 @end
