@@ -44,12 +44,12 @@
 
 -(void)reduceTotalMoney: (int)value {
     NSLog(@"hehe");
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(99, 270)];
-    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(99, 286)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(128, 270)];
+    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(128, 287)];
     
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveDown, moveUp]];
     [_total runAction:sequence];
     total -= value;
-    _total.string = [NSString stringWithFormat:@"Total: %d", total];
+    _total.string = [NSString stringWithFormat:@"%d", total];
 }
 @end
