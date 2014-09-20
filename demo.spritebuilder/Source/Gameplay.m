@@ -8,6 +8,7 @@
 
 #import "Gameplay.h"
 
+
 @implementation Gameplay{
     CCNode *_house1;
     CCNode *_house2;
@@ -43,10 +44,15 @@
 }
 
 
-- (void)back {;
-    CCScene *choiceScene = [CCBReader loadAsScene:@"ChoiceScene"];
-    CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
-    [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
+- (void)back {
+    [[CCDirector sharedDirector] pause];
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Menu"
+                                                     message:@"Plese choose"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Resume"
+                                           otherButtonTitles: nil];
+    [alert addButtonWithTitle:@"Quit Game"];
+    [alert show];
 }
 
 
@@ -88,5 +94,27 @@
     [greenman runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
 }
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button Index =%ld",(long)buttonIndex);
+    if (buttonIndex == 0)
+    {
+        NSLog(@"You have clicked Cancel");
+        [[CCDirector sharedDirector] resume];
+    }
+    else if(buttonIndex == 1)
+    {
+        NSLog(@"You have clicked Quit Game");
+        [[CCDirector sharedDirector] resume];
+        CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
+        CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
+        [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
+        
+    }
+}
+
+
 
 @end
