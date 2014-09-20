@@ -33,7 +33,7 @@
 	<key>publishAudioQuality_android</key>
 	<integer>4</integer>
 	<key>publishAudioQuality_ios</key>
-	<integer>4</integer>
+	<integer>6</integer>
 	<key>publishDirectory</key>
 	<string>Source/Resources/Published-iOS</string>
 	<key>publishDirectoryAndroid</key>

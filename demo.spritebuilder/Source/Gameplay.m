@@ -75,7 +75,7 @@
     [self addChild:redman];
     
     CCLOG(@"Hello!");
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration:4 position:CGPointMake(_house3.position.x, _house3.position.y)];
+    CCAction *actionMove=[CCActionMoveTo actionWithDuration:4 position:CGPointMake(_house4.position.x, _house4.position.y)];
     CCAction *actionRemove = [CCActionRemove action];
     [redman runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
     
@@ -85,7 +85,7 @@
     // loads the Penguin.ccb we have set up in Spritebuilder
     CCNode* greenman = [CCBReader load:@"greenman"];
     // position the penguin at the bowl of the catapult
-    greenman.position = _house3.position;
+    greenman.position = _house4.position;
     [self addChild:greenman];
     
     CCLOG(@"Hello!");

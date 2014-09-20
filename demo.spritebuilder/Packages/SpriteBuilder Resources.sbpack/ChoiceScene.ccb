@@ -14,7 +14,7 @@
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
-	<integer>2</integer>
+	<integer>0</integer>
 	<key>currentSequenceId</key>
 	<integer>0</integer>
 	<key>docDimensionsType</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>37.000015258789062</real>
-							<real>145</real>
+							<real>285</real>
+							<real>166</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>6.6390056610107422</real>
-							<real>2.0954279899597168</real>
+							<real>4.4225831031799316</real>
+							<real>3.487180233001709</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -160,7 +160,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.89999997615814209</real>
+							<real>0.87999999523162842</real>
 							<real>0.079999998211860657</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -486,7 +486,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.10000000149011612</real>
+							<real>0.11999999731779099</real>
 							<real>0.079999998211860657</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -927,7 +927,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.34999999403953552</real>
+							<real>0.37999999523162842</real>
 							<real>0.60000002384185791</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -1042,7 +1042,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.60000002384185791</real>
+							<real>0.62000000476837158</real>
 							<real>0.60000002384185791</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -1157,7 +1157,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.10000000149011612</real>
+							<real>0.15000000596046448</real>
 							<real>0.60000002384185791</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -1585,7 +1585,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>35</real>
+									<real>38</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1684,7 +1684,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>70</real>
+									<real>76</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1783,7 +1783,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>105</real>
+									<real>114</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1882,7 +1882,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>140</real>
+									<real>152</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1981,7 +1981,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>175</real>
+									<real>190</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2080,7 +2080,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>210</real>
+									<real>228</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2179,7 +2179,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>245</real>
+									<real>266</real>
 									<real>0.0</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2272,8 +2272,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.039847414940595627</real>
-							<real>0.25937500596046448</real>
+							<real>0.089143186807632446</real>
+							<real>0.23749999701976776</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -2318,13 +2318,11 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>10</real>
+							<real>13</real>
 							<integer>0</integer>
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
