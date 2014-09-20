@@ -9,7 +9,8 @@
 #import "GameScene.h"
 
 @implementation GameScene {
-    CCTextField *_text;}
+    CCTextField *_text;
+}
 
 
 
@@ -61,7 +62,6 @@
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:0.2f angle:360];
     [_text runAction:rotate];
     _text.string = [NSString stringWithFormat:@"Level %d", level];
-    _text.fontSize = 30;
 }
 
 @end
