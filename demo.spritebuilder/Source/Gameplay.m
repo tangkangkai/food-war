@@ -44,7 +44,7 @@
 }
 
 
-- (void)back {
+- (void)menu {
     [[CCDirector sharedDirector] pause];
     UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Menu"
                                                      message:@"Plese choose"
