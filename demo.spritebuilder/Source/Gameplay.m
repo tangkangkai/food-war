@@ -14,9 +14,15 @@
     CCNode *_house2;
     CCNode *_house3;
     CCNode *_house4;
+    CCNode *_house5;
+    CCNode *_house6;
     CCNode *drag_redman;
-    CCNode *_redman_button;
-    CCNode *_greenman_button;
+    CCNode *drag_greenman;
+    CCNode *_redman;       //red man start button
+    CCNode *_greenman;     //green man start button
+    CCNode *man;           //save the final man
+    CCNode *_track;        //invisible track
+    int man_type;      //if red set 0, green set 1
 }
 
 - (void)didLoadFromCCB {
@@ -28,10 +34,20 @@
 {
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
-    if (_redman_button.position.x==touchLocation.x&&_redman_button.position.y==touchLocation.y) {
+
+    if (CGRectContainsPoint(_redman.boundingBox,touchLocation)) {
         drag_redman=[CCBReader load:@"redman"];
-        [self addChild:drag_redman];
-        drag_redman.position=touchLocation;
+        man=drag_redman;
+        man_type=0;
+        [self addChild:man];
+        man.position=touchLocation;
+    }
+    else if(CGRectContainsPoint(_greenman.boundingBox,touchLocation)) {
+        drag_greenman=[CCBReader load:@"greenman"];
+        man=drag_greenman;
+        man_type=1;
+        [self addChild:man];
+        man.position=touchLocation;
     }
 
 }
@@ -40,9 +56,21 @@
 {
     CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
-    drag_redman.position = touchLocation;
+    man.position = touchLocation;
+    
+    
 }
 
+- (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CCLOG(@"Touch Ended");
+    CGPoint touchLocation = [touch locationInNode:self];
+    [man removeFromParent];
+    if (CGRectContainsPoint(_track.boundingBox,touchLocation)) {
+        
+        [self launchman];
+    }
+}
 
 - (void)menu {
     [[CCDirector sharedDirector] pause];
@@ -55,16 +83,14 @@
     [alert show];
 }
 
+- (void)launchman {
+    if (man_type==0) {
+        [self launchredman];
+    }
+    else if (man_type==1){
+        [self launchgreenman];
+    }
 
-// called on every touch in this scene
-- (void)redman_play{
-    NSLog(@"redman play");
-    [self launchredman];
-}
-
-- (void)greenman_play{
-    NSLog(@"greenman play");
-    [self launchgreenman];
 }
 
 - (void)launchredman {
