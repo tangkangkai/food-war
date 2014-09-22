@@ -21,7 +21,7 @@
     CCNode *_redman;       //red man start button
     CCNode *_greenman;     //green man start button
     CCNode *man;           //save the final man
-    CCNode *_track;        //invisible track
+    CCNode *_track1;        //invisible track
     CCNode *_background;
     int man_type;      //if red set 0, green set 1
     
@@ -72,7 +72,7 @@
     CCLOG(@"Touch Ended");
     CGPoint touchLocation = [touch locationInNode:self];
     [man removeFromParent];
-    if (CGRectContainsPoint(_track.boundingBox,touchLocation)) {
+    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         
         [self launchman];
     }
