@@ -22,8 +22,13 @@
     CCNode *_greenman;     //green man start button
     CCNode *man;           //save the final man
     CCNode *_track;        //invisible track
+    CCNode *_background;
     int man_type;      //if red set 0, green set 1
+    
+    CCSprite* backGround;
+    CGSize size;
 }
+
 
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
@@ -58,6 +63,7 @@
     CGPoint touchLocation = [touch locationInNode:self];
     man.position = touchLocation;
     
+
     
 }
 

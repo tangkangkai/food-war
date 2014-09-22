@@ -359,10 +359,8 @@
 				<string></string>
 				<key>displayName</key>
 				<string>background</string>
-				<key>locked</key>
-				<true/>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_background</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -382,8 +380,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.49759393930435181</real>
-							<real>0.50312501192092896</real>
+							<real>0.67188960313796997</real>
+							<real>0.61874997615814209</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -407,8 +405,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.2953367233276367</real>
-							<real>1.0128448009490967</real>
+							<real>0.74621874094009399</real>
+							<real>0.84217852354049683</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -421,7 +419,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/background.png</string>
+							<string>foodwar_picture/background2.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -438,6 +436,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1573,8 +1573,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
