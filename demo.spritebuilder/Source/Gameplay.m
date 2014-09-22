@@ -7,7 +7,7 @@
 //
 
 #import "Gameplay.h"
-
+#import "Soldier.h"
 
 @implementation Gameplay{
     CCNode *_house1;
@@ -33,7 +33,7 @@
         [self addChild:drag_redman];
         drag_redman.position=touchLocation;
     }
-
+    
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -68,31 +68,18 @@
 }
 
 - (void)launchredman {
-    // loads the Penguin.ccb we have set up in Spritebuilder
-    CCNode* redman = [CCBReader load:@"redman"];
-    // position the penguin at the bowl of the catapult
-    redman.position = _house1.position;
-    [self addChild:redman];
-    
-    CCLOG(@"Hello!");
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration:4 position:CGPointMake(_house4.position.x, _house4.position.y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [redman runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-    
+    Soldier* redman = [[Soldier alloc] init];
+    [redman loadSolider:@"redman" startPos:_house1.position];
+    [self addChild: [redman soldier]];
+    [redman move:5 targetPos:_house4.position];
 }
 
 - (void)launchgreenman {
-    // loads the Penguin.ccb we have set up in Spritebuilder
-    CCNode* greenman = [CCBReader load:@"greenman"];
-    // position the penguin at the bowl of the catapult
-    greenman.position = _house4.position;
-    [self addChild:greenman];
     
-    CCLOG(@"Hello!");
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration:4 position:CGPointMake(_house1.position.x, _house1.position.y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [greenman runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-    
+    Soldier* redman = [[Soldier alloc] init];
+    [redman loadSolider:@"greenman" startPos:_house4.position];
+    [self addChild: [redman soldier]];
+    [redman move:5 targetPos:_house1.position];
 }
 
 
