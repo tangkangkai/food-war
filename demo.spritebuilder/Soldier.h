@@ -17,13 +17,15 @@
 @property int atk_range;
 @property int atk_power;
 @property float defence;    // value is from 0 ~ 1(100%)
+@property int walk_speed;
 @property int ability_id;
-@property CCNode* soldier;
+@property CCSprite* soldier;
 
 
 - (int)loseHealth:(int)Attack;
 - (void)attack;
-- (void)loadSolider:(NSString*) solder_img startPos:(CGPoint) pos;
+- (void)loadSolider:(NSString*) solder_img group:(NSString*) group
+                    collisionType:(NSString*) type startPos:(CGPoint) pos;
 - (void)move:(int) duration targetPos:(CGPoint) pos;
 
 @end

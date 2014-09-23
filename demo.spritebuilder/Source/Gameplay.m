@@ -17,6 +17,22 @@
     CCNode *drag_redman;
     CCNode *_redman_button;
     CCNode *_greenman_button;
+    CCPhysicsNode *_physicsWorld;
+
+}
+
+- (id)init{
+    self = [super init];
+    if (!self) return(nil);
+    
+    _physicsWorld = [CCPhysicsNode node];
+    _physicsWorld.gravity = ccp(0,0);
+    //_physicsWorld.debugDraw = YES;
+    _physicsWorld.collisionDelegate = self;
+    _physicsWorld.zOrder = 1000;
+    [self addChild:_physicsWorld];
+    
+    return self;
 }
 
 - (void)didLoadFromCCB {
@@ -69,17 +85,19 @@
 
 - (void)launchredman {
     Soldier* redman = [[Soldier alloc] init];
-    [redman loadSolider:@"redman" startPos:_house1.position];
-    [self addChild: [redman soldier]];
-    [redman move:5 targetPos:_house4.position];
+    [redman loadSolider:@"burger-small-left.png" group:@"ourGroup" collisionType:@"healthyCollision"
+                        startPos:_house1.position];
+
+    [_physicsWorld addChild: [redman soldier]];
+    [redman move:6 targetPos:_house4.position];
 }
 
 - (void)launchgreenman {
     
-    Soldier* redman = [[Soldier alloc] init];
-    [redman loadSolider:@"greenman" startPos:_house4.position];
-    [self addChild: [redman soldier]];
-    [redman move:5 targetPos:_house1.position];
+    Soldier* greenman = [[Soldier alloc] init];
+    [greenman loadSolider:@"burger-small.png" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    [_physicsWorld addChild: [greenman soldier]];
+    [greenman move:6 targetPos:_house1.position];
 }
 
 
@@ -102,6 +120,13 @@
     }
 }
 
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
+    [healthy stopAllActions];
+    [junk stopAllActions];
+
+    NSLog(@"Collision");
+    return YES;
+}
 
 
 @end
