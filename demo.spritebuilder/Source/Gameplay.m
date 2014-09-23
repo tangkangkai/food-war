@@ -7,7 +7,7 @@
 //
 
 #import "Gameplay.h"
-
+#import "Soldier.h"
 
 @implementation Gameplay{
     CCNode *_house1;
@@ -17,6 +17,22 @@
     CCNode *drag_redman;
     CCNode *_redman_button;
     CCNode *_greenman_button;
+    CCPhysicsNode *_physicsWorld;
+
+}
+
+- (id)init{
+    self = [super init];
+    if (!self) return(nil);
+    
+    _physicsWorld = [CCPhysicsNode node];
+    _physicsWorld.gravity = ccp(0,0);
+    //_physicsWorld.debugDraw = YES;
+    _physicsWorld.collisionDelegate = self;
+    _physicsWorld.zOrder = 1000;
+    [self addChild:_physicsWorld];
+    
+    return self;
 }
 
 - (void)didLoadFromCCB {
@@ -33,7 +49,7 @@
         [self addChild:drag_redman];
         drag_redman.position=touchLocation;
     }
-
+    
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -68,31 +84,20 @@
 }
 
 - (void)launchredman {
-    // loads the Penguin.ccb we have set up in Spritebuilder
-    CCNode* redman = [CCBReader load:@"redman"];
-    // position the penguin at the bowl of the catapult
-    redman.position = _house1.position;
-    [self addChild:redman];
-    
-    CCLOG(@"Hello!");
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration:4 position:CGPointMake(_house4.position.x, _house4.position.y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [redman runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-    
+    Soldier* redman = [[Soldier alloc] init];
+    [redman loadSolider:@"burger-small-left.png" group:@"ourGroup" collisionType:@"healthyCollision"
+                        startPos:_house1.position];
+
+    [_physicsWorld addChild: [redman soldier]];
+    [redman move:6 targetPos:_house4.position];
 }
 
 - (void)launchgreenman {
-    // loads the Penguin.ccb we have set up in Spritebuilder
-    CCNode* greenman = [CCBReader load:@"greenman"];
-    // position the penguin at the bowl of the catapult
-    greenman.position = _house4.position;
-    [self addChild:greenman];
     
-    CCLOG(@"Hello!");
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration:4 position:CGPointMake(_house1.position.x, _house1.position.y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [greenman runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-    
+    Soldier* greenman = [[Soldier alloc] init];
+    [greenman loadSolider:@"burger-small.png" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    [_physicsWorld addChild: [greenman soldier]];
+    [greenman move:6 targetPos:_house1.position];
 }
 
 
@@ -115,6 +120,13 @@
     }
 }
 
+- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
+    [healthy stopAllActions];
+    [junk stopAllActions];
+
+    NSLog(@"Collision");
+    return YES;
+}
 
 
 @end
