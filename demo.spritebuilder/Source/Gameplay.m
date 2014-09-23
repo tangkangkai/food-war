@@ -14,6 +14,7 @@
     CCNode *_house2;
     CCNode *_house3;
     CCNode *_house4;
+    CCNode *_house5;
     CCNode *drag_redman;
     CCNode *_redman_button;
     CCNode *_greenman_button;
@@ -81,6 +82,13 @@
 - (void)greenman_play{
     NSLog(@"greenman play");
     [self launchgreenman];
+}
+
+- (void)burger_play {
+    NSLog(@"Burgerman play");
+    CCNode* burgerMan = [CCBReader load:@"burgerMan"];
+    burgerMan.position = CGPointMake(_house2.position.x - 50, _house2.position.y);
+    [self addChild:burgerMan];
 }
 
 - (void)launchredman {

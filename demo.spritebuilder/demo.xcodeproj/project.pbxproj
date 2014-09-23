@@ -40,6 +40,7 @@
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		BE106AAA19C8ECB700FAE0C5 /* SettingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BE106AA919C8ECB700FAE0C5 /* SettingScene.m */; };
+		BE87625F19D1E4AD002BF04D /* burgerMan.m in Sources */ = {isa = PBXBuildFile; fileRef = BE87625E19D1E4AD002BF04D /* burgerMan.m */; };
 		BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4419CA610C009DF48C /* ChoiceScene.m */; };
 		BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4619CA610C009DF48C /* GameScene.m */; };
 		BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4819CA610C009DF48C /* StoreScene.m */; };
@@ -106,6 +107,8 @@
 		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
 		BE106AA819C8ECB700FAE0C5 /* SettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingScene.h; path = Source/SettingScene.h; sourceTree = "<group>"; };
 		BE106AA919C8ECB700FAE0C5 /* SettingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingScene.m; path = Source/SettingScene.m; sourceTree = "<group>"; };
+		BE87625D19D1E4AD002BF04D /* burgerMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = burgerMan.h; sourceTree = "<group>"; };
+		BE87625E19D1E4AD002BF04D /* burgerMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = burgerMan.m; sourceTree = "<group>"; };
 		BEB82C4319CA610C009DF48C /* ChoiceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoiceScene.h; path = Source/ChoiceScene.h; sourceTree = "<group>"; };
 		BEB82C4419CA610C009DF48C /* ChoiceScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChoiceScene.m; path = Source/ChoiceScene.m; sourceTree = "<group>"; };
 		BEB82C4519CA610C009DF48C /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Source/GameScene.h; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				B7378993180767190076A88C /* MainScene.m */,
 				BE106AA819C8ECB700FAE0C5 /* SettingScene.h */,
 				BE106AA919C8ECB700FAE0C5 /* SettingScene.m */,
+				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
+				BE87625E19D1E4AD002BF04D /* burgerMan.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */,
 				BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
+				BE87625F19D1E4AD002BF04D /* burgerMan.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 			);
