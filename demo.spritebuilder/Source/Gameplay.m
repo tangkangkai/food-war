@@ -137,6 +137,20 @@
     [newSoldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
 
+- (void)launchmovingman: (CCNode *)track source:(CCNode *)sourcehouse {
+    CCNode* newSoldier = man;
+    newSoldier.position = sourcehouse.position;
+    
+}
+
+- (void)addjunk {
+    Soldier* greenman = [[Soldier alloc] init];
+    [greenman loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    [greenman soldier].scaleX *= -1;
+    [_physicsWorld addChild: [greenman soldier]];
+    [greenman move:_house1.position];
+}
+
 
 
 - (void)menu {
