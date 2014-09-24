@@ -20,6 +20,8 @@
     CCNode *_house3;
     CCNode *_house4;
     CCNode *_house5;
+    CCNode *_house6;
+    
     CCNode *drag_redman;
     CCNode *_redman_button;
     CCNode *_greenman_button;
@@ -78,9 +80,6 @@
     man.position=touchLocation;
 }
 
-
-
-
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Touch Moved");
@@ -92,16 +91,27 @@
 {
     CCLOG(@"Touch Ended");
     CGPoint touchLocation = [touch locationInNode:self];
-    [man removeFromParent];
+    //[man removeFromParent];
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         NSLog(@"located in track 1");
-        [self redman_play];
+        [self launchman:_track1 source:_house4 dest:_house1];
     } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
         NSLog(@"located in track 2");
-        
+        [self launchman:_track2 source:_house5 dest:_house2];
     } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
         NSLog(@"located in track 3");
+        [self launchman:_track3 source:_house6 dest:_house3];
+    } else {
+        [self removeChild:man];
     }
+}
+
+- (void)launchman: (CCNode *)track source:(CCNode *)sourcehouse dest:(CCNode *)desthouse {
+    CCNode* newSoldier = man;
+    newSoldier.position = sourcehouse.position;
+    CCAction *actionMove=[CCActionMoveTo actionWithDuration: 5 position:CGPointMake(desthouse.position.x,desthouse.position.y)];
+    CCAction *actionRemove = [CCActionRemove action];
+    [newSoldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
 
 

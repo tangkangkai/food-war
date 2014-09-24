@@ -160,8 +160,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>65</real>
-							<real>220</real>
+							<real>55</real>
+							<real>225</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -216,6 +216,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -249,8 +251,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>49.999996185302734</real>
-							<real>162</real>
+							<real>48.999996185302734</real>
+							<real>168</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -338,8 +340,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>33.999996185302734</real>
-							<real>93.999992370605469</real>
+							<real>57.999996185302734</real>
+							<real>100.99999237060547</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -352,8 +354,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.64320600032806396</real>
+							<real>0.4451788067817688</real>
 						</array>
 					</dict>
 					<dict>
@@ -516,8 +518,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>526</real>
-							<real>163</real>
+							<real>511</real>
+							<real>166</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -605,8 +607,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>542</real>
-							<real>94.999992370605469</real>
+							<real>517</real>
+							<real>97.999992370605469</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1176,7 +1178,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNodeGradient</string>
+				<string>track_1</string>
 				<key>memberVarAssignmentName</key>
 				<string>_track1</string>
 				<key>memberVarAssignmentType</key>
@@ -1206,8 +1208,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>75.000015258789062</real>
-							<real>188.00003051757812</real>
+							<real>92.000015258789062</real>
+							<real>191.00003051757812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1244,8 +1246,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.1157588958740234</real>
-							<real>0.51641947031021118</real>
+							<real>3.8316574096679688</real>
+							<real>0.49929526448249817</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1299,7 +1301,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNodeGradient</string>
+				<string>track_2</string>
 				<key>memberVarAssignmentName</key>
 				<string>_track2</string>
 				<key>memberVarAssignmentType</key>
@@ -1329,8 +1331,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>74.000015258789062</real>
-							<real>129.00003051757812</real>
+							<real>89.000015258789062</real>
+							<real>130.00003051757812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1367,8 +1369,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.1983938217163086</real>
-							<real>0.51641947031021118</real>
+							<real>3.885533332824707</real>
+							<real>0.50576335191726685</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1422,7 +1424,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNodeGradient</string>
+				<string>track_3</string>
 				<key>memberVarAssignmentName</key>
 				<string>_track3</string>
 				<key>memberVarAssignmentType</key>
@@ -1452,8 +1454,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>58.000015258789062</real>
-							<real>65.000030517578125</real>
+							<real>91.000015258789062</real>
+							<real>67.000030517578125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1490,8 +1492,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.5390505790710449</real>
-							<real>0.51641947031021118</real>
+							<real>3.8825178146362305</real>
+							<real>0.51492118835449219</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1712,8 +1714,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
