@@ -85,6 +85,18 @@
     CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
     man.position = touchLocation;
+    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
+        NSLog(@"moved into track 1");
+        _track1.visible = true;
+    } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
+        NSLog(@"moved into track 2");
+         _track2.visible = true;
+    } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
+        NSLog(@"moved into track 3");
+         _track3.visible = true;
+    } else {
+        [self trackInvist];
+    }
 }
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
@@ -94,19 +106,26 @@
     //[man removeFromParent];
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         NSLog(@"located in track 1");
-        [self launchman:_track1 source:_house4 dest:_house1];
+        [self launchmovingman:_track1 source:_house4 dest:_house1];
     } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
         NSLog(@"located in track 2");
-        [self launchman:_track2 source:_house5 dest:_house2];
+        [self launchmovingman:_track2 source:_house5 dest:_house2];
     } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
         NSLog(@"located in track 3");
-        [self launchman:_track3 source:_house6 dest:_house3];
+        [self launchmovingman:_track3 source:_house6 dest:_house3];
     } else {
         [self removeChild:man];
     }
+    [self trackInvist];
 }
 
-- (void)launchman: (CCNode *)track source:(CCNode *)sourcehouse dest:(CCNode *)desthouse {
+- (void)trackInvist {
+    _track1.visible = false;
+    _track2.visible = false;
+    _track3.visible = false;
+}
+
+- (void)launchmovingman: (CCNode *)track source:(CCNode *)sourcehouse dest:(CCNode *)desthouse {
     CCNode* newSoldier = man;
     newSoldier.position = sourcehouse.position;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: 5 position:CGPointMake(desthouse.position.x,desthouse.position.y)];
@@ -137,13 +156,6 @@
 - (void)greenman_play{
     NSLog(@"greenman play");
     [self launchgreenman];
-}
-
-- (void)burger_play {
-    NSLog(@"Burgerman play");
-    CCNode* burgerMan = [CCBReader load:@"burgerMan"];
-    burgerMan.position = CGPointMake(_house2.position.x + 50, _house2.position.y);
-    [self addChild:burgerMan];
 }
 
 - (void)launchredman {
