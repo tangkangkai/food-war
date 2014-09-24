@@ -106,13 +106,13 @@
     //[man removeFromParent];
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         NSLog(@"located in track 1");
-        [self launchmovingman:_track1 source:_house4 dest:_house1];
+        [self launchmovingman:_track1 source:_house1 dest:_house4];
     } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
         NSLog(@"located in track 2");
-        [self launchmovingman:_track2 source:_house5 dest:_house2];
+        [self launchmovingman:_track2 source:_house2 dest:_house5];
     } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
         NSLog(@"located in track 3");
-        [self launchmovingman:_track3 source:_house6 dest:_house3];
+        [self launchmovingman:_track3 source:_house3 dest:_house6];
     } else {
         [self removeChild:man];
     }
