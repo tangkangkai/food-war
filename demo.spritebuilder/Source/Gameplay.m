@@ -32,14 +32,14 @@
     CCNode *_friesman;
     
     
-    CCNode *man;           //save the final man
+    Soldier *man;           //save the final man
     
     CCNode *_track1;        //invisible track
     CCNode *_track2;
     CCNode *_track3;
     
     int soldier; //
-
+    
 }
 
 - (id)init{
@@ -50,7 +50,7 @@
     _physicsWorld.gravity = ccp(0,0);
     //_physicsWorld.debugDraw = YES;
     _physicsWorld.collisionDelegate = self;
-    _physicsWorld.zOrder = 1000;
+    _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
     
     return self;
@@ -65,39 +65,41 @@
 {
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
+    Soldier* ourSoldier = [[Soldier alloc] init];
+    NSString *tmp = NULL;
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        man=[CCBReader load:@"burgerMan"];
+        tmp = @"burgerMan";
         soldier = BURGER;
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
-        man=[CCBReader load:@"cokeMan"];
+        tmp = @"cokeMan";
         soldier = COKE;
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
-        man=[CCBReader load:@"friesMan"];
+        tmp = @"friesMan";
         soldier = FRIES;
     }
     
-    if (man != NULL) {
-        [self addChild:man];
-        man.position=touchLocation;
+    if (tmp != NULL) {
+        [ourSoldier loadSolider:tmp group:@"ourGroup" collisionType:@"healthyCollision" startPos:touchLocation];
+        man = ourSoldier;
+        [_physicsWorld addChild: [ourSoldier soldier]];
     }
-
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
-    man.position = touchLocation;
+    [man soldier].position = touchLocation;
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         NSLog(@"moved into track 1");
         _track1.visible = true;
     } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
         NSLog(@"moved into track 2");
-         _track2.visible = true;
+        _track2.visible = true;
     } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
         NSLog(@"moved into track 3");
-         _track3.visible = true;
+        _track3.visible = true;
     } else {
         [self trackInvist];
     }
@@ -118,9 +120,7 @@
         NSLog(@"located in track 3");
         [self launchmovingman:_track3 source:_house3 dest:_house6];
     } else {
-        if (man != NULL) {
-            [self removeChild:man];
-        }
+        [_physicsWorld removeChild:[man soldier]];
     }
     [self trackInvist];
 }
@@ -132,17 +132,12 @@
 }
 
 - (void)launchmovingman: (CCNode *)track source:(CCNode *)sourcehouse dest:(CCNode *)desthouse {
-    CCNode* newSoldier = man;
-    newSoldier.position = sourcehouse.position;
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration: 5 position:CGPointMake(desthouse.position.x,desthouse.position.y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [newSoldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-}
-
-- (void)launchmovingman: (CCNode *)track source:(CCNode *)sourcehouse {
-    CCNode* newSoldier = man;
-    newSoldier.position = sourcehouse.position;
-    
+    Soldier* newSoldier = man;
+    [newSoldier soldier].position = sourcehouse.position;
+    [newSoldier move:desthouse.position];
+    //    CCAction *actionMove=[CCActionMoveTo actionWithDuration: 5 position:CGPointMake(desthouse.position.x,desthouse.position.y)];
+    //    CCAction *actionRemove = [CCActionRemove action];
+    //    [newSoldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
 
 - (void)addjunk {
@@ -182,8 +177,8 @@
 - (void)launchredman {
     Soldier* redman = [[Soldier alloc] init];
     [redman loadSolider:@"burgerMan" group:@"ourGroup" collisionType:@"healthyCollision"
-                        startPos:_house1.position];
-
+               startPos:_house1.position];
+    
     [_physicsWorld addChild: [redman soldier]];
     [redman move:_house4.position];
 }
@@ -217,7 +212,7 @@
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
     [healthy stopAllActions];
     [junk stopAllActions];
-
+    
     NSLog(@"Collision");
     return YES;
 }
