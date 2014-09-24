@@ -21,6 +21,13 @@
     CCPhysicsNode *_physicsWorld;
     
     CCNode *_burgerman;
+    
+    
+    CCNode *man;           //save the final man
+    
+    CCNode *_track1;        //invisible track
+    CCNode *_track2;
+    CCNode *_track3;
 
 }
 
@@ -47,10 +54,11 @@
 {
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
-    if (_redman_button.position.x==touchLocation.x&&_redman_button.position.y==touchLocation.y) {
-        drag_redman=[CCBReader load:@"redman"];
+    if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
+        drag_redman=[CCBReader load:@"burgerMan"];
         [self addChild:drag_redman];
         drag_redman.position=touchLocation;
+        man = drag_redman;
     }
     
 }
@@ -61,6 +69,18 @@
     CGPoint touchLocation = [touch locationInNode:self];
     drag_redman.position = touchLocation;
 }
+
+- (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CCLOG(@"Touch Ended");
+    CGPoint touchLocation = [touch locationInNode:self];
+    [man removeFromParent];
+    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
+        NSLog(@"hehe");
+        [self redman_play];
+    }
+}
+
 
 
 - (void)menu {
