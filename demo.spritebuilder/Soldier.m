@@ -18,7 +18,6 @@
     int lostHeath = Attack * (_defence);
     health = health - lostHeath;
     NSLog(@"Health after attacked: %d.", health);
-    
     return health;
 }
 
@@ -26,23 +25,20 @@
     NSLog(@"Attack");
 }
 
-- (void)loadSolider:(NSString*) solder_img group:(NSString*) group
+- (void)loadSolider:(NSString*) img group:(NSString*) group
                                 collisionType:(NSString*) type startPos:(CGPoint) pos{
-    CCSprite* node = [CCSprite spriteWithImageNamed:solder_img];
-    //CCSprite* node = [CCBReader load:solder_img];
-
-    node.position = pos; //CGPoint
-    
-    node.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, node.contentSize} cornerRadius:0]; // 1
-    node.physicsBody.collisionGroup = group; // 2
-    node.physicsBody.collisionType  = type;
-    self.soldier = node;
+    _soldier = [CCBReader load:img];
+    pos.y += arc4random() % 5;
+    _soldier.position = pos; //CGPoint
+    _soldier.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _soldier.contentSize} cornerRadius:0]; // 1
+    _soldier.physicsBody.collisionGroup = group; // 2
+    _soldier.physicsBody.collisionType  = type;
 }
 
--(void)move:(int) duration targetPos:(CGPoint) pos {
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration:duration position:CGPointMake(pos.x, pos.y)];
+-(void)move: (CGPoint) pos {
+    CCAction *actionMove=[CCActionMoveTo actionWithDuration: 100/_move_speed position:CGPointMake(pos.x,[_soldier position].y)];
     CCAction *actionRemove = [CCActionRemove action];
-    [self.soldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+    [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
 }
 
 
@@ -56,6 +52,7 @@
         _atk_speed = 1;
         _atk_range = 10;
         _defence = 0.1;
+        _move_speed = 20;
     }
     return self;
 }

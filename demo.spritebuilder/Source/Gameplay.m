@@ -95,19 +95,18 @@
 
 - (void)launchredman {
     Soldier* redman = [[Soldier alloc] init];
-    [redman loadSolider:@"burger-small-left.png" group:@"ourGroup" collisionType:@"healthyCollision"
+    [redman loadSolider:@"burgerMan" group:@"ourGroup" collisionType:@"healthyCollision"
                         startPos:_house1.position];
 
     [_physicsWorld addChild: [redman soldier]];
-    [redman move:6 targetPos:_house4.position];
+    [redman move:_house4.position];
 }
 
 - (void)launchgreenman {
-    
     Soldier* greenman = [[Soldier alloc] init];
-    [greenman loadSolider:@"burger-small.png" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    [greenman loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
     [_physicsWorld addChild: [greenman soldier]];
-    [greenman move:6 targetPos:_house1.position];
+    [greenman move:_house1.position];
 }
 
 
@@ -126,7 +125,6 @@
         CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
         CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
         [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
-        
     }
 }
 
