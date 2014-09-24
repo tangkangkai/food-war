@@ -19,6 +19,8 @@
     CCNode *_redman_button;
     CCNode *_greenman_button;
     CCPhysicsNode *_physicsWorld;
+    
+    CCNode *_burgerman;
 
 }
 
@@ -87,7 +89,7 @@
 - (void)burger_play {
     NSLog(@"Burgerman play");
     CCNode* burgerMan = [CCBReader load:@"burgerMan"];
-    burgerMan.position = CGPointMake(_house2.position.x - 50, _house2.position.y);
+    burgerMan.position = CGPointMake(_house2.position.x + 50, _house2.position.y);
     [self addChild:burgerMan];
 }
 
