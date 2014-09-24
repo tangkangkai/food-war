@@ -65,6 +65,7 @@
 {
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
+    
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
         man=[CCBReader load:@"burgerMan"];
         soldier = BURGER;
@@ -76,8 +77,11 @@
         soldier = FRIES;
     }
     
-    [self addChild:man];
-    man.position=touchLocation;
+    if (man != NULL) {
+        [self addChild:man];
+        man.position=touchLocation;
+    }
+
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
