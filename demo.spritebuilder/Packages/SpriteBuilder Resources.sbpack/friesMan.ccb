@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -103,7 +103,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>foodwar_picture/burger.png</string>
+					<string>foodwar_picture/fries.png</string>
 				</array>
 			</dict>
 			<dict>

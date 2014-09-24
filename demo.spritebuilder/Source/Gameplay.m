@@ -9,6 +9,11 @@
 #import "Gameplay.h"
 #import "Soldier.h"
 
+#define BURGER 1;
+#define COKE 2;
+#define FRIES 3;
+
+
 @implementation Gameplay{
     CCNode *_house1;
     CCNode *_house2;
@@ -21,6 +26,8 @@
     CCPhysicsNode *_physicsWorld;
     
     CCNode *_burgerman;
+    CCNode *_cokeman;
+    CCNode *_friesman;
     
     
     CCNode *man;           //save the final man
@@ -28,6 +35,8 @@
     CCNode *_track1;        //invisible track
     CCNode *_track2;
     CCNode *_track3;
+    
+    int soldier; //
 
 }
 
@@ -55,19 +64,28 @@
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        drag_redman=[CCBReader load:@"burgerMan"];
-        [self addChild:drag_redman];
-        drag_redman.position=touchLocation;
-        man = drag_redman;
+        man=[CCBReader load:@"burgerMan"];
+        soldier = BURGER;
+    } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
+        man=[CCBReader load:@"cokeMan"];
+        soldier = COKE;
+    } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
+        man=[CCBReader load:@"friesMan"];
+        soldier = FRIES;
     }
     
+    [self addChild:man];
+    man.position=touchLocation;
 }
+
+
+
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
-    drag_redman.position = touchLocation;
+    man.position = touchLocation;
 }
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
@@ -76,8 +94,13 @@
     CGPoint touchLocation = [touch locationInNode:self];
     [man removeFromParent];
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
-        NSLog(@"hehe");
+        NSLog(@"located in track 1");
         [self redman_play];
+    } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
+        NSLog(@"located in track 2");
+        
+    } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
+        NSLog(@"located in track 3");
     }
 }
 
