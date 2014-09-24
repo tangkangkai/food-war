@@ -118,7 +118,9 @@
         NSLog(@"located in track 3");
         [self launchmovingman:_track3 source:_house3 dest:_house6];
     } else {
-        [self removeChild:man];
+        if (man != NULL) {
+            [self removeChild:man];
+        }
     }
     [self trackInvist];
 }
@@ -147,6 +149,7 @@
     Soldier* greenman = [[Soldier alloc] init];
     [greenman loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
     [greenman soldier].scaleX *= -1;
+
     [_physicsWorld addChild: [greenman soldier]];
     [greenman move:_house1.position];
 }
