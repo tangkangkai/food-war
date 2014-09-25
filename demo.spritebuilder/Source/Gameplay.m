@@ -22,23 +22,17 @@
     CCNode *_house5;
     CCNode *_house6;
     
-    CCNode *drag_redman;
-    CCNode *_redman_button;
-    CCNode *_greenman_button;
     CCPhysicsNode *_physicsWorld;
-    
     CCNode *_burgerman;
     CCNode *_cokeman;
     CCNode *_friesman;
     
-    
+    int soldier;            // TODO
     Soldier *man;           //save the final man
     
     CCNode *_track1;        //invisible track
     CCNode *_track2;
     CCNode *_track3;
-    
-    int soldier; //
     
 }
 
@@ -48,7 +42,7 @@
     
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
-    //_physicsWorld.debugDraw = YES;
+    //_physicsWorld.debugDraw = YES;   // show the physic content
     _physicsWorld.collisionDelegate = self;
     _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
@@ -61,28 +55,28 @@
     self.userInteractionEnabled = TRUE;
 }
 
-- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
-    Soldier* ourSoldier = [[Soldier alloc] init];
-    NSString *tmp = NULL;
+    Soldier* newSolider = [[Soldier alloc] init];
+    NSString *soldier_ccb = NULL;
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        tmp = @"burgerMan";
+        soldier_ccb = @"burgerMan";
         soldier = BURGER;
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
-        tmp = @"cokeMan";
+        soldier_ccb = @"cokeMan";
         soldier = COKE;
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
-        tmp = @"friesMan";
+        soldier_ccb = @"friesMan";
         soldier = FRIES;
     }
     
-    if (tmp != NULL) {
-        [ourSoldier loadSolider:tmp group:@"ourGroup" collisionType:@"healthyCollision" startPos:touchLocation];
-        man = ourSoldier;
-        [_physicsWorld addChild: [ourSoldier soldier]];
+    if (soldier_ccb != NULL) {
+        [newSolider loadSolider:soldier_ccb group:@"enemyGroup"
+                    collisionType:@"noCollision" startPos:touchLocation];
+        man = newSolider;
+        [_physicsWorld addChild: [newSolider soldier]];
     }
 }
 
@@ -112,13 +106,13 @@
     //[man removeFromParent];
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         NSLog(@"located in track 1");
-        [self launchmovingman:_track1 source:_house1 dest:_house4];
+        [self launchmovingman:_house1 dest:_house4];
     } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
         NSLog(@"located in track 2");
-        [self launchmovingman:_track2 source:_house2 dest:_house5];
+        [self launchmovingman: _house2 dest:_house5];
     } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
         NSLog(@"located in track 3");
-        [self launchmovingman:_track3 source:_house3 dest:_house6];
+        [self launchmovingman:_house3 dest:_house6];
     } else {
         [_physicsWorld removeChild:[man soldier]];
     }
@@ -131,71 +125,38 @@
     _track3.visible = false;
 }
 
-- (void)launchmovingman: (CCNode *)track source:(CCNode *)sourcehouse dest:(CCNode *)desthouse {
-    Soldier* newSoldier = man;
-    [newSoldier soldier].position = sourcehouse.position;
-    [newSoldier move:desthouse.position];
-    //    CCAction *actionMove=[CCActionMoveTo actionWithDuration: 5 position:CGPointMake(desthouse.position.x,desthouse.position.y)];
-    //    CCAction *actionRemove = [CCActionRemove action];
-    //    [newSoldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+- (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
+    [man soldier].physicsBody.collisionType = @"healthyCollision";
+    [man soldier].physicsBody.collisionGroup = @"myGroup";
+    [man soldier].position = sourcehouse.position;
+    [man move:desthouse.position];
 }
 
 - (void)addjunk {
-    Soldier* greenman = [[Soldier alloc] init];
-    [greenman loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
-    [greenman soldier].scaleX *= -1;
-
-    [_physicsWorld addChild: [greenman soldier]];
-    [greenman move:_house1.position];
+    Soldier* test_junk = [[Soldier alloc] init];
+    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
+    [_physicsWorld addChild: [test_junk soldier]];
+    [test_junk move:_house1.position];
 }
-
 
 
 - (void)menu {
     [[CCDirector sharedDirector] pause];
-    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                     message:@"Plese choose"
-                                                    delegate:self
-                                           cancelButtonTitle:@"Resume"
-                                           otherButtonTitles: nil];
+    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
+                                                message:@"Plese choose"
+                                                delegate:self
+                                                cancelButtonTitle:@"Resume"
+                                                otherButtonTitles: nil];
     [alert addButtonWithTitle:@"Quit Game"];
     [alert show];
-}
-
-
-// called on every touch in this scene
-- (void)redman_play{
-    NSLog(@"redman play");
-    [self launchredman];
-}
-
-- (void)greenman_play{
-    NSLog(@"greenman play");
-    [self launchgreenman];
-}
-
-- (void)launchredman {
-    Soldier* redman = [[Soldier alloc] init];
-    [redman loadSolider:@"burgerMan" group:@"ourGroup" collisionType:@"healthyCollision"
-               startPos:_house1.position];
-    
-    [_physicsWorld addChild: [redman soldier]];
-    [redman move:_house4.position];
-}
-
-- (void)launchgreenman {
-    Soldier* greenman = [[Soldier alloc] init];
-    [greenman loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
-    [_physicsWorld addChild: [greenman soldier]];
-    [greenman move:_house1.position];
 }
 
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     NSLog(@"Button Index =%ld",(long)buttonIndex);
-    if (buttonIndex == 0)
-    {
+    if (buttonIndex == 0){
         NSLog(@"You have clicked Cancel");
         [[CCDirector sharedDirector] resume];
     }
