@@ -73,8 +73,8 @@
     }
     
     if (soldier_ccb != NULL) {
-        [newSolider loadSolider:soldier_ccb group:@"ourGroup"
-                    collisionType:@"healthyCollision" startPos:touchLocation];
+        [newSolider loadSolider:soldier_ccb group:@"enemyGroup"
+                    collisionType:@"noCollision" startPos:touchLocation];
         man = newSolider;
         [_physicsWorld addChild: [newSolider soldier]];
     }
@@ -126,6 +126,8 @@
 }
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
+    [man soldier].physicsBody.collisionType = @"healthyCollision";
+    [man soldier].physicsBody.collisionGroup = @"myGroup";
     [man soldier].position = sourcehouse.position;
     [man move:desthouse.position];
 }
@@ -133,7 +135,7 @@
 - (void)addjunk {
     Soldier* test_junk = [[Soldier alloc] init];
     [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
-    [test_junk soldier].scaleX *= -1;
+    [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:_house1.position];
 }
