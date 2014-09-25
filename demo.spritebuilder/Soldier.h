@@ -17,7 +17,7 @@
 @property int atk_range;
 @property int atk_power;
 @property float defence;    // value is from 0 ~ 1(100%)
-@property int move_speed;   // seconds for moving 100 units
+@property int move_speed;   // the distance soldier can move per second
 @property int ability_id;
 @property CCNode* soldier;
 
