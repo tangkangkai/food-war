@@ -17,6 +17,12 @@
 
 - (void) didLoadFromCCB {
     NSLog(@"Enter Game Level Scene");
+    if ([SavedData level]) {
+        _text.string = [NSString stringWithFormat:@"Level %d", [SavedData level]];
+    } else {
+        _text.string = @"Please choose your level";
+    }
+    
 }
 
 - (void) back {
