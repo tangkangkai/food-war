@@ -41,6 +41,7 @@
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		BE106AAA19C8ECB700FAE0C5 /* SettingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BE106AA919C8ECB700FAE0C5 /* SettingScene.m */; };
 		BE87625F19D1E4AD002BF04D /* burgerMan.m in Sources */ = {isa = PBXBuildFile; fileRef = BE87625E19D1E4AD002BF04D /* burgerMan.m */; };
+		BE9A416C19D7BF480060E00D /* SavedData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9A416B19D7BF480060E00D /* SavedData.m */; };
 		BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4419CA610C009DF48C /* ChoiceScene.m */; };
 		BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4619CA610C009DF48C /* GameScene.m */; };
 		BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4819CA610C009DF48C /* StoreScene.m */; };
@@ -109,6 +110,8 @@
 		BE106AA919C8ECB700FAE0C5 /* SettingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingScene.m; path = Source/SettingScene.m; sourceTree = "<group>"; };
 		BE87625D19D1E4AD002BF04D /* burgerMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = burgerMan.h; sourceTree = "<group>"; };
 		BE87625E19D1E4AD002BF04D /* burgerMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = burgerMan.m; sourceTree = "<group>"; };
+		BE9A416A19D7BF480060E00D /* SavedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedData.h; sourceTree = "<group>"; };
+		BE9A416B19D7BF480060E00D /* SavedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedData.m; sourceTree = "<group>"; };
 		BEB82C4319CA610C009DF48C /* ChoiceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoiceScene.h; path = Source/ChoiceScene.h; sourceTree = "<group>"; };
 		BEB82C4419CA610C009DF48C /* ChoiceScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChoiceScene.m; path = Source/ChoiceScene.m; sourceTree = "<group>"; };
 		BEB82C4519CA610C009DF48C /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Source/GameScene.h; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				BE106AA919C8ECB700FAE0C5 /* SettingScene.m */,
 				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
 				BE87625E19D1E4AD002BF04D /* burgerMan.m */,
+				BE9A416A19D7BF480060E00D /* SavedData.h */,
+				BE9A416B19D7BF480060E00D /* SavedData.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */,
+				BE9A416C19D7BF480060E00D /* SavedData.m in Sources */,
 				BEB82C5919CA62C1009DF48C /* greenman.m in Sources */,
 				BEB82C5A19CA62C1009DF48C /* redman.m in Sources */,
 				BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "Gameplay.h"
 #import "Soldier.h"
+#import "SavedData.h"
 
 #define BURGER 1;
 #define COKE 2;
@@ -138,6 +139,14 @@
     [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:_house1.position];
+    
+    [SavedData loadData];
+    NSLog(@"%d", [SavedData money]);
+}
+
+- (void)test {
+    NSLog(@"reduce Money");
+    [SavedData deleteSavedData];
 }
 
 
@@ -176,6 +185,73 @@
     
     NSLog(@"Collision");
     return YES;
+}
+
+
+- (void)save {
+    // We're going to save the data to SavedState.plist in our app's documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"SavedState.plist"];
+    
+    // Create a dictionary to store all your data
+    NSMutableDictionary *dataToSave = [NSMutableDictionary dictionary];
+    
+    // Store any NSData, NSString, NSArray, NSDictionary, NSDate, and NSNumber directly.  See "NSPropertyListSerialization Class Reference" for more information.
+    NSString *myString = @"Hello!";
+    [dataToSave setObject:myString forKey:@"MyString"];
+    
+    
+    // Create a serialized NSData instance, which can be written to a plist, from the data we've been storing in our NSMutableDictionary
+    NSString *errorDescription;
+    NSData *serializedData = [NSPropertyListSerialization dataFromPropertyList:dataToSave
+                                                                        format:NSPropertyListXMLFormat_v1_0
+                                                              errorDescription:&errorDescription];
+    if(serializedData)
+    {
+        // Write file
+        NSError *error;
+        BOOL didWrite = [serializedData writeToFile:plistPath options:NSDataWritingFileProtectionComplete error:&error];
+        
+        NSLog(@"Error while writing: %@", [error description]);
+        
+        if (didWrite)
+            NSLog(@"File did write");
+        else
+            NSLog(@"File write failed");
+    }
+    else 
+    {
+        NSLog(@"Error in creating state data dictionary: %@", errorDescription);
+    }
+}
+
+- (void)load {
+    // Fetch NSDictionary containing possible saved state
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                              NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"SavedStates.plist"];
+
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSDictionary *unarchivedData = (NSDictionary *)[NSPropertyListSerialization
+                                                    propertyListFromData:plistXML
+                                                    mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                    format:&format
+                                                    errorDescription:&errorDesc];
+    
+    // If NSDictionary exists, look to see if it holds a saved game state
+    if (!unarchivedData)
+    {
+        NSLog(@"hehe");
+    }
+    else
+    {
+        // Load property list objects directly
+        NSString *myString = [unarchivedData objectForKey:@"MyString"];
+        NSLog(@"%@", myString);
+    }
 }
 
 @end

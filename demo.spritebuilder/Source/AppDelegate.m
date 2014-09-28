@@ -27,6 +27,7 @@
 
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
+#import "SavedData.h"
 
 @implementation AppController
 
@@ -59,7 +60,10 @@
 
 - (CCScene*) startScene
 {
-    return [CCBReader loadAsScene:@"MainScene"];
+    //init saved data and load
+    [SavedData init];
+    [SavedData loadData];
+    return [CCBReader loadAsScene:@"Gameplay"];
 }
 
 @end
