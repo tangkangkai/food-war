@@ -46,8 +46,6 @@
 		BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4619CA610C009DF48C /* GameScene.m */; };
 		BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4819CA610C009DF48C /* StoreScene.m */; };
 		BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C5319CA62C1009DF48C /* Gameplay.m */; };
-		BEB82C5919CA62C1009DF48C /* greenman.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C5519CA62C1009DF48C /* greenman.m */; };
-		BEB82C5A19CA62C1009DF48C /* redman.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C5719CA62C1009DF48C /* redman.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,10 +118,6 @@
 		BEB82C4819CA610C009DF48C /* StoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreScene.m; path = Source/StoreScene.m; sourceTree = "<group>"; };
 		BEB82C5219CA62C1009DF48C /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gameplay.h; path = Source/Gameplay.h; sourceTree = "<group>"; };
 		BEB82C5319CA62C1009DF48C /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gameplay.m; path = Source/Gameplay.m; sourceTree = "<group>"; };
-		BEB82C5419CA62C1009DF48C /* greenman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = greenman.h; path = Source/greenman.h; sourceTree = "<group>"; };
-		BEB82C5519CA62C1009DF48C /* greenman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = greenman.m; path = Source/greenman.m; sourceTree = "<group>"; };
-		BEB82C5619CA62C1009DF48C /* redman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = redman.h; path = Source/redman.h; sourceTree = "<group>"; };
-		BEB82C5719CA62C1009DF48C /* redman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = redman.m; path = Source/redman.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,10 +163,6 @@
 				BEB82C4519CA610C009DF48C /* GameScene.h */,
 				BEB82C5219CA62C1009DF48C /* Gameplay.h */,
 				BEB82C5319CA62C1009DF48C /* Gameplay.m */,
-				BEB82C5419CA62C1009DF48C /* greenman.h */,
-				BEB82C5519CA62C1009DF48C /* greenman.m */,
-				BEB82C5619CA62C1009DF48C /* redman.h */,
-				BEB82C5719CA62C1009DF48C /* redman.m */,
 				BEB82C4619CA610C009DF48C /* GameScene.m */,
 				BEB82C4719CA610C009DF48C /* StoreScene.h */,
 				BEB82C4819CA610C009DF48C /* StoreScene.m */,
@@ -400,8 +390,6 @@
 			files = (
 				49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */,
 				BE9A416C19D7BF480060E00D /* SavedData.m in Sources */,
-				BEB82C5919CA62C1009DF48C /* greenman.m in Sources */,
-				BEB82C5A19CA62C1009DF48C /* redman.m in Sources */,
 				BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */,
 				BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */,
 				BE106AAA19C8ECB700FAE0C5 /* SettingScene.m in Sources */,

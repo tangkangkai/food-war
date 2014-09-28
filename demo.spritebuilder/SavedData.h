@@ -23,10 +23,13 @@
 
 // Total money
 + (int) money;
-+ (void)reduceMoney;
+
+//level
++ (int) level;
++ (void)setLevel: (int) gameLevel;
+
 + (void)deleteSavedData;
 
-+ (void) newData;
 + (void) loadData;
 
 @end

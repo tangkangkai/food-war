@@ -10,26 +10,10 @@
 
 
 static int money;
+static int level;
 static NSString *plistPath;
 
 @implementation SavedData
-
-+ (void)newData {
-    // Create a dictionary to store all your data
-    NSMutableDictionary *dataToSave = [NSMutableDictionary dictionary];
-    // Wrap primitives in NSValue or NSNumber objects.  Here are some examples:
-    NSNumber *totalMoney = [NSNumber numberWithInt:1000];
-    [dataToSave setObject:totalMoney forKey:@"totalMoney"];
-    [self saveDictionary:dataToSave];
-}
-
-+ (void)saveMoney {
-    NSMutableDictionary *dataToSave = [self getSavedDictionary];
-    //update money
-    NSNumber *totalMoney = [NSNumber numberWithInt:money];
-    [dataToSave setObject:totalMoney forKey:@"totalMoney"];
-    [self saveDictionary:dataToSave];
-}
 
 + (void)loadData {
     // Fetch NSDictionary containing possible saved state
@@ -47,27 +31,59 @@ static NSString *plistPath;
     if (!unarchivedData)
     {
         NSLog(@"NSDictionary not exists, reload");
-        [self newData];
+        [self createData];
         [self loadData];
     }
     else
     {
         // Load money
-        NSNumber *totalMoney = [unarchivedData objectForKey:@"totalMoney"];
+        NSNumber *totalMoney = [unarchivedData objectForKey:@"money"];
         money = [totalMoney intValue];
+        
+        // Load level
+        NSNumber *gameLevel = [unarchivedData objectForKey:@"level"];
+        level = [gameLevel intValue];
     }
 }
 
-+(int)money {return money;}
 
-+(void)reduceMoney {
-    money -= 10;
-    [self saveMoney];
++ (int)level {return level;}
+
++ (void)setLevel: (int) gameLevel {
+    level = gameLevel;
+}
+
++ (void)saveLevel {
+    NSMutableDictionary *dataToSave = [self getSavedDictionary];
+    //update money
+    NSNumber *levelNum = [NSNumber numberWithInt:level];
+    [dataToSave setObject:levelNum forKey:@"level"];
+    [self saveDictionary:dataToSave];
+}
+
++ (int)money {return money;}
+
++ (void)saveMoney {
+    NSMutableDictionary *dataToSave = [self getSavedDictionary];
+    //update money
+    NSNumber *totalMoney = [NSNumber numberWithInt:money];
+    [dataToSave setObject:totalMoney forKey:@"money"];
+    [self saveDictionary:dataToSave];
 }
 
 /*
  * Basic Functions
  */
++ (void)createData {
+    // Create a dictionary to store all your data
+    NSMutableDictionary *dataToSave = [NSMutableDictionary dictionary];
+    // Wrap primitives in NSValue or NSNumber objects.  Here are some examples:
+    NSNumber *gameLevel = [NSNumber numberWithInt:1];
+    [dataToSave setObject:gameLevel forKey:@"level"];
+    NSNumber *totalMoney = [NSNumber numberWithInt:1000];
+    [dataToSave setObject:totalMoney forKey:@"money"];
+    [self saveDictionary:dataToSave];
+}
 
 + (NSMutableDictionary *)getSavedDictionary {
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];

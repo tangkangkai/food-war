@@ -139,9 +139,6 @@
     [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:_house1.position];
-    
-    [SavedData loadData];
-    NSLog(@"%d", [SavedData money]);
 }
 
 - (void)test {
