@@ -63,6 +63,10 @@ static NSString *plistPath;
 
 + (int)money {return money;}
 
++ (void)setMoney: (int) totalMoney {
+    money = totalMoney;
+}
+
 + (void)saveMoney {
     NSMutableDictionary *dataToSave = [self getSavedDictionary];
     //update money

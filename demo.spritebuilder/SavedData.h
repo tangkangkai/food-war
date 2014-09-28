@@ -23,6 +23,8 @@
 
 // Total money
 + (int) money;
++ (void)setMoney: (int) totalMoney;
++ (void)saveMoney;
 
 //level
 + (int) level;

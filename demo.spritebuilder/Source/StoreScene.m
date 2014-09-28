@@ -7,18 +7,23 @@
 //
 
 #import "StoreScene.h"
+#import "SavedData.h"
 
 @implementation StoreScene {
     CCTextField *_total;
     int total;
 }
 
--(void) onEnter {
-    [super onEnter];
-    total = 100;
+-(void) didLoadFromCCB {
+    NSLog(@"enter store scene");
+    total = [SavedData money];
+    _total.string = [NSString stringWithFormat:@" %d", total];
 }
 
 -(void)back {
+    
+    [SavedData setMoney:total];
+    [SavedData saveMoney];
     CCScene *gameScene = [CCBReader loadAsScene:@"GameScene"];
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.5f];
@@ -43,7 +48,6 @@
 
 
 -(void)reduceTotalMoney: (int)value {
-    NSLog(@"hehe");
     CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(128, 270)];
     CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(128, 287)];
     
