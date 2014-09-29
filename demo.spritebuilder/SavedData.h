@@ -30,6 +30,9 @@
 + (int) level;
 + (void)setLevel: (int) gameLevel;
 
+//level available array
++ (NSMutableArray *)levelArray;
+
 + (void)deleteSavedData;
 
 + (void) loadData;

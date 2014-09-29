@@ -11,9 +11,11 @@
 
 @implementation ChoiceScene {
     CCTextField *_message;
+    
 }
 
 - (void)didLoadFromCCB {
+    
     _message.string = [NSString stringWithFormat:@"At level %d, now choose your lineups", [SavedData level]];
 }
 

@@ -11,6 +11,8 @@
 
 @implementation GameScene {
     CCTextField *_text;
+    NSMutableArray *levelArray;
+    BOOL ifLocked;
 }
 
 
@@ -22,7 +24,7 @@
     } else {
         _text.string = @"Please choose your level";
     }
-    
+    levelArray = [SavedData levelArray];
 }
 
 - (void) back {
@@ -38,6 +40,11 @@
 }
 
 - (void)next {
+    if (ifLocked) {
+        _text.string = @"Level Locked, please choose again";
+        return;
+    }
+    
     CCScene *choiceScene = [CCBReader loadAsScene:@"ChoiceScene"];
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
@@ -66,10 +73,24 @@
 }
 
 - (void)changeLevel: (int) level {
-    CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:0.2f angle:360];
-    [_text runAction:rotate];
-    _text.string = [NSString stringWithFormat:@"Level %d", level];
-    [SavedData setLevel:level];
+        
+    if ([[levelArray objectAtIndex:level - 1] intValue] == 0) {
+        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
+        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
+        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
+        
+        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveleft, moveright, moveleft, moveright, moveback]];
+        _text.string = [NSString stringWithFormat:@"Level %d locked", level];
+        [_text runAction:sequence];
+        ifLocked = true;
+    } else {
+        CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:0.2f angle:360];
+        [_text runAction:rotate];
+        _text.string = [NSString stringWithFormat:@"Level %d", level];
+        [SavedData setLevel:level];
+        ifLocked = false;
+    }
+
 }
 
 @end

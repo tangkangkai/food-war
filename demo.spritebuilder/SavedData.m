@@ -12,6 +12,7 @@
 static int money;
 static int level;
 static NSString *plistPath;
+static NSMutableArray *levelArray;
 
 @implementation SavedData
 
@@ -43,10 +44,14 @@ static NSString *plistPath;
         // Load level
         NSNumber *gameLevel = [unarchivedData objectForKey:@"level"];
         level = [gameLevel intValue];
+        
+        // Load level array
+        NSMutableArray *array = [unarchivedData objectForKey:@"levelarray"];
+        levelArray = [array copy];
     }
 }
 
-
+// level
 + (int)level {return level;}
 
 + (void)setLevel: (int) gameLevel {
@@ -60,6 +65,26 @@ static NSString *plistPath;
     [dataToSave setObject:levelNum forKey:@"level"];
     [self saveDictionary:dataToSave];
 }
+
+
+
+//level permission array
++ (NSMutableArray *)levelArray {return levelArray;}
+
++ (void)setLevelArray: (NSMutableArray *) array {
+    levelArray = array;
+}
+
++ (void)saveLevelArray {
+    NSMutableDictionary *dataToSave = [self getSavedDictionary];
+    //update money
+    
+    [dataToSave setObject:levelArray forKey:@"levelarray"];
+    [self saveDictionary:dataToSave];
+}
+
+
+// money
 
 + (int)money {return money;}
 
@@ -81,11 +106,22 @@ static NSString *plistPath;
 + (void)createData {
     // Create a dictionary to store all your data
     NSMutableDictionary *dataToSave = [NSMutableDictionary dictionary];
-    // Wrap primitives in NSValue or NSNumber objects.  Here are some examples:
+    
+    // Wrap primitives in NSNumber objects.
     NSNumber *gameLevel = [NSNumber numberWithInt:1];
     [dataToSave setObject:gameLevel forKey:@"level"];
     NSNumber *totalMoney = [NSNumber numberWithInt:1000];
     [dataToSave setObject:totalMoney forKey:@"money"];
+    
+    // level permission
+    NSNumber *level1 = [NSNumber numberWithInt:1];
+    NSNumber *level2 = [NSNumber numberWithInt:1];
+    NSNumber *level3 = [NSNumber numberWithInt:0];
+    NSNumber *level4 = [NSNumber numberWithInt:0];
+    levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, level4, nil];
+    [dataToSave setObject:levelArray forKey:@"levelarray"];
+    
+    
     [self saveDictionary:dataToSave];
 }
 
@@ -138,6 +174,7 @@ static NSString *plistPath;
 + (void)init {
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     plistPath = [rootPath stringByAppendingPathComponent:@"SavedData.plist"];
+    
 }
 
 @end
