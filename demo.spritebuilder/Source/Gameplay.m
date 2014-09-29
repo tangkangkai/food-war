@@ -46,6 +46,7 @@
     _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
     selected_soldier = NULL;
+    man = NULL;
     return self;
 }
 
@@ -79,6 +80,9 @@
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if( man == NULL ){
+        return;
+    }
     CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
     [man soldier].position = touchLocation;
@@ -110,7 +114,7 @@
         NSLog(@"located in track 3");
         [self launchmovingman:_house3 dest:_house6];
     } else {
-        [_physicsWorld removeChild:[man soldier]];
+        [self removeChild:[man soldier]];
     }
     [self trackInvist];
 }
@@ -122,7 +126,11 @@
 }
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
+    if( man == NULL ){
+        return;
+    }
     [self removeChild: [man soldier]];
+    man = NULL;
     Soldier* newSolider = [[Soldier alloc] init];
     [newSolider loadSolider:selected_soldier group:@"myGroup"
        collisionType:@"healthyCollision" startPos:sourcehouse.position];
