@@ -63,7 +63,7 @@
     //init saved data and load
     [SavedData init];
     [SavedData loadData];
-    return [CCBReader loadAsScene:@"GameScene"];
+    return [CCBReader loadAsScene:@"MainScene"];
 }
 
 @end
