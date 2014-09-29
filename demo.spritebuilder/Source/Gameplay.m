@@ -28,13 +28,11 @@
     CCNode *_cokeman;
     CCNode *_friesman;
     
-    int soldier;            // TODO
     Soldier *man;           //save the final man
-    
     CCNode *_track1;        //invisible track
     CCNode *_track2;
     CCNode *_track3;
-    
+    NSString *selected_soldier;
 }
 
 - (id)init{
@@ -47,7 +45,7 @@
     _physicsWorld.collisionDelegate = self;
     _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
-    
+    selected_soldier = NULL;
     return self;
 }
 
@@ -60,24 +58,22 @@
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
     Soldier* newSolider = [[Soldier alloc] init];
-    NSString *soldier_ccb = NULL;
+    
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        soldier_ccb = @"burgerMan";
-        soldier = BURGER;
+        selected_soldier = @"burgerMan";
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
-        soldier_ccb = @"cokeMan";
-        soldier = COKE;
+        selected_soldier = @"cokeMan";
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
-        soldier_ccb = @"friesMan";
-        soldier = FRIES;
+        selected_soldier = @"friesMan";
     }
     
-    if (soldier_ccb != NULL) {
-        [newSolider loadSolider:soldier_ccb group:@"enemyGroup"
+    if (selected_soldier != NULL) {
+        [newSolider loadSolider:selected_soldier group:@"noGroup"
                     collisionType:@"noCollision" startPos:touchLocation];
         man = newSolider;
-        [_physicsWorld addChild: [newSolider soldier]];
+        // TODO possible memory leak
+        [self addChild: [newSolider soldier]];
     }
 }
 
@@ -104,7 +100,6 @@
 {
     CCLOG(@"Touch Ended");
     CGPoint touchLocation = [touch locationInNode:self];
-    //[man removeFromParent];
     if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
         NSLog(@"located in track 1");
         [self launchmovingman:_house1 dest:_house4];
@@ -127,10 +122,13 @@
 }
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
-    [man soldier].physicsBody.collisionType = @"healthyCollision";
-    [man soldier].physicsBody.collisionGroup = @"myGroup";
-    [man soldier].position = sourcehouse.position;
-    [man move:desthouse.position];
+    [self removeChild: [man soldier]];
+    Soldier* newSolider = [[Soldier alloc] init];
+    [newSolider loadSolider:selected_soldier group:@"myGroup"
+       collisionType:@"healthyCollision" startPos:sourcehouse.position];
+    [_physicsWorld addChild: [newSolider soldier]];
+    [newSolider move:desthouse.position];
+    selected_soldier = NULL;
 }
 
 - (void)addjunk {
