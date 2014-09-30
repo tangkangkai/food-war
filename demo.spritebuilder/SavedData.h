@@ -24,7 +24,7 @@
 // Total money
 + (int) money;
 + (void)setMoney: (int) totalMoney;
-+ (void)addMoney: (int)moneyToAdd
++ (void)addMoney: (int)moneyToAdd;
 + (void)saveMoney;
 
 //level
