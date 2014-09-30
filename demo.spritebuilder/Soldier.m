@@ -30,12 +30,9 @@
     _soldier = [CCBReader load:img];
     pos.y += arc4random() % 5;
     
-/*
+
     _soldier.position = pos; //CGPoint
     _soldier.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _soldier.contentSize} cornerRadius:0];
- */
-    _soldier.position = ccp(pos.x,pos.y-85); //CGPoint
-    
     _soldier.physicsBody.collisionGroup = group;
     _soldier.physicsBody.collisionType  = type;
 }

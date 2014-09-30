@@ -74,8 +74,10 @@
         selected_soldier_animation=@"burger";
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
         selected_soldier = @"cokeMan";
+        selected_soldier_animation=@"cokeMan";
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
         selected_soldier = @"friesMan";
+        selected_soldier_animation=@"friesMan";
     }
     
     if (selected_soldier != NULL){
