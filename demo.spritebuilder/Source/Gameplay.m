@@ -9,6 +9,7 @@
 #import "Gameplay.h"
 #import "Soldier.h"
 #import "SavedData.h"
+#import "Scrollback.h"
 
 #define BURGER 1;
 #define COKE 2;
@@ -16,23 +17,15 @@
 
 
 @implementation Gameplay{
-    CCNode *_house1;
-    CCNode *_house2;
-    CCNode *_house3;
-    CCNode *_house4;
-    CCNode *_house5;
-    CCNode *_house6;
-    
     CCPhysicsNode *_physicsWorld;
     CCNode *_burgerman;
     CCNode *_cokeman;
     CCNode *_friesman;
     
     Soldier *man;           //save the final man
-    CCNode *_track1;        //invisible track
-    CCNode *_track2;
-    CCNode *_track3;
+    Scrollback *scroll;
     NSString *selected_soldier;
+    CCNode *_scrollview;
 }
 
 - (id)init{
@@ -41,8 +34,6 @@
     
     _physicsWorld = [CCPhysicsNode node];
     _physicsWorld.gravity = ccp(0,0);
-    //_physicsWorld.debugDraw = YES;   // show the physic content
-    _physicsWorld.collisionDelegate = self;
     _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
     selected_soldier = NULL;
@@ -57,6 +48,7 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Received a touch");
+    scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     Soldier* newSolider = [[Soldier alloc] init];
     
@@ -69,7 +61,7 @@
         selected_soldier = @"friesMan";
     }
     
-    if (selected_soldier != NULL) {
+    if (selected_soldier != NULL){
         [newSolider loadSolider:selected_soldier group:@"noGroup"
                     collisionType:@"noCollision" startPos:touchLocation];
         man = newSolider;
@@ -80,52 +72,57 @@
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    scroll=[_scrollview children][0];
     if( man == NULL ){
         return;
     }
     CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
     [man soldier].position = touchLocation;
-    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
+    if (CGRectContainsPoint([scroll track1].boundingBox,touchLocation)) {
         NSLog(@"moved into track 1");
-        _track1.visible = true;
-    } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
+        [scroll track1].visible = true;
+    } else if (CGRectContainsPoint([scroll track2].boundingBox, touchLocation)) {
         NSLog(@"moved into track 2");
-        _track2.visible = true;
-    } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
+        [scroll track2].visible = true;
+    } else if (CGRectContainsPoint([scroll track3].boundingBox, touchLocation)) {
         NSLog(@"moved into track 3");
-        _track3.visible = true;
+        [scroll track3].visible = true;
     } else {
-        [self trackInvist];
+        [scroll trackInvist];
     }
 }
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CCLOG(@"Touch Ended");
+    scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
+    if (CGRectContainsPoint([scroll track1].boundingBox,touchLocation)) {
         NSLog(@"located in track 1");
-        [self launchmovingman:_house1 dest:_house4];
-    } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
+        [self launchmovingman:[scroll house1] dest:[scroll house4]];
+    } else if (CGRectContainsPoint([scroll track2].boundingBox, touchLocation)) {
         NSLog(@"located in track 2");
-        [self launchmovingman: _house2 dest:_house5];
-    } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
+        [self launchmovingman: [scroll house2] dest:[scroll house5]];
+    } else if (CGRectContainsPoint([scroll track3].boundingBox, touchLocation)) {
         NSLog(@"located in track 3");
-        [self launchmovingman:_house3 dest:_house6];
+        [self launchmovingman:[scroll house3] dest:[scroll house6]];
     } else {
         [self removeChild:[man soldier]];
     }
-    [self trackInvist];
+    [scroll trackInvist];
 }
-
+/*
 - (void)trackInvist {
-    _track1.visible = false;
-    _track2.visible = false;
-    _track3.visible = false;
-}
+    scroll=[_scrollview children][0];
+    [scroll track1].visible = false;
+    [scroll track2].visible = false;
+    [scroll track3].visible = false;
+}*/
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
+    scroll=[_scrollview children][0];
+    _physicsWorld=[scroll scroll_physicsWorld];
     if( man == NULL ){
         return;
     }
@@ -140,11 +137,13 @@
 }
 
 - (void)addjunk {
+    scroll=[_scrollview children][0];
+    _physicsWorld=[scroll scroll_physicsWorld];
     Soldier* test_junk = [[Soldier alloc] init];
-    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position];
     [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
     [_physicsWorld addChild: [test_junk soldier]];
-    [test_junk move:_house1.position];
+    [test_junk move:[scroll house1].position];
 }
 
 - (void)test {
@@ -153,42 +152,6 @@
 }
 
 
-- (void)menu {
-    [[CCDirector sharedDirector] pause];
-    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                message:@"Plese choose"
-                                                delegate:self
-                                                cancelButtonTitle:@"Resume"
-                                                otherButtonTitles: nil];
-    [alert addButtonWithTitle:@"Quit Game"];
-    [alert show];
-}
-
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"Button Index =%ld",(long)buttonIndex);
-    if (buttonIndex == 0){
-        NSLog(@"You have clicked Cancel");
-        [[CCDirector sharedDirector] resume];
-    }
-    else if(buttonIndex == 1)
-    {
-        NSLog(@"You have clicked Quit Game");
-        [[CCDirector sharedDirector] resume];
-        CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
-        CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
-        [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
-    }
-}
-
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
-    [healthy stopAllActions];
-    [junk stopAllActions];
-    
-    NSLog(@"Collision");
-    return YES;
-}
 
 
 - (void)save {
