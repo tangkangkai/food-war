@@ -26,6 +26,10 @@
     Scrollback *scroll;
     NSString *selected_soldier;
     CCNode *_scrollview;
+    
+    CCLabelTTF *_timerLabel;
+    float mTimeInSec;
+//    CCTimer *_timer;
 }
 
 - (id)init{
@@ -40,18 +44,29 @@
 
     selected_soldier = NULL;
     man = NULL;
+    
+//    _timer = [[CCTimer alloc] init];
+
     return self;
 }
 
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
+    mTimeInSec = 0.0f;                              //intialize timer
+    [self schedule:@selector(tick) interval:0.5f];
+    NSLog(@"schedule complete!");
 }
+
+-(void)tick {
+    mTimeInSec += 0.5f;
+    _timerLabel.string = [NSString stringWithFormat:@"%f", mTimeInSec];
+}
+
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
-    
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
         selected_soldier = @"burgerMan";
@@ -145,9 +160,8 @@
 - (void)test {
     NSLog(@"reduce Money");
     [SavedData deleteSavedData];
+    
 }
-
-
 
 - (void)save {
     // We're going to save the data to SavedState.plist in our app's documents directory
