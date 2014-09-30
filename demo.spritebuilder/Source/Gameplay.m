@@ -36,6 +36,8 @@
     _physicsWorld.gravity = ccp(0,0);
     _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
+    scroll=[_scrollview children][0];
+
     selected_soldier = NULL;
     man = NULL;
     return self;
@@ -48,9 +50,7 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Received a touch");
-    scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    Soldier* newSolider = [[Soldier alloc] init];
     
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
@@ -62,6 +62,7 @@
     }
     
     if (selected_soldier != NULL){
+        Soldier* newSolider = [[Soldier alloc] init];
         [newSolider loadSolider:selected_soldier group:@"noGroup"
                     collisionType:@"noCollision" startPos:touchLocation];
         man = newSolider;
@@ -110,15 +111,11 @@
     } else {
         [self removeChild:[man soldier]];
     }
+    man = NULL;
+    selected_soldier = NULL;
     [scroll trackInvist];
 }
-/*
-- (void)trackInvist {
-    scroll=[_scrollview children][0];
-    [scroll track1].visible = false;
-    [scroll track2].visible = false;
-    [scroll track3].visible = false;
-}*/
+
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
     scroll=[_scrollview children][0];
@@ -127,13 +124,12 @@
         return;
     }
     [self removeChild: [man soldier]];
-    man = NULL;
     Soldier* newSolider = [[Soldier alloc] init];
     [newSolider loadSolider:selected_soldier group:@"myGroup"
        collisionType:@"healthyCollision" startPos:sourcehouse.position];
     [_physicsWorld addChild: [newSolider soldier]];
     [newSolider move:desthouse.position];
-    selected_soldier = NULL;
+
 }
 
 - (void)addjunk {
@@ -150,7 +146,6 @@
     NSLog(@"reduce Money");
     [SavedData deleteSavedData];
 }
-
 
 
 
