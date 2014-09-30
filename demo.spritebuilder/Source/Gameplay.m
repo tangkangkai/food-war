@@ -25,6 +25,7 @@
     Soldier *man;           //save the final man
     Scrollback *scroll;
     NSString *selected_soldier;
+    NSString *selected_soldier_animation;
     CCNode *_scrollview;
     
     CCLabelTTF *_timerLabel;
@@ -70,6 +71,7 @@
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
         selected_soldier = @"burgerMan";
+        selected_soldier_animation=@"burger";
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
         selected_soldier = @"cokeMan";
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
@@ -134,13 +136,14 @@
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
     scroll=[_scrollview children][0];
+  //  CCNode *_test_soldier = [CCBReader load:@"burger"];
     _physicsWorld=[scroll scroll_physicsWorld];
     if( man == NULL ){
         return;
     }
     [self removeChild: [man soldier]];
     Soldier* newSolider = [[Soldier alloc] init];
-    [newSolider loadSolider:selected_soldier group:@"myGroup"
+    [newSolider loadSolider:selected_soldier_animation group:@"myGroup"
        collisionType:@"healthyCollision" startPos:sourcehouse.position];
     [_physicsWorld addChild: [newSolider soldier]];
     [newSolider move:desthouse.position];
