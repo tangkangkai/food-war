@@ -29,7 +29,7 @@
     CCNode *_scrollview;
     
     CCLabelTTF *_timerLabel;
-    float mTimeInSec;
+    int mTimeInSec;
 //    CCTimer *_timer;
 }
 
@@ -54,14 +54,14 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    mTimeInSec = 0.0f;                              //intialize timer
-    [self schedule:@selector(tick) interval:0.5f];
-    NSLog(@"schedule complete!");
+    mTimeInSec = 180;                              //intialize timer
+    [self schedule:@selector(tick) interval:1.0f];
+//    NSLog(@"schedule complete!");
 }
 
 -(void)tick {
-    mTimeInSec += 0.5f;
-    _timerLabel.string = [NSString stringWithFormat:@"%f", mTimeInSec];
+    mTimeInSec -= 1;
+    _timerLabel.string = [NSString stringWithFormat:@"%d", mTimeInSec];
 }
 
 
