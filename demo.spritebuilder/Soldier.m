@@ -26,23 +26,31 @@
 }
 
 - (void)loadSolider:(NSString*) img group:(NSString*) group
-                                collisionType:(NSString*) type startPos:(CGPoint) pos{
+                                collisionType:(NSString*) type
+                                startPos:(CGPoint) pos
+                                arr:(NSMutableArray*) array{
     _soldier = [CCBReader load:img];
     pos.y += arc4random() % 5;
     _soldier.position = pos; //CGPoint
     _soldier.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _soldier.contentSize} cornerRadius:0];
     _soldier.physicsBody.collisionGroup = group;
     _soldier.physicsBody.collisionType  = type;
+    if( array != NULL ){
+        [array addObject:array];
+    }
 }
 
 -(void)move: (CGPoint) pos {
     int distance = ABS(pos.x - [_soldier position].x);
     int duration = distance/_move_speed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration position:CGPointMake(pos.x,[_soldier position].y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+    //CCAction *actionRemove = [CCActionRemove action];
+    [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
 }
 
+- (void)dead{
+    
+}
 
 - (id)init {
     

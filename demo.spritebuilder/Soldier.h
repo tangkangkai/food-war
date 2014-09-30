@@ -25,7 +25,10 @@
 - (int)loseHealth:(int)Attack;
 - (void)attack;
 - (void)loadSolider:(NSString*) img group:(NSString*) group
-                    collisionType:(NSString*) type startPos:(CGPoint) pos;
+                    collisionType:(NSString*) type startPos:(CGPoint) pos
+                    arr:(NSMutableArray*) array;
 - (void)move:(CGPoint) pos;
+- (void)dead;
+
 
 @end
