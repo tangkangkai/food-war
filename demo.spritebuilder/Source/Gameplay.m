@@ -21,6 +21,7 @@
     CCNode *_burgerman;
     CCNode *_cokeman;
     CCNode *_friesman;
+    CCNode *_potato;
     
     Soldier *man;           //save the final man
     Scrollback *scroll;
@@ -83,6 +84,9 @@
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
         selected_soldier = @"friesMan";
         selected_soldier_animation=@"friesMan";
+    } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
+        selected_soldier = @"potato";
+        selected_soldier_animation=@"potato";
     }
     
     if (selected_soldier != NULL){
