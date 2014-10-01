@@ -27,10 +27,12 @@
     NSString *selected_soldier;
     NSString *selected_soldier_animation;
     CCNode *_scrollview;
-    
     CCLabelTTF *_timerLabel;
     int mTimeInSec;
 //    CCTimer *_timer;
+    NSMutableArray *junk_soldiers;
+    NSMutableArray *healthy_soldiers;
+
 }
 
 - (id)init{
@@ -42,6 +44,8 @@
     _physicsWorld.zOrder = 10000;
     [self addChild:_physicsWorld];
     scroll=[_scrollview children][0];
+    junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
+    healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
 
     selected_soldier = NULL;
     man = NULL;
@@ -83,7 +87,8 @@
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] init];
         [newSolider loadSolider:selected_soldier group:@"noGroup"
-                    collisionType:@"noCollision" startPos:touchLocation];
+                    collisionType:@"noCollision" startPos:touchLocation
+                    arr:NULL];
         man = newSolider;
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
@@ -145,8 +150,9 @@
     }
     [self removeChild: [man soldier]];
     Soldier* newSolider = [[Soldier alloc] init];
-    [newSolider loadSolider:selected_soldier_animation group:@"myGroup"
-       collisionType:@"healthyCollision" startPos:sourcehouse.position];
+    [newSolider loadSolider:selected_soldier group:@"myGroup"
+                collisionType:@"healthyCollision" startPos:sourcehouse.position
+                arr:healthy_soldiers];
     [_physicsWorld addChild: [newSolider soldier]];
     [newSolider move:desthouse.position];
 
@@ -156,7 +162,7 @@
     scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
     Soldier* test_junk = [[Soldier alloc] init];
-    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position];
+    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:junk_soldiers];
     [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:[scroll house1].position];
