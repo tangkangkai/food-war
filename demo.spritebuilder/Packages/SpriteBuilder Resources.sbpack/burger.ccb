@@ -162,7 +162,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>16.960638046264648</real>
+							<real>19.610136032104492</real>
 							<real>10.678319931030273</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -311,7 +311,7 @@
 									<key>type</key>
 									<integer>2</integer>
 									<key>value</key>
-									<real>-22.259593963623047</real>
+									<real>-18.136541366577148</real>
 								</dict>
 								<dict>
 									<key>easing</key>
@@ -326,7 +326,7 @@
 									<key>type</key>
 									<integer>2</integer>
 									<key>value</key>
-									<real>-29.699668884277344</real>
+									<real>0.20000000298023224</real>
 								</dict>
 							</array>
 							<key>name</key>
@@ -404,7 +404,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>-29.699668884277344</real>
+						<real>0.20000000298023224</real>
 					</dict>
 					<dict>
 						<key>name</key>
