@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>3</integer>
+	<integer>2</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -41,7 +41,7 @@
 		<array>
 			<dict>
 				<key>UUID</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>baseClass</key>
 				<string>CCLabelTTF</string>
 				<key>children</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>24</real>
-							<real>54</real>
+							<real>27</real>
+							<real>56</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -86,7 +86,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.61897784471511841</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -148,8 +148,8 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>0.010109493508934975</real>
-							<real>0.036752235144376755</real>
+							<real>0.0</real>
+							<real>0.0</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -258,7 +258,7 @@
 						</array>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
+				<key>selected</key>
 				<true/>
 			</dict>
 		</array>
@@ -326,7 +326,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>foodwar_picture/burger.png</string>
+					<string>foodwar_picture/burger_100_100.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -340,17 +340,6 @@
 					<real>1</real>
 					<real>1</real>
 					<real>1</real>
-				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>flip</string>
-				<key>type</key>
-				<string>Flip</string>
-				<key>value</key>
-				<array>
-					<true/>
-					<false/>
 				</array>
 			</dict>
 		</array>
