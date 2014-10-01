@@ -67,7 +67,7 @@
     CGPoint touchLocation = [touch locationInNode:self];
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        selected_soldier = @"burgerMan";
+        selected_soldier = @"burger";
         selected_soldier_animation=@"burger";
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
         selected_soldier = @"cokeMan";
