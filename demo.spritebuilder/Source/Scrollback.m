@@ -7,9 +7,11 @@
 //
 
 #import "Scrollback.h"
-
+#import "Soldier.h"
 
 @implementation Scrollback{
+    
+
 
 }
 
@@ -23,7 +25,9 @@
     _scroll_physicsWorld.collisionDelegate = self;
     _scroll_physicsWorld.zOrder = 10000;
     [self addChild:_scroll_physicsWorld];
-    //[self trackInvist];
+    
+    _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
+    _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     return self;
 }
 
@@ -72,9 +76,24 @@
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
     [healthy stopAllActions];
     [junk stopAllActions];
+    Soldier *healthySoldier, *junkSoldier;
+    for( Soldier *s in _healthy_soldiers ){
+        if( [s soldier] == healthy ){
+            healthySoldier = s;
+        }
+    }
+    //while (true) {
+    [ healthySoldier attack: _junk_soldiers ];
+        //sleep(1);
+    //}
+    //[self schedule:@selector(start_attack:) withObject:healthySoldier interval:1.0f];
     NSLog(@"Collision");
     return YES;
 }
 
+- (void)start_attack: (Soldier*) s{
+    //NSLog(@"test");
+    [ s attack: _junk_soldiers ];
+}
 
 @end

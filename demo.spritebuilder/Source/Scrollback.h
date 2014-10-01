@@ -21,6 +21,9 @@
 @property CCNode *track2;
 @property CCNode *track3;
 @property CCPhysicsNode *scroll_physicsWorld;
+@property NSMutableArray *junk_soldiers;
+@property NSMutableArray *healthy_soldiers;
+
 
 - (void)trackInvist;
 @end

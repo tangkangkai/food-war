@@ -23,11 +23,13 @@
 
 
 - (int)loseHealth:(int)Attack;
-- (void)attack;
+- (void)attack:(NSMutableArray*) array;
 - (void)loadSolider:(NSString*) img group:(NSString*) group
                     collisionType:(NSString*) type startPos:(CGPoint) pos
                     arr:(NSMutableArray*) array;
 - (void)move:(CGPoint) pos;
+- (void)update_health;
+
 - (void)dead;
 
 

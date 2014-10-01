@@ -30,22 +30,15 @@
     CCLabelTTF *_timerLabel;
     int mTimeInSec;
 //    CCTimer *_timer;
-    NSMutableArray *junk_soldiers;
-    NSMutableArray *healthy_soldiers;
+
 
 }
 
 - (id)init{
     self = [super init];
     if (!self) return(nil);
-    
-    _physicsWorld = [CCPhysicsNode node];
-    _physicsWorld.gravity = ccp(0,0);
-    _physicsWorld.zOrder = 10000;
-    [self addChild:_physicsWorld];
     scroll=[_scrollview children][0];
-    junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
-    healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
+    _physicsWorld=[scroll scroll_physicsWorld];
 
     selected_soldier = NULL;
     man = NULL;
@@ -152,18 +145,17 @@
     Soldier* newSolider = [[Soldier alloc] init];
     [newSolider loadSolider:selected_soldier group:@"myGroup"
                 collisionType:@"healthyCollision" startPos:sourcehouse.position
-                arr:healthy_soldiers];
+                arr:[scroll healthy_soldiers]];
     [_physicsWorld addChild: [newSolider soldier]];
     [newSolider move:desthouse.position];
 
 }
 
 - (void)addjunk {
-    scroll=[_scrollview children][0];
+    //scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
     Soldier* test_junk = [[Soldier alloc] init];
-    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:junk_soldiers];
-    [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
+    [test_junk loadSolider:@"burger-enemy" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:[scroll junk_soldiers]];
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:[scroll house1].position];
 }
@@ -171,7 +163,6 @@
 - (void)test {
     NSLog(@"reduce Money");
     [SavedData deleteSavedData];
-    
 }
 
 - (void)save {

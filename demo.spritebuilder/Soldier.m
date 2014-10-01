@@ -14,15 +14,24 @@
 
 
 - (int)loseHealth:(int)Attack {
-    NSLog(@"Original health: %d.", health);
-    int lostHeath = Attack * (_defence);
+    int lostHeath = Attack * (1 - _defence);
     health = health - lostHeath;
-    NSLog(@"Health after attacked: %d.", health);
+    [self update_health];
     return health;
 }
 
-- (void)attack{
-    NSLog(@"Attack");
+- (void)attack:(NSMutableArray*) array{
+    //int range = _soldier.position.x + _atk_range;
+    int nearest_distance = 9999;
+    Soldier *target = NULL;
+    for( Soldier *s in array ){
+        if( [s soldier].position.x < nearest_distance ){
+            target = s;
+            nearest_distance = [s soldier].position.x;
+            // TODO find the enemy with the least health
+        }
+    }
+    [ target loseHealth:[self atk_power] ];
 }
 
 - (void)loadSolider:(NSString*) img group:(NSString*) group
@@ -38,7 +47,7 @@
     _soldier.physicsBody.collisionGroup = group;
     _soldier.physicsBody.collisionType  = type;
     if( array != NULL ){
-        [array addObject:array];
+        [array addObject:self];
     }
 }
 
@@ -54,6 +63,12 @@
     
 }
 
+- (void)update_health{
+    CCLabelTTF *health_num = [ _soldier children][0];
+    [health_num setString:[NSString stringWithFormat:@"%d", health]];
+    //health_num.string = [NSString stringWithFormat:@"%d", health];
+}
+
 - (id)init {
     
     if ( self = [super init] ){
@@ -64,6 +79,7 @@
         _atk_range = 10;
         _defence = 0.1;
         _move_speed = 60;
+        [self update_health];
     }
     return self;
 }
