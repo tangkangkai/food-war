@@ -29,6 +29,7 @@
     CCNode *_scrollview;
     
     CCLabelTTF *_timerLabel;
+    CCLabelTTF *_gameoverLabel;
     int mTimeInSec;
 //    CCTimer *_timer;
 }
@@ -54,14 +55,18 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    mTimeInSec = 180;                              //intialize timer
+    mTimeInSec = 60;                              //intialize timer
     [self schedule:@selector(tick) interval:1.0f];
 //    NSLog(@"schedule complete!");
 }
 
 -(void)tick {
-    mTimeInSec -= 1;
-    _timerLabel.string = [NSString stringWithFormat:@"%d", mTimeInSec];
+    if(mTimeInSec != 0){
+        mTimeInSec -= 1;
+        _timerLabel.string = [NSString stringWithFormat:@"%d", mTimeInSec];
+    } else {
+        _gameoverLabel.string = [NSString stringWithFormat:@"GameOver"];
+    }
 }
 
 
