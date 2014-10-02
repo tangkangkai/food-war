@@ -108,11 +108,11 @@
         selected_soldier = @"burger";
         selected_soldier_animation=@"burger";
     } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
-        selected_soldier = @"cokeMan";
-        selected_soldier_animation=@"cokeMan";
+        selected_soldier = @"coke";
+        selected_soldier_animation=@"coke";
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
-        selected_soldier = @"friesMan";
-        selected_soldier_animation=@"friesMan";
+        selected_soldier = @"fries";
+        selected_soldier_animation=@"fries";
     } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
         selected_soldier = @"potato";
         selected_soldier_animation=@"potato";
@@ -180,7 +180,6 @@
 
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
     scroll=[_scrollview children][0];
-  //  CCNode *_test_soldier = [CCBReader load:@"burger"];
     _physicsWorld=[scroll scroll_physicsWorld];
     if( man == NULL ){
         return;
@@ -196,10 +195,10 @@
 }
 
 - (void)addjunk {
-    //scroll=[_scrollview children][0];
+    scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
     Soldier* test_junk = [[Soldier alloc] init];
-    [test_junk loadSolider:@"burger-enemy" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:[scroll junk_soldiers]];
+    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:[scroll junk_soldiers]];
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:[scroll house1].position];
 }

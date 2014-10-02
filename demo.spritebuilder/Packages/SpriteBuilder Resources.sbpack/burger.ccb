@@ -123,7 +123,7 @@
 									<key>type</key>
 									<integer>2</integer>
 									<key>value</key>
-									<real>-5.5346817970275879</real>
+									<real>-13.088844299316406</real>
 								</dict>
 							</array>
 							<key>name</key>
@@ -201,7 +201,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>0.0</real>
+						<real>-13.088844299316406</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -404,7 +404,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>0.23608493804931641</real>
+						<real>0.20000000298023224</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -605,6 +605,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -660,7 +662,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>4</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

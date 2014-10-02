@@ -41,7 +41,7 @@
 -(void)enemy_autobuild:(CCTime)dt{
 
     //TODO change to dictionary
-    NSArray *soldier_image = @[@"burger",@"cokeMan",@"friesMan"];
+    NSArray *soldier_image = @[@"burgerMan",@"cokeMan",@"friesMan"];
     NSArray *start_positions = @[_house4,_house5,_house6];
     NSArray *end_positions=@[_house1,_house2,_house3];
 
