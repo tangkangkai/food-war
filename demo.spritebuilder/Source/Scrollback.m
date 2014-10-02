@@ -34,8 +34,40 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
+    [self schedule:@selector(enemy_autobuild:) interval:1.5];
 }
 
+
+-(void)enemy_autobuild:(CCTime)dt{
+
+    NSArray *soldier_image=@[@"burgerMan",@"cokeMan",@"friesMan"];
+    int i=0;
+    Soldier* enemy_soldier_track1= [[Soldier alloc] init];
+    Soldier* enemy_soldier_track2= [[Soldier alloc] init];
+    Soldier* enemy_soldier_track3= [[Soldier alloc] init];
+    
+    i=arc4random()%3;
+    [enemy_soldier_track1 loadSolider:soldier_image[i] group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
+    i=arc4random()%3;
+    [enemy_soldier_track2 loadSolider:soldier_image[i] group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house5.position];
+    i=arc4random()%3;
+    [enemy_soldier_track3 loadSolider:soldier_image[i]group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house6.position];
+    
+    [enemy_soldier_track1 soldier].scaleX *= -1; // TODO remove this after we have more models
+    [enemy_soldier_track2 soldier].scaleX *= -1; // TODO remove this after we have more models
+    [enemy_soldier_track3 soldier].scaleX *= -1; // TODO remove this after we have more models
+    [_scroll_physicsWorld addChild: [enemy_soldier_track1 soldier]];
+    [_scroll_physicsWorld addChild: [enemy_soldier_track2 soldier]];
+    [_scroll_physicsWorld addChild: [enemy_soldier_track3 soldier]];
+    [enemy_soldier_track1 move:_house1.position];
+    [enemy_soldier_track2 move:_house2.position];
+    [enemy_soldier_track3 move:_house3.position];
+
+
+
+
+
+}
 
 
 - (void)menu {

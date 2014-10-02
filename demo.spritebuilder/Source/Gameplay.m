@@ -21,6 +21,7 @@
     CCNode *_burgerman;
     CCNode *_cokeman;
     CCNode *_friesman;
+    CCNode *_potato;
     
     Soldier *man;           //save the final man
     Scrollback *scroll;
@@ -30,6 +31,7 @@
     CCLabelTTF *_timerLabel;
     CCLabelTTF *_gameoverLabel;
     int mTimeInSec;
+    int timeFlag;
 //    CCTimer *_timer;
 
 
@@ -52,20 +54,51 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    mTimeInSec = 60;                              //intialize timer
+    mTimeInSec = 30;                              //intialize timer
+    timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
-//    NSLog(@"schedule complete!");
+
 }
 
 -(void)tick {
-    if(mTimeInSec != 0){
+    if(timeFlag == 0){
         mTimeInSec -= 1;
         _timerLabel.string = [NSString stringWithFormat:@"%d", mTimeInSec];
-    } else {
+        if(mTimeInSec == 0) timeFlag = 1;
+    } else if(timeFlag == 1){
         _gameoverLabel.string = [NSString stringWithFormat:@"GameOver"];
+        UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
+                                                          message:@"Plese choose"
+                                                         delegate:self
+                                                cancelButtonTitle:@"Restart"
+                                                otherButtonTitles: nil];
+        [alert addButtonWithTitle:@"Quit Game"];
+        [alert show];
+        timeFlag = 2;
+    } else{
+        //do nothing
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button Index =%ld",(long)buttonIndex);
+    if (buttonIndex == 0){
+        NSLog(@"You have clicked Restart");
+        [[CCDirector sharedDirector] resume];
+        CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
+        CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
+        [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
+    }
+    else if(buttonIndex == 1)
+    {
+        NSLog(@"You have clicked Quit Game");
+        [[CCDirector sharedDirector] resume];
+        CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
+        CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
+        [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
+    }
+}
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CCLOG(@"Received a touch");
@@ -80,6 +113,9 @@
     } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
         selected_soldier = @"friesMan";
         selected_soldier_animation=@"friesMan";
+    } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
+        selected_soldier = @"potato";
+        selected_soldier_animation=@"potato";
     }
     
     if (selected_soldier != NULL){
