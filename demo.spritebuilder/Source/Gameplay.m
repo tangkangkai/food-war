@@ -8,6 +8,7 @@
 
 #import "Gameplay.h"
 #import "Soldier.h"
+#import "Bomb.h"
 #import "SavedData.h"
 #import "Scrollback.h"
 
@@ -116,6 +117,16 @@
     } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
         selected_soldier = @"potato";
         selected_soldier_animation=@"potato";
+        Bomb* newSolider = [[Bomb alloc] initSoldier:selected_soldier
+                                                     group:@"noGroup"
+                                             collisionType:@"noCollision"
+                                                  startPos:touchLocation
+                                                       arr:NULL ];
+        man = newSolider;
+        // TODO possible memory leak
+        [self addChild: [newSolider soldier]];
+        return;
+        
     }
     
     if (selected_soldier != NULL){
@@ -186,13 +197,29 @@
         return;
     }
     [self removeChild: [man soldier]];
+    
+    Soldier *newSoldier = nil;
+    if([selected_soldier_animation isEqualToString:@"potato"]) {
+        newSoldier = [[Bomb alloc] initSoldier:selected_soldier
+                                                     group:@"myGroup"
+                                             collisionType:@"healthyCollision"
+                                                  startPos:sourcehouse.position
+                                                       arr:[scroll healthy_soldiers]];
+    } else {
+        newSoldier = [[Soldier alloc] initSoldier:selected_soldier
+                                                     group:@"myGroup"
+                                             collisionType:@"healthyCollision"
+                                                  startPos:sourcehouse.position
+                                                       arr:[scroll healthy_soldiers]];
+    }
+    /*
     Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
                                                        group:@"myGroup"
                                                        collisionType:@"healthyCollision"
                                                        startPos:sourcehouse.position
-                                                       arr:[scroll healthy_soldiers]];
-    [_physicsWorld addChild: [newSolider soldier]];
-    [newSolider move:desthouse.position];
+                                                       arr:[scroll healthy_soldiers]];*/
+    [_physicsWorld addChild: [newSoldier soldier]];
+    [newSoldier move:desthouse.position];
 }
 
 - (void)addjunk {
