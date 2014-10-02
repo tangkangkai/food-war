@@ -24,8 +24,14 @@
     //int range = _soldier.position.x + _atk_range;
     int nearest_distance = 9999;
     Soldier *target = NULL;
+    CGPoint self_pos = [self soldier].position;
+    
     for( Soldier *s in array ){
-        if( [s soldier].position.x < nearest_distance ){
+        CGPoint enemy_pos = [s soldier].position;
+
+        if( enemy_pos.y <= self_pos.y + 10 &&
+            enemy_pos.y >= self_pos.y - 10 &&
+            (enemy_pos.x - self_pos.x)< nearest_distance ){
             target = s;
             nearest_distance = [s soldier].position.x;
             // TODO find the enemy with the least health
@@ -40,12 +46,13 @@
                                 arr:(NSMutableArray*) array{
     _soldier = [CCBReader load:img];
     pos.y += arc4random() % 5;
-    
 
     _soldier.position = pos; //CGPoint
     _soldier.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _soldier.contentSize} cornerRadius:0];
     _soldier.physicsBody.collisionGroup = group;
     _soldier.physicsBody.collisionType  = type;
+    [self update_health];
+
     if( array != NULL ){
         [array addObject:self];
     }
@@ -64,9 +71,12 @@
 }
 
 - (void)update_health{
-    CCLabelTTF *health_num = [ _soldier children][0];
-    [health_num setString:[NSString stringWithFormat:@"%d", health]];
-    //health_num.string = [NSString stringWithFormat:@"%d", health];
+    for( int i = 0; i<[_soldier children].count; i++ ){
+        if( [ [_soldier children][i] isKindOfClass:[CCLabelTTF class]] ){
+            CCLabelTTF *health_num = [ _soldier children][i];
+            [health_num setString:[NSString stringWithFormat:@"%d", health]];
+        }
+    }
 }
 
 - (id)init {
@@ -79,7 +89,6 @@
         _atk_range = 10;
         _defence = 0.1;
         _move_speed = 60;
-        [self update_health];
     }
     return self;
 }
