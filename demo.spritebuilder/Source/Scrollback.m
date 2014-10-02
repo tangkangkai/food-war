@@ -34,38 +34,28 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    [self schedule:@selector(enemy_autobuild:) interval:1.5];
+    [self schedule:@selector(enemy_autobuild:) interval:5];
 }
 
 
 -(void)enemy_autobuild:(CCTime)dt{
 
-    NSArray *soldier_image=@[@"burgerMan",@"cokeMan",@"friesMan"];
-    int i=0;
-    Soldier* enemy_soldier_track1= [[Soldier alloc] init];
-    Soldier* enemy_soldier_track2= [[Soldier alloc] init];
-    Soldier* enemy_soldier_track3= [[Soldier alloc] init];
-    
-    i=arc4random()%3;
-    [enemy_soldier_track1 loadSolider:soldier_image[i] group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
-    i=arc4random()%3;
-    [enemy_soldier_track2 loadSolider:soldier_image[i] group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house5.position];
-    i=arc4random()%3;
-    [enemy_soldier_track3 loadSolider:soldier_image[i]group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house6.position];
-    
-    [enemy_soldier_track1 soldier].scaleX *= -1; // TODO remove this after we have more models
-    [enemy_soldier_track2 soldier].scaleX *= -1; // TODO remove this after we have more models
-    [enemy_soldier_track3 soldier].scaleX *= -1; // TODO remove this after we have more models
-    [_scroll_physicsWorld addChild: [enemy_soldier_track1 soldier]];
-    [_scroll_physicsWorld addChild: [enemy_soldier_track2 soldier]];
-    [_scroll_physicsWorld addChild: [enemy_soldier_track3 soldier]];
-    [enemy_soldier_track1 move:_house1.position];
-    [enemy_soldier_track2 move:_house2.position];
-    [enemy_soldier_track3 move:_house3.position];
+    //TODO change to dictionary
+    NSArray *soldier_image = @[@"burger",@"cokeMan",@"friesMan"];
+    NSArray *start_positions = @[_house4,_house5,_house6];
+    NSArray *end_positions=@[_house1,_house2,_house3];
 
+    int i = arc4random()%3;
+    int lane_num = arc4random()%3;
 
-
-
+    Soldier* enemy_soldier= [[Soldier alloc] init];
+    [enemy_soldier loadSolider:soldier_image[i]
+                               group:@"enemyGroup"
+                               collisionType:@"junkCollision"
+                               startPos:[(CCNode*)start_positions[lane_num] position]
+                               arr:_junk_soldiers];
+    [_scroll_physicsWorld addChild: [enemy_soldier soldier]];
+    [enemy_soldier move:[(CCNode*)end_positions[lane_num] position]];
 
 }
 
