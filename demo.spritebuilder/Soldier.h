@@ -19,12 +19,13 @@
 @property float defence;    // value is from 0 ~ 1(100%)
 @property int move_speed;   // the distance soldier can move per second
 @property int ability_id;
+@property int lane;
 @property CCNode* soldier;
 
 
 - (int)loseHealth:(int)Attack;
 - (void)attack:(NSMutableArray*) array;
-- (void)loadSolider:(NSString*) img group:(NSString*) group
+- (id)initSoldier:(NSString*) img group:(NSString*) group
                     collisionType:(NSString*) type startPos:(CGPoint) pos
                     arr:(NSMutableArray*) array;
 - (void)move:(CGPoint) pos;

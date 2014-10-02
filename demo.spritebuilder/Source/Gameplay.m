@@ -119,10 +119,11 @@
     }
     
     if (selected_soldier != NULL){
-        Soldier* newSolider = [[Soldier alloc] init];
-        [newSolider loadSolider:selected_soldier group:@"noGroup"
-                    collisionType:@"noCollision" startPos:touchLocation
-                    arr:NULL];
+        Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
+                                               group:@"noGroup"
+                                               collisionType:@"noCollision"
+                                               startPos:touchLocation
+                                               arr:NULL ];
         man = newSolider;
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
@@ -185,20 +186,19 @@
         return;
     }
     [self removeChild: [man soldier]];
-    Soldier* newSolider = [[Soldier alloc] init];
-    [newSolider loadSolider:selected_soldier group:@"myGroup"
-                collisionType:@"healthyCollision" startPos:sourcehouse.position
-                arr:[scroll healthy_soldiers]];
+    Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
+                                                       group:@"myGroup"
+                                                       collisionType:@"healthyCollision"
+                                                       startPos:sourcehouse.position
+                                                       arr:[scroll healthy_soldiers]];
     [_physicsWorld addChild: [newSolider soldier]];
     [newSolider move:desthouse.position];
-
 }
 
 - (void)addjunk {
     scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
-    Soldier* test_junk = [[Soldier alloc] init];
-    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:[scroll junk_soldiers]];
+    Soldier* test_junk = [[Soldier alloc] initSoldier:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:[scroll house4].position arr:[scroll junk_soldiers]];
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move:[scroll house1].position];
 }

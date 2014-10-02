@@ -32,6 +32,7 @@
         if( enemy_pos.y <= self_pos.y + 10 &&
             enemy_pos.y >= self_pos.y - 10 &&
             (enemy_pos.x - self_pos.x)< nearest_distance ){
+            
             target = s;
             nearest_distance = [s soldier].position.x;
             // TODO find the enemy with the least health
@@ -40,10 +41,20 @@
     [ target loseHealth:[self atk_power] ];
 }
 
-- (void)loadSolider:(NSString*) img group:(NSString*) group
+- (id)initSoldier:(NSString*) img group:(NSString*) group
                                 collisionType:(NSString*) type
                                 startPos:(CGPoint) pos
                                 arr:(NSMutableArray*) array{
+    
+    self = [super init];
+        // default properties
+    health = 100;
+    _atk_power = 20;
+    _atk_speed = 1;
+    _atk_range = 10;
+    _defence = 0.1;
+    _move_speed = 60;
+    
     _soldier = [CCBReader load:img];
     pos.y += arc4random() % 5;
 
@@ -56,12 +67,14 @@
     if( array != NULL ){
         [array addObject:self];
     }
+    return self;
 }
 
 -(void)move: (CGPoint) pos {
     int distance = ABS(pos.x - [_soldier position].x);
     int duration = distance/_move_speed;
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration position:CGPointMake(pos.x,[_soldier position].y)];
+    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
+                                         position:CGPointMake(pos.x,[_soldier position].y)];
     //CCAction *actionRemove = [CCActionRemove action];
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
 }
@@ -79,17 +92,4 @@
     }
 }
 
-- (id)init {
-    
-    if ( self = [super init] ){
-        // default properties
-        health = 100;
-        _atk_power = 20;
-        _atk_speed = 1;
-        _atk_range = 10;
-        _defence = 0.1;
-        _move_speed = 60;
-    }
-    return self;
-}
 @end

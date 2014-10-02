@@ -48,8 +48,7 @@
     int i = arc4random()%3;
     int lane_num = arc4random()%3;
 
-    Soldier* enemy_soldier= [[Soldier alloc] init];
-    [enemy_soldier loadSolider:soldier_image[i]
+    Soldier* enemy_soldier= [[Soldier alloc] initSoldier:soldier_image[i]
                                group:@"enemyGroup"
                                collisionType:@"junkCollision"
                                startPos:[(CCNode*)start_positions[lane_num] position]
