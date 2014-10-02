@@ -54,7 +54,7 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    mTimeInSec = 30;                              //intialize timer
+    mTimeInSec = 300;                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
 

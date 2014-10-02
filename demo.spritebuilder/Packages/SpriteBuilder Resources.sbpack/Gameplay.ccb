@@ -942,7 +942,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>timer</string>
+							<string> </string>
 							<false/>
 						</array>
 					</dict>
@@ -961,7 +961,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1167,8 +1167,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
