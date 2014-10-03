@@ -12,45 +12,61 @@
     int health;
 }
 
-
 - (int)loseHealth:(int)Attack {
     int lostHeath = Attack * (1 - _defence);
     health = health - lostHeath;
+    if( health <= 0 ){
+        [self dead];
+        return 0;
+    }
     [self update_health];
     return health;
 }
 
-- (void)attack:(NSMutableArray*) array{
+- (void)attack{
+    // TODO avoid duplicate schdule
+    [self schedule:@selector(doAttack) interval:_atk_speed];
+}
+
+- (void)doAttack{
     //int range = _soldier.position.x + _atk_range;
     int nearest_distance = 9999;
     Soldier *target = NULL;
     CGPoint self_pos = [self soldier].position;
     
-    for( Soldier *s in array ){
+    for( Soldier *s in _enemyArray ){
         CGPoint enemy_pos = [s soldier].position;
-
+        
         if( enemy_pos.y <= self_pos.y + 10 &&
-            enemy_pos.y >= self_pos.y - 10 &&
-            enemy_pos.x< nearest_distance ){
+           enemy_pos.y >= self_pos.y - 10 &&
+           enemy_pos.x< nearest_distance ){
             
             target = s;
             nearest_distance = [s soldier].position.x;
             // TODO find the enemy with the least health
         }
     }
+    if( target == NULL){
+        [self unschedule:@selector(doAttack)];
+        // move
+        return;
+    }
     [ target loseHealth:[self atk_power] ];
+    
 }
+
 
 - (id)initSoldier:(NSString*) img group:(NSString*) group
                                 collisionType:(NSString*) type
                                 startPos:(CGPoint) pos
-                                arr:(NSMutableArray*) array{
+                                ourArr:(NSMutableArray*) ourArray
+                                enemyArr:(NSMutableArray*) enemyArray{
     
     self = [super init];
-        // default properties
+    // default properties
     health = 100;
     _atk_power = 20;
-    _atk_speed = 1;
+    _atk_speed = 3;
     _atk_range = 10;
     _defence = 0.1;
     _move_speed = 60;
@@ -64,8 +80,12 @@
     _soldier.physicsBody.collisionType  = type;
     [self update_health];
 
-    if( array != NULL ){
-        [array addObject:self];
+    if( ourArray != NULL ){
+        [ourArray addObject:self];
+        _ourArray = ourArray;
+    }
+    if( enemyArray != NULL){
+        _enemyArray = enemyArray;
     }
     return self;
 }
@@ -80,7 +100,7 @@
 }
 
 - (void)dead{
-    
+    [[self soldier] removeFromParent];
 }
 
 - (void)update_health{

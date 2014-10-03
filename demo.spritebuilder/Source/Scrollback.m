@@ -52,7 +52,8 @@
                                group:@"enemyGroup"
                                collisionType:@"junkCollision"
                                startPos:[(CCNode*)start_positions[lane_num] position]
-                               arr:_junk_soldiers];
+                               ourArr:_junk_soldiers
+                               enemyArr:_healthy_soldiers];
     [_scroll_physicsWorld addChild: [enemy_soldier soldier]];
     [enemy_soldier move:[(CCNode*)end_positions[lane_num] position]];
 
@@ -104,17 +105,12 @@
         }
     }
     //while (true) {
-    [ healthySoldier attack: _junk_soldiers ];
+    [ healthySoldier attack ];
         //sleep(1);
     //}
     //[self schedule:@selector(start_attack:) withObject:healthySoldier interval:1.0f];
     NSLog(@"Collision");
     return YES;
-}
-
-- (void)start_attack: (Soldier*) s{
-    //NSLog(@"test");
-    [ s attack: _junk_soldiers ];
 }
 
 @end
