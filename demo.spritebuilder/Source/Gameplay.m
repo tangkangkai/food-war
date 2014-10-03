@@ -205,11 +205,20 @@
                                              collisionType:@"healthyCollision"
                                                   startPos:sourcehouse.position
                                                        arr:[scroll healthy_soldiers]];
+        CGPoint destination;
+//        destination.y = [scroll track1].boundingBox.origin.y;
+//        destination.x = self.position.x;
+        destination.x = 0;
+        destination.y = 0;
+        [_physicsWorld addChild: [newSoldier soldier]];
+        [newSoldier move:destination];
+        return;
     } else {
         newSoldier = [[Soldier alloc] initSoldier:selected_soldier
                                                      group:@"myGroup"
                                              collisionType:@"healthyCollision"
                                                   startPos:sourcehouse.position
+                      
                                                        arr:[scroll healthy_soldiers]];
     }
     /*
