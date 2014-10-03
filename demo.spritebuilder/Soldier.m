@@ -31,7 +31,7 @@
 
         if( enemy_pos.y <= self_pos.y + 10 &&
             enemy_pos.y >= self_pos.y - 10 &&
-            (enemy_pos.x - self_pos.x)< nearest_distance ){
+            enemy_pos.x< nearest_distance ){
             
             target = s;
             nearest_distance = [s soldier].position.x;
