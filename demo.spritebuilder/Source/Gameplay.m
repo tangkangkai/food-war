@@ -120,6 +120,7 @@
                                                      group:@"noGroup"
                                              collisionType:@"noCollision"
                                                   startPos:touchLocation
+                                                    destPos:touchLocation
                                                        ourArr:NULL
                                                      enemyArr:NULL];
         man = newSolider;
@@ -134,6 +135,7 @@
                                                group:@"noGroup"
                                                collisionType:@"noCollision"
                                                startPos:touchLocation
+                                               destPos:touchLocation
                                                ourArr:NULL enemyArr:NULL ];
         man = newSolider;
         // TODO possible memory leak
@@ -200,36 +202,36 @@
     
     Soldier *newSoldier = nil;
     if([selected_soldier_animation isEqualToString:@"potato"]) {
+        
+        CGPoint dest;
+        dest.x = 0;
+        dest.y = 0;
         newSoldier = [[Bomb alloc] initSoldier:selected_soldier
                                    group:@"myGroup"
                                    collisionType:@"healthyCollision"
                                    startPos:sourcehouse.position
+                                   destPos:dest
                                    ourArr:[scroll healthy_soldiers]
                                    enemyArr:[scroll junk_soldiers]];
         CGPoint destination;
-//        destination.y = [scroll track1].boundingBox.origin.y;
-//        destination.x = self.position.x;
+
         destination.x = 0;
         destination.y = 0;
         [_physicsWorld addChild: [newSoldier soldier]];
-        [newSoldier move:destination];
+        [newSoldier move];
         return;
     } else {
         newSoldier = [[Soldier alloc] initSoldier:selected_soldier
                                        group:@"myGroup"
                                        collisionType:@"healthyCollision"
                                        startPos:sourcehouse.position
+                                       destPos: desthouse.position
                                        ourArr:[scroll healthy_soldiers]
                                        enemyArr:[scroll junk_soldiers]];
     }
-    /*
-    Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
-                                                       group:@"myGroup"
-                                                       collisionType:@"healthyCollision"
-                                                       startPos:sourcehouse.position
-                                                       arr:[scroll healthy_soldiers]];*/
+
     [_physicsWorld addChild: [newSoldier soldier]];
-    [newSoldier move:desthouse.position];
+    [newSoldier move];
 }
 
 - (void)addjunk {
@@ -239,9 +241,10 @@
                                           group:@"enemyGroup"
                                           collisionType:@"junkCollision"
                                           startPos:[scroll house4].position
+                                          destPos:[scroll house1].position
                                           ourArr:[scroll junk_soldiers]
                                           enemyArr:[scroll junk_soldiers]];
     [_physicsWorld addChild: [test_junk soldier]];
-    [test_junk move:[scroll house1].position];
+    [test_junk move];
 }
 @end

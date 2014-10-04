@@ -34,7 +34,7 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    [self schedule:@selector(enemy_autobuild:) interval:5];
+    [self schedule:@selector(enemy_autobuild:) interval:6];
 }
 
 
@@ -52,10 +52,11 @@
                                group:@"enemyGroup"
                                collisionType:@"junkCollision"
                                startPos:[(CCNode*)start_positions[lane_num] position]
+                               destPos:[(CCNode*)end_positions[lane_num] position]
                                ourArr:_junk_soldiers
                                enemyArr:_healthy_soldiers];
     [_scroll_physicsWorld addChild: [enemy_soldier soldier]];
-    [enemy_soldier move:[(CCNode*)end_positions[lane_num] position]];
+    [enemy_soldier move];
 
 }
 

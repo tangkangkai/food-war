@@ -24,22 +24,23 @@
 }
 
 - (void)attack{
-    // TODO avoid duplicate schdule
+    [self doAttack];
     [self schedule:@selector(doAttack) interval:_atk_speed];
 }
 
 - (void)doAttack{
     //int range = _soldier.position.x + _atk_range;
-    int nearest_distance = 9999;
+    int nearest_distance = [ self atk_range];
     Soldier *target = NULL;
     CGPoint self_pos = [self soldier].position;
     
     for( Soldier *s in _enemyArray ){
         CGPoint enemy_pos = [s soldier].position;
         
+    
         if( enemy_pos.y <= self_pos.y + 10 &&
-           enemy_pos.y >= self_pos.y - 10 &&
-           enemy_pos.x< nearest_distance ){
+            enemy_pos.y >= self_pos.y - 10 &&
+            enemy_pos.x-self_pos.x< nearest_distance ){
             
             target = s;
             nearest_distance = [s soldier].position.x;
@@ -48,7 +49,7 @@
     }
     if( target == NULL){
         [self unschedule:@selector(doAttack)];
-        // move
+        [self move];
         return;
     }
     [ target loseHealth:[self atk_power] ];
@@ -58,23 +59,25 @@
 
 - (id)initSoldier:(NSString*) img group:(NSString*) group
                                 collisionType:(NSString*) type
-                                startPos:(CGPoint) pos
+                                startPos:(CGPoint) start
+                                destPos:(CGPoint) dest
                                 ourArr:(NSMutableArray*) ourArray
                                 enemyArr:(NSMutableArray*) enemyArray{
     
     self = [super init];
     // default properties
     health = 100;
-    _atk_power = 20;
+    _atk_power = 30;
     _atk_speed = 3;
-    _atk_range = 10;
+    _atk_range = 40;
     _defence = 0.1;
     _move_speed = 60;
     
     _soldier = [CCBReader load:img];
-    pos.y += arc4random() % 5;
-
-    _soldier.position = pos; //CGPoint
+    start.y += arc4random() % 5;
+    _start_pos = start;
+    _dest_pos = dest;
+    _soldier.position = start; //CGPoint
     _soldier.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _soldier.contentSize} cornerRadius:0];
     _soldier.physicsBody.collisionGroup = group;
     _soldier.physicsBody.collisionType  = type;
@@ -90,17 +93,19 @@
     return self;
 }
 
--(void)move: (CGPoint) pos {
-    int distance = ABS(pos.x - [_soldier position].x);
+-(void)move{
+    int distance = ABS(_dest_pos.x - [_soldier position].x);
     int duration = distance/_move_speed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
-                                         position:CGPointMake(pos.x,[_soldier position].y)];
+                                         position:CGPointMake(_dest_pos.x,[_soldier position].y)];
     //CCAction *actionRemove = [CCActionRemove action];
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
 }
 
 - (void)dead{
+    [ [self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
+    // TODO release
 }
 
 - (void)update_health{
