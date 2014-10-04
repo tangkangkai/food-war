@@ -221,11 +221,13 @@
         [newSoldier move];
         return;
     } else {
+        // Avoid the physic confliction with the new born enemy
+        CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
         newSoldier = [[Soldier alloc] initSoldier:selected_soldier
                                        group:@"myGroup"
                                        collisionType:@"healthyCollision"
                                        startPos:sourcehouse.position
-                                       destPos: desthouse.position
+                                       destPos: destination
                                        ourArr:[scroll healthy_soldiers]
                                        enemyArr:[scroll junk_soldiers]];
     }

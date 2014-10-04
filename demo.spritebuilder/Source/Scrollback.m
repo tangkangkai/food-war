@@ -47,12 +47,14 @@
 
     int i = arc4random()%3;
     int lane_num = arc4random()%3;
-
+    
+    CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+50,
+                                      [(CCNode*)end_positions[lane_num] position].y);
     Soldier* enemy_soldier= [[Soldier alloc] initSoldier:soldier_image[i]
                                group:@"enemyGroup"
                                collisionType:@"junkCollision"
                                startPos:[(CCNode*)start_positions[lane_num] position]
-                               destPos:[(CCNode*)end_positions[lane_num] position]
+                               destPos:destination
                                ourArr:_junk_soldiers
                                enemyArr:_healthy_soldiers];
     [_scroll_physicsWorld addChild: [enemy_soldier soldier]];

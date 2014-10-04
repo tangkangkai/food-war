@@ -24,11 +24,27 @@
 }
 
 - (void)attack{
+    // TODO Add a attck lock
     [self doAttack];
     [self schedule:@selector(doAttack) interval:_atk_speed];
 }
 
 - (void)doAttack{
+    Soldier *target = [self detect_enemy];
+    if( target == NULL){
+        [self unschedule:@selector(doAttack)];
+        [self move];
+        return;
+    }
+    if( [ target loseHealth:[self atk_power] ] == 0 ){
+        if( [self detect_enemy] == NULL ){
+            [self unschedule:@selector(doAttack)];
+            [self move];
+        }
+    }
+}
+
+- (Soldier*)detect_enemy{
     //int range = _soldier.position.x + _atk_range;
     int nearest_distance = [ self atk_range];
     Soldier *target = NULL;
@@ -37,25 +53,18 @@
     for( Soldier *s in _enemyArray ){
         CGPoint enemy_pos = [s soldier].position;
         
-    
+        
         if( enemy_pos.y <= self_pos.y + 10 &&
-            enemy_pos.y >= self_pos.y - 10 &&
-            enemy_pos.x-self_pos.x< nearest_distance ){
+           enemy_pos.y >= self_pos.y - 10 &&
+           enemy_pos.x-self_pos.x< nearest_distance ){
             
             target = s;
-            nearest_distance = [s soldier].position.x;
+            nearest_distance = enemy_pos.x-self_pos.x;
             // TODO find the enemy with the least health
         }
     }
-    if( target == NULL){
-        [self unschedule:@selector(doAttack)];
-        [self move];
-        return;
-    }
-    [ target loseHealth:[self atk_power] ];
-    
+    return target;
 }
-
 
 - (id)initSoldier:(NSString*) img group:(NSString*) group
                                 collisionType:(NSString*) type
@@ -98,7 +107,6 @@
     int duration = distance/_move_speed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
                                          position:CGPointMake(_dest_pos.x,[_soldier position].y)];
-    //CCAction *actionRemove = [CCActionRemove action];
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
 }
 
