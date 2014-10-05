@@ -107,11 +107,7 @@
             healthySoldier = s;
         }
     }
-    //while (true) {
     [ healthySoldier attack ];
-        //sleep(1);
-    //}
-    //[self schedule:@selector(start_attack:) withObject:healthySoldier interval:1.0f];
     NSLog(@"Collision");
     return YES;
 }

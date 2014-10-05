@@ -219,95 +219,6 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>5</integer>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>house3</string>
-				<key>memberVarAssignmentName</key>
-				<string>_house3</string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>70.534942626953125</real>
-							<real>53.384361267089844</real>
-							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>0.20000000298023224</real>
-							<real>0.20000000298023224</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>foodwar_picture/house1.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
 				<integer>4</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -354,6 +265,95 @@
 						<array>
 							<real>0.5438382625579834</real>
 							<real>0.54369080066680908</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.20000000298023224</real>
+							<real>0.20000000298023224</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>foodwar_picture/house1.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>5</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>house3</string>
+				<key>memberVarAssignmentName</key>
+				<string>_house3</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>70.534942626953125</real>
+							<real>53.384361267089844</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -516,8 +516,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>114.57567596435547</real>
-							<real>191.39349365234375</real>
+							<real>105.57567596435547</real>
+							<real>192.39349365234375</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -661,6 +661,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -702,8 +704,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>411.47625732421875</real>
-							<real>50.850494384765625</real>
+							<real>410.47625732421875</real>
+							<real>46.850494384765625</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -740,8 +742,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>6.8856353759765625</real>
-							<real>0.60957139730453491</real>
+							<real>6.6660909652709961</real>
+							<real>0.52045810222625732</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -825,8 +827,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>409.26296997070312</real>
-							<real>121.97660064697266</real>
+							<real>412.26296997070312</real>
+							<real>118.97660064697266</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -863,8 +865,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>6.2288732528686523</real>
-							<real>0.46863162517547607</real>
+							<real>6.1895713806152344</real>
+							<real>0.43083372712135315</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -948,8 +950,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>119.87673950195312</real>
-							<real>209.88418579101562</real>
+							<real>125.87673950195312</real>
+							<real>202.88418579101562</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -986,8 +988,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>5.7804923057556152</real>
-							<real>0.41460606455802917</real>
+							<real>5.6710500717163086</real>
+							<real>0.33742186427116394</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1030,8 +1032,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

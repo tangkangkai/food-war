@@ -101,7 +101,6 @@
 }
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-    CCLOG(@"Received a touch");
     CGPoint touchLocation = [touch locationInNode:self];
     
     if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
@@ -149,7 +148,6 @@
     if( man == NULL ){
         return;
     }
-    CCLOG(@"Touch Moved");
     CGPoint touchLocation = [touch locationInNode:self];
     [man soldier].position = touchLocation;
     if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
@@ -171,7 +169,6 @@
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CCLOG(@"Touch Ended");
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
@@ -239,13 +236,16 @@
 - (void)addjunk {
     scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
+    CGPoint destination = CGPointMake([scroll house1].position.x+50,
+                                      [scroll house1].position.y);
     Soldier* test_junk = [[Soldier alloc] initSoldier:@"burgerMan"
                                           group:@"enemyGroup"
                                           collisionType:@"junkCollision"
                                           startPos:[scroll house4].position
-                                          destPos:[scroll house1].position
+                                          destPos:destination
                                           ourArr:[scroll junk_soldiers]
                                           enemyArr:[scroll junk_soldiers]];
+
     [_physicsWorld addChild: [test_junk soldier]];
     [test_junk move];
 }

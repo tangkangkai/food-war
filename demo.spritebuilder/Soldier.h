@@ -10,7 +10,7 @@
 
 @interface Soldier : CCNode
 @property NSInteger *id;
-@property NSString *name;
+//@property NSString *name;
 
 @property float atk_speed;  // the time interval between every attack
 @property int type;         // 0: tank, 1: melee-DPS, 2: ranged-DPS, 3: missile launcher
