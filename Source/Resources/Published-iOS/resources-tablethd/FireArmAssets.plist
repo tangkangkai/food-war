@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>FireArmAssets/10-30421.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{3727, 903}, {1222, 330}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{189, 635}, {1222, 330}}</string>
+			<key>sourceSize</key>
+			<string>{1600, 1600}</string>
+		</dict>
+		<key>FireArmAssets/gun.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {3126, 1162}}</string>
+			<key>offset</key>
+			<string>{17, -50}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{54, 141}, {3126, 1162}}</string>
+			<key>sourceSize</key>
+			<string>{3200, 1344}</string>
+		</dict>
+		<key>FireArmAssets/gun4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{3129, 903}, {588, 596}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {588, 596}}</string>
+			<key>sourceSize</key>
+			<string>{588, 596}</string>
+		</dict>
+		<key>FireArmAssets/missile.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{3129, 1}, {900, 940}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {900, 940}}</string>
+			<key>sourceSize</key>
+			<string>{900, 940}</string>
+		</dict>
+		<key>FireArmAssets/red-repeat-background.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1165}, {3104, 1644}}</string>
+			<key>offset</key>
+			<string>{0, 0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {3104, 1644}}</string>
+			<key>sourceSize</key>
+			<string>{3104, 1644}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{4096, 4096}</string>
+		<key>textureFileName</key>
+		<string>FireArmAssets.png</string>
+	</dict>
+</dict>
+</plist>
