@@ -8,7 +8,9 @@
 
 #import "Gameplay.h"
 #import "Soldier.h"
+#import "Bomb.h"
 #import "SavedData.h"
+#import "Scrollback.h"
 
 #define BURGER 1;
 #define COKE 2;
@@ -16,161 +18,77 @@
 
 
 @implementation Gameplay{
-    CCNode *_house1;
-    CCNode *_house2;
-    CCNode *_house3;
-    CCNode *_house4;
-    CCNode *_house5;
-    CCNode *_house6;
-    
     CCPhysicsNode *_physicsWorld;
     CCNode *_burgerman;
     CCNode *_cokeman;
     CCNode *_friesman;
+    CCNode *_potato;
     
     Soldier *man;           //save the final man
-    CCNode *_track1;        //invisible track
-    CCNode *_track2;
-    CCNode *_track3;
+    Scrollback *scroll;
     NSString *selected_soldier;
+    NSString *selected_soldier_animation;
+    CCNode *_scrollview;
+    CCLabelTTF *_timerLabel;
+    CCLabelTTF *_gameoverLabel;
+    int mTimeInSec;
+    int timeFlag;
+//    CCTimer *_timer;
+
+
 }
 
 - (id)init{
     self = [super init];
     if (!self) return(nil);
-    
-    _physicsWorld = [CCPhysicsNode node];
-    _physicsWorld.gravity = ccp(0,0);
-    //_physicsWorld.debugDraw = YES;   // show the physic content
-    _physicsWorld.collisionDelegate = self;
-    _physicsWorld.zOrder = 10000;
-    [self addChild:_physicsWorld];
+    scroll=[_scrollview children][0];
+    _physicsWorld=[scroll scroll_physicsWorld];
+
     selected_soldier = NULL;
     man = NULL;
+    
+//    _timer = [[CCTimer alloc] init];
+
     return self;
 }
 
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
+    mTimeInSec = 300;                              //intialize timer
+    timeFlag = 0;
+    [self schedule:@selector(tick) interval:1.0f];
 }
 
-- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-    CCLOG(@"Received a touch");
-    CGPoint touchLocation = [touch locationInNode:self];
-    Soldier* newSolider = [[Soldier alloc] init];
-    
-    
-    if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        selected_soldier = @"burgerMan";
-    } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
-        selected_soldier = @"cokeMan";
-    } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
-        selected_soldier = @"friesMan";
-    }
-    
-    if (selected_soldier != NULL) {
-        [newSolider loadSolider:selected_soldier group:@"noGroup"
-                    collisionType:@"noCollision" startPos:touchLocation];
-        man = newSolider;
-        // TODO possible memory leak
-        [self addChild: [newSolider soldier]];
-    }
-}
-
-- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    if( man == NULL ){
-        return;
-    }
-    CCLOG(@"Touch Moved");
-    CGPoint touchLocation = [touch locationInNode:self];
-    [man soldier].position = touchLocation;
-    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
-        NSLog(@"moved into track 1");
-        _track1.visible = true;
-    } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
-        NSLog(@"moved into track 2");
-        _track2.visible = true;
-    } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
-        NSLog(@"moved into track 3");
-        _track3.visible = true;
-    } else {
-        [self trackInvist];
-    }
-}
-
-- (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    CCLOG(@"Touch Ended");
-    CGPoint touchLocation = [touch locationInNode:self];
-    if (CGRectContainsPoint(_track1.boundingBox,touchLocation)) {
-        NSLog(@"located in track 1");
-        [self launchmovingman:_house1 dest:_house4];
-    } else if (CGRectContainsPoint(_track2.boundingBox, touchLocation)) {
-        NSLog(@"located in track 2");
-        [self launchmovingman: _house2 dest:_house5];
-    } else if (CGRectContainsPoint(_track3.boundingBox, touchLocation)) {
-        NSLog(@"located in track 3");
-        [self launchmovingman:_house3 dest:_house6];
-    } else {
-        [self removeChild:[man soldier]];
-    }
-    [self trackInvist];
-}
-
-- (void)trackInvist {
-    _track1.visible = false;
-    _track2.visible = false;
-    _track3.visible = false;
-}
-
-- (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
-    if( man == NULL ){
-        return;
-    }
-    [self removeChild: [man soldier]];
-    man = NULL;
-    Soldier* newSolider = [[Soldier alloc] init];
-    [newSolider loadSolider:selected_soldier group:@"myGroup"
-       collisionType:@"healthyCollision" startPos:sourcehouse.position];
-    [_physicsWorld addChild: [newSolider soldier]];
-    [newSolider move:desthouse.position];
-    selected_soldier = NULL;
-}
-
-- (void)addjunk {
-    Soldier* test_junk = [[Soldier alloc] init];
-    [test_junk loadSolider:@"burgerMan" group:@"enemyGroup" collisionType:@"junkCollision" startPos:_house4.position];
-    [test_junk soldier].scaleX *= -1; // TODO remove this after we have more models
-    [_physicsWorld addChild: [test_junk soldier]];
-    [test_junk move:_house1.position];
-}
-
-- (void)test {
-    NSLog(@"reduce Money");
-    [SavedData deleteSavedData];
-}
-
-
-- (void)menu {
-    [[CCDirector sharedDirector] pause];
-    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                message:@"Plese choose"
-                                                delegate:self
-                                                cancelButtonTitle:@"Resume"
+-(void)tick {
+    if(timeFlag == 0){
+        mTimeInSec -= 1;
+        _timerLabel.string = [NSString stringWithFormat:@"%d", mTimeInSec];
+        if(mTimeInSec == 0) timeFlag = 1;
+    } else if(timeFlag == 1){
+        _gameoverLabel.string = [NSString stringWithFormat:@"GameOver"];
+        UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
+                                                          message:@"Plese choose"
+                                                         delegate:self
+                                                cancelButtonTitle:@"Restart"
                                                 otherButtonTitles: nil];
-    [alert addButtonWithTitle:@"Quit Game"];
-    [alert show];
+        [alert addButtonWithTitle:@"Quit Game"];
+        [alert show];
+        timeFlag = 2;
+    } else{
+        //do nothing
+    }
 }
-
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     NSLog(@"Button Index =%ld",(long)buttonIndex);
     if (buttonIndex == 0){
-        NSLog(@"You have clicked Cancel");
+        NSLog(@"You have clicked Restart");
         [[CCDirector sharedDirector] resume];
+        CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
+        CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
+        [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
     }
     else if(buttonIndex == 1)
     {
@@ -182,79 +100,153 @@
     }
 }
 
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
-    [healthy stopAllActions];
-    [junk stopAllActions];
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+    CCLOG(@"Received a touch");
+    CGPoint touchLocation = [touch locationInNode:self];
     
-    NSLog(@"Collision");
-    return YES;
-}
-
-
-- (void)save {
-    // We're going to save the data to SavedState.plist in our app's documents directory
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"SavedState.plist"];
-    
-    // Create a dictionary to store all your data
-    NSMutableDictionary *dataToSave = [NSMutableDictionary dictionary];
-    
-    // Store any NSData, NSString, NSArray, NSDictionary, NSDate, and NSNumber directly.  See "NSPropertyListSerialization Class Reference" for more information.
-    NSString *myString = @"Hello!";
-    [dataToSave setObject:myString forKey:@"MyString"];
-    
-    
-    // Create a serialized NSData instance, which can be written to a plist, from the data we've been storing in our NSMutableDictionary
-    NSString *errorDescription;
-    NSData *serializedData = [NSPropertyListSerialization dataFromPropertyList:dataToSave
-                                                                        format:NSPropertyListXMLFormat_v1_0
-                                                              errorDescription:&errorDescription];
-    if(serializedData)
-    {
-        // Write file
-        NSError *error;
-        BOOL didWrite = [serializedData writeToFile:plistPath options:NSDataWritingFileProtectionComplete error:&error];
+    if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
+        selected_soldier = @"burger";
+        selected_soldier_animation=@"burger";
+    } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
+        selected_soldier = @"coke";
+        selected_soldier_animation=@"coke";
+    } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
+        selected_soldier = @"fries";
+        selected_soldier_animation=@"fries";
+    } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
+        selected_soldier = @"potato";
+        selected_soldier_animation=@"potato";
+        Bomb* newSolider = [[Bomb alloc] initSoldier:selected_soldier
+                                                     group:@"noGroup"
+                                             collisionType:@"noCollision"
+                                                  startPos:touchLocation
+                                                    destPos:touchLocation
+                                                       ourArr:NULL
+                                                     enemyArr:NULL];
+        man = newSolider;
+        // TODO possible memory leak
+        [self addChild: [newSolider soldier]];
+        return;
         
-        NSLog(@"Error while writing: %@", [error description]);
-        
-        if (didWrite)
-            NSLog(@"File did write");
-        else
-            NSLog(@"File write failed");
     }
-    else 
-    {
-        NSLog(@"Error in creating state data dictionary: %@", errorDescription);
-    }
-}
-
-- (void)load {
-    // Fetch NSDictionary containing possible saved state
-    NSString *errorDesc = nil;
-    NSPropertyListFormat format;
-    NSString *plistPath;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                              NSUserDomainMask, YES) objectAtIndex:0];
-    plistPath = [rootPath stringByAppendingPathComponent:@"SavedStates.plist"];
-
-    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-    NSDictionary *unarchivedData = (NSDictionary *)[NSPropertyListSerialization
-                                                    propertyListFromData:plistXML
-                                                    mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                                    format:&format
-                                                    errorDescription:&errorDesc];
     
-    // If NSDictionary exists, look to see if it holds a saved game state
-    if (!unarchivedData)
-    {
-        NSLog(@"hehe");
-    }
-    else
-    {
-        // Load property list objects directly
-        NSString *myString = [unarchivedData objectForKey:@"MyString"];
-        NSLog(@"%@", myString);
+    if (selected_soldier != NULL){
+        Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
+                                               group:@"noGroup"
+                                               collisionType:@"noCollision"
+                                               startPos:touchLocation
+                                               destPos:touchLocation
+                                               ourArr:NULL enemyArr:NULL ];
+        man = newSolider;
+        // TODO possible memory leak
+        [self addChild: [newSolider soldier]];
     }
 }
 
+- (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    scroll=[_scrollview children][0];
+    if( man == NULL ){
+        return;
+    }
+    CCLOG(@"Touch Moved");
+    CGPoint touchLocation = [touch locationInNode:self];
+    [man soldier].position = touchLocation;
+    if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
+        NSLog(@"moved into track 1");
+     //   NSLog(@"touchLocation (x: %f, y: %f)",touchLocation.x,touchLocation.y);
+     //   NSLog(@"track 1 origin (x: %f, y : %f)",[scroll track1].boundingBox.origin.x,[scroll track1].boundingBox.origin.y);
+        
+        [scroll track1].visible = true;
+    } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+20, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
+        NSLog(@"moved into track 2");
+        [scroll track2].visible = true;
+    } else if (CGRectContainsPoint(CGRectMake([scroll track3].boundingBox.origin.x, [scroll track3].boundingBox.origin.y+20, [scroll track3].boundingBox.size.width, [scroll track3].boundingBox.size.height),touchLocation)) {
+        NSLog(@"moved into track 3");
+        [scroll track3].visible = true;
+    } else {
+        [scroll trackInvist];
+    }
+}
+
+- (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CCLOG(@"Touch Ended");
+    scroll=[_scrollview children][0];
+    CGPoint touchLocation = [touch locationInNode:self];
+    if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
+        NSLog(@"located in track 1");
+        [self launchmovingman:[scroll house1] dest:[scroll house4]];
+    } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+20, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
+        NSLog(@"located in track 2");
+        [self launchmovingman: [scroll house2] dest:[scroll house5]];
+    } else if (CGRectContainsPoint(CGRectMake([scroll track3].boundingBox.origin.x, [scroll track3].boundingBox.origin.y+20, [scroll track3].boundingBox.size.width, [scroll track3].boundingBox.size.height),touchLocation)) {
+        NSLog(@"located in track 3");
+        [self launchmovingman:[scroll house3] dest:[scroll house6]];
+    } else {
+        [self removeChild:[man soldier]];
+    }
+    man = NULL;
+    selected_soldier = NULL;
+    [scroll trackInvist];
+}
+
+
+- (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
+    scroll=[_scrollview children][0];
+    _physicsWorld=[scroll scroll_physicsWorld];
+    if( man == NULL ){
+        return;
+    }
+    [self removeChild: [man soldier]];
+    
+    Soldier *newSoldier = nil;
+    if([selected_soldier_animation isEqualToString:@"potato"]) {
+        
+        CGPoint dest;
+        dest.x = 0;
+        dest.y = 0;
+        newSoldier = [[Bomb alloc] initSoldier:selected_soldier
+                                   group:@"myGroup"
+                                   collisionType:@"healthyCollision"
+                                   startPos:sourcehouse.position
+                                   destPos:dest
+                                   ourArr:[scroll healthy_soldiers]
+                                   enemyArr:[scroll junk_soldiers]];
+        CGPoint destination;
+
+        destination.x = 0;
+        destination.y = 0;
+        [_physicsWorld addChild: [newSoldier soldier]];
+        [newSoldier move];
+        return;
+    } else {
+        // Avoid the physic confliction with the new born enemy
+        CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
+        newSoldier = [[Soldier alloc] initSoldier:selected_soldier
+                                       group:@"myGroup"
+                                       collisionType:@"healthyCollision"
+                                       startPos:sourcehouse.position
+                                       destPos: destination
+                                       ourArr:[scroll healthy_soldiers]
+                                       enemyArr:[scroll junk_soldiers]];
+    }
+
+    [_physicsWorld addChild: [newSoldier soldier]];
+    [newSoldier move];
+}
+
+- (void)addjunk {
+    scroll=[_scrollview children][0];
+    _physicsWorld=[scroll scroll_physicsWorld];
+    Soldier* test_junk = [[Soldier alloc] initSoldier:@"burgerMan"
+                                          group:@"enemyGroup"
+                                          collisionType:@"junkCollision"
+                                          startPos:[scroll house4].position
+                                          destPos:[scroll house1].position
+                                          ourArr:[scroll junk_soldiers]
+                                          enemyArr:[scroll junk_soldiers]];
+    [_physicsWorld addChild: [test_junk soldier]];
+    [test_junk move];
+}
 @end

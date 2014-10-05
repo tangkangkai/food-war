@@ -92,6 +92,9 @@ static NSMutableArray *levelArray;
     money = totalMoney;
 }
 
++ (void)addMoney: (int) moneyToAdd {
+    money += moneyToAdd;
+}
 + (void)saveMoney {
     NSMutableDictionary *dataToSave = [self getSavedDictionary];
     //update money

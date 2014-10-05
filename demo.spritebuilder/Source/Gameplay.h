@@ -8,8 +8,8 @@
 
 #import "CCNode.h"
 
-@interface Gameplay : CCNode<CCPhysicsCollisionDelegate>
+@interface Gameplay : CCNode
 
-
+//@property(nonatomic, assign) CCLabelTTF *_timeLabel;
 
 @end

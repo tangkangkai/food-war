@@ -16,7 +16,6 @@
 }
 
 
-
 - (void) didLoadFromCCB {
     NSLog(@"Enter Game Level Scene");
     if ([SavedData level]) {

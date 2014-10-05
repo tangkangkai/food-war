@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Soldier : NSObject
+@interface Soldier : CCNode
 @property NSInteger *id;
 @property NSString *name;
 
@@ -19,13 +19,27 @@
 @property float defence;    // value is from 0 ~ 1(100%)
 @property int move_speed;   // the distance soldier can move per second
 @property int ability_id;
+@property int lane;         // TODO init this
+@property CGPoint start_pos;
+@property CGPoint dest_pos;
 @property CCNode* soldier;
+@property NSMutableArray* ourArray;
+@property NSMutableArray* enemyArray;
 
 
 - (int)loseHealth:(int)Attack;
 - (void)attack;
-- (void)loadSolider:(NSString*) img group:(NSString*) group
-                    collisionType:(NSString*) type startPos:(CGPoint) pos;
-- (void)move:(CGPoint) pos;
+- (id)initSoldier:(NSString*) img
+                  group:(NSString*) group
+                  collisionType:(NSString*) type
+                  startPos:(CGPoint) start
+                  destPos:(CGPoint) destPos
+                  ourArr:(NSMutableArray*) ourArray
+                  enemyArr:(NSMutableArray*) enemyArray;
+- (void)move;
+- (void)update_health;
+
+- (void)dead;
+
 
 @end
