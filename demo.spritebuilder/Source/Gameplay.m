@@ -34,6 +34,8 @@
     int mTimeInSec;
     int timeFlag;
 //    CCTimer *_timer;
+    
+    CCSprite *_first;
 
 
 }
@@ -234,6 +236,16 @@
 }
 
 - (void)addjunk {
+    
+    
+    //test by KK
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"healthy_food.plist"];
+    CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    CCSpriteFrame* frame = [cache spriteFrameByName:@"banana.png"];
+    _first.spriteFrame = frame;
+    
+    
+    
     scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
     CGPoint destination = CGPointMake([scroll house1].position.x+50,
