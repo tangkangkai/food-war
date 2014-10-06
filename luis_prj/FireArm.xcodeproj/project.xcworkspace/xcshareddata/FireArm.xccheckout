@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BC4E02DB-C430-4FB2-B861-75C8AC7BA434</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FireArm</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D5EF4D890EBB43D8DB41A812B72AC7AF21B04774</key>
+		<string>github.com:tangkangkai/food-war.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>luis_prj/FireArm.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D5EF4D890EBB43D8DB41A812B72AC7AF21B04774</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:tangkangkai/food-war.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D5EF4D890EBB43D8DB41A812B72AC7AF21B04774</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D5EF4D890EBB43D8DB41A812B72AC7AF21B04774</string>
+			<key>IDESourceControlWCCName</key>
+			<string>food-war</string>
+		</dict>
+	</array>
+</dict>
+</plist>

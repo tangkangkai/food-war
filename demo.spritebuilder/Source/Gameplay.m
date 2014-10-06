@@ -19,9 +19,9 @@
 
 @implementation Gameplay{
     CCPhysicsNode *_physicsWorld;
-    CCNode *_burgerman;
-    CCNode *_cokeman;
-    CCNode *_friesman;
+    CCNode *_potatoMan;
+    CCNode *_bananaMan;
+    CCNode *_beanMan;
     CCNode *_potato;
     
     Soldier *man;           //save the final man
@@ -103,15 +103,15 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:self];
     
-    if (CGRectContainsPoint(_burgerman.boundingBox,touchLocation)) {
-        selected_soldier = @"burger";
-        selected_soldier_animation=@"burger";
-    } else if(CGRectContainsPoint(_cokeman.boundingBox,touchLocation)) {
-        selected_soldier = @"coke";
-        selected_soldier_animation=@"coke";
-    } else if(CGRectContainsPoint(_friesman.boundingBox,touchLocation)) {
-        selected_soldier = @"fries";
-        selected_soldier_animation=@"fries";
+    if (CGRectContainsPoint(_potatoMan.boundingBox,touchLocation)) {
+        selected_soldier = @"potatoMan";
+        selected_soldier_animation=@"potatoMan";
+    } else if(CGRectContainsPoint(_bananaMan.boundingBox,touchLocation)) {
+        selected_soldier = @"banana";
+        selected_soldier_animation=@"banana";
+    } else if(CGRectContainsPoint(_beanMan.boundingBox,touchLocation)) {
+        selected_soldier = @"bean";
+        selected_soldier_animation=@"bean";
     } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
         selected_soldier = @"potato";
         selected_soldier_animation=@"potato";

@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>284</real>
-							<real>27</real>
+							<real>285</real>
+							<real>28</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -130,6 +130,95 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
+				<integer>47</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>banana</string>
+				<key>memberVarAssignmentName</key>
+				<string>_bananaMan</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>99.893486022949219</real>
+							<real>27.805761337280273</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.71845197677612305</real>
+							<real>0.71845197677612305</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>foodwar_picture/banana.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>UUID</key>
 				<integer>48</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -138,9 +227,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>fries</string>
+				<string>bean</string>
 				<key>memberVarAssignmentName</key>
-				<string>_friesman</string>
+				<string>_beanMan</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -161,7 +250,7 @@
 						<key>value</key>
 						<array>
 							<real>160.28346252441406</real>
-							<real>27.862209320068359</real>
+							<real>26.862209320068359</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -185,8 +274,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.0139147043228149</real>
-							<real>0.82205456495285034</real>
+							<real>0.6943519115447998</real>
+							<real>0.6943519115447998</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -199,7 +288,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/fries.png</string>
+							<string>foodwar_picture/bean.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -213,17 +302,6 @@
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>flip</string>
-						<key>type</key>
-						<string>Flip</string>
-						<key>value</key>
-						<array>
-							<true/>
-							<false/>
 						</array>
 					</dict>
 				</array>
@@ -238,9 +316,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>burger</string>
+				<string>potato2</string>
 				<key>memberVarAssignmentName</key>
-				<string>_burgerman</string>
+				<string>_potatoMan</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -260,8 +338,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>34.764320373535156</real>
-							<real>26.057146072387695</real>
+							<real>37.764320373535156</real>
+							<real>29.057146072387695</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -274,8 +352,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.4659314751625061</real>
+							<real>0.52271270751953125</real>
 						</array>
 					</dict>
 					<dict>
@@ -285,8 +363,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.88928818702697754</real>
-							<real>0.8270612359046936</real>
+							<real>0.73380386829376221</real>
+							<real>0.73380386829376221</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -299,7 +377,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/burger.png</string>
+							<string>foodwar_picture/potato2.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -313,117 +391,6 @@
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>flip</string>
-						<key>type</key>
-						<string>Flip</string>
-						<key>value</key>
-						<array>
-							<true/>
-							<false/>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
-				<integer>47</integer>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>coke</string>
-				<key>memberVarAssignmentName</key>
-				<string>_cokeman</string>
-				<key>memberVarAssignmentType</key>
-				<integer>1</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>96.893486022949219</real>
-							<real>26.805761337280273</real>
-							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1.0952314138412476</real>
-							<real>0.67505520582199097</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>foodwar_picture/coke.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>flip</string>
-						<key>type</key>
-						<string>Flip</string>
-						<key>value</key>
-						<array>
-							<true/>
-							<false/>
 						</array>
 					</dict>
 				</array>
@@ -871,8 +838,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
