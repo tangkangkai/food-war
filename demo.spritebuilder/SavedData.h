@@ -20,6 +20,10 @@
 // Boolean list to see if soldier is locked
 
 // List of soldier lineups
++ (NSMutableDictionary *)lineupDictonary;
++ (void)saveLineupDict;
++ (void)setLineUp: (NSMutableDictionary *) lineupDict;
+
 
 // Total money
 + (int) money;

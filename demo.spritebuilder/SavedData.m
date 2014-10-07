@@ -13,6 +13,7 @@ static int money;
 static int level;
 static NSString *plistPath;
 static NSMutableArray *levelArray;
+static NSMutableDictionary *lineupDictonary;
 
 @implementation SavedData
 
@@ -48,7 +49,26 @@ static NSMutableArray *levelArray;
         // Load level array
         NSMutableArray *array = [unarchivedData objectForKey:@"levelarray"];
         levelArray = [array copy];
+        
+        // Load lineup dict
+        NSMutableDictionary *dictionary = [unarchivedData objectForKey:@"lineupdict"];
+        lineupDictonary = [dictionary copy];
     }
+}
+
+
+// lineup dict
++ (NSMutableDictionary *)lineupDictonary {return lineupDictonary;}
+
++ (void)setLineUp: (NSMutableDictionary *) lineupDict {
+    lineupDictonary = lineupDict;
+}
+
++ (void)saveLineupDict {
+    NSMutableDictionary *dataToSave = [self getSavedDictionary];
+    //update dict
+    [dataToSave setObject:lineupDictonary forKey:@"lineupdict"];
+    [self saveDictionary:dataToSave];
 }
 
 // level
@@ -60,7 +80,7 @@ static NSMutableArray *levelArray;
 
 + (void)saveLevel {
     NSMutableDictionary *dataToSave = [self getSavedDictionary];
-    //update money
+    //update level
     NSNumber *levelNum = [NSNumber numberWithInt:level];
     [dataToSave setObject:levelNum forKey:@"level"];
     [self saveDictionary:dataToSave];
@@ -77,7 +97,7 @@ static NSMutableArray *levelArray;
 
 + (void)saveLevelArray {
     NSMutableDictionary *dataToSave = [self getSavedDictionary];
-    //update money
+    //update permission array
     
     [dataToSave setObject:levelArray forKey:@"levelarray"];
     [self saveDictionary:dataToSave];
@@ -124,6 +144,10 @@ static NSMutableArray *levelArray;
     levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, level4, nil];
     [dataToSave setObject:levelArray forKey:@"levelarray"];
     
+    //line up dict
+    NSMutableDictionary *lineupDict = [NSMutableDictionary dictionary];
+    [dataToSave setObject:lineupDict forKey:@"lineupdict"];
+
     
     [self saveDictionary:dataToSave];
 }
