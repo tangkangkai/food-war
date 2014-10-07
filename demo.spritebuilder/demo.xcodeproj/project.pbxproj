@@ -168,6 +168,7 @@
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
+				B7378993180767190076A88C /* MainScene.m */,
 				BEB82C4319CA610C009DF48C /* ChoiceScene.h */,
 				BEB82C4419CA610C009DF48C /* ChoiceScene.m */,
 				BEB82C4519CA610C009DF48C /* GameScene.h */,
@@ -180,7 +181,6 @@
 				59BF556E19DA288600D30484 /* Scrollback.h */,
 				59BF556F19DA288600D30484 /* Scrollback.m */,
 				BEB82C4819CA610C009DF48C /* StoreScene.m */,
-				B7378993180767190076A88C /* MainScene.m */,
 				BE106AA819C8ECB700FAE0C5 /* SettingScene.h */,
 				BE106AA919C8ECB700FAE0C5 /* SettingScene.m */,
 				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
@@ -437,7 +437,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Zyda (4TS2GH2E9U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Zyda (4TS2GH2E9U)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -449,6 +450,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "a98729da-4aac-4e14-80a9-e27570aba07f";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,7 +460,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Zyda (4TS2GH2E9U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Zyda (4TS2GH2E9U)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -468,6 +471,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "a98729da-4aac-4e14-80a9-e27570aba07f";
 				SDKROOT = iphoneos8.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,7 +506,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = demo;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a98729da-4aac-4e14-80a9-e27570aba07f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -535,7 +539,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = demo;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a98729da-4aac-4e14-80a9-e27570aba07f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -33,11 +33,7 @@
     CCLabelTTF *_gameoverLabel;
     int mTimeInSec;
     int timeFlag;
-//    CCTimer *_timer;
-    
     CCSprite *_first;
-
-
 }
 
 - (id)init{
@@ -48,9 +44,6 @@
 
     selected_soldier = NULL;
     man = NULL;
-    
-//    _timer = [[CCTimer alloc] init];
-
     return self;
 }
 
@@ -82,15 +75,37 @@
     }
 }
 
+
+
+- (void)menu {
+    [[CCDirector sharedDirector] pause];
+    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
+                                                      message:@"Plese choose"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Resume"
+                                            otherButtonTitles: @"Quit Game", nil];
+    [alert setTag:1];
+    [alert show];
+}
+
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button Index =%ld",(long)buttonIndex);
+
+    NSLog(@"Button Index =%ld of tag %ld",(long)buttonIndex, (long)[alertView tag]);
+    int tag =[alertView tag];
     if (buttonIndex == 0){
-        NSLog(@"You have clicked Restart");
-        [[CCDirector sharedDirector] resume];
-        CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
-        CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
-        [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
+        if(tag == 1){
+            NSLog(@"You have clicked Cancel");
+            [[CCDirector sharedDirector] resume];
+        }
+        else{
+            NSLog(@"You have clicked Restart");
+            [[CCDirector sharedDirector] resume];
+            CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
+            CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
+            [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
+        }
     }
     else if(buttonIndex == 1)
     {
@@ -235,9 +250,10 @@
     [newSoldier move];
 }
 
+
 - (void)addjunk {
     
-    
+
     //test by KK
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"healthy_food.plist"];
     CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
