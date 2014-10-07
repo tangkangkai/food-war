@@ -23,14 +23,18 @@
     CCNode *_bananaMan;
     CCNode *_beanMan;
     CCNode *_potato;
-    
-    Soldier *man;           //save the final man
+    CCNode *_scrollview;
     Scrollback *scroll;
+
+    Soldier *man;           //save the final man
+    
     NSString *selected_soldier;
     NSString *selected_soldier_animation;
-    CCNode *_scrollview;
+    
     CCLabelTTF *_timerLabel;
     CCLabelTTF *_gameoverLabel;
+    CCLabelTTF *_money;
+
     int mTimeInSec;
     int timeFlag;
     CCSprite *_first;
@@ -55,19 +59,26 @@
     [self schedule:@selector(tick) interval:1.0f];
 }
 
+-(void)updateMoney{
+    [_money setString:[NSString stringWithFormat:@"%d", [SavedData money]]];
+}
+
 -(void)tick {
     if(timeFlag == 0){
-        mTimeInSec -= 1;
-        _timerLabel.string = [NSString stringWithFormat:@"%d", mTimeInSec];
-        if(mTimeInSec == 0) timeFlag = 1;
+        if((mTimeInSec--) == 0){
+            timeFlag = 1;
+        }
+        [_timerLabel setString:[NSString stringWithFormat:@"%d", mTimeInSec]];
+        [self updateMoney];
+
     } else if(timeFlag == 1){
+        [[CCDirector sharedDirector] pause];
         _gameoverLabel.string = [NSString stringWithFormat:@"GameOver"];
         UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                          message:@"Plese choose"
-                                                         delegate:self
-                                                cancelButtonTitle:@"Restart"
-                                                otherButtonTitles: nil];
-        [alert addButtonWithTitle:@"Quit Game"];
+                                                    message:@"Plese choose"
+                                                    delegate:self
+                                                    cancelButtonTitle:@"Restart"
+                                                    otherButtonTitles: @"Quit",nil];
         [alert show];
         timeFlag = 2;
     } else{
@@ -75,15 +86,16 @@
     }
 }
 
+// TODO add a showDialog function
 
 
 - (void)menu {
     [[CCDirector sharedDirector] pause];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                      message:@"Plese choose"
-                                                     delegate:self
-                                            cancelButtonTitle:@"Resume"
-                                            otherButtonTitles: @"Quit Game", nil];
+                                                message:@"Plese choose"
+                                                delegate:self
+                                                cancelButtonTitle:@"Resume"
+                                                otherButtonTitles: @"Quit", nil];
     [alert setTag:1];
     [alert show];
 }
@@ -93,7 +105,7 @@
 {
 
     NSLog(@"Button Index =%ld of tag %ld",(long)buttonIndex, (long)[alertView tag]);
-    int tag =[alertView tag];
+    long tag =[alertView tag];
     if (buttonIndex == 0){
         if(tag == 1){
             NSLog(@"You have clicked Cancel");
@@ -133,8 +145,7 @@
         selected_soldier = @"potato";
         selected_soldier_animation=@"potato";
         Bomb* newSolider = [[Bomb alloc] initSoldier:selected_soldier
-                                                     group:@"noGroup"
-                                             collisionType:@"noCollision"
+                                                     group:-1
                                                   startPos:touchLocation
                                                     destPos:touchLocation
                                                        ourArr:NULL
@@ -143,13 +154,11 @@
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
         return;
-        
     }
     
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
-                                               group:@"noGroup"
-                                               collisionType:@"noCollision"
+                                               group:-1
                                                startPos:touchLocation
                                                destPos:touchLocation
                                                ourArr:NULL enemyArr:NULL ];
@@ -221,8 +230,7 @@
         dest.x = 0;
         dest.y = 0;
         newSoldier = [[Bomb alloc] initSoldier:selected_soldier
-                                   group:@"myGroup"
-                                   collisionType:@"healthyCollision"
+                                   group:0
                                    startPos:sourcehouse.position
                                    destPos:dest
                                    ourArr:[scroll healthy_soldiers]
@@ -238,8 +246,7 @@
         // Avoid the physic confliction with the new born enemy
         CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
         newSoldier = [[Soldier alloc] initSoldier:selected_soldier
-                                       group:@"myGroup"
-                                       collisionType:@"healthyCollision"
+                                       group:0
                                        startPos:sourcehouse.position
                                        destPos: destination
                                        ourArr:[scroll healthy_soldiers]
@@ -267,8 +274,7 @@
     CGPoint destination = CGPointMake([scroll house1].position.x+50,
                                       [scroll house1].position.y);
     Soldier* test_junk = [[Soldier alloc] initSoldier:@"burgerMan"
-                                          group:@"enemyGroup"
-                                          collisionType:@"junkCollision"
+                                          group:1
                                           startPos:[scroll house4].position
                                           destPos:destination
                                           ourArr:[scroll junk_soldiers]

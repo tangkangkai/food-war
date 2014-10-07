@@ -51,15 +51,13 @@
     CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+50,
                                       [(CCNode*)end_positions[lane_num] position].y);
     Soldier* enemy_soldier= [[Soldier alloc] initSoldier:soldier_image[i]
-                               group:@"enemyGroup"
-                               collisionType:@"junkCollision"
+                               group:1
                                startPos:[(CCNode*)start_positions[lane_num] position]
                                destPos:destination
                                ourArr:_junk_soldiers
                                enemyArr:_healthy_soldiers];
     [_scroll_physicsWorld addChild: [enemy_soldier soldier]];
     [enemy_soldier move];
-
 }
 
 
@@ -73,13 +71,21 @@
 - (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
     [healthy stopAllActions];
     [junk stopAllActions];
-    Soldier *healthySoldier, *junkSoldier;
+    
     for( Soldier *s in _healthy_soldiers ){
         if( [s soldier] == healthy ){
-            healthySoldier = s;
+            [ s attack ];
+            break;
         }
     }
-    [ healthySoldier attack ];
+    
+    for( Soldier *s in _junk_soldiers ){
+        if( [s soldier] == junk ){
+            [ s attack ];
+            break;
+        }
+    }
+    
     NSLog(@"Collision");
     return YES;
 }
