@@ -52,7 +52,7 @@ static NSMutableDictionary *lineupDictonary;
         
         // Load lineup dict
         NSMutableDictionary *dictionary = [unarchivedData objectForKey:@"lineupdict"];
-        lineupDictonary = [dictionary copy];
+        lineupDictonary = [dictionary mutableCopy];
     }
 }
 

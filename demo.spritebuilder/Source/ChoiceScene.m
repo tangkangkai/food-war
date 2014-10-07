@@ -42,12 +42,23 @@
     _bananachoosed.visible = false;
     _cokechoosed.visible = false;
     
-    lineupDict = [[SavedData lineupDictonary] copy];
+    lineupDict = [NSMutableDictionary dictionary];
 }
 
 - (void)potato {
-    
     [self chooseSoldier:@"potato" background:_potatobg choosed:_potatochoosed];
+}
+
+- (void)bean {
+    [self chooseSoldier:@"bean" background:_beanbg choosed:_beanchoosed];
+}
+
+- (void)banana {
+    [self chooseSoldier:@"banana" background:_bananabg choosed:_bananachoosed];
+}
+
+- (void)coke {
+    [self chooseSoldier:@"coke" background:_cokebg choosed:_cokechoosed];
 }
 
 - (void)chooseSoldier: (NSString *)soldier background: (CCNode *)bg choosed: (CCNode *)tick {
@@ -63,8 +74,6 @@
         [lineupDict setObject:@"hehe" forKey:soldier];
         NSLog(@"If contain soldier: %@", ([lineupDict objectForKey:soldier]) != nil ? @"Yes" : @"No");
     }
-    //[SavedData setLineUp:lineupDict];
-    //[SavedData saveLineupDict];
 }
 
 - (void)go {
@@ -73,6 +82,9 @@
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
+    
+    [SavedData setLineUp:lineupDict];
+    [SavedData saveLineupDict];
 }
 
 - (void)back {
