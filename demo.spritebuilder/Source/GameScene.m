@@ -13,9 +13,9 @@
 static GameScene* GameSceneInstance;
 
 @implementation GameScene {
-    //CCTextField *_text;
+   //CCTextField *_text;
    // NSMutableArray *levelArray;
- //   BOOL ifLocked;
+   // BOOL ifLocked;
     
 }
 
