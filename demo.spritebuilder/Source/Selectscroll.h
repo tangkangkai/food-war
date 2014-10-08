@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Selectscroll : CCNode {
-    
-}
+@interface Selectscroll : CCNode
 
+@property int level;
 @end

@@ -138,10 +138,10 @@ static NSMutableDictionary *lineupDictonary;
     
     // level permission
     NSNumber *level1 = [NSNumber numberWithInt:1];
-    NSNumber *level2 = [NSNumber numberWithInt:1];
+    NSNumber *level2 = [NSNumber numberWithInt:0];
     NSNumber *level3 = [NSNumber numberWithInt:0];
-    NSNumber *level4 = [NSNumber numberWithInt:0];
-    levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, level4, nil];
+  //  NSNumber *level4 = [NSNumber numberWithInt:0];
+    levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, nil];
     [dataToSave setObject:levelArray forKey:@"levelarray"];
     
     //line up dict

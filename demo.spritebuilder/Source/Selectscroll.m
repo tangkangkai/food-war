@@ -38,7 +38,7 @@
 
 - (void)level2 {
     NSLog(@"level2 button");
-    [self changeLevel:2];
+    [self changeLevel:3];
     [self next];
 }
 
@@ -63,6 +63,7 @@
 - (void)changeLevel: (int) level {
     gs=[GameScene sharelayer];
     if ([[levelArray objectAtIndex:level - 1] intValue] == 0) {
+        NSLog(@"level %d:%d",level,[[levelArray objectAtIndex:level - 1] intValue] );
         CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
         CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
         CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
@@ -71,12 +72,15 @@
         gs.text.string = [NSString stringWithFormat:@"Level %d locked", level];
         [gs.text runAction:sequence];
         ifLocked = true;
+        NSLog(@"true");
     } else {
+        NSLog(@"level %d:%d",level,[[levelArray objectAtIndex:level - 1] intValue] );
         CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:0.2f angle:360];
         [gs.text runAction:rotate];
         gs.text.string  = [NSString stringWithFormat:@"Level %d", level];
         //   [SavedData setLevel:level];
         ifLocked = false;
+        NSLog(@"false");
     }
     
 }
