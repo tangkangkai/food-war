@@ -42,11 +42,11 @@
     _bananachoosed.visible = false;
     _cokechoosed.visible = false;
     
-    lineupDict = [NSMutableDictionary dictionary];
+    lineupDict = [[NSMutableDictionary alloc] init];
 }
 
 - (void)potato {
-    [self chooseSoldier:@"potato" background:_potatobg choosed:_potatochoosed];
+    [self chooseSoldier:@"potatoMan" background:_potatobg choosed:_potatochoosed];
 }
 
 - (void)bean {
@@ -62,7 +62,6 @@
 }
 
 - (void)chooseSoldier: (NSString *)soldier background: (CCNode *)bg choosed: (CCNode *)tick {
-    NSLog(@"If contain soldier: %@", ([lineupDict objectForKey:soldier]) != nil ? @"Yes" : @"No");
     if ([lineupDict objectForKey:soldier] != nil) {
         bg.visible = false;
         tick.visible = false;
@@ -71,20 +70,25 @@
     } else {
         bg.visible = true;
         tick.visible = true;
-        [lineupDict setObject:@"hehe" forKey:soldier];
+        [lineupDict setObject:[NSString stringWithFormat:@"%@.png", soldier] forKey:soldier];
         NSLog(@"If contain soldier: %@", ([lineupDict objectForKey:soldier]) != nil ? @"Yes" : @"No");
     }
-}
+    }
 
 - (void)go {
-
+    // save lineup
+    [SavedData setLineUp:lineupDict];
+    [SavedData saveLineupDict];
+    NSLog(@"lineup num: %d", (int)lineupDict.count);
+    
     CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
     
-    [SavedData setLineUp:lineupDict];
-    [SavedData saveLineupDict];
+    
+    
+    
 }
 
 - (void)back {

@@ -38,6 +38,9 @@
     int mTimeInSec;
     int timeFlag;
     CCSprite *_first;
+    CCSprite *_second;
+    CCSprite *_third;
+    NSMutableArray *lineupArray;
 }
 
 - (id)init{
@@ -57,6 +60,36 @@
     mTimeInSec = 300;                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
+
+}
+
+- (void)onEnter {
+    [super onEnter];
+    //get the lineup soldier from dictionary and write to scene
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"healthy_food.plist"];
+    CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    NSMutableDictionary *soldiers = [SavedData lineupDictonary];
+    NSMutableArray *spots = [[NSMutableArray alloc] init];
+    lineupArray = [[NSMutableArray alloc] init];
+    [spots addObject:_first];
+    [spots addObject:_second];
+    [spots addObject:_third];
+    NSArray *keys = [soldiers allKeys];
+    NSLog(@"length of lineup: %d", (int)keys.count);
+    for (int i = 0; i < (int)keys.count; i++) {
+        CCSprite *spot = [spots objectAtIndex:i];
+        CCNode *soldier = [keys objectAtIndex:i];
+        CCSpriteFrame* frame = [cache spriteFrameByName:[soldiers objectForKey:soldier]];
+        spot.spriteFrame = frame;
+        [lineupArray addObject:soldier];
+        NSLog(@"%@", [soldiers objectForKey:soldier]);
+    }
+    
+    for (int i = (int)keys.count; i < spots.count; i++) {
+        CCSprite *spot = [spots objectAtIndex:i];
+        spot.spriteFrame = NULL;
+        NSLog(@"!!!!!!");
+    }
 }
 
 -(void)updateMoney{
@@ -132,18 +165,18 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:self];
     
-    if (CGRectContainsPoint(_potatoMan.boundingBox,touchLocation)) {
-        selected_soldier = @"potatoMan";
-        selected_soldier_animation=@"potatoMan";
-    } else if(CGRectContainsPoint(_bananaMan.boundingBox,touchLocation)) {
-        selected_soldier = @"banana";
-        selected_soldier_animation=@"banana";
-    } else if(CGRectContainsPoint(_beanMan.boundingBox,touchLocation)) {
-        selected_soldier = @"bean";
-        selected_soldier_animation=@"bean";
+    if (_first.spriteFrame!=NULL && CGRectContainsPoint(_first.boundingBox,touchLocation)) {
+        selected_soldier = [lineupArray objectAtIndex:0];
+        selected_soldier_animation=[lineupArray objectAtIndex:0];
+    } else if (_second.spriteFrame!=NULL && CGRectContainsPoint(_second.boundingBox,touchLocation)) {
+        selected_soldier = [lineupArray objectAtIndex:1];
+        selected_soldier_animation=[lineupArray objectAtIndex:1];
+    } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_third.boundingBox,touchLocation)) {
+        selected_soldier = [lineupArray objectAtIndex:2];
+        selected_soldier_animation=[lineupArray objectAtIndex:2];
     } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
-        selected_soldier = @"potato";
-        selected_soldier_animation=@"potato";
+        selected_soldier = @"potatoBomb";
+        selected_soldier_animation=@"potatoBomb";
         Bomb* newSolider = [[Bomb alloc] initSoldier:selected_soldier
                                                      group:-1
                                                   startPos:touchLocation
@@ -259,16 +292,6 @@
 
 
 - (void)addjunk {
-    
-
-    //test by KK
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"healthy_food.plist"];
-    CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    CCSpriteFrame* frame = [cache spriteFrameByName:@"banana.png"];
-    _first.spriteFrame = frame;
-    
-    
-    
     scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
     CGPoint destination = CGPointMake([scroll house1].position.x+50,

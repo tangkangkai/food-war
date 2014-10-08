@@ -145,7 +145,7 @@ static NSMutableDictionary *lineupDictonary;
     [dataToSave setObject:levelArray forKey:@"levelarray"];
     
     //line up dict
-    NSMutableDictionary *lineupDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *lineupDict = [[NSMutableDictionary alloc] init];
     [dataToSave setObject:lineupDict forKey:@"lineupdict"];
 
     
