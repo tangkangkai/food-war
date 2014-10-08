@@ -784,7 +784,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string></string>
+				<string>Selectscroll</string>
 				<key>displayName</key>
 				<string>CCScrollView</string>
 				<key>memberVarAssignmentName</key>
