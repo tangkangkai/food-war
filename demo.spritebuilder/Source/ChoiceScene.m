@@ -85,9 +85,12 @@
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
-    
-    
-    
+}
+
+-(void)store{
+    CCScene *storeScene = [CCBReader loadAsScene:@"StoreScene"];
+    CCTransition *trans = [CCTransition transitionPushWithDirection: CCTransitionDirectionUp duration:0.5f];
+    [[CCDirector sharedDirector] replaceScene:storeScene withTransition:trans];
     
 }
 

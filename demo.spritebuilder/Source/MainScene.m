@@ -7,8 +7,15 @@
 //
 
 #import "MainScene.h"
+#import "SavedData.h"
 
 @implementation MainScene
+
+- (void)onEnter {
+    [super onEnter];
+    [SavedData init];
+    [SavedData loadData];
+}
 
 - (void)start {
     CCScene *gameScene = [CCBReader loadAsScene:@"GameScene"];
