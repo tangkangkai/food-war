@@ -13,8 +13,7 @@
 
 - (void)onEnter {
     [super onEnter];
-    [SavedData init];
-    [SavedData loadData];
+
 }
 
 - (void)start {

@@ -22,8 +22,6 @@
 
 -(void)back {
     
-    [SavedData setMoney:total];
-    [SavedData saveMoney];
     CCScene *gameScene = [CCBReader loadAsScene:@"GameScene"];
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.5f];
@@ -55,5 +53,7 @@
     [_total runAction:sequence];
     total -= value;
     _total.string = [NSString stringWithFormat:@"%d", total];
+    [SavedData setMoney:total];
+    [SavedData saveMoney];
 }
 @end

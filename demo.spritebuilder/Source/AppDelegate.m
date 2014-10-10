@@ -61,7 +61,7 @@
 - (CCScene*) startScene
 {
     //init saved data and load
-    
+    [SavedData loadData];
     return [CCBReader loadAsScene:@"MainScene"];
 }
 

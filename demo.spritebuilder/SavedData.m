@@ -18,6 +18,8 @@ static NSMutableDictionary *lineupDictonary;
 @implementation SavedData
 
 + (void)loadData {
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"SavedData.plist"];
     // Fetch NSDictionary containing possible saved state
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
