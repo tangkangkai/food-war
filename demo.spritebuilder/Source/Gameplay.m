@@ -178,7 +178,7 @@
     } else if(CGRectContainsPoint(_cabbageBomb.boundingBox,touchLocation)) {
         selected_soldier = @"cabbageBomb";
         selected_soldier_animation=@"cabbageBomb";
-        Bomb* newBomb = [[Bomb alloc] initBomb:selected_soldier startPosition:touchLocation endPosition:touchLocation];
+        Bomb* newBomb = [[Bomb alloc] initBomb:@"cabbageRing" startPosition:touchLocation endPosition:touchLocation];
         item = newBomb;
         // TODO possible memory leak
         [self addChild: [newBomb bomb]];
@@ -263,7 +263,7 @@
     [self removeChild: [item bomb]];
     
     Bomb *newBomb = nil;
-    newBomb = [[Bomb alloc] initBomb:selected_soldier startPosition:touchLocation endPosition:touchLocation];
+    newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
     [_physicsWorld addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
     
