@@ -571,8 +571,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -791,9 +789,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>potato</string>
+				<string>bomb</string>
 				<key>memberVarAssignmentName</key>
-				<string>_potato</string>
+				<string>_cabbageBomb</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -838,8 +836,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.13209831714630127</real>
-							<real>0.1362995058298111</real>
+							<real>0.18427695333957672</real>
+							<real>0.18427695333957672</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -852,7 +850,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/potato.png</string>
+							<string>foodwar_picture/cabbage.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -869,6 +867,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

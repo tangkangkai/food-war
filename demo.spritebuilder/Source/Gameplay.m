@@ -22,7 +22,7 @@
     CCNode *_potatoMan;
     CCNode *_bananaMan;
     CCNode *_beanMan;
-    CCNode *_potato;
+    CCNode *_cabbageBomb;
     CCNode *_scrollview;
     Scrollback *scroll;
 
@@ -175,9 +175,9 @@
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_third.boundingBox,touchLocation)) {
         selected_soldier = [lineupArray objectAtIndex:2];
         selected_soldier_animation=[lineupArray objectAtIndex:2];
-    } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
-        selected_soldier = @"potatoBomb";
-        selected_soldier_animation=@"potatoBomb";
+    } else if(CGRectContainsPoint(_cabbageBomb.boundingBox,touchLocation)) {
+        selected_soldier = @"cabbageBomb";
+        selected_soldier_animation=@"cabbageBomb";
         Bomb* newBomb = [[Bomb alloc] initBomb:selected_soldier startPosition:touchLocation endPosition:touchLocation];
         item = newBomb;
         // TODO possible memory leak
@@ -201,7 +201,7 @@
 {
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    if([selected_soldier isEqualToString:@"potatoBomb"]){
+    if([selected_soldier isEqualToString:@"cabbageBomb"]){
         if(item == NULL) return;
         
         [item bomb].position = touchLocation;
@@ -233,7 +233,7 @@
 {
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    if([selected_soldier_animation isEqualToString:@"potatoBomb"]) {
+    if([selected_soldier_animation isEqualToString:@"cabbageBomb"]) {
         NSLog(@"release BOMB!");
         [self launchBomb:touchLocation];
     } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
@@ -262,10 +262,6 @@
     }
     [self removeChild: [item bomb]];
     
-    CGPoint dest = CGPointMake(0, 0);
-    //    dest.x = touchLocation.x;
-    //    dest.y = touchLocation.y;
-    
     Bomb *newBomb = nil;
     newBomb = [[Bomb alloc] initBomb:selected_soldier startPosition:touchLocation endPosition:touchLocation];
     [_physicsWorld addChild: [newBomb bomb]];
@@ -283,19 +279,16 @@
     [self removeChild: [man soldier]];
     
     Soldier *newSoldier = nil;
-    if([selected_soldier_animation isEqualToString:@"potatoBomb"]) {
-        
-        return;
-    } else {
+
         // Avoid the physic confliction with the new born enemy
-        CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
-        newSoldier = [[Soldier alloc] initSoldier:selected_soldier
-                                       group:0
-                                       startPos:sourcehouse.position
-                                       destPos: destination
-                                       ourArr:[scroll healthy_soldiers]
-                                       enemyArr:[scroll junk_soldiers]];
-    }
+    CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
+    newSoldier = [[Soldier alloc] initSoldier:selected_soldier
+                                    group:0
+                                    startPos:sourcehouse.position
+                                    destPos: destination
+                                    ourArr:[scroll healthy_soldiers]
+                                    enemyArr:[scroll junk_soldiers]];
+    
 
     [_physicsWorld addChild: [newSoldier soldier]];
     [newSoldier move];
