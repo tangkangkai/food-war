@@ -27,6 +27,7 @@
     Scrollback *scroll;
 
     Soldier *man;           //save the final man
+    Bomb *item;
     
     NSString *selected_soldier;
     NSString *selected_soldier_animation;
@@ -177,15 +178,10 @@
     } else if(CGRectContainsPoint(_potato.boundingBox,touchLocation)) {
         selected_soldier = @"potatoBomb";
         selected_soldier_animation=@"potatoBomb";
-        Bomb* newSolider = [[Bomb alloc] initSoldier:selected_soldier
-                                                     group:-1
-                                                  startPos:touchLocation
-                                                    destPos:touchLocation
-                                                       ourArr:NULL
-                                                     enemyArr:NULL];
-        man = newSolider;
+        Bomb* newBomb = [[Bomb alloc] initBomb:selected_soldier startPosition:touchLocation endPosition:touchLocation];
+        item = newBomb;
         // TODO possible memory leak
-        [self addChild: [newSolider soldier]];
+        [self addChild: [newBomb bomb]];
         return;
     }
     
@@ -204,10 +200,17 @@
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     scroll=[_scrollview children][0];
+    CGPoint touchLocation = [touch locationInNode:self];
+    if([selected_soldier isEqualToString:@"potatoBomb"]){
+        if(item == NULL) return;
+        
+        [item bomb].position = touchLocation;
+        return;
+    }
+    
     if( man == NULL ){
         return;
     }
-    CGPoint touchLocation = [touch locationInNode:self];
     [man soldier].position = touchLocation;
     if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
         NSLog(@"moved into track 1");
@@ -230,7 +233,10 @@
 {
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
+    if([selected_soldier_animation isEqualToString:@"potatoBomb"]) {
+        NSLog(@"release BOMB!");
+        [self launchBomb:touchLocation];
+    } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
         NSLog(@"located in track 1");
         [self launchmovingman:[scroll house1] dest:[scroll house4]];
     } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+20, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
@@ -248,6 +254,26 @@
 }
 
 
+- (void)launchBomb: (CGPoint)touchLocation {
+    scroll=[_scrollview children][0];
+    _physicsWorld=[scroll scroll_physicsWorld];
+    if(item== NULL ){
+        return;
+    }
+    [self removeChild: [item bomb]];
+    
+    CGPoint dest = CGPointMake(0, 0);
+    //    dest.x = touchLocation.x;
+    //    dest.y = touchLocation.y;
+    
+    Bomb *newBomb = nil;
+    newBomb = [[Bomb alloc] initBomb:selected_soldier startPosition:touchLocation endPosition:touchLocation];
+    [_physicsWorld addChild: [newBomb bomb]];
+    [newBomb drop:touchLocation];
+    
+}
+
+
 - (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
     scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
@@ -257,23 +283,8 @@
     [self removeChild: [man soldier]];
     
     Soldier *newSoldier = nil;
-    if([selected_soldier_animation isEqualToString:@"potato"]) {
+    if([selected_soldier_animation isEqualToString:@"potatoBomb"]) {
         
-        CGPoint dest;
-        dest.x = 0;
-        dest.y = 0;
-        newSoldier = [[Bomb alloc] initSoldier:selected_soldier
-                                   group:0
-                                   startPos:sourcehouse.position
-                                   destPos:dest
-                                   ourArr:[scroll healthy_soldiers]
-                                   enemyArr:[scroll junk_soldiers]];
-        CGPoint destination;
-
-        destination.x = 0;
-        destination.y = 0;
-        [_physicsWorld addChild: [newSoldier soldier]];
-        [newSoldier move];
         return;
     } else {
         // Avoid the physic confliction with the new born enemy

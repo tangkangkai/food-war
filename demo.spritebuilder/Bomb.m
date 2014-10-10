@@ -1,31 +1,67 @@
 #import <Foundation/Foundation.h>
 #import "Bomb.h"
+#import <CoreMotion/CoreMotion.h>
 @implementation Bomb {
-    CCNode* _soldier;
+    float accelator;
+    int counter;
+}
+
+/*
+ - (id)init
+ {
+ self = [super init];
+ _moveSpeed = 80;
+ 
+ return self;
+ }*/
+
+-(void)drop: (CGPoint)start{
+    NSLog(@"Bomb start dropping");
+    //    [_motionManager startAccelerometerUpdates];
+    [self schedule:@selector(update) interval:0.005f];
+    /*
+     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
+     position:_destPosi];*/
+    //    [_bomb runAction:[CCActionSequence actionWithArray:@[actionMove]]];
     
 }
 
-- (id)init
-{
+-(void) acc{
+    CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y-1);
+    _bomb.position = posi;
+}
+
+-(id)initBomb:(NSString*) img startPosition:(CGPoint) start endPosition:(CGPoint) end{
     self = [super init];
+    
+    start.y -= 30;
+    end.y -= 80;
+    _bomb = [CCBReader load:img];
+    _startPosi = start;
+    _destPosi = end;
+    _bomb.position = start;         //init CCNode;
+    _bomb.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _bomb.contentSize} cornerRadius:0];
+    
+    accelator = 0;
+    //    _motionManager = [[CMMotionManager alloc] init];
     return self;
 }
 
--(void)drop: (CGPoint) pos {
-    int distance = ABS(pos.x - self.soldier.position.x);
-    int duration = distance/self.move_speed;
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration position:CGPointMake(pos.x,[_soldier position].y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [self.soldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
-}
-
--(void)move: (CGPoint) pos {
-    int distance = ABS(pos.y - self.soldier.position.y);
-    int duration = distance/self.move_speed;
-    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration position:CGPointMake(pos.x,[_soldier position].y)];
-//    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration position:CGPointMake(self.soldier.position.x,pos.y)];
-    CCAction *actionRemove = [CCActionRemove action];
-    [self.soldier runAction:[CCActionSequence actionWithArray:@[actionMove,actionRemove]]];
+- (void)update{
+    if(accelator > 3) {
+        return;
+    }
+    CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y - accelator);
+    _bomb.position = posi;
+    accelator += 0.05;
+    
+    
+    /*
+     CMAccelerometerData *accelerometerData = _motionManager.accelerometerData;
+     CMAcceleration acceleration = accelerometerData.acceleration;
+     CGFloat newXPosition = _bomb.position.x + acceleration.y * 1000 * delta;
+     newXPosition = clampf(newXPosition, 0, self.contentSize.width);
+     _bomb.position = CGPointMake(newXPosition, _bomb.position.y);*/
 }
 
 
