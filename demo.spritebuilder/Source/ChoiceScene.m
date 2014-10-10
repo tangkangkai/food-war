@@ -77,6 +77,17 @@
 
 - (void)go {
     // save lineup
+    if (lineupDict.count == 0) {
+        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
+        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
+        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
+        
+        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveleft, moveright, moveleft, moveright, moveback]];
+        _message.string = [NSString stringWithFormat:@"Please select soldiers"];
+        [_message runAction:sequence];
+        return;
+    }
+    
     [SavedData setLineUp:lineupDict];
     [SavedData saveLineupDict];
     NSLog(@"lineup num: %d", (int)lineupDict.count);
