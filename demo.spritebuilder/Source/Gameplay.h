@@ -10,6 +10,6 @@
 
 @interface Gameplay : CCNode
 
-//@property(nonatomic, assign) CCLabelTTF *_timeLabel;
+- (void)addBombExplosion:(CGPoint) posi;
 
 @end

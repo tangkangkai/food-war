@@ -294,6 +294,13 @@
     [newSoldier move];
 }
 
+- (void)addBombExplosion:(CGPoint) posi{
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explode"];
+    explosion.autoRemoveOnFinish = YES;
+    explosion.position = posi;
+    [self addChild:explosion];
+    return;
+}
 
 - (void)addjunk {
     scroll=[_scrollview children][0];

@@ -26,10 +26,6 @@
     
 }
 
--(void) acc{
-    CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y-1);
-    _bomb.position = posi;
-}
 
 -(id)initBomb:(NSString*) img startPosition:(CGPoint) start endPosition:(CGPoint) end{
     self = [super init];
@@ -49,6 +45,14 @@
 
 - (void)update{
     if(accelator > 3) {
+        /*
+        CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explode"];
+        explosion.autoRemoveOnFinish = YES;
+        CGPoint expo = CGPointMake(_bomb.position.x, _bomb.position.y);
+        explosion.position = expo;*/
+        
+        [_bomb removeFromParent];
+//        [self addChild:explosion];
         return;
     }
     CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y - accelator);
