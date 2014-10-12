@@ -15,7 +15,7 @@
     long _junkarraysize;
     int _startlaunch;
 
-
+    int j;
 }
 
 - (id)init{
@@ -41,9 +41,14 @@
     _healtharraysize = [_healthy_soldiers count];
     _junkarraysize = [_junk_soldiers count];
     if (_junkarraysize!=0) {
-        for( long i = 0; i < _healtharraysize; i++ ){
+        for(long i = 0; i < _healtharraysize; i++ ){
             //    NSLog(@"x:%f, y:%f ",s.position.x,s.position.y);
+            if (j==2) {
+                break;
+            }
             [[[_healthy_soldiers objectAtIndex:i] soldier] stopAllActions];
+            j++;
+
 
         }
     }
