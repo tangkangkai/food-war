@@ -15,13 +15,15 @@
     long _junkarraysize;
     int _startlaunch;
 
+
 }
 
 - (id)init{
     self = [super init];
     if (!self) return(nil);
 
-    
+    _missile_atk=20;
+    _missile_atk_range=10;
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     return self;
@@ -31,10 +33,11 @@
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:3];
-    [self schedule:@selector(detect) interval:0.2];
+    [self schedule:@selector(sceneDetect) interval:0.2];
 }
 
--(void)detect{
+//find whether enemy come out
+-(void)sceneDetect{
     _healtharraysize = [_healthy_soldiers count];
     _junkarraysize = [_junk_soldiers count];
     if (_junkarraysize!=0) {
@@ -47,6 +50,25 @@
 
 }
 
+//find target the missle hit
+-(Soldier*)missileDetect{
+    int nearest_distance=[self missile_atk_range];
+    Soldier *target = NULL;
+    int x_diff;
+    int y_diff;
+
+    for( long i = 0; i < _junkarraysize; i++ ){
+        x_diff=ABS(_missile.position.x-[[[_junk_soldiers objectAtIndex:i] soldier] position].x);
+        y_diff=ABS(_missile.position.y-[[[_junk_soldiers objectAtIndex:i] soldier] position].y);
+        if (x_diff<nearest_distance||y_diff<nearest_distance) {
+            target=[_junk_soldiers objectAtIndex:i];
+        }
+    }
+    return target;
+
+}
+
+//missle lauch from healthyfoor
 -(void)missileLaunch:(CCNode *)missile :(CGPoint ) touchLocation{
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:90.f];
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:touchLocation
@@ -58,8 +80,11 @@
 
 }
 
+//the effect when the missile hit the target
+
 - (void)missileRemoved
 {
+    Soldier *target;
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
     //  make the particle effect clean itself up, once it is completed
     explosion.autoRemoveOnFinish = TRUE;
@@ -71,6 +96,8 @@
     // add the particle effect to the same node the seal is on
     [_missile.parent addChild:explosion];
     
+    target=[self missileDetect];
+    [target loseHealth:_missile_atk];
     // finally, remove the destroyed seal
     [_missile removeFromParent];
 }
