@@ -42,6 +42,8 @@
     CCSprite *_second;
     CCSprite *_third;
     NSMutableArray *lineupArray;
+    
+    OALSimpleAudio *audio;
 }
 
 - (id)init{
@@ -52,6 +54,8 @@
 
     selected_soldier = NULL;
     man = NULL;
+    
+    audio = [OALSimpleAudio sharedInstance];
     return self;
 }
 
@@ -61,6 +65,8 @@
     mTimeInSec = 300;                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
+  
+    [audio playBg:@"background_track.mp3" loop:TRUE];
 
 }
 
@@ -91,6 +97,11 @@
         spot.spriteFrame = NULL;
         NSLog(@"!!!!!!");
     }
+}
+
+-(void)onExit{
+    [super onExit];
+    [audio stopBg];
 }
 
 -(void)updateMoney{
@@ -226,6 +237,8 @@
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+ //   OALSimpleAudio *blop = [OALSimpleAudio sharedInstance];  // play sound effect
+    [audio playEffect:@"blop.mp3"];
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     if([selected_soldier_animation isEqualToString:@"cabbageBomb"]) {
