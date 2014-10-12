@@ -18,7 +18,7 @@
 
 - (void) didLoadFromCCB {
     NSLog(@"Enter Game Level Scene");
-    gs=[GameScene sharelayer];
+    gs=[GameScene shareLayer];
     self.userInteractionEnabled = TRUE;
     if ([SavedData level]) {
         gs.text.string = [NSString stringWithFormat:@"Level %d", [SavedData level]];
@@ -38,7 +38,7 @@
 
 - (void)level2 {
     NSLog(@"level2 button");
-    [self changeLevel:3];
+    [self changeLevel:2];
     [self next];
 }
 
@@ -61,7 +61,7 @@
 }
 
 - (void)changeLevel: (int) level {
-    gs=[GameScene sharelayer];
+    gs=[GameScene shareLayer];
     if ([[levelArray objectAtIndex:level - 1] intValue] == 0) {
         NSLog(@"level %d:%d",level,[[levelArray objectAtIndex:level - 1] intValue] );
         CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
