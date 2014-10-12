@@ -89,7 +89,6 @@
     for (int i = (int)keys.count; i < spots.count; i++) {
         CCSprite *spot = [spots objectAtIndex:i];
         spot.spriteFrame = NULL;
-        NSLog(@"!!!!!!");
     }
 }
 
@@ -272,18 +271,34 @@
     [self removeChild: [man soldier]];
     
     // Avoid the physic confliction with the new born enemy
-    CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
-    Soldier *newSoldier = [[Soldier alloc] initSoldier:selected_soldier
-                                    group:0
-                                    lane_num:lane_num
-                                    startPos:sourcehouse.position
-                                    destPos: destination
-                                    ourArr:[scroll healthy_soldiers]
-                                    enemyArr:[scroll junk_soldiers]];
-    
+    CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
+    if( [selected_soldier  isEqual: @"potatoMan"] ){
+        PotatoMan *newSoldier = [[PotatoMan alloc] initPotato: lane_num
+                                                  startPos:sourcehouse.position
+                                                   destPos: destination
+                                                    ourArr:[scroll healthy_soldiers]
+                                                  enemyArr:[scroll junk_soldiers]];
+        [scroll addChild: [newSoldier soldier]];
+        [newSoldier move];
+    }else if( [selected_soldier  isEqual: @"bean"]  ){
+        BeanMan *newSoldier = [[BeanMan alloc] initBean: lane_num
+                                               startPos:sourcehouse.position
+                                               destPos: destination
+                                               ourArr:[scroll healthy_soldiers]
+                                               enemyArr:[scroll junk_soldiers]];
+        [scroll addChild: [newSoldier soldier]];
+        [newSoldier move];
+    }else if( [selected_soldier  isEqual: @"banana"]  ){
+        BananaMan *newSoldier = [[BananaMan alloc] initBanana: lane_num
+                                                   startPos:sourcehouse.position
+                                                   destPos: destination
+                                                   ourArr:[scroll healthy_soldiers]
+                                                   enemyArr:[scroll junk_soldiers]];
+        [scroll addChild: [newSoldier soldier]];
+        [newSoldier move];
+    }
 
-    [scroll addChild: [newSoldier soldier]];
-    [newSoldier move];
+
 }
 
 - (void)addBombExplosion:(CGPoint) posi{
@@ -298,9 +313,7 @@
     scroll=[_scrollview children][0];
     CGPoint destination = CGPointMake([scroll house1].position.x+50,
                                       [scroll house1].position.y);
-    Soldier* test_junk = [[Soldier alloc] initSoldier:@"burgerMan"
-                                          group:1
-                                          lane_num:0
+    BurgerMan* test_junk = [[BurgerMan alloc] initBurger:0
                                           startPos:[scroll house4].position
                                           destPos:destination
                                           ourArr:[scroll junk_soldiers]

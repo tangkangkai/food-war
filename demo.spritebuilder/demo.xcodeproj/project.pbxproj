@@ -168,6 +168,8 @@
 			children = (
 				49A8E53119CFF8CF00A7DC61 /* Soldier.h */,
 				49A8E53219CFF8CF00A7DC61 /* Soldier.m */,
+				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
+				BE87625E19D1E4AD002BF04D /* burgerMan.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
@@ -188,8 +190,6 @@
 				BEB82C4819CA610C009DF48C /* StoreScene.m */,
 				BE106AA819C8ECB700FAE0C5 /* SettingScene.h */,
 				BE106AA919C8ECB700FAE0C5 /* SettingScene.m */,
-				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
-				BE87625E19D1E4AD002BF04D /* burgerMan.m */,
 				BE9A416A19D7BF480060E00D /* SavedData.h */,
 				BE9A416B19D7BF480060E00D /* SavedData.m */,
 			);

@@ -8,18 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Soldier : CCNode
+@interface Soldier : CCNode{
+    
+    int health;
+    NSDate *last_attack_time;
+    bool moving;
+    int type;         // 0: tank, 1: melee-DPS, 2: ranged-DPS, 3: missile launcher
+    int atkRange;
+    int atkPower;
+    float atkInterval;  // the time interval between every attack
+    float defence;    // value is from 0 ~ 1(100%)
+    int moveSpeed;   // the distance soldier can move per second
+    int value;
+    int level;
+}
 @property NSInteger *id;
 //@property NSString *name;
 
-@property float atk_speed;  // the time interval between every attack
-@property int type;         // 0: tank, 1: melee-DPS, 2: ranged-DPS, 3: missile launcher
 @property int group;         // 0: healthy 1:junk
-@property int atk_range;
-@property int atk_power;
-@property float defence;    // value is from 0 ~ 1(100%)
-@property int move_speed;   // the distance soldier can move per second
-@property int value;
+
+
 
 @property int ability_id;
 @property int lane_num;
@@ -29,8 +37,6 @@
 @property NSMutableArray* ourArray;
 @property NSMutableArray* enemyArray;
 
-
-- (int)loseHealth:(int)Attack;
 - (id)initSoldier:(NSString*) img
                   group:(int) group
                   lane_num:(int) lane_num
@@ -38,10 +44,74 @@
                   destPos:(CGPoint) destPos
                   ourArr:(NSMutableArray*) ourArray
                   enemyArr:(NSMutableArray*) enemyArray;
-- (void)move;
-- (void)update_health;
 
+
+- (int)loseHealth:(int)Attack;
+- (void)update_health;
+- (void)move;
 - (void)dead;
 
+@end
+
+
+
+@interface BurgerMan : Soldier
+
+- (id)initBurger :(int) lane_num
+         startPos:(CGPoint) start
+          destPos:(CGPoint) dest
+           ourArr:(NSMutableArray*) ourArray
+         enemyArr:(NSMutableArray*) enemyArray;
+
+@end
+
+
+@interface CokeMan : Soldier
+
+- (id)initCoke :(int) lane_num
+         startPos:(CGPoint) start
+          destPos:(CGPoint) dest
+           ourArr:(NSMutableArray*) ourArray
+         enemyArr:(NSMutableArray*) enemyArray;
+
+@end
+
+@interface FriesMan : Soldier
+
+- (id)initFries :(int) lane_num
+       startPos:(CGPoint) start
+        destPos:(CGPoint) dest
+         ourArr:(NSMutableArray*) ourArray
+       enemyArr:(NSMutableArray*) enemyArray;
+
+@end
+
+@interface PotatoMan : Soldier
+
+- (id)initPotato :(int) lane_num
+        startPos:(CGPoint) start
+         destPos:(CGPoint) dest
+          ourArr:(NSMutableArray*) ourArray
+        enemyArr:(NSMutableArray*) enemyArray;
+
+@end
+
+@interface BeanMan : Soldier
+
+- (id)initBean :(int) lane_num
+         startPos:(CGPoint) start
+          destPos:(CGPoint) dest
+           ourArr:(NSMutableArray*) ourArray
+         enemyArr:(NSMutableArray*) enemyArray;
+
+@end
+
+@interface BananaMan : Soldier
+
+- (id)initBanana :(int) lane_num
+       startPos:(CGPoint) start
+        destPos:(CGPoint) dest
+         ourArr:(NSMutableArray*) ourArray
+       enemyArr:(NSMutableArray*) enemyArray;
 
 @end

@@ -11,13 +11,11 @@
 
 
 @implementation Soldier{
-    int health;
-    NSDate *last_attack_time;
-    bool moving;
+
 }
 
 - (int)loseHealth:(int)Attack {
-    int lostHeath = Attack * (1 - _defence);
+    int lostHeath = Attack * (1 - defence);
     health = health - lostHeath;
     if( health <= 0 ){
         [self dead];
@@ -29,25 +27,25 @@
 
 
 - (void)doAttack{
-    Soldier *target = [self detect_enemy];
+    Soldier *target = [self detectEnemy];
     if( target == NULL){
         [self move];
         return;
     }
-    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= _atk_speed ){
+    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
         [[ self soldier ] stopAllActions ];
         moving = false;
-        if( [ target loseHealth:[self atk_power] ] == 0 ){
-            if( [self detect_enemy] == NULL ){
+        if( [ target loseHealth:atkPower ] == 0 ){
+            if( [self detectEnemy] == NULL ){
                 [self move];
             }
         }
     }
 }
 
-- (Soldier*)detect_enemy{
-    int nearest_distance = [ self atk_range];
+- (Soldier*)detectEnemy{
+    int nearest_distance = atkRange;
     Soldier *target = NULL;
     CGPoint self_pos = [self soldier].position;
     
@@ -74,16 +72,9 @@
                   enemyArr:(NSMutableArray*) enemyArray{
     
     self = [super init];
-    // default properties
+    
     moving = false;
-    health = 100;
     last_attack_time = NULL;
-    _atk_power = 30;
-    _atk_speed = 3;
-    _atk_range = 40;
-    _defence = 0.1;
-    _move_speed = 60;
-    _value = 100;
     _lane_num = lane_num;
     
     _soldier = [CCBReader load:img];
@@ -93,7 +84,8 @@
     _soldier.position = start; //CGPoint
     _group = group;
 
-    [self update_health];
+    if( health != 0 )
+        [self update_health];
 
     if( ourArray != NULL ){
         [ourArray addObject:self];
@@ -108,6 +100,7 @@
     return self;
 }
 
+
 -(void)move{
     if( moving == true || _group == -1 ){
         return;
@@ -115,7 +108,7 @@
     
     moving = true;
     int distance = ABS(_dest_pos.x - [_soldier position].x);
-    int duration = distance/_move_speed;
+    int duration = distance/moveSpeed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
                                          position:CGPointMake(_dest_pos.x,[_soldier position].y)];
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
@@ -125,7 +118,7 @@
     [ [self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
     if( _group == 1 ){
-        [SavedData addMoney:_value];
+        [SavedData addMoney:value];
         [SavedData saveMoney];
     }
     // TODO release
@@ -140,4 +133,159 @@
     }
 }
 
+@end
+
+
+@implementation BurgerMan
+
+- (id)initBurger: (int) lane_num
+                  startPos:(CGPoint) start
+                  destPos:(CGPoint) dest
+                  ourArr:(NSMutableArray*) ourArray
+                  enemyArr:(NSMutableArray*) enemyArray{
+
+    // TODO read level from file
+    level = 1;
+    type = 0;
+    moveSpeed = 50;
+    atkInterval = 4;
+    atkRange = 40;
+    atkPower = 20 + 5 * level;
+    defence = 0.2 + 0.05 * level;
+    value = 100 + 20 * level;
+    health = 200 + 50 * level;
+    self = [ super initSoldier:@"burgerMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    
+    return self;
+}
+
+@end
+
+@implementation CokeMan
+
+- (id)initCoke: (int) lane_num
+        startPos:(CGPoint) start
+         destPos:(CGPoint) dest
+          ourArr:(NSMutableArray*) ourArray
+        enemyArr:(NSMutableArray*) enemyArray{
+    
+    // TODO read level from file
+    level = 1;
+    type = 2;
+
+    moveSpeed = 55;
+    atkInterval = 1;
+    atkRange = 120;
+    atkPower = 5 + 5 * level;
+    defence = 0.1 + 0.03 * level;
+    value = 100 + 20 * level;
+    health = 100 + 20 * level;
+    self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    
+    return self;
+}
+
+@end
+
+@implementation FriesMan
+
+- (id)initFries: (int) lane_num
+      startPos:(CGPoint) start
+       destPos:(CGPoint) dest
+        ourArr:(NSMutableArray*) ourArray
+      enemyArr:(NSMutableArray*) enemyArray{
+    
+    // TODO read level from file
+    level = 1;
+    type = 3;
+    
+    moveSpeed = 55;
+    atkInterval = 10;
+    atkRange = 200;
+    atkPower = 50 + 20 * level;
+    defence = 0.1 + 0.03 * level;
+    value = 200 + 20 * level;
+    health = 150 + 30 * level;
+    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    
+    return self;
+}
+
+@end
+
+@implementation PotatoMan
+
+- (id)initPotato: (int) lane_num
+       startPos:(CGPoint) start
+        destPos:(CGPoint) dest
+         ourArr:(NSMutableArray*) ourArray
+       enemyArr:(NSMutableArray*) enemyArray{
+    
+    // TODO read level from file
+    level = 1;
+    type = 0;
+    
+    moveSpeed = 50;
+    atkInterval = 4;
+    atkRange = 40;
+    atkPower = 20 + 5 * level;
+    defence = 0.2 + 0.05 * level;
+    value = 100 + 20 * level;
+    health = 200 + 50 * level;
+
+    self = [ super initSoldier:@"potatoMan" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    
+    return self;
+}
+
+@end
+
+@implementation BeanMan
+
+- (id)initBean: (int) lane_num
+      startPos:(CGPoint) start
+       destPos:(CGPoint) dest
+        ourArr:(NSMutableArray*) ourArray
+      enemyArr:(NSMutableArray*) enemyArray{
+    
+    // TODO read level from file
+    level = 1;
+    type = 2;
+    
+    moveSpeed = 55;
+    atkInterval = 1;
+    atkRange = 120;
+    atkPower = 5 + 5 * level;
+    defence = 0.1 + 0.03 * level;
+    value = 100 + 20 * level;
+    health = 100 + 20 * level;
+    self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    
+    return self;
+}
+@end
+
+@implementation BananaMan
+
+- (id)initBanana: (int) lane_num
+      startPos:(CGPoint) start
+       destPos:(CGPoint) dest
+        ourArr:(NSMutableArray*) ourArray
+      enemyArr:(NSMutableArray*) enemyArray{
+    
+    // TODO read level from file
+    level = 1;
+    type = 2;
+    
+    moveSpeed = 55;
+    atkInterval = 2;
+    atkRange = 40;
+    atkPower = 20 + 8 * level;
+    defence = 0.1 + 0.03 * level;
+    value = 100 + 20 * level;
+    health = 120 + 20 * level;
+    self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    
+    return self;
+}
 @end

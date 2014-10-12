@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Soldier.h"
 
-@interface burgerMan : CCNode {
+@interface burgerMan : Soldier {
     
 }
+
 
 @end
