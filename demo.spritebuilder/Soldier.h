@@ -22,7 +22,7 @@
 @property int value;
 
 @property int ability_id;
-@property int lane;         // TODO init this
+@property int lane_num;
 @property CGPoint start_pos;
 @property CGPoint dest_pos;
 @property CCNode* soldier;
@@ -31,9 +31,9 @@
 
 
 - (int)loseHealth:(int)Attack;
-- (void)attack;
 - (id)initSoldier:(NSString*) img
                   group:(int) group
+                  lane_num:(int) lane_num
                   startPos:(CGPoint) start
                   destPos:(CGPoint) destPos
                   ourArr:(NSMutableArray*) ourArray

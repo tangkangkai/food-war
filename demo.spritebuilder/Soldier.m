@@ -12,6 +12,8 @@
 
 @implementation Soldier{
     int health;
+    NSDate *last_attack_time;
+    bool moving;
 }
 
 - (int)loseHealth:(int)Attack {
@@ -25,29 +27,26 @@
     return health;
 }
 
-- (void)attack{
-    // TODO Add a attck lock
-    [self doAttack];
-    [self schedule:@selector(doAttack) interval:_atk_speed];
-}
 
 - (void)doAttack{
     Soldier *target = [self detect_enemy];
     if( target == NULL){
-        [self unschedule:@selector(doAttack)];
         [self move];
         return;
     }
-    if( [ target loseHealth:[self atk_power] ] == 0 ){
-        if( [self detect_enemy] == NULL ){
-            [self unschedule:@selector(doAttack)];
-            [self move];
+    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= _atk_speed ){
+        last_attack_time = [NSDate date];
+        [[ self soldier ] stopAllActions ];
+        moving = false;
+        if( [ target loseHealth:[self atk_power] ] == 0 ){
+            if( [self detect_enemy] == NULL ){
+                [self move];
+            }
         }
     }
 }
 
 - (Soldier*)detect_enemy{
-    //int range = _soldier.position.x + _atk_range;
     int nearest_distance = [ self atk_range];
     Soldier *target = NULL;
     CGPoint self_pos = [self soldier].position;
@@ -55,8 +54,7 @@
     for( Soldier *s in _enemyArray ){
         CGPoint enemy_pos = [s soldier].position;
         
-        if( enemy_pos.y <= self_pos.y + 10 &&
-           enemy_pos.y >= self_pos.y - 10 &&
+        if( _lane_num == [ s lane_num ] &&
            ABS(enemy_pos.x-self_pos.x)< nearest_distance ){
             
             target = s;
@@ -67,37 +65,34 @@
     return target;
 }
 
-- (id)initSoldier:(NSString*) img group:(int) group
-                                startPos:(CGPoint) start
-                                destPos:(CGPoint) dest
-                                ourArr:(NSMutableArray*) ourArray
-                                enemyArr:(NSMutableArray*) enemyArray{
+- (id)initSoldier:(NSString*) img
+                  group:(int) group
+                  lane_num:(int) lane_num
+                  startPos:(CGPoint) start
+                  destPos:(CGPoint) dest
+                  ourArr:(NSMutableArray*) ourArray
+                  enemyArr:(NSMutableArray*) enemyArray{
     
     self = [super init];
     // default properties
+    moving = false;
     health = 100;
+    last_attack_time = NULL;
     _atk_power = 30;
     _atk_speed = 3;
     _atk_range = 40;
     _defence = 0.1;
     _move_speed = 60;
     _value = 100;
+    _lane_num = lane_num;
     
     _soldier = [CCBReader load:img];
     start.y += arc4random() % 5;
     _start_pos = start;
     _dest_pos = dest;
     _soldier.position = start; //CGPoint
-    _soldier.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _soldier.contentSize} cornerRadius:0];
     _group = group;
-    if( group == 1){
-        _soldier.physicsBody.collisionGroup = @"enemyGroup";
-        _soldier.physicsBody.collisionType  = @"junkCollision";
-    }
-    else if(group == 0){
-        _soldier.physicsBody.collisionGroup = @"myGroup";
-        _soldier.physicsBody.collisionType  = @"healthyCollision";
-    }
+
     [self update_health];
 
     if( ourArray != NULL ){
@@ -107,10 +102,18 @@
     if( enemyArray != NULL){
         _enemyArray = enemyArray;
     }
+    if( _group != -1 ){
+        [self schedule:@selector(doAttack) interval:0.2];
+    }
     return self;
 }
 
 -(void)move{
+    if( moving == true || _group == -1 ){
+        return;
+    }
+    
+    moving = true;
     int distance = ABS(_dest_pos.x - [_soldier position].x);
     int duration = distance/_move_speed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration

@@ -18,13 +18,7 @@
 - (id)init{
     self = [super init];
     if (!self) return(nil);
-    
-    _scroll_physicsWorld = [CCPhysicsNode node];
-    _scroll_physicsWorld.gravity = ccp(0,0);
-    //_physicsWorld.debugDraw = YES;   // show the physic content
-    _scroll_physicsWorld.collisionDelegate = self;
-    _scroll_physicsWorld.zOrder = 10000;
-    [self addChild:_scroll_physicsWorld];
+
     
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
@@ -51,12 +45,14 @@
     CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+50,
                                       [(CCNode*)end_positions[lane_num] position].y);
     Soldier* enemy_soldier= [[Soldier alloc] initSoldier:soldier_image[i]
-                               group:1
-                               startPos:[(CCNode*)start_positions[lane_num] position]
-                               destPos:destination
-                               ourArr:_junk_soldiers
-                               enemyArr:_healthy_soldiers];
-    [_scroll_physicsWorld addChild: [enemy_soldier soldier]];
+                                             group:1
+                                             lane_num:lane_num
+                                             startPos:[(CCNode*)start_positions[lane_num] position]
+                                             destPos:destination
+                                             ourArr:_junk_soldiers
+                                             enemyArr:_healthy_soldiers];
+    
+    [ self addChild: [enemy_soldier soldier]];
     [enemy_soldier move];
 }
 
@@ -66,28 +62,6 @@
     _track1.visible = false;
     _track2.visible = false;
     _track3.visible = false;
-}
-
-- (BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair healthyCollision:(CCNode *)healthy junkCollision:(CCNode *)junk{
-    [healthy stopAllActions];
-    [junk stopAllActions];
-    
-    for( Soldier *s in _healthy_soldiers ){
-        if( [s soldier] == healthy ){
-            [ s attack ];
-            break;
-        }
-    }
-    
-    for( Soldier *s in _junk_soldiers ){
-        if( [s soldier] == junk ){
-            [ s attack ];
-            break;
-        }
-    }
-    
-    NSLog(@"Collision");
-    return YES;
 }
 
 @end

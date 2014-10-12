@@ -120,9 +120,6 @@
     }
 }
 
-// TODO add a showDialog function
-
-
 - (void)menu {
     [[CCDirector sharedDirector] pause];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
@@ -142,19 +139,16 @@
     long tag =[alertView tag];
     if (buttonIndex == 0){
         if(tag == 1){
-            NSLog(@"You have clicked Cancel");
             [[CCDirector sharedDirector] resume];
         }
         else{
-            NSLog(@"You have clicked Restart");
             [[CCDirector sharedDirector] resume];
             CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
             CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
             [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
         }
     }
-    else if(buttonIndex == 1)
-    {
+    else if(buttonIndex == 1){
         NSLog(@"You have clicked Quit Game");
         [[CCDirector sharedDirector] resume];
         CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
@@ -188,6 +182,7 @@
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
                                                group:-1
+                                               lane_num:-1
                                                startPos:touchLocation
                                                destPos:touchLocation
                                                ourArr:NULL enemyArr:NULL ];
@@ -238,13 +233,13 @@
         [self launchBomb:touchLocation];
     } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
         NSLog(@"located in track 1");
-        [self launchmovingman:[scroll house1] dest:[scroll house4]];
+        [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];
     } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+20, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
         NSLog(@"located in track 2");
-        [self launchmovingman: [scroll house2] dest:[scroll house5]];
+        [self launchmovingman: [scroll house2] dest:[scroll house5] lane_num:1];
     } else if (CGRectContainsPoint(CGRectMake([scroll track3].boundingBox.origin.x, [scroll track3].boundingBox.origin.y+20, [scroll track3].boundingBox.size.width, [scroll track3].boundingBox.size.height),touchLocation)) {
         NSLog(@"located in track 3");
-        [self launchmovingman:[scroll house3] dest:[scroll house6]];
+        [self launchmovingman:[scroll house3] dest:[scroll house6] lane_num:2];
     } else {
         [self removeChild:[man soldier]];
     }
@@ -256,7 +251,6 @@
 
 - (void)launchBomb: (CGPoint)touchLocation {
     scroll=[_scrollview children][0];
-    _physicsWorld=[scroll scroll_physicsWorld];
     if(item== NULL ){
         return;
     }
@@ -264,33 +258,31 @@
     
     Bomb *newBomb = nil;
     newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
-    [_physicsWorld addChild: [newBomb bomb]];
+    [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
     
 }
 
 
-- (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse {
+- (void)launchmovingman: (CCNode *)sourcehouse dest:(CCNode *)desthouse lane_num:(int) lane_num {
     scroll=[_scrollview children][0];
-    _physicsWorld=[scroll scroll_physicsWorld];
     if( man == NULL ){
         return;
     }
     [self removeChild: [man soldier]];
     
-    Soldier *newSoldier = nil;
-
-        // Avoid the physic confliction with the new born enemy
+    // Avoid the physic confliction with the new born enemy
     CGPoint destination = CGPointMake(desthouse.position.x-50, desthouse.position.y);
-    newSoldier = [[Soldier alloc] initSoldier:selected_soldier
+    Soldier *newSoldier = [[Soldier alloc] initSoldier:selected_soldier
                                     group:0
+                                    lane_num:lane_num
                                     startPos:sourcehouse.position
                                     destPos: destination
                                     ourArr:[scroll healthy_soldiers]
                                     enemyArr:[scroll junk_soldiers]];
     
 
-    [_physicsWorld addChild: [newSoldier soldier]];
+    [scroll addChild: [newSoldier soldier]];
     [newSoldier move];
 }
 
@@ -304,17 +296,17 @@
 
 - (void)addjunk {
     scroll=[_scrollview children][0];
-    _physicsWorld=[scroll scroll_physicsWorld];
     CGPoint destination = CGPointMake([scroll house1].position.x+50,
                                       [scroll house1].position.y);
     Soldier* test_junk = [[Soldier alloc] initSoldier:@"burgerMan"
                                           group:1
+                                          lane_num:0
                                           startPos:[scroll house4].position
                                           destPos:destination
                                           ourArr:[scroll junk_soldiers]
-                                          enemyArr:[scroll junk_soldiers]];
+                                          enemyArr:[scroll healthy_soldiers]];
 
-    [_physicsWorld addChild: [test_junk soldier]];
+    [scroll addChild: [test_junk soldier]];
     [test_junk move];
 }
 @end
