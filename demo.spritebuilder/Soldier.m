@@ -63,10 +63,13 @@
     }
     [[ self soldier ] stopAllActions ];
     moving = false;
-
+    if( type == 3)
+        return;
+    
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
-        if( type != 3 && [ target loseHealth:atkPower ] == 0 ){
+        
+        if( [ target loseHealth:atkPower ] == 0 ){
             if( [self detectEnemy] == NULL ){
                 [self move];
             }
@@ -307,6 +310,20 @@
 @end
 
 @implementation BananaMan
+
+- (BOOL) readyToLaunch{
+    if( moving ){
+        return false;
+    }
+    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
+        return true;
+    }
+    return false;
+}
+
+- (void) Launch{
+    last_attack_time = [NSDate date];
+}
 
 - (id)initBanana: (int) lane_num
       startPos:(CGPoint) start

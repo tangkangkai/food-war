@@ -122,6 +122,9 @@
 
 @interface BananaMan : Soldier
 
+- (BOOL) readyToLaunch;
+- (void) Launch;
+
 - (id)initBanana :(int) lane_num
        startPos:(CGPoint) start
         destPos:(CGPoint) dest
