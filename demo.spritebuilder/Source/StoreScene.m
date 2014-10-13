@@ -19,7 +19,7 @@
     int total;
     int beanCost;
     int bananaCost;
-    int tomatoCost;
+    int potatoCost;
     int cost4;
     
     CCNode *_hole1;
@@ -27,6 +27,22 @@
     CCNode *_hole3;
     CCNode *_hole4;
     
+    // Level State parameters
+    // health
+    CCNode *_potatoHealth;
+    CCNode *_beanHealth;
+    CCNode *_bananaHealth;
+    
+    // attack
+    CCNode *_potatoAtkPower;
+    CCNode *_beanAtkPower;
+    CCNode *_bananaAtkPower;
+    
+    // defence
+    CCNode *_potatoDefense;
+    CCNode *_beanDefense;
+    CCNode *_bananaDefense;
+
 }
 
 -(void) didLoadFromCCB {
@@ -41,14 +57,24 @@
     
     // calculate the cost of each soldier if upgrading
     beanCost = 200 * beanLevel;
-    tomatoCost = 150 * tomatoLevel;
+    potatoCost = 150 * tomatoLevel;
     bananaCost = 350 * bananaLevel;
     
     //set the price
-    _cost1.string = [NSString stringWithFormat:@" %d", tomatoCost];
+    _cost1.string = [NSString stringWithFormat:@" %d", potatoCost];
     _cost2.string = [NSString stringWithFormat:@" %d", beanCost];
     _cost3.string = [NSString stringWithFormat:@" %d", bananaCost];
     _cost4.string = @"Unknown";
+    
+    //set the state(atkPower, health, defense value)
+    PotatoMan *pman = [[PotatoMan alloc] initPotato: -1
+                                                 startPos:_hole1.position
+                                                  destPos: _hole1.position
+                                                   ourArr:NULL                                                                  enemyArr:NULL
+                                                    level:1];
+
+    _potatoHealth.contentSize = CGSizeMake([pman getHealth] / 3, _potatoHealth.contentSize.height);
+    
     
     _total.string = [NSString stringWithFormat:@" %d", total];
 }
@@ -62,7 +88,16 @@
 }
 
 -(void)button1 {
-    [self reduceTotalMoney:tomatoCost];
+    [self reduceTotalMoney:potatoCost];
+    PotatoMan *potato = [[PotatoMan alloc] initPotato: -1
+                                              startPos:_hole1.position
+                                               destPos: _hole1.position
+                                                ourArr:NULL                                                                  enemyArr:NULL
+                                                 level:2];
+    _potatoHealth.contentSize = CGSizeMake([potato getHealth] / 3,
+                                           _potatoHealth.contentSize.height);
+
+    
 }
 
 -(void)button2 {
