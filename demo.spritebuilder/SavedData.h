@@ -43,6 +43,7 @@
 //level available array
 + (NSMutableArray *)levelArray;
 
++ (void)saveDictionary: (NSMutableDictionary *)dataToSave;
 + (void)deleteSavedData;
 
 + (void) loadData;

@@ -34,7 +34,7 @@
     return moving;
 }
 
-- (int)getDefence {
+- (double)getDefence {
     return defence;
 }
 
