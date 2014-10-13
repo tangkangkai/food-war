@@ -38,7 +38,7 @@
 
 - (void)level2 {
     NSLog(@"level2 button");
-    [self changeLevel:2];
+    [self changeLevel:3];
     [self next];
 }
 

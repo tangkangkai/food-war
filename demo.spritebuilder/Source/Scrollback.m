@@ -14,8 +14,7 @@
     long _healtharraysize;
     long _junkarraysize;
     int _startlaunch;
-
-    int j;
+    Soldier *s;
 }
 
 - (id)init{
@@ -91,17 +90,33 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     NSLog(@"Scrollback touch began");
     CGPoint touchLocation = [touch locationInNode:self];
+    _healtharraysize=_healthy_soldiers.count;
+    _junkarraysize=_junk_soldiers.count;
+
+
     if (_startlaunch==1) {
         [self missileLaunch:_missile :touchLocation];
+        [(BananaMan*)s Launch];
+        _startlaunch=0;
     }
+    
     for( long i = 0; i < _healtharraysize; i++ ){
-        if(CGRectContainsPoint([[[_healthy_soldiers objectAtIndex:i] soldier] boundingBox],touchLocation))
+        Boolean touch=CGRectContainsPoint([[[_healthy_soldiers objectAtIndex:i] soldier] boundingBox],touchLocation);
+        s=[_healthy_soldiers objectAtIndex:i];
+        int type=[s getType];
+
+        if(type==3&&touch==true)
         {
-            NSLog(@"touch healthy food");
-            _missile = [CCBReader load:@"missle"];
-            _missile.position=[[_healthy_soldiers objectAtIndex:i] soldier].position;
-            [self addChild:_missile];
-            _startlaunch=1;
+            if([(BananaMan*)s readyToLaunch]){
+                NSLog(@"touch healthy food");
+                _missile = [CCBReader load:@"missle"];
+                _missile.position=[[_healthy_soldiers objectAtIndex:i] soldier].position;
+                [self addChild:_missile];
+                _startlaunch=1;
+                break;
+
+            }
+
         }    
     }
 }
