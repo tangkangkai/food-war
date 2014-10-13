@@ -99,7 +99,7 @@
         [(BananaMan*)s Launch];
         _startlaunch=0;
     }
-    
+      
     for( long i = 0; i < _healtharraysize; i++ ){
         Boolean touch=CGRectContainsPoint([[[_healthy_soldiers objectAtIndex:i] soldier] boundingBox],touchLocation);
         s=[_healthy_soldiers objectAtIndex:i];
