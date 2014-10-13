@@ -55,6 +55,9 @@
 
 
 - (void)doAttack{
+    if( type == 4 )
+        return;
+    
     Soldier *target = [self detectEnemy];
     if( target == NULL){
         [self move];
@@ -63,7 +66,8 @@
     }
     [[ self soldier ] stopAllActions ];
     moving = false;
-    if( type == 3)
+    // for missle launcher
+    if( type == 3 )
         return;
     
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
@@ -84,8 +88,17 @@
     
     for( Soldier *s in _enemyArray ){
         CGPoint enemy_pos = [s soldier].position;
+        if( [ s getType ] == 4 ){
+            enemy_pos = _dest_pos;
+            if( _group == 0 ){
+                enemy_pos.x = enemy_pos.x + 20;
+            }
+            else if( _group == 1){
+                enemy_pos.x = enemy_pos.x - 20;
+            }
+        }
         
-        if( _lane_num == [ s lane_num ] &&
+        if( ( [s lane_num] == -1 || _lane_num == [ s lane_num ] ) &&
            ABS(enemy_pos.x-self_pos.x)< nearest_distance ){
             
             target = s;
@@ -131,7 +144,7 @@
         _enemyArray = enemyArray;
     }
     if( _group != -1 ){
-        [self schedule:@selector(doAttack) interval:0.2];
+        [self schedule:@selector(doAttack) interval:0.1];
     }
     return self;
 }
@@ -186,7 +199,7 @@
     // TODO read level from file
     //level = 1;
     type = 0;
-    moveSpeed = 50;
+    moveSpeed = 35;
     atkInterval = 4;
     atkRange = 40;
     atkPower = 20 + 5 * soldierLevel;
@@ -213,9 +226,9 @@
     //level = 1;
     type = 2;
 
-    moveSpeed = 55;
+    moveSpeed = 40;
     atkInterval = 1;
-    atkRange = 120;
+    atkRange = 180;
     atkPower = 5 + 5 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
@@ -241,7 +254,7 @@
     //level = 1;
     type = 3;
     
-    moveSpeed = 55;
+    moveSpeed = 20;
     atkInterval = 10;
     atkRange = 200;
     atkPower = 50 + 20 * level;
@@ -268,7 +281,7 @@
     level = 1;
     type = 0;
     
-    moveSpeed = 50;
+    moveSpeed = 35;
     atkInterval = 4;
     atkRange = 40;
     atkPower = 20 + 5 * soldierLevel;
@@ -296,9 +309,9 @@
     level = 1;
     type = 2;
     
-    moveSpeed = 55;
+    moveSpeed = 40;
     atkInterval = 1;
-    atkRange = 120;
+    atkRange = 180;
     atkPower = 5 + 5 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
@@ -347,4 +360,29 @@
     
     return self;
 }
+@end
+
+
+@implementation Base
+
+- (id)initBase:(CGPoint) start
+               group:(int) group
+               ourArr:(NSMutableArray*) ourArray
+               enemyArr:(NSMutableArray*) enemyArray{
+    
+    // TODO read level from file
+    level = 1;
+    type = 4;
+                   
+    //atkInterval = 1;
+    //atkRange = 120;
+    //atkPower = 5 + 5 * level;
+    defence = 0.2 + 0.03 * level;
+    value = 100 + 20 * level;
+    health = 1000 + 200 * level;
+    self = [ super initSoldier:@"base" group:group lane_num:-1 startPos:start destPos:start ourArr:ourArray enemyArr:enemyArray level:level];
+    
+    return self;
+}
+
 @end

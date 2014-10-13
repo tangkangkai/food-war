@@ -13,7 +13,7 @@
     int health;
     NSDate *last_attack_time;
     bool moving;
-    int type;         // 0: tank, 1: melee-DPS, 2: ranged-DPS, 3: missile launcher
+    int type;         // 0: tank, 1: melee-DPS, 2: ranged-DPS, 3: missile launcher, 4: base
     int atkRange;
     int atkPower;
     float atkInterval;  // the time interval between every attack
@@ -131,5 +131,15 @@
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
        level: (int) soldierLevel;
+
+@end
+
+@interface Base : Soldier
+
+
+- (id)initBase :(CGPoint) start
+                group:(int) group
+                ourArr:(NSMutableArray*) ourArray
+                enemyArr:(NSMutableArray*) enemyArray;
 
 @end

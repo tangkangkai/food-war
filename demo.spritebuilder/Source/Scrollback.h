@@ -20,6 +20,8 @@
 @property CCNode *track1;        //invisible track
 @property CCNode *track2;
 @property CCNode *track3;
+@property CCNode *base1;
+@property CCNode *base2;
 @property CCPhysicsNode *scroll_physicsWorld;
 @property NSMutableArray *junk_soldiers;
 @property NSMutableArray *healthy_soldiers;

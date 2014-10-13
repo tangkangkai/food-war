@@ -11,8 +11,7 @@
 
 @implementation Scrollback{
     CCNode *_missile;
-    long _healtharraysize;
-    long _junkarraysize;
+
     int _startlaunch;
     Soldier *s;
 }
@@ -30,6 +29,10 @@
 }
 
 - (void)didLoadFromCCB {
+    Base *base1 = [[Base alloc] initBase:_base1.position group:0 ourArr:_healthy_soldiers enemyArr:_junk_soldiers];
+    Base *base2 = [[Base alloc] initBase:_base2.position group:1 ourArr:_junk_soldiers enemyArr:_healthy_soldiers];
+    [self addChild:[base1 soldier]];
+    [self addChild:[base2 soldier]];
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:6];
@@ -42,8 +45,8 @@
     Soldier *soldier = NULL;
     int x_diff;
     int y_diff;
-
-    for( long i = 0; i < _junkarraysize; i++ ){
+    long junkarraysize = _junk_soldiers.count;
+    for( long i = 0; i < junkarraysize; i++ ){
         soldier=[_junk_soldiers objectAtIndex:i];
         x_diff=ABS(_missile.position.x-[[soldier soldier]position].x);
         y_diff=ABS(_missile.position.y-[[soldier soldier] position].y);
@@ -100,9 +103,7 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     NSLog(@"Scrollback touch began");
     CGPoint touchLocation = [touch locationInNode:self];
-    _healtharraysize=_healthy_soldiers.count;
-    _junkarraysize=_junk_soldiers.count;
-
+    long healtharraysize = _healthy_soldiers.count;
 
     if (_startlaunch==1) {
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
@@ -118,7 +119,7 @@
         }
     }
     
-    for( long i = 0; i < _healtharraysize; i++ ){
+    for( long i = 0; i < healtharraysize; i++ ){
         Boolean touch=CGRectContainsPoint([[[_healthy_soldiers objectAtIndex:i] soldier] boundingBox],touchLocation);
         s=[_healthy_soldiers objectAtIndex:i];
         int type=[s getType];
@@ -146,7 +147,7 @@
     NSArray *start_positions = @[_house4,_house5,_house6];
     NSArray *end_positions=@[_house1,_house2,_house3];
 
-    int soldier_type = arc4random()%3;
+    int soldier_type = arc4random()%2;
     int lane_num = arc4random()%3;
     
     CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+30,
@@ -169,7 +170,7 @@
                                                         destPos:destination
                                                          ourArr:_junk_soldiers
                                                        enemyArr:_healthy_soldiers
-                                 level:1];
+                                                       level:1];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
