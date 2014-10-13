@@ -174,7 +174,7 @@ static NSMutableDictionary *soldierLevel;
     NSNumber *beanLevel = [NSNumber numberWithInt:1];
     [soldierLevel setObject:beanLevel forKey:bean];
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"banana"];
-    [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"tomato"];
+    [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"potato"];
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"coke" ];
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"fries"];
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"hamburger"];
