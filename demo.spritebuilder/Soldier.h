@@ -56,6 +56,9 @@
 - (int)getAtkPower;
 - (int)getDefence;
 - (int)getHealth;
+- (int)getAtkInt;
+- (int)getType;
+- (BOOL)isMoving;
 
 @end
 

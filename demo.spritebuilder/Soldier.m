@@ -22,6 +22,18 @@
     return atkPower;
 }
 
+- (int)getAtkInt {
+    return atkInterval;
+}
+
+- (int)getType {
+    return type;
+}
+
+- (BOOL)isMoving {
+    return moving;
+}
+
 - (int)getDefence {
     return defence;
 }
@@ -46,13 +58,15 @@
     Soldier *target = [self detectEnemy];
     if( target == NULL){
         [self move];
+        moving = true;
         return;
     }
+    [[ self soldier ] stopAllActions ];
+    moving = false;
+
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
-        [[ self soldier ] stopAllActions ];
-        moving = false;
-        if( [ target loseHealth:atkPower ] == 0 ){
+        if( type != 3 && [ target loseHealth:atkPower ] == 0 ){
             if( [self detectEnemy] == NULL ){
                 [self move];
             }
@@ -303,11 +317,11 @@
     
     // TODO read level from file
     level = 1;
-    type = 2;
+    type = 3;
     
-    moveSpeed = 55;
-    atkInterval = 2;
-    atkRange = 40;
+    moveSpeed = 20;
+    atkInterval = 10;
+    atkRange = 350;
     atkPower = 20 + 8 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
