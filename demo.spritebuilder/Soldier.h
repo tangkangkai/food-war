@@ -54,7 +54,7 @@
 // get methods add by kk
 - (int)getLevel;
 - (int)getAtkPower;
-- (int)getDefence;
+- (double)getDefence;
 - (int)getHealth;
 - (int)getAtkInt;
 - (int)getType;

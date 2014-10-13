@@ -87,10 +87,29 @@
                                             destPos: _hole1.position
                                              ourArr:NULL                                                                  enemyArr:NULL
                                               level:potatoLevel];
+    BeanMan *bean = [[BeanMan alloc] initBean: -1
+                                     startPos:_hole1.position
+                                      destPos: _hole1.position
+                                       ourArr:NULL                                                                  enemyArr:NULL
+                                        level:beanLevel];
+    
+    BananaMan *banana = [[BananaMan alloc] initBanana: -1
+                                             startPos:_hole1.position
+                                              destPos: _hole1.position
+                                               ourArr:NULL                                                                  enemyArr:NULL
+                                                level:bananaLevel];
     
     _potatoHealth.contentSize = CGSizeMake([pman getHealth] / 5, _potatoHealth.contentSize.height);
-    _potatoAtkPower.contentSize = CGSizeMake([pman getAtkPower] / 5, _potatoAtkPower.contentSize.height);
-    _potatoDefense.contentSize = CGSizeMake([pman getDefence] / 5, _potatoDefense.contentSize.height);
+    _potatoAtkPower.contentSize = CGSizeMake([pman getAtkPower], _potatoAtkPower.contentSize.height);
+    _potatoDefense.contentSize = CGSizeMake([pman getDefence] * 200, _potatoDefense.contentSize.height);
+    
+    _beanHealth.contentSize = CGSizeMake([bean getHealth] / 5, _beanHealth.contentSize.height);
+    _beanAtkPower.contentSize = CGSizeMake([bean getAtkPower] * 2, _beanAtkPower.contentSize.height);
+    _beanDefense.contentSize = CGSizeMake([bean getDefence] * 200, _beanDefense.contentSize.height);
+    
+    _bananaHealth.contentSize = CGSizeMake([banana getHealth] / 5, _bananaHealth.contentSize.height);
+    _bananaAtkPower.contentSize = CGSizeMake([banana getAtkPower], _bananaAtkPower.contentSize.height);
+    _bananaDefense.contentSize = CGSizeMake([banana getDefence] * 200, _bananaDefense.contentSize.height);
 }
 
 - (void)updateStoredData {
@@ -113,6 +132,10 @@
 }
 
 -(void)button1 {
+    if (potatoCost > total) {
+        return;
+    }
+    
     [self reduceTotalMoney:potatoCost];
     PotatoMan *potato = [[PotatoMan alloc] initPotato: -1
                                               startPos:_hole1.position
@@ -121,32 +144,58 @@
                                                  level:++potatoLevel];
     _potatoHealth.contentSize = CGSizeMake([potato getHealth] / 5,
                                            _potatoHealth.contentSize.height);
-    _potatoAtkPower.contentSize = CGSizeMake([potato getAtkPower] / 5,
+    _potatoAtkPower.contentSize = CGSizeMake([potato getAtkPower] * 2,
                                            _potatoAtkPower.contentSize.height);
-    _potatoDefense.contentSize = CGSizeMake([potato getDefence] / 5,
+    _potatoDefense.contentSize = CGSizeMake([potato getDefence] * 200,
                                              _potatoDefense.contentSize.height);
     //update
     [self updateStoredData];
     [self updateShowedData];
-
-
     
 }
 
 -(void)button2 {
+    if (beanCost > total) {
+        return;
+    }
+    
     [self reduceTotalMoney:beanCost];
+    BeanMan *bean = [[BeanMan alloc] initBean: -1
+                                             startPos:_hole1.position
+                                              destPos: _hole1.position
+                                               ourArr:NULL                                                                  enemyArr:NULL
+                                                level:++beanLevel];
+    _beanHealth.contentSize = CGSizeMake([bean getHealth] / 5,
+                                           _beanHealth.contentSize.height);
+    _beanAtkPower.contentSize = CGSizeMake([bean getAtkPower] * 2,
+                                             _beanAtkPower.contentSize.height);
+    _beanDefense.contentSize = CGSizeMake([bean getDefence] * 200,
+                                            _beanDefense.contentSize.height);
+    //update
+    [self updateStoredData];
+    [self updateShowedData];
 }
 
 -(void)button3 {
-    [self reduceTotalMoney:bananaCost];
+    if (beanCost > total) {
+        return;
+    }
     
-    BananaMan *newSoldier = [[BananaMan alloc] initBanana: -1
-                                                 startPos:_hole1.position
-                                                  destPos: _hole1.position
-                                                   ourArr:NULL                                                                  enemyArr:NULL
-                             level:1];
-    NSLog(@"hehe, %d", [newSoldier getAtkPower]);
-    
+    [self reduceTotalMoney:beanCost];
+    BananaMan *banana = [[BananaMan alloc] initBanana: -1
+                                         startPos:_hole1.position
+                                          destPos: _hole1.position
+                                           ourArr:NULL                                                                  enemyArr:NULL
+                                            level:++bananaLevel];
+    _bananaHealth.contentSize = CGSizeMake([banana getHealth] / 5,
+                                         _bananaHealth.contentSize.height);
+    _bananaAtkPower.contentSize = CGSizeMake([banana getAtkPower] * 2,
+                                           _bananaAtkPower.contentSize.height);
+    _bananaDefense.contentSize = CGSizeMake([banana getDefence] * 200,
+                                          _bananaDefense.contentSize.height);
+    //update
+    [self updateStoredData];
+    [self updateShowedData];
     
     
 }
