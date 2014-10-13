@@ -32,28 +32,9 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    [self schedule:@selector(enemy_autobuild:) interval:3];
-    [self schedule:@selector(sceneDetect) interval:0.2];
+    [self schedule:@selector(enemy_autobuild:) interval:6];
 }
 
-//find whether enemy come out
--(void)sceneDetect{
-    _healtharraysize = [_healthy_soldiers count];
-    _junkarraysize = [_junk_soldiers count];
-    if (_junkarraysize!=0) {
-        for(long i = 0; i < _healtharraysize; i++ ){
-            //    NSLog(@"x:%f, y:%f ",s.position.x,s.position.y);
-            if (j==2) {
-                break;
-            }
-            [[[_healthy_soldiers objectAtIndex:i] soldier] stopAllActions];
-            j++;
-
-
-        }
-    }
-
-}
 
 //find target the missle hit
 -(Soldier*)missileDetect{
@@ -135,7 +116,7 @@
     int soldier_type = arc4random()%3;
     int lane_num = arc4random()%3;
     
-    CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+50,
+    CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+30,
                                       [(CCNode*)end_positions[lane_num] position].y);
     
     if( soldier_type == 0 ){

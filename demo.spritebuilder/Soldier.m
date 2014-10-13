@@ -115,8 +115,10 @@
 }
 
 - (void)dead{
-    [ [self ourArray] removeObject:self];
+    [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
+    [self unschedule:@selector(doAttack)];
+
     if( _group == 1 ){
         [SavedData addMoney:value];
         [SavedData saveMoney];
