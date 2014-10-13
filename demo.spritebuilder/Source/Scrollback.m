@@ -58,12 +58,17 @@
 
 //missle lauch from healthyfoor
 -(void)missileLaunch:(CCNode *)missile :(CGPoint ) touchLocation{
+    CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
+    fire.autoRemoveOnFinish=true;
+    fire.duration=0.2;
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:90.f];
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:touchLocation
                                                          height:touchLocation.y jumps:1];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
     // allDone is your method to run...
+    fire.position=_missile.position;
+    [self addChild:fire];
     [missile runAction:sequence];
 
 }
@@ -77,7 +82,7 @@
     //  make the particle effect clean itself up, once it is completed
     explosion.autoRemoveOnFinish = TRUE;
     
-    explosion.duration = 5;
+    explosion.duration = 1;
     
     // place the particle effect on the seals position
     explosion.position = _missile.position;
