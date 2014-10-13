@@ -144,7 +144,8 @@
                                              startPos:[(CCNode*)start_positions[lane_num] position]
                                              destPos:destination
                                              ourArr:_junk_soldiers
-                                             enemyArr:_healthy_soldiers];
+                                             enemyArr:_healthy_soldiers
+                                             level:1];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
@@ -153,7 +154,8 @@
                                                        startPos:[(CCNode*)start_positions[lane_num] position]
                                                         destPos:destination
                                                          ourArr:_junk_soldiers
-                                                       enemyArr:_healthy_soldiers];
+                                                       enemyArr:_healthy_soldiers
+                                 level:1];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }

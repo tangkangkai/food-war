@@ -8,10 +8,17 @@
 
 #import "StoreScene.h"
 #import "SavedData.h"
+#import "Soldier.h"
 
 @implementation StoreScene {
     CCTextField *_total;
     int total;
+    
+    CCNode *_hole1;
+    CCNode *_hole2;
+    CCNode *_hole3;
+    CCNode *_hole4;
+    
 }
 
 -(void) didLoadFromCCB {
@@ -38,6 +45,14 @@
 
 -(void)button3 {
     [self reduceTotalMoney:6];
+    
+    BananaMan *newSoldier = [[BananaMan alloc] initBanana: -1
+                                                 startPos:_hole1.position
+                                                  destPos: _hole1.position
+                                                   ourArr:NULL                                                                  enemyArr:NULL
+                             level:1];
+    NSLog(@"hehe, %d", [newSoldier getAtkPower]);
+    
 }
 
 -(void)button4 {

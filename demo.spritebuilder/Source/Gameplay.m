@@ -66,7 +66,7 @@
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
   
-    [audio playBg:@"background_track.mp3" loop:TRUE];
+    [audio playBg:@"bgmusic.mp3" loop:TRUE];
 
 }
 
@@ -195,7 +195,7 @@
                                                lane_num:-1
                                                startPos:touchLocation
                                                destPos:touchLocation
-                                               ourArr:NULL enemyArr:NULL ];
+                                               ourArr:NULL enemyArr:NULL level:1];
         man = newSolider;
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
@@ -290,7 +290,8 @@
                                                   startPos:sourcehouse.position
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
-                                                  enemyArr:[scroll junk_soldiers]];
+                                                  enemyArr:[scroll junk_soldiers]
+                                 level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }else if( [selected_soldier  isEqual: @"bean"]  ){
@@ -298,7 +299,8 @@
                                                startPos:sourcehouse.position
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
-                                               enemyArr:[scroll junk_soldiers]];
+                                               enemyArr:[scroll junk_soldiers]
+                               level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }else if( [selected_soldier  isEqual: @"banana"]  ){
@@ -306,7 +308,8 @@
                                                    startPos:sourcehouse.position
                                                    destPos: destination
                                                    ourArr:[scroll healthy_soldiers]
-                                                   enemyArr:[scroll junk_soldiers]];
+                                                   enemyArr:[scroll junk_soldiers]
+                                 level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }
@@ -323,6 +326,7 @@
 }
 
 - (void)addjunk {
+    [SavedData deleteSavedData];
     scroll=[_scrollview children][0];
     CGPoint destination = CGPointMake([scroll house1].position.x+50,
                                       [scroll house1].position.y);
@@ -330,9 +334,11 @@
                                           startPos:[scroll house4].position
                                           destPos:destination
                                           ourArr:[scroll junk_soldiers]
-                                          enemyArr:[scroll healthy_soldiers]];
+                                          enemyArr:[scroll healthy_soldiers]
+                                            level:1];
 
     [scroll addChild: [test_junk soldier]];
     [test_junk move];
+    
 }
 @end

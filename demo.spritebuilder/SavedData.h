@@ -19,6 +19,11 @@
 
 // Boolean list to see if soldier is locked
 
+// List of soldier levels
++ (NSMutableDictionary *)soldierLevel;
++ (void)saveSoldierLevel;
++ (void)setSoldierLevel: (NSMutableDictionary *) soldierLevelDict;
+
 // List of soldier lineups
 + (NSMutableDictionary *)lineupDictonary;
 + (void)saveLineupDict;

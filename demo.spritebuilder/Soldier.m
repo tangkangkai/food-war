@@ -14,6 +14,22 @@
 
 }
 
+// get methods implementations add by kk
+- (int)getLevel {
+    return level;
+}
+- (int)getAtkPower {
+    return atkPower;
+}
+
+- (int)getDefence {
+    return defence;
+}
+
+- (int)getHealth {
+    return health;
+}
+
 - (int)loseHealth:(int)Attack {
     int lostHeath = Attack * (1 - defence);
     health = health - lostHeath;
@@ -69,7 +85,8 @@
                   startPos:(CGPoint) start
                   destPos:(CGPoint) dest
                   ourArr:(NSMutableArray*) ourArray
-                  enemyArr:(NSMutableArray*) enemyArray{
+                  enemyArr:(NSMutableArray*) enemyArray
+                  level: (int) level{
     
     self = [super init];
     
@@ -77,7 +94,9 @@
     last_attack_time = NULL;
     _lane_num = lane_num;
     
-    _soldier = [CCBReader load:img];
+    if (img != NULL) {
+        _soldier = [CCBReader load:img];
+    }
     start.y += arc4random() % 5;
     _start_pos = start;
     _dest_pos = dest;
@@ -142,19 +161,20 @@
                   startPos:(CGPoint) start
                   destPos:(CGPoint) dest
                   ourArr:(NSMutableArray*) ourArray
-                  enemyArr:(NSMutableArray*) enemyArray{
+                  enemyArr:(NSMutableArray*) enemyArray
+                  level: (int) soldierLevel{
 
     // TODO read level from file
-    level = 1;
+    //level = 1;
     type = 0;
     moveSpeed = 50;
     atkInterval = 4;
     atkRange = 40;
-    atkPower = 20 + 5 * level;
-    defence = 0.2 + 0.05 * level;
-    value = 100 + 20 * level;
-    health = 200 + 50 * level;
-    self = [ super initSoldier:@"burgerMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    atkPower = 20 + 5 * soldierLevel;
+    defence = 0.2 + 0.05 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 200 + 50 * soldierLevel;
+    self = [ super initSoldier:@"burgerMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
 }
@@ -167,20 +187,21 @@
         startPos:(CGPoint) start
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
-        enemyArr:(NSMutableArray*) enemyArray{
+        enemyArr:(NSMutableArray*) enemyArray
+        level: (int) soldierLevel{
     
     // TODO read level from file
-    level = 1;
+    //level = 1;
     type = 2;
 
     moveSpeed = 55;
     atkInterval = 1;
     atkRange = 120;
-    atkPower = 5 + 5 * level;
-    defence = 0.1 + 0.03 * level;
-    value = 100 + 20 * level;
-    health = 100 + 20 * level;
-    self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    atkPower = 5 + 5 * soldierLevel;
+    defence = 0.1 + 0.03 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 100 + 20 * soldierLevel;
+    self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
 }
@@ -193,10 +214,12 @@
       startPos:(CGPoint) start
        destPos:(CGPoint) dest
         ourArr:(NSMutableArray*) ourArray
-      enemyArr:(NSMutableArray*) enemyArray{
+      enemyArr:(NSMutableArray*) enemyArray
+      level: (int) soldierLevel
+    {
     
     // TODO read level from file
-    level = 1;
+    //level = 1;
     type = 3;
     
     moveSpeed = 55;
@@ -206,7 +229,7 @@
     defence = 0.1 + 0.03 * level;
     value = 200 + 20 * level;
     health = 150 + 30 * level;
-    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
 }
@@ -219,7 +242,8 @@
        startPos:(CGPoint) start
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
-       enemyArr:(NSMutableArray*) enemyArray{
+       enemyArr:(NSMutableArray*) enemyArray
+        level: (int) soldierLevel{
     
     // TODO read level from file
     level = 1;
@@ -228,12 +252,12 @@
     moveSpeed = 50;
     atkInterval = 4;
     atkRange = 40;
-    atkPower = 20 + 5 * level;
-    defence = 0.2 + 0.05 * level;
-    value = 100 + 20 * level;
-    health = 200 + 50 * level;
+    atkPower = 20 + 5 * soldierLevel;
+    defence = 0.2 + 0.05 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 200 + 50 * soldierLevel;
 
-    self = [ super initSoldier:@"potatoMan" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    self = [ super initSoldier:@"potatoMan" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
 }
@@ -246,7 +270,8 @@
       startPos:(CGPoint) start
        destPos:(CGPoint) dest
         ourArr:(NSMutableArray*) ourArray
-      enemyArr:(NSMutableArray*) enemyArray{
+      enemyArr:(NSMutableArray*) enemyArray
+        level: (int) soldierLevel{
     
     // TODO read level from file
     level = 1;
@@ -255,11 +280,11 @@
     moveSpeed = 55;
     atkInterval = 1;
     atkRange = 120;
-    atkPower = 5 + 5 * level;
-    defence = 0.1 + 0.03 * level;
-    value = 100 + 20 * level;
-    health = 100 + 20 * level;
-    self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    atkPower = 5 + 5 * soldierLevel;
+    defence = 0.1 + 0.03 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 100 + 20 * soldierLevel;
+    self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
 }
@@ -271,7 +296,8 @@
       startPos:(CGPoint) start
        destPos:(CGPoint) dest
         ourArr:(NSMutableArray*) ourArray
-      enemyArr:(NSMutableArray*) enemyArray{
+      enemyArr:(NSMutableArray*) enemyArray
+      level: (int) soldierLevel{
     
     // TODO read level from file
     level = 1;
@@ -280,11 +306,11 @@
     moveSpeed = 55;
     atkInterval = 2;
     atkRange = 40;
-    atkPower = 20 + 8 * level;
-    defence = 0.1 + 0.03 * level;
-    value = 100 + 20 * level;
-    health = 120 + 20 * level;
-    self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray ];
+    atkPower = 20 + 8 * soldierLevel;
+    defence = 0.1 + 0.03 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 120 + 20 * soldierLevel;
+    self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
 }

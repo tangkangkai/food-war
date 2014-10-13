@@ -43,13 +43,19 @@
                   startPos:(CGPoint) start
                   destPos:(CGPoint) destPos
                   ourArr:(NSMutableArray*) ourArray
-                  enemyArr:(NSMutableArray*) enemyArray;
+                  enemyArr:(NSMutableArray*) enemyArray
+            level:(int) soldierLevel;
 
 
 - (int)loseHealth:(int)Attack;
 - (void)update_health;
 - (void)move;
 - (void)dead;
+// get methods add by kk
+- (int)getLevel;
+- (int)getAtkPower;
+- (int)getDefence;
+- (int)getHealth;
 
 @end
 
@@ -61,7 +67,8 @@
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
-         enemyArr:(NSMutableArray*) enemyArray;
+         enemyArr:(NSMutableArray*) enemyArray
+         level: (int) soldierLevel;
 
 @end
 
@@ -72,7 +79,8 @@
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
-         enemyArr:(NSMutableArray*) enemyArray;
+         enemyArr:(NSMutableArray*) enemyArray
+          level: (int) soldierLevel;
 
 @end
 
@@ -82,7 +90,8 @@
        startPos:(CGPoint) start
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
-       enemyArr:(NSMutableArray*) enemyArray;
+       enemyArr:(NSMutableArray*) enemyArray
+           level: (int) soldierLevel;
 
 @end
 
@@ -92,7 +101,8 @@
         startPos:(CGPoint) start
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
-        enemyArr:(NSMutableArray*) enemyArray;
+        enemyArr:(NSMutableArray*) enemyArray
+            level: (int) soldierLevel;
 
 @end
 
@@ -102,7 +112,8 @@
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
-         enemyArr:(NSMutableArray*) enemyArray;
+         enemyArr:(NSMutableArray*) enemyArray
+         level: (int) soldierLevel;
 
 @end
 
@@ -112,6 +123,7 @@
        startPos:(CGPoint) start
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
-       enemyArr:(NSMutableArray*) enemyArray;
+       enemyArr:(NSMutableArray*) enemyArray
+       level: (int) soldierLevel;
 
 @end

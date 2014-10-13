@@ -14,6 +14,7 @@ static int level;
 static NSString *plistPath;
 static NSMutableArray *levelArray;
 static NSMutableDictionary *lineupDictonary;
+static NSMutableDictionary *soldierLevel;
 
 @implementation SavedData
 
@@ -55,9 +56,26 @@ static NSMutableDictionary *lineupDictonary;
         // Load lineup dict
         NSMutableDictionary *dictionary = [unarchivedData objectForKey:@"lineupdict"];
         lineupDictonary = [dictionary mutableCopy];
+        
+        // Load soldier level
+        NSMutableDictionary *dictionary2 = [unarchivedData objectForKey:@"soldierlevel"];
+        soldierLevel = [dictionary2 mutableCopy];
     }
 }
 
+// soldier level
++ (NSMutableDictionary *)soldierLevel; {return soldierLevel;}
+
++ (void)setSoldierLevel: (NSMutableDictionary *) soldierLevelDict {
+    soldierLevel = soldierLevelDict;
+}
+
++ (void)saveSoldierLevel {
+    NSMutableDictionary *dataToSave = [self getSavedDictionary];
+    //update dict
+    [dataToSave setObject:soldierLevel forKey:@"soldierlevel"];
+    [self saveDictionary:dataToSave];
+}
 
 // lineup dict
 + (NSMutableDictionary *)lineupDictonary {return lineupDictonary;}
@@ -142,13 +160,17 @@ static NSMutableDictionary *lineupDictonary;
     NSNumber *level1 = [NSNumber numberWithInt:1];
     NSNumber *level2 = [NSNumber numberWithInt:0];
     NSNumber *level3 = [NSNumber numberWithInt:0];
-  //  NSNumber *level4 = [NSNumber numberWithInt:0];
+    //  NSNumber *level4 = [NSNumber numberWithInt:0];
     levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, nil];
     [dataToSave setObject:levelArray forKey:@"levelarray"];
     
     //line up dict
     NSMutableDictionary *lineupDict = [[NSMutableDictionary alloc] init];
     [dataToSave setObject:lineupDict forKey:@"lineupdict"];
+    
+    //soldier level dict
+    NSMutableDictionary *soldierLevel = [[NSMutableDictionary alloc] init];
+    [dataToSave setObject:soldierLevel forKey:@"soldierlevel"];
 
     
     [self saveDictionary:dataToSave];
