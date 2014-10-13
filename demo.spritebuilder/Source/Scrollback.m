@@ -21,10 +21,11 @@
     self = [super init];
     if (!self) return(nil);
 
-    _missile_atk=20;
-    _missile_atk_range=10;
+    _missile_atk=50;
+    _missile_atk_range=50;
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
+    _target = [NSMutableArray arrayWithObjects:nil ];
     return self;
 }
 
@@ -36,20 +37,22 @@
 
 
 //find target the missle hit
--(Soldier*)missileDetect{
+-(NSMutableArray*)missileDetect{
     int nearest_distance=[self missile_atk_range];
-    Soldier *target = NULL;
+    Soldier *soldier = NULL;
     int x_diff;
     int y_diff;
 
     for( long i = 0; i < _junkarraysize; i++ ){
-        x_diff=ABS(_missile.position.x-[[[_junk_soldiers objectAtIndex:i] soldier] position].x);
-        y_diff=ABS(_missile.position.y-[[[_junk_soldiers objectAtIndex:i] soldier] position].y);
-        if (x_diff<nearest_distance||y_diff<nearest_distance) {
-            target=[_junk_soldiers objectAtIndex:i];
+        soldier=[_junk_soldiers objectAtIndex:i];
+        x_diff=ABS(_missile.position.x-[[soldier soldier]position].x);
+        y_diff=ABS(_missile.position.y-[[soldier soldier] position].y);
+        if (x_diff<nearest_distance&&y_diff<nearest_distance) {
+       //     _target=[_junk_soldiers objectAtIndex:i];
+            [_target addObject:[_junk_soldiers objectAtIndex:i]];
         }
     }
-    return target;
+    return _target;
 
 }
 
@@ -69,7 +72,7 @@
 
 - (void)missileRemoved
 {
-    Soldier *target;
+    NSMutableArray *_targetLoseHealth;
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
     //  make the particle effect clean itself up, once it is completed
     explosion.autoRemoveOnFinish = TRUE;
@@ -81,8 +84,10 @@
     // add the particle effect to the same node the seal is on
     [_missile.parent addChild:explosion];
     
-    target=[self missileDetect];
-    [target loseHealth:_missile_atk];
+    _targetLoseHealth=[self missileDetect];
+    for (Soldier *target in _targetLoseHealth) {
+        [target loseHealth:_missile_atk];
+    }
     // finally, remove the destroyed seal
     [_missile removeFromParent];
 }
@@ -95,11 +100,19 @@
 
 
     if (_startlaunch==1) {
-        [self missileLaunch:_missile :touchLocation];
-        [(BananaMan*)s Launch];
-        _startlaunch=0;
+        if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
+            _startlaunch=0;
+            [self removeChild:_missile];
+            return;
+        }
+        else{
+            [self missileLaunch:_missile :touchLocation];
+            [(BananaMan*)s Launch];
+            _startlaunch=0;
+            return;
+        }
     }
-      
+    
     for( long i = 0; i < _healtharraysize; i++ ){
         Boolean touch=CGRectContainsPoint([[[_healthy_soldiers objectAtIndex:i] soldier] boundingBox],touchLocation);
         s=[_healthy_soldiers objectAtIndex:i];

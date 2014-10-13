@@ -23,6 +23,7 @@
 @property CCPhysicsNode *scroll_physicsWorld;
 @property NSMutableArray *junk_soldiers;
 @property NSMutableArray *healthy_soldiers;
+@property NSMutableArray *target;
 @property int missile_atk_range;
 @property int missile_atk;
 
