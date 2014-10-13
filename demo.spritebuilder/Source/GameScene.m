@@ -14,7 +14,7 @@ static GameScene* GameSceneInstance;
     
 }
 
-+(GameScene*)sharelayer{
++(GameScene*)shareLayer{
     return GameSceneInstance;
 }
 

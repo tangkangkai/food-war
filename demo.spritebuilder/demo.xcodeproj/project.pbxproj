@@ -44,13 +44,15 @@
 		BE106AAA19C8ECB700FAE0C5 /* SettingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BE106AA919C8ECB700FAE0C5 /* SettingScene.m */; };
 		BE18BDC219E26C3E009A495A /* healthy_food.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE18BDC019E26C3E009A495A /* healthy_food.plist */; };
 		BE18BDC319E26C3E009A495A /* healthy_food.png in Resources */ = {isa = PBXBuildFile; fileRef = BE18BDC119E26C3E009A495A /* healthy_food.png */; };
-		BE87625F19D1E4AD002BF04D /* burgerMan.m in Sources */ = {isa = PBXBuildFile; fileRef = BE87625E19D1E4AD002BF04D /* burgerMan.m */; };
 		BE9A416C19D7BF480060E00D /* SavedData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9A416B19D7BF480060E00D /* SavedData.m */; };
 		BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4419CA610C009DF48C /* ChoiceScene.m */; };
 		BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4619CA610C009DF48C /* GameScene.m */; };
 		BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4819CA610C009DF48C /* StoreScene.m */; };
 		BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C5319CA62C1009DF48C /* Gameplay.m */; };
 		E91638C119DDFB4200115E9B /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = E91638BF19DDFB4200115E9B /* Bomb.m */; };
+		E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996019EB0DB900FB214D /* background_track.mp3 */; };
+		E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996119EB0DB900FB214D /* punch1.mp3 */; };
+		E9DE996519EB110800FB214D /* blop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996419EB110800FB214D /* blop.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,8 +119,6 @@
 		BE106AA919C8ECB700FAE0C5 /* SettingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingScene.m; path = Source/SettingScene.m; sourceTree = "<group>"; };
 		BE18BDC019E26C3E009A495A /* healthy_food.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = healthy_food.plist; sourceTree = "<group>"; };
 		BE18BDC119E26C3E009A495A /* healthy_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthy_food.png; sourceTree = "<group>"; };
-		BE87625D19D1E4AD002BF04D /* burgerMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = burgerMan.h; sourceTree = "<group>"; };
-		BE87625E19D1E4AD002BF04D /* burgerMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = burgerMan.m; sourceTree = "<group>"; };
 		BE9A416A19D7BF480060E00D /* SavedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedData.h; sourceTree = "<group>"; };
 		BE9A416B19D7BF480060E00D /* SavedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedData.m; sourceTree = "<group>"; };
 		BEB82C4319CA610C009DF48C /* ChoiceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoiceScene.h; path = Source/ChoiceScene.h; sourceTree = "<group>"; };
@@ -131,6 +131,9 @@
 		BEB82C5319CA62C1009DF48C /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gameplay.m; path = Source/Gameplay.m; sourceTree = "<group>"; };
 		E91638BB19DDFA8B00115E9B /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bomb.h; path = Source/Bomb.h; sourceTree = "<group>"; };
 		E91638BF19DDFB4200115E9B /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
+		E9DE996019EB0DB900FB214D /* background_track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_track.mp3; path = Audio/background_track.mp3; sourceTree = "<group>"; };
+		E9DE996119EB0DB900FB214D /* punch1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch1.mp3; path = Audio/punch1.mp3; sourceTree = "<group>"; };
+		E9DE996419EB110800FB214D /* blop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blop.mp3; path = Audio/blop.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 			children = (
 				49A8E53119CFF8CF00A7DC61 /* Soldier.h */,
 				49A8E53219CFF8CF00A7DC61 /* Soldier.m */,
+				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
+				BE87625E19D1E4AD002BF04D /* burgerMan.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
@@ -188,8 +193,6 @@
 				BEB82C4819CA610C009DF48C /* StoreScene.m */,
 				BE106AA819C8ECB700FAE0C5 /* SettingScene.h */,
 				BE106AA919C8ECB700FAE0C5 /* SettingScene.m */,
-				BE87625D19D1E4AD002BF04D /* burgerMan.h */,
-				BE87625E19D1E4AD002BF04D /* burgerMan.m */,
 				BE9A416A19D7BF480060E00D /* SavedData.h */,
 				BE9A416B19D7BF480060E00D /* SavedData.m */,
 			);
@@ -266,6 +269,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9DE995A19EB060E00FB214D /* audio */,
 				BE18BDC019E26C3E009A495A /* healthy_food.plist */,
 				BE18BDC119E26C3E009A495A /* healthy_food.png */,
 				4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */,
@@ -284,6 +288,16 @@
 				B73789861807631A0076A88C /* Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9DE995A19EB060E00FB214D /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				E9DE996419EB110800FB214D /* blop.mp3 */,
+				E9DE996019EB0DB900FB214D /* background_track.mp3 */,
+				E9DE996119EB0DB900FB214D /* punch1.mp3 */,
+			);
+			name = audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,9 +381,11 @@
 			files = (
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
+				E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				BE18BDC319E26C3E009A495A /* healthy_food.png in Resources */,
@@ -384,6 +400,7 @@
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 				BE18BDC219E26C3E009A495A /* healthy_food.plist in Resources */,
 				4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */,
+				E9DE996519EB110800FB214D /* blop.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +439,6 @@
 				BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */,
 				BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
-				BE87625F19D1E4AD002BF04D /* burgerMan.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 			);

@@ -10,7 +10,7 @@
 
 @interface GameScene : CCNode
 
-+(GameScene*)sharelayer;
++(GameScene*)shareLayer;
 @property CCTextField *text;
 
 @end
