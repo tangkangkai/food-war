@@ -14,12 +14,22 @@
     NSMutableArray *levelArray;
     BOOL ifLocked;
     GameScene *gs;
+    CCTextField *_level1;
+    CCTextField *_level2;
+    CCTextField *_level3;
+    NSMutableArray *textArray;
+    
+    
 }
 
 - (void) didLoadFromCCB {
     NSLog(@"Enter Game Level Scene");
     gs=[GameScene shareLayer];
     self.userInteractionEnabled = TRUE;
+    textArray = [[NSMutableArray alloc] init];
+    [textArray addObject:_level1];
+    [textArray addObject:_level2];
+    [textArray addObject:_level3];
     if ([SavedData level]) {
         gs.text.string = [NSString stringWithFormat:@"Level %d", [SavedData level]];
     } else {
@@ -69,8 +79,10 @@
         CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
         
         CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveleft, moveright, moveleft, moveright, moveback]];
-        gs.text.string = [NSString stringWithFormat:@"Level %d locked", level];
-        [gs.text runAction:sequence];
+   //     [textArray objectAtIndex:level-1][0]=@"Level Locked, please choose again";
+
+     //   gs.text.string = [NSString stringWithFormat:@"Level %d locked", level];
+    //    [[textArray objectAtIndex:level-1] runAction:sequence];
         ifLocked = true;
         NSLog(@"true");
     } else {

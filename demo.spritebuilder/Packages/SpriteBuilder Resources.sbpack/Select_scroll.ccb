@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>289.80868530273438</real>
-							<real>159.65638732910156</real>
+							<real>296.80868530273438</real>
+							<real>157.30000305175781</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.24130943417549133</real>
-							<real>0.41323402523994446</real>
+							<real>0.23152188956737518</real>
+							<real>0.79249334335327148</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -121,7 +121,7 @@
 						<key>value</key>
 						<array>
 							<real>0.80000001192092896</real>
-							<real>1.6000000238418579</real>
+							<real>0.80000001192092896</real>
 							<integer>2</integer>
 							<integer>2</integer>
 						</array>
@@ -166,7 +166,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/lock3.png</string>
+							<string>foodwar_picture/game background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -177,7 +177,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/lock3.png</string>
+							<string>foodwar_picture/game background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -233,7 +233,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string></string>
 						</array>
 					</dict>
 					<dict>
@@ -1084,7 +1084,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_level1</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1278,8 +1278,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1293,7 +1291,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_level2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1500,7 +1498,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_level3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1694,6 +1692,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
