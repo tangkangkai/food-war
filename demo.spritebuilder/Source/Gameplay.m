@@ -66,7 +66,7 @@
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
   
-    [audio playBg:@"bgmusic.mp3" loop:TRUE];
+    [audio playBg:@"playBackground.mp3" loop:TRUE];
 
 }
 
