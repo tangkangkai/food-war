@@ -80,12 +80,16 @@
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
         
+        [self attack_animation:target];
         if( [ target loseHealth:atkPower ] == 0 ){
             if( [self detectEnemy] == NULL ){
                 [self move];
             }
         }
     }
+}
+
+- (void)attack_animation:(Soldier*)target{
 }
 
 - (Soldier*)detectEnemy{
@@ -246,40 +250,19 @@
     return self;
 }
 
-- (void)doAttack{
-    if( type == 4 )
-        return;
+
+- (void)attack_animation:(Soldier*) target{
+    CCNode *bullet = [CCBReader load:@"coke_bullet"];
     
-    Soldier *target = [self detectEnemy];
-    if( target == NULL){
-        [self move];
-        moving = true;
-        return;
-    }
-    [[ self soldier ] stopAllActions ];
-    moving = false;
-    // for missle launcher
-    if( type == 3 )
-        return;
+    bullet.position = CGPointMake([[self soldier] position].x, [[self soldier] position].y+15);;
+    CCNode * parent = [self soldier].parent;
+    [parent addChild:bullet];
+    float duration = ABS(bullet.position.x - [[target soldier] position].x)/atkRange;
+    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
+                                                   position:[[target soldier] position]];
+    CCActionRemove *actionRemove = [CCActionRemove action];
+    [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
     
-    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
-        last_attack_time = [NSDate date];
-        
-        CCNode *bullet = [CCBReader load:@"coke_bullet"];
-        bullet.position = [[self soldier] position];
-        CCNode * parent = [self soldier].parent;
-        [parent addChild:bullet];
-        CCAction *actionMove=[CCActionMoveTo actionWithDuration: 1
-                                                       position:[[target soldier] position]];
-        CCActionRemove *actionRemove = [CCActionRemove action];
-        
-        [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
-        if( [ target loseHealth:atkPower ] == 0 ){
-            if( [self detectEnemy] == NULL ){
-                [self move];
-            }
-        }
-    }
 }
 
 @end
@@ -364,43 +347,19 @@
     
     return self;
 }
-
-- (void)doAttack{
-    if( type == 4 )
-        return;
+- (void)attack_animation:(Soldier*) target{
+    CCNode *bullet = [CCBReader load:@"coke_bullet"];
     
-    Soldier *target = [self detectEnemy];
-    if( target == NULL){
-        [self move];
-        moving = true;
-        return;
-    }
-    [[ self soldier ] stopAllActions ];
-    moving = false;
-    // for missle launcher
-    if( type == 3 )
-        return;
+    bullet.position = CGPointMake([[self soldier] position].x+10, [[self soldier] position].y+5);;
+    CCNode * parent = [self soldier].parent;
+    [parent addChild:bullet];
+    float duration = ABS(bullet.position.x - [[target soldier] position].x)/atkRange;
+    CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
+                                                   position:[[target soldier] position]];
+    CCActionRemove *actionRemove = [CCActionRemove action];
+    [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
     
-    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
-        last_attack_time = [NSDate date];
-        
-        CCNode *bullet = [CCBReader load:@"bean_bullet"];
-        bullet.position = [[self soldier] position];
-        CCNode * parent = [self soldier].parent;
-        [parent addChild:bullet];
-        CCAction *actionMove=[CCActionMoveTo actionWithDuration: 1
-                                                       position:[[target soldier] position]];
-        CCActionRemove *actionRemove = [CCActionRemove action];
-
-        [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
-        if( [ target loseHealth:atkPower ] == 0 ){
-            if( [self detectEnemy] == NULL ){
-                [self move];
-            }
-        }
-    }
-}
-@end
+}@end
 
 @implementation BananaMan
 

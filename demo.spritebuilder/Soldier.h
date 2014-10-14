@@ -48,10 +48,10 @@
 
 
 - (int)loseHealth:(int)Attack;
+- (void)attack_animation:(Soldier*) target;
 - (void)update_health;
 - (void)move;
 - (void)dead;
-// get methods add by kk
 - (int)getLevel;
 - (int)getAtkPower;
 - (int)getAtkRange;
@@ -80,6 +80,7 @@
 
 @interface CokeMan : Soldier
 
+- (void)attack_animation:(Soldier*) target;
 - (id)initCoke :(int) lane_num
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
@@ -113,6 +114,7 @@
 
 @interface BeanMan : Soldier
 
+- (void)attack_animation:(Soldier*) target;
 - (id)initBean :(int) lane_num
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
