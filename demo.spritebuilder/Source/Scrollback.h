@@ -34,4 +34,7 @@
 
 
 - (void)trackInvist;
+
+- (void)bombExplode:(CGPoint)location;
+
 @end

@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "Bomb.h"
 #import <CoreMotion/CoreMotion.h>
+#import "Scrollback.h"
 @implementation Bomb {
     float accelator;
     int counter;
@@ -46,13 +47,19 @@
 - (void)update{
     if(accelator > 3) {
         /*
-        CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explode"];
-        explosion.autoRemoveOnFinish = YES;
-        CGPoint expo = CGPointMake(_bomb.position.x, _bomb.position.y);
-        explosion.position = expo;*/
+         CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explode"];
+         explosion.autoRemoveOnFinish = YES;
+         CGPoint expo = CGPointMake(_bomb.position.x, _bomb.position.y);
+         explosion.position = expo;*/
         
         [_bomb removeFromParent];
-//        [self addChild:explosion];
+        //        [self addChild:explosion];
+        
+        //hit soldiers
+        
+        
+        //       for(int i = 0; i < [Scrollback getHealthySoldier])
+        
         return;
     }
     CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y - accelator);
