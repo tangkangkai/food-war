@@ -211,6 +211,10 @@
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_third.boundingBox,touchLocation)) {
         selected_soldier = [lineupArray objectAtIndex:2];
         selected_soldier_animation=[lineupArray objectAtIndex:2];
+    } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_fourth.boundingBox,touchLocation)) {
+        selected_soldier = [lineupArray objectAtIndex:3];
+        selected_soldier_animation=[lineupArray objectAtIndex:3];
+    
     } else if(CGRectContainsPoint(_cabbageBomb.boundingBox,touchLocation)) {
         selected_soldier = @"cabbageBomb";
         selected_soldier_animation=@"cabbageBomb";
