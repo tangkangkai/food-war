@@ -19,7 +19,6 @@
     CCTextField *_level3;
     NSMutableArray *textArray;
     
-    
 }
 
 - (void) didLoadFromCCB {

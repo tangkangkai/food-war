@@ -13,6 +13,8 @@
     CCNode *_missile;
     int _startlaunch;
     Soldier *s;
+    OALSimpleAudio *audio;
+    int nearest_distance;
 }
 
 - (id)init{
@@ -22,6 +24,7 @@
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _target = [NSMutableArray arrayWithObjects:nil ];
+    audio = [OALSimpleAudio sharedInstance];
     return self;
 }
 
@@ -32,13 +35,14 @@
     [self addChild:[_junkBase soldier]];
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
+    nearest_distance=40;
     [self schedule:@selector(enemy_autobuild:) interval:6];
 }
 
 
 //find target the missle hit
 -(NSMutableArray*)missileDetect{
-    int nearest_distance=[self missile_atk_range];
+  //  int nearest_distance=[self missile_atk_range];
     Soldier *soldier = NULL;
     int x_diff;
     int y_diff;
@@ -63,12 +67,15 @@
     fire.duration=0.2;
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:90.f];
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:touchLocation
-                                                         height:touchLocation.y jumps:1];
+                                                         height:80 jumps:1];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
+  
+    
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
     // allDone is your method to run...
     fire.position=_missile.position;
     [self addChild:fire];
+    [audio playEffect:@"missle_launch.mp3"];
     [missile runAction:sequence];
 
 }
@@ -88,6 +95,7 @@
     explosion.position = _missile.position;
     // add the particle effect to the same node the seal is on
     [_missile.parent addChild:explosion];
+    [audio playEffect:@"explode.mp3"];
     
     _targetLoseHealth=[self missileDetect];
     for (Soldier *target in _targetLoseHealth) {

@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>14</integer>
+	<integer>17</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>759.08319091796875</real>
-							<real>54.524124145507812</real>
+							<real>952.10968017578125</real>
+							<real>55.686931610107422</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -160,8 +160,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>730.69549560546875</real>
-							<real>128.77786254882812</real>
+							<real>930.6988525390625</real>
+							<real>129.94065856933594</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -249,8 +249,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>701.9176025390625</real>
-							<real>194.68385314941406</real>
+							<real>910.0606689453125</real>
+							<real>198.17228698730469</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -263,8 +263,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5438382625579834</real>
-							<real>0.54369080066680908</real>
+							<real>0.56341421604156494</real>
+							<real>0.52555298805236816</real>
 						</array>
 					</dict>
 					<dict>
@@ -338,8 +338,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>70.534942626953125</real>
-							<real>53.384361267089844</real>
+							<real>58.906837463378906</real>
+							<real>55.709980010986328</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -427,7 +427,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>93.740440368652344</real>
+							<real>86.763580322265625</real>
 							<real>129.891845703125</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -517,7 +517,7 @@
 						<key>value</key>
 						<array>
 							<real>105.57567596435547</real>
-							<real>192.39349365234375</real>
+							<real>197.04473876953125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -605,8 +605,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>764</real>
-							<real>177</real>
+							<real>957.02655029296875</real>
+							<real>168.86032104492188</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -773,7 +773,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>1</integer>
+				<integer>16</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
 				<key>children</key>
@@ -781,7 +781,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>game background</string>
+				<string>game background-extend</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -803,9 +803,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-1.3019965887069702</real>
-							<real>-0.302001953125</real>
-							<integer>1</integer>
+							<real>0.0</real>
+							<real>0.0</real>
+							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -818,7 +818,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>1</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -828,8 +828,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.80148720741271973</real>
-							<real>1.1202225685119629</real>
+							<real>0.97492748498916626</real>
+							<real>1.1087307929992676</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -842,7 +842,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/game background.png</string>
+							<string>foodwar_picture/game background-extend.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -859,6 +859,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -900,8 +902,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>409.47625732421875</real>
-							<real>47.850494384765625</real>
+							<real>509.47796630859375</real>
+							<real>49.0133056640625</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -938,8 +940,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>6.6660909652709961</real>
-							<real>0.59800362586975098</real>
+							<real>8.8593959808349609</real>
+							<real>0.54224789142608643</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1023,8 +1025,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>412.26296997070312</real>
-							<real>121.97660064697266</real>
+							<real>512.2646484375</real>
+							<real>124.30222320556641</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1061,8 +1063,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>6.1494426727294922</real>
-							<real>0.57428175210952759</real>
+							<real>8.5852251052856445</real>
+							<real>0.59855347871780396</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1146,8 +1148,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>124.87673950195312</real>
-							<real>206.88418579101562</real>
+							<real>106.27177429199219</real>
+							<real>208.0469970703125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1184,8 +1186,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>5.6511120796203613</real>
-							<real>0.39899468421936035</real>
+							<real>8.0886611938476562</real>
+							<real>0.43578535318374634</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1269,7 +1271,7 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>820</real>
+					<real>1000</real>
 					<real>320</real>
 					<integer>0</integer>
 					<integer>0</integer>

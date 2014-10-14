@@ -55,6 +55,8 @@
 		E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996019EB0DB900FB214D /* background_track.mp3 */; };
 		E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996119EB0DB900FB214D /* punch1.mp3 */; };
 		E9DE996519EB110800FB214D /* blop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996419EB110800FB214D /* blop.mp3 */; };
+		E9ECC79919EDAA68009E03D4 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9ECC79719EDAA68009E03D4 /* explode.mp3 */; };
+		E9ECC79A19EDAA68009E03D4 /* missle_launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9ECC79819EDAA68009E03D4 /* missle_launch.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,8 @@
 		E9DE996019EB0DB900FB214D /* background_track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_track.mp3; path = Audio/background_track.mp3; sourceTree = "<group>"; };
 		E9DE996119EB0DB900FB214D /* punch1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch1.mp3; path = Audio/punch1.mp3; sourceTree = "<group>"; };
 		E9DE996419EB110800FB214D /* blop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blop.mp3; path = Audio/blop.mp3; sourceTree = "<group>"; };
+		E9ECC79719EDAA68009E03D4 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = explode.mp3; path = Audio/explode.mp3; sourceTree = "<group>"; };
+		E9ECC79819EDAA68009E03D4 /* missle_launch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = missle_launch.mp3; path = Audio/missle_launch.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				BE18BDEC19EC7D68009A495A /* playBackground.mp3 */,
+				E9ECC79719EDAA68009E03D4 /* explode.mp3 */,
+				E9ECC79819EDAA68009E03D4 /* missle_launch.mp3 */,
 				E9DE996419EB110800FB214D /* blop.mp3 */,
 				E9DE996019EB0DB900FB214D /* background_track.mp3 */,
 				E9DE996119EB0DB900FB214D /* punch1.mp3 */,
@@ -384,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE18BDED19EC7D68009A495A /* playBackground.mp3 in Resources */,
+				E9ECC79919EDAA68009E03D4 /* explode.mp3 in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */,
@@ -406,6 +413,7 @@
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 				4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */,
 				E9DE996519EB110800FB214D /* blop.mp3 in Resources */,
+				E9ECC79A19EDAA68009E03D4 /* missle_launch.mp3 in Resources */,
 				BEBB1D9419ECF7A8007F4FA1 /* healthy_food.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
