@@ -310,6 +310,7 @@
     newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
+    CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
     [scroll bombExplode:location];
 }
 
