@@ -41,6 +41,7 @@
     CCSprite *_first;
     CCSprite *_second;
     CCSprite *_third;
+    CCSprite *_fourth;
     NSMutableArray *lineupArray;
     
     OALSimpleAudio *audio;
@@ -81,6 +82,7 @@
     [spots addObject:_first];
     [spots addObject:_second];
     [spots addObject:_third];
+    [spots addObject:_fourth];
     NSArray *keys = [soldiers allKeys];
     NSLog(@"length of lineup: %d", (int)keys.count);
     for (int i = 0; i < (int)keys.count; i++) {
@@ -209,6 +211,10 @@
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_third.boundingBox,touchLocation)) {
         selected_soldier = [lineupArray objectAtIndex:2];
         selected_soldier_animation=[lineupArray objectAtIndex:2];
+    } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_fourth.boundingBox,touchLocation)) {
+        selected_soldier = [lineupArray objectAtIndex:3];
+        selected_soldier_animation=[lineupArray objectAtIndex:3];
+    
     } else if(CGRectContainsPoint(_cabbageBomb.boundingBox,touchLocation)) {
         selected_soldier = @"cabbageBomb";
         selected_soldier_animation=@"cabbageBomb";
@@ -324,7 +330,7 @@
                                  level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
-    }else if( [selected_soldier  isEqual: @"bean"]  ){
+    } else if( [selected_soldier  isEqual: @"bean"]  ){
         BeanMan *newSoldier = [[BeanMan alloc] initBean: lane_num
                                                startPos:sourcehouse.position
                                                destPos: destination
@@ -333,13 +339,22 @@
                                level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
-    }else if( [selected_soldier  isEqual: @"banana"]  ){
+    } else if( [selected_soldier  isEqual: @"banana"]  ){
         BananaMan *newSoldier = [[BananaMan alloc] initBanana: lane_num
                                                    startPos:sourcehouse.position
                                                    destPos: destination
                                                    ourArr:[scroll healthy_soldiers]
                                                    enemyArr:[scroll junk_soldiers]
                                  level:1];
+        [scroll addChild: [newSoldier soldier]];
+        [newSoldier move];
+    } else if( [selected_soldier  isEqual: @"corn"]  ){
+        CornMan *newSoldier = [[CornMan alloc] initCorn: lane_num
+                                                     startPos:sourcehouse.position
+                                                      destPos: destination
+                                                       ourArr:[scroll healthy_soldiers]
+                                                     enemyArr:[scroll junk_soldiers]
+                                            level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }

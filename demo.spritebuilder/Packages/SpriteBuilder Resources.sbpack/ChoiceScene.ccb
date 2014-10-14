@@ -127,6 +127,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2274,7 +2276,7 @@
 				<key>displayName</key>
 				<string>CCNodeColor</string>
 				<key>memberVarAssignmentName</key>
-				<string>_cokebg</string>
+				<string>_cornbg</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -2418,8 +2420,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.1143795251846313</real>
-							<real>1.1297105550765991</real>
+							<real>0.77683031558990479</real>
+							<real>1.0982325077056885</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2431,7 +2433,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string>coke</string>
+							<string>corn</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -2442,8 +2444,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>50</real>
-							<real>50</real>
+							<real>90</real>
+							<real>53</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2488,7 +2490,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/coke.png</string>
+							<string>foodwar_picture/corn_cannon.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2966,7 +2968,7 @@
 				<key>displayName</key>
 				<string>chosen</string>
 				<key>memberVarAssignmentName</key>
-				<string>_cokechoosed</string>
+				<string>_cornchoosed</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3694,8 +3696,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

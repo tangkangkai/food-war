@@ -30,6 +30,19 @@
 			<key>sourceSize</key>
 			<string>{33,60}</string>
 		</dict>
+		<key>corn.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{111,2},{75,47}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{75,47}}</string>
+			<key>sourceSize</key>
+			<string>{75,47}</string>
+		</dict>
 		<key>potatoMan.png</key>
 		<dict>
 			<key>frame</key>
@@ -51,9 +64,9 @@
 		<key>realTextureFileName</key>
 		<string>healthy_food.png</string>
 		<key>size</key>
-		<string>{111,64}</string>
+		<string>{188,64}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:89c5072a1039617e0e4ab4fc6d06a9ad:9bd1f94f7e39d6443d5a8a9eeab4d37f:cd1cc5ffde762d41fd1ca7e40376c772$</string>
+		<string>$TexturePacker:SmartUpdate:b445d29eb81da68b182fbde21b8eec6a:ca94e8a0dcf7bfe9ae254ab702868fbf:cd1cc5ffde762d41fd1ca7e40376c772$</string>
 		<key>textureFileName</key>
 		<string>healthy_food.png</string>
 	</dict>

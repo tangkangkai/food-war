@@ -181,7 +181,7 @@
         return;
     }
     
-    [self reduceTotalMoney:beanCost];
+    [self reduceTotalMoney:bananaCost];
     BananaMan *banana = [[BananaMan alloc] initBanana: -1
                                          startPos:_hole1.position
                                           destPos: _hole1.position
