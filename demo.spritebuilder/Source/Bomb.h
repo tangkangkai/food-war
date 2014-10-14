@@ -13,6 +13,7 @@
 @property CCNode* bomb;
 @property CGPoint startPosi;
 @property CGPoint destPosi;
+@property int power;
 
 -(void)drop:(CGPoint)start;
 

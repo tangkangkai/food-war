@@ -312,6 +312,27 @@
     [newBomb drop:touchLocation];
     CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
     [scroll bombExplode:location];
+    
+    
+    NSMutableArray *healthyArray =[scroll healthy_soldiers];
+    long healthyArraySize = healthyArray.count;
+    for(int i=0; i < healthyArraySize; i++){
+        
+        Soldier *s = [healthyArray objectAtIndex:i];
+  //      Soldier *s = healthyArray[i];
+        if(s.position.x * s.position.x + s.position.x * s.position.y < 150*150){
+            [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
+        }
+    }
+    NSMutableArray *junkArray =[scroll junk_soldiers];
+    long junkArraySize = junkArray.count;
+    for(int i = 0; i < junkArraySize; i++){
+     //   Soldier *s = junkArray[i];
+        Soldier *s = [healthyArray objectAtIndex:i];
+        if(s.position.x * s.position.x + s.position.x * s.position.y < 150*150){
+            [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
+        }
+    }
 }
 
 

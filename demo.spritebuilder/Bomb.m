@@ -40,7 +40,10 @@
     _bomb.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _bomb.contentSize} cornerRadius:0];
     
     accelator = 0;
+    _power= 90 ;
     //    _motionManager = [[CMMotionManager alloc] init];
+    
+
     return self;
 }
 
@@ -73,6 +76,9 @@
      CGFloat newXPosition = _bomb.position.x + acceleration.y * 1000 * delta;
      newXPosition = clampf(newXPosition, 0, self.contentSize.width);
      _bomb.position = CGPointMake(newXPosition, _bomb.position.y);*/
+}
+-(int) getPower{
+//    return power;
 }
 
 
