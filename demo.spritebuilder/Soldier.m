@@ -89,19 +89,20 @@
 }
 
 - (Soldier*)detectEnemy{
-    int nearest_distance = atkRange-10;
+    int nearest_distance = atkRange-8;
     Soldier *target = NULL;
     CGPoint self_pos = [self soldier].position;
     
     for( Soldier *s in _enemyArray ){
         CGPoint enemy_pos = [s soldier].position;
         if( [ s getType ] == 4 ){
+            // give a virtual position for bases
             enemy_pos = _dest_pos;
             if( _group == 0 ){
-                enemy_pos.x = enemy_pos.x + 25;
+                enemy_pos.x = enemy_pos.x + 30;
             }
             else if( _group == 1){
-                enemy_pos.x = enemy_pos.x - 28;
+                enemy_pos.x = enemy_pos.x - 30;
             }
         }
         
@@ -110,7 +111,7 @@
             
             target = s;
             nearest_distance = ABS(enemy_pos.x-self_pos.x);
-            // TODO find the enemy with the least health
+            // TODO find the enemy with the smallest health
         }
     }
     return target;
@@ -537,17 +538,15 @@
 
 -(void)flash{
 
-        CCNode *s = [self getSoldier];
-        for( int i = 0; i<[s children].count; i++ ){
-            if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
-                CCSprite *body = [s children][i];
+    CCNode *s = [self getSoldier];
+    for( int i = 0; i<[s children].count; i++ ){
+        if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
+            CCSprite *body = [s children][i];
                 
-                body.opacity = body.opacity+0.1;
-                if( body.opacity > 1 )
-                    body.opacity = body.opacity-1;
-            }
+            body.opacity = body.opacity+0.1;
+            if( body.opacity > 1 )
+                body.opacity = body.opacity-1;
         }
-    
-    
+    }
 }
 @end

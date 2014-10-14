@@ -344,14 +344,11 @@
     [self removeChild: [man soldier]];
     
     NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
-    int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
-    
-    
-    
     
     // Avoid the physic confliction with the new born enemy
     CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
     if( [selected_soldier  isEqual: @"potatoMan"] ){
+        int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
         PotatoMan *newSoldier = [[PotatoMan alloc] initPotato: lane_num
                                                   startPos:sourcehouse.position
                                                    destPos: destination
@@ -388,8 +385,6 @@
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }
-
-
 }
 
 - (void)addBombExplosion:(CGPoint) posi{
