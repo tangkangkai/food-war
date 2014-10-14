@@ -107,7 +107,8 @@
     if (_startlaunch==1) {
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
             _startlaunch=0;
-            [self removeChild:_missile];
+            [(CornMan*)s undoReady];
+        //    [self removeChild:_missile];
             return;
         }
         
@@ -118,6 +119,7 @@
             return;
         }
         else{
+            [self addChild:_missile];
             [self missileLaunch:_missile :touchLocation];
             [(CornMan*)s Launch];
             _startlaunch=0;
@@ -138,12 +140,8 @@
                 NSLog(@"touch healthy food");
                 _missile = [CCBReader load:@"missle"];
                 _missile.position=[[_healthy_soldiers objectAtIndex:i] soldier].position;
-           //     s.opacity=0.1;
-                ((CCSprite*)[[s soldier] children][0]).opacity = 0.5;
-                ((CCSprite*)[[s soldier] children][1]).opacity = 0.5;
-                ((CCSprite*)[[s soldier] children][2]).opacity = 0.5;
-                [self schedule:@selector(light:s:) interval:0.5];
-                [self addChild:_missile];
+
+               // [self addChild:_missile];
                 _startlaunch=1;
                 break;
             }
@@ -151,23 +149,7 @@
     }
 }
 
--(void)light:(Soldier*)soldier{
-    CCSprite *cornPart1;
-    CCSprite *cornPart2;
-    CCSprite *cornPart3;
-  //  ((CCSprite*)[[soldier soldier] children][0]).opacity=0.5;
-    
-    cornPart1=((CCSprite*)[[soldier soldier] children][0]);
-    cornPart1.opacity=0.5;
-    cornPart2=((CCSprite*)[[soldier soldier] children][1]);
-    cornPart2.opacity=0.5;
-    cornPart3=((CCSprite*)[[soldier soldier] children][2]);
-    cornPart3.opacity=0.5;
-    
 
-
-
-}
 
 
 -(void)enemy_autobuild:(CCTime)dt{

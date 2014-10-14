@@ -58,6 +58,7 @@
 - (double)getDefence;
 - (int)getHealth;
 - (int)getAtkInt;
+- (CCNode*)getSoldier;
 - (int)getType;
 - (BOOL)isMoving;
 

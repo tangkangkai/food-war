@@ -57,6 +57,9 @@
     return health;
 }
 
+- (CCNode*)getSoldier{
+    return _soldier;
+}
 
 - (void)doAttack{
     if( type == 4 )
@@ -471,11 +474,14 @@
 @implementation CornMan
 
 - (BOOL) readyToLaunch{
+    
     if( moving ){
         return false;
     }
+    
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         _readyLaunch = true;
+        [self schedule:@selector(flash) interval:0.5];
         return true;
     }
     return false;
@@ -483,15 +489,24 @@
 
 - (void) undoReady{
     _readyLaunch = false;
+    [self unschedule:@selector(flash)];
+    CCNode *s = [self getSoldier];
+    for( int i = 0; i<[s children].count; i++ ){
+        if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
+            CCSprite *body = [s children][i];
+            body.opacity = 1;
+        }
+    }
 }
 
 - (void) Launch{
     last_attack_time = [NSDate date];
-    _readyLaunch = false;
+    [self undoReady];
 }
 
 -(void)move{
     if( !_readyLaunch ){
+        
         [super move];
     }
 }
@@ -515,8 +530,21 @@
     value = 100 + 20 * soldierLevel;
     health = 120 + 20 * soldierLevel;
     self = [ super initSoldier:@"corn" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    
+
     return self;
 }
 
+
+-(void)flash{
+
+        CCNode *s = [self getSoldier];
+        for( int i = 0; i<[s children].count; i++ ){
+            if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
+                CCSprite *body = [s children][i];
+                body.opacity = (body.opacity + 0.5)/1;
+            }
+        }
+    
+    
+}
 @end
