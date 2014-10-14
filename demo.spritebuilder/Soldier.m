@@ -86,7 +86,7 @@
 }
 
 - (Soldier*)detectEnemy{
-    int nearest_distance = atkRange;
+    int nearest_distance = atkRange-10;
     Soldier *target = NULL;
     CGPoint self_pos = [self soldier].position;
     
@@ -95,10 +95,10 @@
         if( [ s getType ] == 4 ){
             enemy_pos = _dest_pos;
             if( _group == 0 ){
-                enemy_pos.x = enemy_pos.x + 20;
+                enemy_pos.x = enemy_pos.x + 25;
             }
             else if( _group == 1){
-                enemy_pos.x = enemy_pos.x - 20;
+                enemy_pos.x = enemy_pos.x - 28;
             }
         }
         
@@ -230,7 +230,7 @@
     //level = 1;
     type = 2;
 
-    moveSpeed = 40;
+    moveSpeed = 35;
     atkInterval = 1;
     atkRange = 180;
     atkPower = 5 + 5 * soldierLevel;
@@ -313,7 +313,7 @@
     level = 1;
     type = 2;
     
-    moveSpeed = 40;
+    moveSpeed = 35;
     atkInterval = 1;
     atkRange = 180;
     atkPower = 5 + 5 * soldierLevel;
@@ -351,15 +351,15 @@
     
     // TODO read level from file
     level = 1;
-    type = 3;
+    type = 2;
     
-    moveSpeed = 20;
-    atkInterval = 10;
-    atkRange = 350;
-    atkPower = 20 + 8 * soldierLevel;
+    moveSpeed = 35;
+    atkInterval = 2;
+    atkRange = 40;
+    atkPower = 15 + 6 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
-    health = 120 + 20 * soldierLevel;
+    health = 140 + 20 * soldierLevel;
     self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
@@ -394,4 +394,44 @@
     _isDead = true;
 }
 
+@end
+
+@implementation CornMan
+
+- (BOOL) readyToLaunch{
+    if( moving ){
+        return false;
+    }
+    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
+        return true;
+    }
+    return false;
+}
+
+- (void) Launch{
+    last_attack_time = [NSDate date];
+}
+
+- (id)initCorn: (int) lane_num
+        startPos:(CGPoint) start
+         destPos:(CGPoint) dest
+          ourArr:(NSMutableArray*) ourArray
+        enemyArr:(NSMutableArray*) enemyArray
+           level: (int) soldierLevel{
+    
+    // TODO read level from file
+    level = 1;
+    type = 3;
+    
+    moveSpeed = 20;
+    atkInterval = 10;
+    atkRange = 350;
+    atkPower = 20 + 8 * soldierLevel;
+    defence = 0.1 + 0.03 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 120 + 20 * soldierLevel;
+    self = [ super initSoldier:@"corn" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    
+    return self;
+}
 @end

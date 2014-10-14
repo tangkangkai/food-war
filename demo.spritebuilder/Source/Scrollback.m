@@ -116,7 +116,7 @@
         }
         else{
             [self missileLaunch:_missile :touchLocation];
-            [(BananaMan*)s Launch];
+            [(CornMan*)s Launch];
             _startlaunch=0;
             return;
         }
@@ -132,7 +132,7 @@
             _missile_atk_range=[s getAtkRange];
             _missile_atk=[s getAtkPower];
             
-            if([(BananaMan*)s readyToLaunch]){
+            if([(CornMan*)s readyToLaunch]){
                 NSLog(@"touch healthy food");
                 _missile = [CCBReader load:@"missle"];
                 _missile.position=[[_healthy_soldiers objectAtIndex:i] soldier].position;
