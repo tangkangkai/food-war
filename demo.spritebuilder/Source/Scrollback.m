@@ -19,8 +19,6 @@
     self = [super init];
     if (!self) return(nil);
 
-    _missile_atk=50;
-    _missile_atk_range=50;
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _target = [NSMutableArray arrayWithObjects:nil ];
@@ -103,8 +101,14 @@
     NSLog(@"Scrollback touch began");
     CGPoint touchLocation = [touch locationInNode:self];
     long healtharraysize = _healthy_soldiers.count;
-
+    CGFloat xDist = (touchLocation.x - _missile.position.x);
+    CGFloat yDist = (touchLocation.y - _missile.position.y);
+    CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
     if (_startlaunch==1) {
+        if(distance>_missile_atk_range){
+            return;
+        }
+        
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
             _startlaunch=0;
             [self removeChild:_missile];
@@ -125,6 +129,9 @@
 
         if(type==3&&touch==true)
         {
+            _missile_atk_range=[s getAtkRange];
+            _missile_atk=[s getAtkPower];
+            
             if([(BananaMan*)s readyToLaunch]){
                 NSLog(@"touch healthy food");
                 _missile = [CCBReader load:@"missle"];
