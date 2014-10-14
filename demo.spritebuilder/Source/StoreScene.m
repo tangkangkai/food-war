@@ -177,7 +177,7 @@
 }
 
 -(void)button3 {
-    if (beanCost > total) {
+    if (bananaCost > total) {
         return;
     }
     
