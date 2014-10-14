@@ -356,7 +356,7 @@
     return self;
 }
 - (void)attackAnimation:(Soldier*) target{
-    CCNode *bullet = [CCBReader load:@"coke_bullet"];
+    CCNode *bullet = [CCBReader load:@"bean_bullet"];
     
     bullet.position = CGPointMake([[self soldier] position].x+10, [[self soldier] position].y+5);;
     CCNode * parent = [self soldier].parent;

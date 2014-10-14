@@ -201,10 +201,17 @@
     [self addChild:fire];
 }
 
-- (void)trackInvist {
+- (void)showTrack: (int) num {
     _track1.visible = false;
     _track2.visible = false;
     _track3.visible = false;
+
+    if( num == 1 )
+        _track1.visible = true;
+    if( num == 2 )
+        _track2.visible = true;
+    if( num == 3 )
+        _track3.visible = true;
 }
 
 @end

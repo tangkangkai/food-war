@@ -255,20 +255,17 @@
         return;
     }
     [man soldier].position = touchLocation;
-    if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
-        NSLog(@"moved into track 1");
-     //   NSLog(@"touchLocation (x: %f, y: %f)",touchLocation.x,touchLocation.y);
-     //   NSLog(@"track 1 origin (x: %f, y : %f)",[scroll track1].boundingBox.origin.x,[scroll track1].boundingBox.origin.y);
+    if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+40, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
+        [scroll showTrack:1];
         
-        [scroll track1].visible = true;
-    } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+20, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
-        NSLog(@"moved into track 2");
-        [scroll track2].visible = true;
+    } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+30, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
+        [scroll showTrack:2];
+
     } else if (CGRectContainsPoint(CGRectMake([scroll track3].boundingBox.origin.x, [scroll track3].boundingBox.origin.y+20, [scroll track3].boundingBox.size.width, [scroll track3].boundingBox.size.height),touchLocation)) {
-        NSLog(@"moved into track 3");
-        [scroll track3].visible = true;
+        [scroll showTrack:3];
+
     } else {
-        [scroll trackInvist];
+        [scroll showTrack:0];
     }
 }
 
@@ -295,7 +292,7 @@
     }
     man = NULL;
     selected_soldier = NULL;
-    [scroll trackInvist];
+    [scroll showTrack:0];
 }
 
 

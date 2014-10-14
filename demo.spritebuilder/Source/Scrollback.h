@@ -33,7 +33,7 @@
 @property Base *junkBase;
 
 
-- (void)trackInvist;
+- (void)showTrack:(int) num;
 
 - (void)bombExplode:(CGPoint)location;
 
