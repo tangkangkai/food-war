@@ -182,6 +182,12 @@
 
 }
 
+- (void)bombExplode:(CGPoint)location{
+    CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"Fire"];
+    fire.autoRemoveOnFinish = YES;
+    fire.position = location;
+    [self addChild:fire];
+}
 
 
 - (void)trackInvist {

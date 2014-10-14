@@ -308,7 +308,7 @@
     newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
-    
+    [scroll bombExplode:location];
 }
 
 
