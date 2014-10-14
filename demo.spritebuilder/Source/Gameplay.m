@@ -324,7 +324,7 @@
                                  level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
-    }else if( [selected_soldier  isEqual: @"bean"]  ){
+    } else if( [selected_soldier  isEqual: @"bean"]  ){
         BeanMan *newSoldier = [[BeanMan alloc] initBean: lane_num
                                                startPos:sourcehouse.position
                                                destPos: destination
@@ -333,7 +333,7 @@
                                level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
-    }else if( [selected_soldier  isEqual: @"banana"]  ){
+    } else if( [selected_soldier  isEqual: @"banana"]  ){
         BananaMan *newSoldier = [[BananaMan alloc] initBanana: lane_num
                                                    startPos:sourcehouse.position
                                                    destPos: destination
@@ -342,7 +342,7 @@
                                  level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
-    }
+    } 
 
 
 }

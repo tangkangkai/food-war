@@ -16,13 +16,13 @@
     CCNode *_potatobg;
     CCNode *_beanbg;
     CCNode *_bananabg;
-    CCNode *_cokebg;
+    CCNode *_cornbg;
     
     //tick
     CCNode *_potatochoosed;
     CCNode *_beanchoosed;
     CCNode *_bananachoosed;
-    CCNode *_cokechoosed;
+    CCNode *_cornchoosed;
     
     //
     NSMutableDictionary *lineupDict;
@@ -35,12 +35,12 @@
     _potatobg.visible = false;
     _beanbg.visible = false;
     _bananabg.visible = false;
-    _cokebg.visible = false;
+    _cornbg.visible = false;
     
     _potatochoosed.visible = false;
     _beanchoosed.visible = false;
     _bananachoosed.visible = false;
-    _cokechoosed.visible = false;
+    _cornchoosed.visible = false;
     
     lineupDict = [[NSMutableDictionary alloc] init];
 }
@@ -61,8 +61,8 @@
     [self chooseSoldier:@"banana" background:_bananabg choosed:_bananachoosed];
 }
 
-- (void)coke {
-    [self chooseSoldier:@"coke" background:_cokebg choosed:_cokechoosed];
+- (void)corn {
+    [self chooseSoldier:@"corn" background:_cornbg choosed:_cornchoosed];
 }
 
 - (void)chooseSoldier: (NSString *)soldier background: (CCNode *)bg choosed: (CCNode *)tick {
@@ -77,7 +77,7 @@
         [lineupDict setObject:[NSString stringWithFormat:@"%@.png", soldier] forKey:soldier];
         NSLog(@"If contain soldier: %@", ([lineupDict objectForKey:soldier]) != nil ? @"Yes" : @"No");
     }
-    }
+}
 
 - (void)go {
     // save lineup

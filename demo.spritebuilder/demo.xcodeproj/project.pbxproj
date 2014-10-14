@@ -43,14 +43,14 @@
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		BE106AAA19C8ECB700FAE0C5 /* SettingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BE106AA919C8ECB700FAE0C5 /* SettingScene.m */; };
-		BE18BDC219E26C3E009A495A /* healthy_food.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE18BDC019E26C3E009A495A /* healthy_food.plist */; };
-		BE18BDC319E26C3E009A495A /* healthy_food.png in Resources */ = {isa = PBXBuildFile; fileRef = BE18BDC119E26C3E009A495A /* healthy_food.png */; };
 		BE18BDED19EC7D68009A495A /* playBackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BE18BDEC19EC7D68009A495A /* playBackground.mp3 */; };
 		BE9A416C19D7BF480060E00D /* SavedData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9A416B19D7BF480060E00D /* SavedData.m */; };
 		BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4419CA610C009DF48C /* ChoiceScene.m */; };
 		BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4619CA610C009DF48C /* GameScene.m */; };
 		BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C4819CA610C009DF48C /* StoreScene.m */; };
 		BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C5319CA62C1009DF48C /* Gameplay.m */; };
+		BEBB1D9019ECEBAC007F4FA1 /* healthy_food.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D8E19ECEBAC007F4FA1 /* healthy_food.plist */; };
+		BEBB1D9119ECEBAC007F4FA1 /* healthy_food.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D8F19ECEBAC007F4FA1 /* healthy_food.png */; };
 		E91638C119DDFB4200115E9B /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = E91638BF19DDFB4200115E9B /* Bomb.m */; };
 		E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996019EB0DB900FB214D /* background_track.mp3 */; };
 		E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996119EB0DB900FB214D /* punch1.mp3 */; };
@@ -120,8 +120,6 @@
 		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
 		BE106AA819C8ECB700FAE0C5 /* SettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingScene.h; path = Source/SettingScene.h; sourceTree = "<group>"; };
 		BE106AA919C8ECB700FAE0C5 /* SettingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingScene.m; path = Source/SettingScene.m; sourceTree = "<group>"; };
-		BE18BDC019E26C3E009A495A /* healthy_food.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = healthy_food.plist; sourceTree = "<group>"; };
-		BE18BDC119E26C3E009A495A /* healthy_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthy_food.png; sourceTree = "<group>"; };
 		BE18BDEC19EC7D68009A495A /* playBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = playBackground.mp3; sourceTree = "<group>"; };
 		BE9A416A19D7BF480060E00D /* SavedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedData.h; sourceTree = "<group>"; };
 		BE9A416B19D7BF480060E00D /* SavedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedData.m; sourceTree = "<group>"; };
@@ -133,6 +131,8 @@
 		BEB82C4819CA610C009DF48C /* StoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreScene.m; path = Source/StoreScene.m; sourceTree = "<group>"; };
 		BEB82C5219CA62C1009DF48C /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gameplay.h; path = Source/Gameplay.h; sourceTree = "<group>"; };
 		BEB82C5319CA62C1009DF48C /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gameplay.m; path = Source/Gameplay.m; sourceTree = "<group>"; };
+		BEBB1D8E19ECEBAC007F4FA1 /* healthy_food.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = healthy_food.plist; sourceTree = "<group>"; };
+		BEBB1D8F19ECEBAC007F4FA1 /* healthy_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = healthy_food.png; sourceTree = "<group>"; };
 		E91638BB19DDFA8B00115E9B /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bomb.h; path = Source/Bomb.h; sourceTree = "<group>"; };
 		E91638BF19DDFB4200115E9B /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
 		E9DE996019EB0DB900FB214D /* background_track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_track.mp3; path = Audio/background_track.mp3; sourceTree = "<group>"; };
@@ -272,9 +272,9 @@
 			isa = PBXGroup;
 			children = (
 				E9DE995A19EB060E00FB214D /* audio */,
-				BE18BDC019E26C3E009A495A /* healthy_food.plist */,
 				49320C2719ECE43500980DBF /* corn_cannon.png */,
-				BE18BDC119E26C3E009A495A /* healthy_food.png */,
+				BEBB1D8E19ECEBAC007F4FA1 /* healthy_food.plist */,
+				BEBB1D8F19ECEBAC007F4FA1 /* healthy_food.png */,
 				4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */,
 				4904C28E19D1CF1600C6DEF2 /* burger-small.png */,
 				B73789911807667A0076A88C /* Icons */,
@@ -392,9 +392,9 @@
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,
 				49320C2819ECE43500980DBF /* corn_cannon.png in Resources */,
+				BEBB1D9119ECEBAC007F4FA1 /* healthy_food.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
-				BE18BDC319E26C3E009A495A /* healthy_food.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
@@ -404,9 +404,9 @@
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
-				BE18BDC219E26C3E009A495A /* healthy_food.plist in Resources */,
 				4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */,
 				E9DE996519EB110800FB214D /* blop.mp3 in Resources */,
+				BEBB1D9019ECEBAC007F4FA1 /* healthy_food.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
