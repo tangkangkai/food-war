@@ -108,6 +108,9 @@
         if(distance>_missile_atk_range){
             return;
         }
+        if (touchLocation.x<_missile.position.x+40) {
+            return;
+        }
         
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
             _startlaunch=0;
