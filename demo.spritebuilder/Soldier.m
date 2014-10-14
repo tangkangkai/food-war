@@ -403,13 +403,25 @@
         return false;
     }
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
+        _readyLaunch = true;
         return true;
     }
     return false;
 }
 
+- (void) undoReady{
+    _readyLaunch = false;
+}
+
 - (void) Launch{
     last_attack_time = [NSDate date];
+    _readyLaunch = false;
+}
+
+-(void)move{
+    if( !_readyLaunch ){
+        [super move];
+    }
 }
 
 - (id)initCorn: (int) lane_num
@@ -422,7 +434,7 @@
     // TODO read level from file
     level = 1;
     type = 3;
-    
+    _readyLaunch = false;
     moveSpeed = 20;
     atkInterval = 10;
     atkRange = 350;
@@ -434,4 +446,5 @@
     
     return self;
 }
+
 @end
