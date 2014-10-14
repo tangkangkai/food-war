@@ -481,7 +481,7 @@
     
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         _readyLaunch = true;
-        [self schedule:@selector(flash) interval:0.5];
+        [self schedule:@selector(flash) interval:0.2];
         return true;
     }
     return false;
