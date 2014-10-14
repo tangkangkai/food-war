@@ -481,7 +481,7 @@
     
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         _readyLaunch = true;
-        [self schedule:@selector(flash) interval:0.5];
+        [self schedule:@selector(flash) interval:0.1];
         return true;
     }
     return false;
@@ -541,10 +541,10 @@
         for( int i = 0; i<[s children].count; i++ ){
             if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
                 CCSprite *body = [s children][i];
-                if( body.opacity == 1 )
-                    body.opacity = 0.5;
-                else if( body.opacity == 0.5 )
-                    body.opacity = 1;
+                
+                body.opacity = body.opacity+0.1;
+                if( body.opacity > 1 )
+                    body.opacity = body.opacity-1;
             }
         }
     
