@@ -146,14 +146,18 @@
 
 @interface CornMan : Soldier
 
+@property BOOL readyLaunch;
+
+- (void) undoReady;
 - (BOOL) readyToLaunch;
 - (void) Launch;
+- (void) move;
 
 - (id)initCorn :(int) lane_num
-         startPos:(CGPoint) start
-          destPos:(CGPoint) dest
-           ourArr:(NSMutableArray*) ourArray
-         enemyArr:(NSMutableArray*) enemyArray
-            level: (int) soldierLevel;
+                startPos:(CGPoint) start
+                destPos:(CGPoint) dest
+                ourArr:(NSMutableArray*) ourArray
+                enemyArr:(NSMutableArray*) enemyArray
+                level: (int) soldierLevel;
 
 @end
