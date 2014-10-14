@@ -41,6 +41,7 @@
     CCSprite *_first;
     CCSprite *_second;
     CCSprite *_third;
+    CCSprite *_fourth;
     NSMutableArray *lineupArray;
     
     OALSimpleAudio *audio;
@@ -81,6 +82,7 @@
     [spots addObject:_first];
     [spots addObject:_second];
     [spots addObject:_third];
+    [spots addObject:_fourth];
     NSArray *keys = [soldiers allKeys];
     NSLog(@"length of lineup: %d", (int)keys.count);
     for (int i = 0; i < (int)keys.count; i++) {
@@ -342,7 +344,16 @@
                                  level:1];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
-    } 
+    } else if( [selected_soldier  isEqual: @"corn"]  ){
+        CornMan *newSoldier = [[CornMan alloc] initCorn: lane_num
+                                                     startPos:sourcehouse.position
+                                                      destPos: destination
+                                                       ourArr:[scroll healthy_soldiers]
+                                                     enemyArr:[scroll junk_soldiers]
+                                            level:1];
+        [scroll addChild: [newSoldier soldier]];
+        [newSoldier move];
+    }
 
 
 }
