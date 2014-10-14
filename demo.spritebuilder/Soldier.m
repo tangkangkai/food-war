@@ -541,7 +541,10 @@
         for( int i = 0; i<[s children].count; i++ ){
             if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
                 CCSprite *body = [s children][i];
-                body.opacity = (body.opacity + 0.5)/1;
+                if( body.opacity == 1 )
+                    body.opacity = 0.5;
+                else if( body.opacity == 0.5 )
+                    body.opacity = 1;
             }
         }
     
