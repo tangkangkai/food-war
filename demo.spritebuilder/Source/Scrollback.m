@@ -13,6 +13,7 @@
     CCNode *_missile;
     int _startlaunch;
     Soldier *s;
+    OALSimpleAudio *audio;
 }
 
 - (id)init{
@@ -22,6 +23,7 @@
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _target = [NSMutableArray arrayWithObjects:nil ];
+    audio = [OALSimpleAudio sharedInstance];
     return self;
 }
 
@@ -69,6 +71,7 @@
     // allDone is your method to run...
     fire.position=_missile.position;
     [self addChild:fire];
+    [audio playEffect:@"missle_launch.mp3"];
     [missile runAction:sequence];
 
 }
@@ -88,6 +91,7 @@
     explosion.position = _missile.position;
     // add the particle effect to the same node the seal is on
     [_missile.parent addChild:explosion];
+    [audio playEffect:@"explode.mp3"];
     
     _targetLoseHealth=[self missileDetect];
     for (Soldier *target in _targetLoseHealth) {
