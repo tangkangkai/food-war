@@ -78,7 +78,7 @@
      _bomb.position = CGPointMake(newXPosition, _bomb.position.y);*/
 }
 -(int) getPower{
-//    return power;
+    return _power;
 }
 
 
