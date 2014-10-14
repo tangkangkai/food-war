@@ -313,7 +313,7 @@
     CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
     [scroll bombExplode:location];
     
-    
+    /*
     NSMutableArray *healthyArray =[scroll healthy_soldiers];
     long healthyArraySize = healthyArray.count;
     for(int i=0; i < healthyArraySize; i++){
@@ -332,7 +332,7 @@
         if(s.position.x * s.position.x + s.position.x * s.position.y < 150*150){
             [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
         }
-    }
+    }*/
 }
 
 
