@@ -22,6 +22,10 @@
     return atkPower;
 }
 
+- (int)getAtkRange {
+    return atkRange;
+}
+
 - (int)getAtkInt {
     return atkInterval;
 }
