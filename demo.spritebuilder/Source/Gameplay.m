@@ -201,19 +201,17 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:self];
-    
+    int soldierLevel = 0;
+    NSString *soldier = NULL;
+    NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
     if (_first.spriteFrame!=NULL && CGRectContainsPoint(_first.boundingBox,touchLocation)) {
-        selected_soldier = [lineupArray objectAtIndex:0];
-        selected_soldier_animation=[lineupArray objectAtIndex:0];
+        soldier = [lineupArray objectAtIndex:0];
     } else if (_second.spriteFrame!=NULL && CGRectContainsPoint(_second.boundingBox,touchLocation)) {
-        selected_soldier = [lineupArray objectAtIndex:1];
-        selected_soldier_animation=[lineupArray objectAtIndex:1];
+        soldier = [lineupArray objectAtIndex:1];
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_third.boundingBox,touchLocation)) {
-        selected_soldier = [lineupArray objectAtIndex:2];
-        selected_soldier_animation=[lineupArray objectAtIndex:2];
+        soldier = [lineupArray objectAtIndex:2];
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_fourth.boundingBox,touchLocation)) {
-        selected_soldier = [lineupArray objectAtIndex:3];
-        selected_soldier_animation=[lineupArray objectAtIndex:3];
+        soldier = [lineupArray objectAtIndex:3];
     
     } else if(CGRectContainsPoint(_cabbageBomb.boundingBox,touchLocation)) {
         selected_soldier = @"cabbageBomb";
@@ -225,13 +223,17 @@
         return;
     }
     
+    selected_soldier = soldier;
+    selected_soldier_animation = soldier;
+    soldierLevel = [soldierLevelDict objectForKey:soldier];
+    
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
                                                group:-1
                                                lane_num:-1
                                                startPos:touchLocation
                                                destPos:touchLocation
-                                               ourArr:NULL enemyArr:NULL level:1];
+                                               ourArr:NULL enemyArr:NULL level:soldierLevel];
         man = newSolider;
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
@@ -308,7 +310,8 @@
     newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
-    
+    CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
+    [scroll bombExplode:location];
 }
 
 
@@ -319,6 +322,12 @@
     }
     [self removeChild: [man soldier]];
     
+    NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
+    int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
+    
+    
+    
+    
     // Avoid the physic confliction with the new born enemy
     CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
     if( [selected_soldier  isEqual: @"potatoMan"] ){
@@ -327,7 +336,7 @@
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
                                                   enemyArr:[scroll junk_soldiers]
-                                 level:1];
+                                 level:potatoLevel];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
@@ -336,7 +345,7 @@
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
                                                enemyArr:[scroll junk_soldiers]
-                               level:1];
+                               level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
@@ -345,7 +354,7 @@
                                                    destPos: destination
                                                    ourArr:[scroll healthy_soldiers]
                                                    enemyArr:[scroll junk_soldiers]
-                                 level:1];
+                                 level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"corn"]  ){
@@ -354,7 +363,7 @@
                                                       destPos: destination
                                                        ourArr:[scroll healthy_soldiers]
                                                      enemyArr:[scroll junk_soldiers]
-                                            level:1];
+                                            level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }
