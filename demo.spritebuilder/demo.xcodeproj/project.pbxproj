@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4904C28E19D1CF1600C6DEF2 /* burger-small.png */; };
 		4904C29319D1CFAC00C6DEF2 /* burger-small-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */; };
+		49320C2819ECE43500980DBF /* corn_cannon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49320C2719ECE43500980DBF /* corn_cannon.png */; };
 		49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A8E53219CFF8CF00A7DC61 /* Soldier.m */; };
 		59B924E019E4F02500C45A85 /* Selectscroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B924DF19E4F02500C45A85 /* Selectscroll.m */; };
 		59BF557019DA288600D30484 /* Scrollback.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BF556F19DA288600D30484 /* Scrollback.m */; };
@@ -76,6 +77,7 @@
 /* Begin PBXFileReference section */
 		4904C28E19D1CF1600C6DEF2 /* burger-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burger-small.png"; sourceTree = "<group>"; };
 		4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burger-small-left.png"; sourceTree = "<group>"; };
+		49320C2719ECE43500980DBF /* corn_cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corn_cannon.png; sourceTree = "<group>"; };
 		49A8E53119CFF8CF00A7DC61 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soldier.h; sourceTree = "<group>"; };
 		49A8E53219CFF8CF00A7DC61 /* Soldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soldier.m; sourceTree = "<group>"; };
 		59B924DE19E4F02500C45A85 /* Selectscroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Selectscroll.h; path = Source/Selectscroll.h; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				E9DE995A19EB060E00FB214D /* audio */,
 				BE18BDC019E26C3E009A495A /* healthy_food.plist */,
+				49320C2719ECE43500980DBF /* corn_cannon.png */,
 				BE18BDC119E26C3E009A495A /* healthy_food.png */,
 				4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */,
 				4904C28E19D1CF1600C6DEF2 /* burger-small.png */,
@@ -388,6 +391,7 @@
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,
+				49320C2819ECE43500980DBF /* corn_cannon.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				BE18BDC319E26C3E009A495A /* healthy_food.png in Resources */,
