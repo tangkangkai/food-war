@@ -80,7 +80,7 @@
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
         
-        [self attack_animation:target];
+        [self attackAnimation:target];
         if( [ target loseHealth:atkPower ] == 0 ){
             if( [self detectEnemy] == NULL ){
                 [self move];
@@ -89,7 +89,7 @@
     }
 }
 
-- (void)attack_animation:(Soldier*)target{
+- (void)attackAnimation:(Soldier*)target{
 }
 
 - (Soldier*)detectEnemy{
@@ -110,7 +110,17 @@
             }
         }
         
-        if( ( [s lane_num] == -1 || _lane_num == [ s lane_num ] ) &&
+        
+        if( type == 3 ){
+            double dx = ABS(self_pos.x-enemy_pos.x);
+            double dy = ABS(self_pos.y-enemy_pos.y);
+            double dist = sqrt(dx*dx + dy*dy);
+            if( dist < nearest_distance ){
+                target = s;
+                nearest_distance = dist;
+            }
+        }
+        else if( ( [s lane_num] == -1 || _lane_num == [ s lane_num ] ) &&
            ABS(enemy_pos.x-self_pos.x)< nearest_distance ){
             
             target = s;
@@ -131,7 +141,6 @@
                   level: (int) level{
     
     self = [super init];
-    
     moving = false;
     last_attack_time = NULL;
     _lane_num = lane_num;
@@ -251,10 +260,10 @@
 }
 
 
-- (void)attack_animation:(Soldier*) target{
+- (void)attackAnimation:(Soldier*) target{
     CCNode *bullet = [CCBReader load:@"coke_bullet"];
     
-    bullet.position = CGPointMake([[self soldier] position].x, [[self soldier] position].y+15);;
+    bullet.position = CGPointMake([[self soldier] position].x-5, [[self soldier] position].y+15);;
     CCNode * parent = [self soldier].parent;
     [parent addChild:bullet];
     float duration = ABS(bullet.position.x - [[target soldier] position].x)/atkRange;
@@ -262,7 +271,6 @@
                                                    position:[[target soldier] position]];
     CCActionRemove *actionRemove = [CCActionRemove action];
     [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
-    
 }
 
 @end
@@ -347,7 +355,7 @@
     
     return self;
 }
-- (void)attack_animation:(Soldier*) target{
+- (void)attackAnimation:(Soldier*) target{
     CCNode *bullet = [CCBReader load:@"coke_bullet"];
     
     bullet.position = CGPointMake([[self soldier] position].x+10, [[self soldier] position].y+5);;
