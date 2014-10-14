@@ -11,7 +11,6 @@
 
 @implementation Scrollback{
     CCNode *_missile;
-
     int _startlaunch;
     Soldier *s;
 }
@@ -29,10 +28,10 @@
 }
 
 - (void)didLoadFromCCB {
-    Base *base1 = [[Base alloc] initBase:_base1.position group:0 ourArr:_healthy_soldiers enemyArr:_junk_soldiers];
-    Base *base2 = [[Base alloc] initBase:_base2.position group:1 ourArr:_junk_soldiers enemyArr:_healthy_soldiers];
-    [self addChild:[base1 soldier]];
-    [self addChild:[base2 soldier]];
+    _healthBase = [[Base alloc] initBase:_base1.position group:0 ourArr:_healthy_soldiers enemyArr:_junk_soldiers];
+    _junkBase = [[Base alloc] initBase:_base2.position group:1 ourArr:_junk_soldiers enemyArr:_healthy_soldiers];
+    [self addChild:[_healthBase soldier]];
+    [self addChild:[_junkBase soldier]];
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:6];

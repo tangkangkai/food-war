@@ -136,7 +136,9 @@
 
 @interface Base : Soldier
 
+@property BOOL isDead;
 
+- (void)dead;
 - (id)initBase :(CGPoint) start
                 group:(int) group
                 ourArr:(NSMutableArray*) ourArray

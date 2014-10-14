@@ -49,7 +49,6 @@
 - (id)init{
     self = [super init];
     if (!self) return(nil);
-    scroll=[_scrollview children][0];
     _physicsWorld=[scroll scroll_physicsWorld];
 
     selected_soldier = NULL;
@@ -61,6 +60,7 @@
 
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
+    scroll=[_scrollview children][0];
     self.userInteractionEnabled = TRUE;
     mTimeInSec = 300;                              //intialize timer
     timeFlag = 0;
@@ -109,31 +109,55 @@
 
 -(void)tick {
     if(timeFlag == 0){
+        if( [[scroll healthBase] isDead]){
+            [self gameover];
+        }
+        else if( [(Base*)[scroll junkBase] isDead] ){
+            [self win];
+        }
+        
         if((mTimeInSec--) == 0){
             timeFlag = 1;
         }
         [_timerLabel setString:[NSString stringWithFormat:@"%d", mTimeInSec]];
         [self updateMoney];
 
-    } else if(timeFlag == 1){
-        [[CCDirector sharedDirector] pause];
-        _gameoverLabel.string = [NSString stringWithFormat:@"GameOver"];
-        UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                    message:@"Plese choose"
-                                                    delegate:self
-                                                    cancelButtonTitle:@"Restart"
-                                                    otherButtonTitles: @"Quit",nil];
-        [alert show];
+    } else if(timeFlag == 1 ){
         timeFlag = 2;
+        [self gameover];
+
     } else{
         //do nothing
     }
 }
 
+- (void)gameover{
+    [[CCDirector sharedDirector] pause];
+    _gameoverLabel.string = [NSString stringWithFormat:@"GameOver"];
+    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Gameover"
+                                                      message:@""
+                                                     delegate:self
+                                            cancelButtonTitle:@"Restart"
+                                            otherButtonTitles: @"Quit",nil];
+    [alert show];
+}
+
+- (void)win{
+    [[CCDirector sharedDirector] pause];
+    _gameoverLabel.string = [NSString stringWithFormat:@"You win"];
+    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"You win"
+                                                      message:@""
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles: nil];
+    [alert setTag:2];
+    [alert show];
+}
+
 - (void)menu {
     [[CCDirector sharedDirector] pause];
-    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Menu"
-                                                message:@"Plese choose"
+    UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Pause"
+                                                message:@""
                                                 delegate:self
                                                 cancelButtonTitle:@"Resume"
                                                 otherButtonTitles: @"Quit", nil];
@@ -150,6 +174,12 @@
     if (buttonIndex == 0){
         if(tag == 1){
             [[CCDirector sharedDirector] resume];
+        }
+        else if(tag==2){
+            [[CCDirector sharedDirector] resume];
+            CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
+            CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
+            [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
         }
         else{
             [[CCDirector sharedDirector] resume];
@@ -325,20 +355,4 @@
     return;
 }
 
-- (void)addjunk {
-    [SavedData deleteSavedData];
-    scroll=[_scrollview children][0];
-    CGPoint destination = CGPointMake([scroll house1].position.x+50,
-                                      [scroll house1].position.y);
-    BurgerMan* test_junk = [[BurgerMan alloc] initBurger:0
-                                          startPos:[scroll house4].position
-                                          destPos:destination
-                                          ourArr:[scroll junk_soldiers]
-                                          enemyArr:[scroll healthy_soldiers]
-                                            level:1];
-
-    [scroll addChild: [test_junk soldier]];
-    [test_junk move];
-    
-}
 @end

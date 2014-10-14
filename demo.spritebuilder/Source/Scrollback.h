@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Soldier.h"
 
 @interface Scrollback : CCNode<CCPhysicsCollisionDelegate>
 
@@ -28,6 +29,8 @@
 @property NSMutableArray *target;
 @property int missile_atk_range;
 @property int missile_atk;
+@property Base *healthBase;
+@property Base *junkBase;
 
 
 - (void)trackInvist;

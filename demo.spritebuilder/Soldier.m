@@ -373,7 +373,7 @@
     // TODO read level from file
     level = 1;
     type = 4;
-                   
+    _isDead = false;
     //atkInterval = 1;
     //atkRange = 120;
     //atkPower = 5 + 5 * level;
@@ -383,6 +383,11 @@
     self = [ super initSoldier:@"base" group:group lane_num:-1 startPos:start destPos:start ourArr:ourArray enemyArr:enemyArray level:level];
     
     return self;
+}
+
+- (void)dead{
+    [ super dead ];
+    _isDead = true;
 }
 
 @end
