@@ -123,9 +123,6 @@
 
 @interface BananaMan : Soldier
 
-- (BOOL) readyToLaunch;
-- (void) Launch;
-
 - (id)initBanana :(int) lane_num
        startPos:(CGPoint) start
         destPos:(CGPoint) dest
@@ -144,5 +141,19 @@
                 group:(int) group
                 ourArr:(NSMutableArray*) ourArray
                 enemyArr:(NSMutableArray*) enemyArray;
+
+@end
+
+@interface CornMan : Soldier
+
+- (BOOL) readyToLaunch;
+- (void) Launch;
+
+- (id)initCorn :(int) lane_num
+         startPos:(CGPoint) start
+          destPos:(CGPoint) dest
+           ourArr:(NSMutableArray*) ourArray
+         enemyArr:(NSMutableArray*) enemyArray
+            level: (int) soldierLevel;
 
 @end
