@@ -203,7 +203,7 @@
     // TODO read level from file
     //level = 1;
     type = 0;
-    moveSpeed = 35;
+    moveSpeed = 30;
     atkInterval = 4;
     atkRange = 40;
     atkPower = 20 + 5 * soldierLevel;
@@ -285,7 +285,7 @@
     level = 1;
     type = 0;
     
-    moveSpeed = 35;
+    moveSpeed = 30;
     atkInterval = 4;
     atkRange = 40;
     atkPower = 20 + 5 * soldierLevel;
