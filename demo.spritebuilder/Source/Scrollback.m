@@ -127,8 +127,7 @@
         s=[_healthy_soldiers objectAtIndex:i];
         int type=[s getType];
 
-        if(type==3&&touch==true)
-        {
+        if(type==3&&touch==true){
             _missile_atk_range=[s getAtkRange];
             _missile_atk=[s getAtkPower];
             
@@ -139,15 +138,13 @@
                 [self addChild:_missile];
                 _startlaunch=1;
                 break;
-
             }
-        }    
+        }
     }
 }
 
 
 -(void)enemy_autobuild:(CCTime)dt{
-
     //TODO change to dictionary
     NSArray *start_positions = @[_house4,_house5,_house6];
     NSArray *end_positions=@[_house1,_house2,_house3];
@@ -179,9 +176,7 @@
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
-
 }
-
 
 
 - (void)trackInvist {
