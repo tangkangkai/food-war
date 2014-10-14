@@ -45,6 +45,10 @@
     lineupDict = [[NSMutableDictionary alloc] init];
 }
 
+- (void)clear {
+    [SavedData deleteSavedData];
+}
+
 - (void)potato {
     [self chooseSoldier:@"potatoMan" background:_potatobg choosed:_potatochoosed];
 }
