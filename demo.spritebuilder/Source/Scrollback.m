@@ -113,6 +113,7 @@
 - (void)bombExplode:(CGPoint)location{
     CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
     fire.autoRemoveOnFinish = YES;
+    CGPoint location2 = CGPointMake(location.x, location.y-100);
     fire.position = location;
     [self addChild:fire];
 }

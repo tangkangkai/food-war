@@ -310,8 +310,8 @@
     newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
-    CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
-    [scroll bombExplode:location];
+//    CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
+    [scroll bombExplode:touchLocation];
     
     /*
      NSMutableArray *healthyArray =[scroll healthy_soldiers];
@@ -334,9 +334,9 @@
     for(int i = 0; i < junkArraySize; i++){
         //   Soldier *s = junkArray[i];
         Soldier *s = [junkArray objectAtIndex:i];
-        int absX = ABS(s.position.x - location.x);
-        int absY = ABS(s.position.y - location.y);
-        if(absX + absY < 600){
+        float absX = ABS([s getSoldier].position.x - touchLocation.x);
+        float absY = ABS([s getSoldier].position.y - (touchLocation.y-100));
+        if(absX + absY < 200){
             [target addObject:[junkArray objectAtIndex:i]];
         }
     }
