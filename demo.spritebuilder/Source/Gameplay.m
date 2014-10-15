@@ -305,7 +305,7 @@
     
     //    [scroll addBomb];
     
-    
+    if(touchLocation.y < 70) return;
     Bomb *newBomb = nil;
     newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
