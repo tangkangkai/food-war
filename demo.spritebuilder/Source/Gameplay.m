@@ -22,7 +22,7 @@
     CCNode *_potatoMan;
     CCNode *_bananaMan;
     CCNode *_beanMan;
-    CCNode *_cabbageBomb;
+    CCNode *_blackBomb;
     CCNode *_scrollview;
     Scrollback *scroll;
 
@@ -213,10 +213,10 @@
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_fourth.boundingBox,touchLocation)) {
         soldier = [lineupArray objectAtIndex:3];
     
-    } else if(CGRectContainsPoint(_cabbageBomb.boundingBox,touchLocation)) {
-        selected_soldier = @"cabbageBomb";
-        selected_soldier_animation=@"cabbageBomb";
-        Bomb* newBomb = [[Bomb alloc] initBomb:@"cabbageRing" startPosition:touchLocation endPosition:touchLocation];
+    } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
+        selected_soldier = @"blackBomb";
+        selected_soldier_animation=@"blackBomb";
+        Bomb* newBomb = [[Bomb alloc] initBomb:@"blackBombRing" startPosition:touchLocation endPosition:touchLocation];
         item = newBomb;
         // TODO possible memory leak
         [self addChild: [newBomb bomb]];
@@ -244,7 +244,7 @@
 {
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    if([selected_soldier isEqualToString:@"cabbageBomb"]){
+    if([selected_soldier isEqualToString:@"blackBomb"]){
         if(item == NULL) return;
         
         [item bomb].position = touchLocation;
@@ -275,7 +275,7 @@
     [audio playEffect:@"blop.mp3"];
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
-    if([selected_soldier_animation isEqualToString:@"cabbageBomb"]) {
+    if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
         [self launchBomb:touchLocation];
     } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
@@ -307,7 +307,7 @@
     
     
     Bomb *newBomb = nil;
-    newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
+    newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
     CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);

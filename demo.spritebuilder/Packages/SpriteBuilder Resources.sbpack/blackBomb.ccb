@@ -49,7 +49,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>cabbage</string>
+				<string>blackBomb</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-6</real>
-							<real>4</real>
+							<real>20</real>
+							<real>32</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.3066466748714447</real>
-							<real>0.3066466748714447</real>
+							<real>0.226766437292099</real>
+							<real>0.226766437292099</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/cabbage.png</string>
+							<string>foodwar_picture/blackBomb.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -168,10 +168,10 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>0.004999999888241291</real>
-					<real>0.004999999888241291</real>
-					<integer>2</integer>
-					<integer>2</integer>
+					<real>30</real>
+					<real>30</real>
+					<integer>0</integer>
+					<integer>0</integer>
 				</array>
 			</dict>
 			<dict>
@@ -181,8 +181,8 @@
 				<string>Point</string>
 				<key>value</key>
 				<array>
-					<real>0.5</real>
-					<real>0.5</real>
+					<real>0.0</real>
+					<real>0.0</real>
 				</array>
 			</dict>
 			<dict>
