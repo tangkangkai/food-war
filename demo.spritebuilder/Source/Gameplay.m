@@ -303,6 +303,9 @@
     }
     [self removeChild: [item bomb]];
     
+    //    [scroll addBomb];
+    
+    
     Bomb *newBomb = nil;
     newBomb = [[Bomb alloc] initBomb:@"cabbageBomb" startPosition:touchLocation endPosition:touchLocation];
     [scroll addChild: [newBomb bomb]];
@@ -311,25 +314,38 @@
     [scroll bombExplode:location];
     
     /*
-    NSMutableArray *healthyArray =[scroll healthy_soldiers];
-    long healthyArraySize = healthyArray.count;
-    for(int i=0; i < healthyArraySize; i++){
-        
-        Soldier *s = [healthyArray objectAtIndex:i];
-  //      Soldier *s = healthyArray[i];
-        if(s.position.x * s.position.x + s.position.x * s.position.y < 150*150){
-            [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
-        }
-    }
+     NSMutableArray *healthyArray =[scroll healthy_soldiers];
+     long healthyArraySize = healthyArray.count;
+     for(int i=0; i < healthyArraySize; i++){
+     
+     Soldier *s = [healthyArray objectAtIndex:i];
+     //      Soldier *s = healthyArray[i];
+     int absX = s.position.x - location.x;
+     int absY = s.position.y - location.y;
+     if(absX + absY < 300){
+     [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
+     }
+     }*/
+    
     NSMutableArray *junkArray =[scroll junk_soldiers];
+    NSMutableArray *target;
+    target= [NSMutableArray arrayWithObjects:nil ];
     long junkArraySize = junkArray.count;
     for(int i = 0; i < junkArraySize; i++){
-     //   Soldier *s = junkArray[i];
-        Soldier *s = [healthyArray objectAtIndex:i];
-        if(s.position.x * s.position.x + s.position.x * s.position.y < 150*150){
-            [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
+        //   Soldier *s = junkArray[i];
+        Soldier *s = [junkArray objectAtIndex:i];
+        int absX = ABS(s.position.x - location.x);
+        int absY = ABS(s.position.y - location.y);
+        if(absX + absY < 600){
+            [target addObject:[junkArray objectAtIndex:i]];
         }
-    }*/
+    }
+    long num = [target count];
+    for(int i = 0; i < num; i++){
+        Soldier *s = [target objectAtIndex:i];
+        [s loseHealth:[newBomb power]];
+    }
+
 }
 
 
