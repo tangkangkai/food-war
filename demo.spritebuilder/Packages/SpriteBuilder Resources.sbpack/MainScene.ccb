@@ -80,8 +80,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-1.9790562391281128</real>
-									<real>-1.9937702417373657</real>
+									<real>-9.8952808380126953</real>
+									<real>-0.99688512086868286</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -119,7 +119,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>foodwar_picture/background_beta_01.png</string>
+									<string>foodwar_picture/startgame.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -136,6 +136,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -169,8 +171,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.58434069156646729</real>
-									<real>0.61560517549514771</real>
+									<real>0.45890754461288452</real>
+									<real>0.5034555196762085</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -495,8 +497,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.52288401126861572</real>
-									<real>0.38097745180130005</real>
+									<real>0.74587619304656982</real>
+									<real>0.45574384927749634</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -821,8 +823,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.73604655265808105</real>
-									<real>0.38098722696304321</real>
+									<real>0.74649930000305176</real>
+									<real>0.3093360960483551</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -846,7 +848,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
+									<real>0.94826853275299072</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>
