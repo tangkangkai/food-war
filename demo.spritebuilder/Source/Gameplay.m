@@ -312,6 +312,7 @@
     [newBomb drop:touchLocation];
 //    CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
     [scroll bombExplode:touchLocation];
+    [audio playEffect:@"explode.mp3"];
     
     /*
      NSMutableArray *healthyArray =[scroll healthy_soldiers];
