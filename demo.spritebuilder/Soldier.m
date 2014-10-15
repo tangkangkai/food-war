@@ -119,7 +119,6 @@
             }
         }
         
-        
         if( type == 3 ){
             double dx = ABS(self_pos.x-enemy_pos.x);
             double dy = ABS(self_pos.y-enemy_pos.y);
@@ -157,6 +156,7 @@
 
     if (img != NULL) {
         _soldier = [CCBReader load:img];
+        [_soldier setZOrder:999];
     }
     start.y += arc4random() % 5;
     _start_pos = start;
@@ -207,10 +207,16 @@
 }
 
 - (void)update_health{
+    BOOL update = false;
     for( int i = 0; i<[_soldier children].count; i++ ){
         if( [ [_soldier children][i] isKindOfClass:[CCNodeColor class]] ){
             CCNodeColor *healthBar = [ _soldier children][i];
-            [healthBar setContentSize:CGSizeMake( (((float)health / (float)total_health))*100, 100)];
+
+            if( !update ){
+                [healthBar setContentSize:CGSizeMake( (((float)health / (float)total_health))*100, 100)];
+                update = true;
+            }
+            [ healthBar setVisible:true];
         }
     }
 }
