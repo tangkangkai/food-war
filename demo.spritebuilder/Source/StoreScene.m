@@ -206,8 +206,8 @@
 
 
 -(void)reduceTotalMoney: (int)value {
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(128, 270)];
-    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(128, 287)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(412, 270)];
+    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(412, 291)];
     
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveDown, moveUp]];
     [_total runAction:sequence];
