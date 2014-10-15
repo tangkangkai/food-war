@@ -13,7 +13,6 @@
 
 - (void)onEnter {
     [super onEnter];
-
 }
 
 - (void)start {
