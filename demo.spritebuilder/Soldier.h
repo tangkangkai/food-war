@@ -10,6 +10,7 @@
 
 @interface Soldier : CCNode{
     
+    int total_health;
     int health;
     NSDate *last_attack_time;
     bool moving;

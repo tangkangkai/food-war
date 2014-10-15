@@ -106,13 +106,11 @@
     CCScene *storeScene = [CCBReader loadAsScene:@"StoreScene"];
     CCTransition *trans = [CCTransition transitionPushWithDirection: CCTransitionDirectionUp duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:storeScene withTransition:trans];
-    
 }
 
 - (void)back {
     
     CCScene *gameScene = [CCBReader loadAsScene:@"GameScene"];
-    
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
 }

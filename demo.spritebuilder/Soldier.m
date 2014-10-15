@@ -198,9 +198,9 @@
 
 - (void)update_health{
     for( int i = 0; i<[_soldier children].count; i++ ){
-        if( [ [_soldier children][i] isKindOfClass:[CCLabelTTF class]] ){
-            CCLabelTTF *health_num = [ _soldier children][i];
-            [health_num setString:[NSString stringWithFormat:@"%d", health]];
+        if( [ [_soldier children][i] isKindOfClass:[CCNodeColor class]] ){
+            CCNodeColor *healthBar = [ _soldier children][i];
+            [healthBar setContentSize:CGSizeMake( (((float)health / (float)total_health))*100, 100)];
         }
     }
 }
@@ -227,6 +227,8 @@
     defence = 0.2 + 0.05 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 200 + 50 * soldierLevel;
+    total_health = health;
+
     self = [ super initSoldier:@"burgerMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
@@ -254,6 +256,8 @@
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 100 + 20 * soldierLevel;
+    total_health = health;
+
     self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
@@ -296,6 +300,8 @@
     defence = 0.1 + 0.03 * level;
     value = 200 + 20 * level;
     health = 150 + 30 * level;
+    total_health = health;
+
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
@@ -323,6 +329,8 @@
     defence = 0.2 + 0.05 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 200 + 50 * soldierLevel;
+    total_health = health;
+
 
     self = [ super initSoldier:@"potatoMan" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
@@ -351,6 +359,8 @@
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 100 + 20 * soldierLevel;
+    total_health = health;
+
     self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
@@ -403,6 +413,8 @@
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 140 + 20 * soldierLevel;
+    total_health = health;
+
     self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
     
     return self;
@@ -427,6 +439,8 @@
     defence = 0.2 + 0.03 * level;
     value = 100 + 20 * level;
     health = 1000 + 200 * level;
+    total_health = health;
+
     self = [ super initSoldier:@"base" group:group lane_num:-1 startPos:start destPos:start ourArr:ourArray enemyArr:enemyArray level:level];
     
     return self;
@@ -498,14 +512,26 @@
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 120 + 20 * soldierLevel;
+    total_health = health;
+    
     self = [ super initSoldier:@"corn" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    [self schedule:@selector(countDown) interval:0.5];
 
     return self;
 }
 
+-(void)countDown{
+    CCNodeColor *countBar = [[self getSoldier] children][3];
+    if( last_attack_time != nil  ){
+        float timeDiff = [last_attack_time timeIntervalSinceNow]*-1;
+        if( timeDiff <= 10){
+            [countBar setContentSize:CGSizeMake((timeDiff/10.0)*100, 100)];
+        }
+    }
+}
 
 -(void)flash{
-
+    
     CCNode *s = [self getSoldier];
     for( int i = 0; i<[s children].count; i++ ){
         if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
