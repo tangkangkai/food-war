@@ -114,7 +114,7 @@
     CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
     fire.autoRemoveOnFinish = YES;
     CGPoint location2 = CGPointMake(location.x, location.y-100);
-    fire.position = location;
+    fire.position = location2;
     [self addChild:fire];
 }
 
