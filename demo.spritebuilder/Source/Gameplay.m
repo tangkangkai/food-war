@@ -106,7 +106,7 @@
 }
 
 -(void)updateMoney{
-    [_money setString:[NSString stringWithFormat:@"%d", [SavedData money]]];
+    [_money setString:[NSString stringWithFormat:@"$ %d", [SavedData money]]];
 }
 
 -(void)tick {

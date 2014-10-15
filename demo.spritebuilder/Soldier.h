@@ -22,6 +22,8 @@
     int moveSpeed;   // the distance soldier can move per second
     int value;
     int level;
+    OALSimpleAudio *audio;
+
 }
 @property NSInteger *id;
 //@property NSString *name;
@@ -60,6 +62,8 @@
 - (int)getHealth;
 - (int)getAtkInt;
 - (CCNode*)getSoldier;
+- (NSMutableArray*)getArray:(int) enemy;
+
 - (int)getType;
 - (BOOL)isMoving;
 
@@ -151,10 +155,11 @@
 @interface CornMan : Soldier
 
 @property BOOL readyLaunch;
+@property CCNode* missile;
 
 - (void) undoReady;
 - (BOOL) readyToLaunch;
-- (void) Launch;
+- (void) Launch:(CGPoint) targetLoc;
 - (void) move;
 
 - (id)initCorn :(int) lane_num
