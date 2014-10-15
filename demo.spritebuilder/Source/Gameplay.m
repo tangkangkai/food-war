@@ -216,7 +216,7 @@
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
         selected_soldier = @"blackBomb";
         selected_soldier_animation=@"blackBomb";
-        Bomb* newBomb = [[Bomb alloc] initBomb:@"blackBombRing" startPosition:touchLocation endPosition:touchLocation];
+        Bomb* newBomb = [[Bomb alloc] initBomb:@"blackBombRing" startPosition:touchLocation endPosition:touchLocation enemyArr:NULL];
         item = newBomb;
         // TODO possible memory leak
         [self addChild: [newBomb bomb]];
@@ -306,47 +306,9 @@
     //    [scroll addBomb];
     
     if(touchLocation.y < 70) return;
-    Bomb *newBomb = nil;
-    newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation];
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
-//    CGPoint location=CGPointMake(touchLocation.x, touchLocation.y-100);
-    [scroll bombExplode:touchLocation];
-    [audio playEffect:@"explode.mp3"];
-    
-    /*
-     NSMutableArray *healthyArray =[scroll healthy_soldiers];
-     long healthyArraySize = healthyArray.count;
-     for(int i=0; i < healthyArraySize; i++){
-     
-     Soldier *s = [healthyArray objectAtIndex:i];
-     //      Soldier *s = healthyArray[i];
-     int absX = s.position.x - location.x;
-     int absY = s.position.y - location.y;
-     if(absX + absY < 300){
-     [s loseHealth:[newBomb power]];                                      //power should be defined in bomb
-     }
-     }*/
-    
-    NSMutableArray *junkArray =[scroll junk_soldiers];
-    NSMutableArray *target;
-    target= [NSMutableArray arrayWithObjects:nil ];
-    long junkArraySize = junkArray.count;
-    for(int i = 0; i < junkArraySize; i++){
-        //   Soldier *s = junkArray[i];
-        Soldier *s = [junkArray objectAtIndex:i];
-        float absX = ABS([s getSoldier].position.x - touchLocation.x);
-        float absY = ABS([s getSoldier].position.y - (touchLocation.y-100));
-        if(absX + absY < 200){
-            [target addObject:[junkArray objectAtIndex:i]];
-        }
-    }
-    long num = [target count];
-    for(int i = 0; i < num; i++){
-        Soldier *s = [target objectAtIndex:i];
-        [s loseHealth:[newBomb power]];
-    }
-
 }
 
 

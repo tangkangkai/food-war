@@ -14,8 +14,13 @@
 @property CGPoint startPosi;
 @property CGPoint destPosi;
 @property int power;
+@property NSMutableArray* enemies;
+
 
 -(void)drop:(CGPoint)start;
 
--(id)initBomb:(NSString*) img startPosition:(CGPoint) start endPosition:(CGPoint) end;
+-(id)initBomb:(NSString*) img
+              startPosition:(CGPoint) start
+              endPosition:(CGPoint) end
+              enemyArr:(NSMutableArray*) enemyArray;
 @end

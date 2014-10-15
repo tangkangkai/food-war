@@ -589,7 +589,7 @@
     moveSpeed = 20;
     atkInterval = 10;
     atkRange = 350;
-    atkPower = 20 + 8 * soldierLevel;
+    atkPower = 40 + 15 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 120 + 20 * soldierLevel;

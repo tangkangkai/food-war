@@ -28,7 +28,8 @@
 }
 
 
--(id)initBomb:(NSString*) img startPosition:(CGPoint) start endPosition:(CGPoint) end{
+-(id)initBomb:(NSString*) img startPosition:(CGPoint) start endPosition:(CGPoint) end               enemyArr:(NSMutableArray*) enemyArray;
+{
     self = [super init];
     
     start.y -= 30;
@@ -38,7 +39,7 @@
     _destPosi = end;
     _bomb.position = start;         //init CCNode;
     _bomb.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _bomb.contentSize} cornerRadius:0];
-    
+    _enemies = enemyArray;
     accelator = 0;
     _power= 90 ;
     //    _motionManager = [[CMMotionManager alloc] init];
@@ -49,20 +50,32 @@
 
 - (void)update{
     if(accelator > 3) {
-        /*
-         CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explode"];
-         explosion.autoRemoveOnFinish = YES;
-         CGPoint expo = CGPointMake(_bomb.position.x, _bomb.position.y);
-         explosion.position = expo;*/
+
+        CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
+        fire.autoRemoveOnFinish = YES;
+        fire.position = _destPosi;
+        CCNode *parent = [_bomb parent];
+        [parent addChild:fire];
+        OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
+        [audio playEffect:@"explode.mp3"];
         
+        NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
+        for(int i = 0; i < _enemies.count; i++){
+            Soldier *s = [_enemies objectAtIndex:i];
+            float dx = ABS([s getSoldier].position.x - _bomb.position.x);
+            float dy = ABS([s getSoldier].position.y - _bomb.position.y);
+            double dist = sqrt(dx*dx + dy*dy);
+            if(dist < 100){
+                [targets addObject:[_enemies objectAtIndex:i]];
+            }
+        }
+        long num = [targets count];
+        for(int i = 0; i < num; i++){
+            Soldier *s = [targets objectAtIndex:i];
+            [s loseHealth:_power];
+        }
+        [self unschedule:@selector(update)];
         [_bomb removeFromParent];
-        //        [self addChild:explosion];
-        
-        //hit soldiers
-        
-        
-        //       for(int i = 0; i < [Scrollback getHealthySoldier])
-        
         return;
     }
     CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y - accelator);
