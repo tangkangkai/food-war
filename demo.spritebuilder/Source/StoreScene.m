@@ -125,7 +125,7 @@
 
 - (void)back {
     
-    CCScene *gameScene = [CCBReader loadAsScene:@"GameScene"];
+    CCScene *gameScene = [CCBReader loadAsScene:@"ChoiceScene"];
     
     CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:0.5f];
     [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
