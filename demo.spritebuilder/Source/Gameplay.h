@@ -10,6 +10,9 @@
 
 @interface Gameplay : CCNode
 
+@property (nonatomic, strong) CCSprite *anibomb;
+@property (nonatomic, strong) CCAction *flashAction;
+
 - (void)addBombExplosion:(CGPoint) posi;
 
 @end

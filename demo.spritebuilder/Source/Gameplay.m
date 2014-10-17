@@ -11,6 +11,10 @@
 #import "Bomb.h"
 #import "SavedData.h"
 #import "Scrollback.h"
+#import "CCAnimation.h"
+#import <UIKit/UIKit.h>
+#include <CCDirector.h>
+#import "CCAction.h"
 
 #define BURGER 1;
 #define COKE 2;
@@ -304,6 +308,30 @@
     [self removeChild: [item bomb]];
     
     //    [scroll addBomb];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bombAni.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bombAni.png"];
+    [self addChild:spriteSheet];
+    NSMutableArray *flashAnimFrames = [NSMutableArray array];
+    for (int i=1; i<=2; i++) {
+        [flashAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+          [NSString stringWithFormat:@"bomb%d.png",i]]];
+    }
+
+    CCAnimation *flashAnim = [CCAnimation
+                             animationWithSpriteFrames:flashAnimFrames delay:0.1f];
+    
+    CCSpriteFrame* bombFrame = [CCSpriteFrame frameWithImageNamed:@"bomb1.png" ];
+    CCSprite* title = [CCSprite spriteWithSpriteFrame:bombFrame];
+    self.anibomb = title;
+    self.anibomb.position = ccp(300, 300);
+    
+    self.flashAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:flashAnim]];
+    
+    [self.anibomb runAction:self.flashAction];
+//    [self addChild:self.anibomb];
+    [spriteSheet addChild:self.anibomb];
+    
     
     if(touchLocation.y < 70) return;
     Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];

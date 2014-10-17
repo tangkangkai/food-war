@@ -52,6 +52,8 @@
 		BEBB1D9419ECF7A8007F4FA1 /* healthy_food.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D9219ECF7A8007F4FA1 /* healthy_food.png */; };
 		BEBB1D9519ECF7A8007F4FA1 /* healthy_food.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */; };
 		E91638C119DDFB4200115E9B /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = E91638BF19DDFB4200115E9B /* Bomb.m */; };
+		E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D5AB7E19F19D460076F5A3 /* bombAni.plist */; };
+		E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D5AB7F19F19D460076F5A3 /* bombAni.png */; };
 		E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996019EB0DB900FB214D /* background_track.mp3 */; };
 		E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996119EB0DB900FB214D /* punch1.mp3 */; };
 		E9DE996519EB110800FB214D /* blop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996419EB110800FB214D /* blop.mp3 */; };
@@ -137,6 +139,8 @@
 		BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = healthy_food.plist; sourceTree = "<group>"; };
 		E91638BB19DDFA8B00115E9B /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bomb.h; path = Source/Bomb.h; sourceTree = "<group>"; };
 		E91638BF19DDFB4200115E9B /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
+		E9D5AB7E19F19D460076F5A3 /* bombAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bombAni.plist; sourceTree = "<group>"; };
+		E9D5AB7F19F19D460076F5A3 /* bombAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bombAni.png; sourceTree = "<group>"; };
 		E9DE996019EB0DB900FB214D /* background_track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background_track.mp3; path = Audio/background_track.mp3; sourceTree = "<group>"; };
 		E9DE996119EB0DB900FB214D /* punch1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch1.mp3; path = Audio/punch1.mp3; sourceTree = "<group>"; };
 		E9DE996419EB110800FB214D /* blop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blop.mp3; path = Audio/blop.mp3; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9D5AB7D19F19D460076F5A3 /* bombAni */,
 				E9DE995A19EB060E00FB214D /* audio */,
 				49320C2719ECE43500980DBF /* corn_cannon.png */,
 				BEBB1D9219ECF7A8007F4FA1 /* healthy_food.png */,
@@ -295,6 +300,15 @@
 				B73789861807631A0076A88C /* Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9D5AB7D19F19D460076F5A3 /* bombAni */ = {
+			isa = PBXGroup;
+			children = (
+				E9D5AB7E19F19D460076F5A3 /* bombAni.plist */,
+				E9D5AB7F19F19D460076F5A3 /* bombAni.png */,
+			);
+			path = bombAni;
 			sourceTree = "<group>";
 		};
 		E9DE995A19EB060E00FB214D /* audio */ = {
@@ -395,6 +409,7 @@
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				E9DE996219EB0DB900FB214D /* background_track.mp3 in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
+				E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,
@@ -402,6 +417,7 @@
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				BEBB1D9519ECF7A8007F4FA1 /* healthy_food.plist in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
