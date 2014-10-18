@@ -28,13 +28,14 @@
 }
 
 
--(id)initBomb:(NSString*) img startPosition:(CGPoint) start endPosition:(CGPoint) end               enemyArr:(NSMutableArray*) enemyArray;
+-(id)initBomb:(NSString*) img animation:(CCSprite*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end               enemyArr:(NSMutableArray*) enemyArray;
 {
     self = [super init];
     
     start.y -= 30;
     end.y -= 80;
-    _bomb = [CCBReader load:img];
+//    _bomb = [CCBReader load:img];
+    _bomb = ani;
     _startPosi = start;
     _destPosi = end;
     _bomb.position = start;         //init CCNode;

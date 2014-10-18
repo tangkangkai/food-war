@@ -220,10 +220,39 @@
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
         selected_soldier = @"blackBomb";
         selected_soldier_animation=@"blackBomb";
-        Bomb* newBomb = [[Bomb alloc] initBomb:@"blackBombRing" startPosition:touchLocation endPosition:touchLocation enemyArr:NULL];
+        
+        ///////////////test animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bombAni.plist"];
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bombAni.png"];
+        [self addChild:spriteSheet];
+        NSMutableArray *flashAnimFrames = [NSMutableArray array];
+        for (int i=1; i<=2; i++) {
+            [flashAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"bomb%d.png",i]]];
+        }
+        
+        CCAnimation *flashAnim = [CCAnimation
+                                  animationWithSpriteFrames:flashAnimFrames delay:0.1f];
+        
+        CCSpriteFrame* bombFrame = [CCSpriteFrame frameWithImageNamed:@"bomb1.png" ];
+        CCSprite* title = [CCSprite spriteWithSpriteFrame:bombFrame];
+        self.anibomb = title;
+        self.anibomb.position = touchLocation;
+        
+        self.flashAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:flashAnim]];
+        
+        [self.anibomb runAction:self.flashAction];
+        //    [self addChild:self.anibomb];
+        [spriteSheet addChild:self.anibomb];
+
+        
+        ///////////////
+        /*
+        Bomb* newBomb = [[Bomb alloc] initBomb:@"blackBombRing" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:NULL];
         item = newBomb;
         // TODO possible memory leak
-        [self addChild: [newBomb bomb]];
+        [self addChild: [newBomb bomb]];*/
         return;
     }
     
@@ -249,9 +278,9 @@
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     if([selected_soldier isEqualToString:@"blackBomb"]){
-        if(item == NULL) return;
+//        if(item == NULL) return;
         
-        [item bomb].position = touchLocation;
+        _anibomb.position = touchLocation;
         return;
     }
     
@@ -302,12 +331,14 @@
 
 - (void)launchBomb: (CGPoint)touchLocation {
     scroll=[_scrollview children][0];
-    if(item== NULL ){
-        return;
-    }
+//    if(item== NULL ){
+//        return;
+//    }
+//    [self removeChild: [item bomb]];
     [self removeChild: [item bomb]];
+    [_anibomb removeFromParent];
     
-    //    [scroll addBomb];
+    /*
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bombAni.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bombAni.png"];
     [self addChild:spriteSheet];
@@ -330,11 +361,11 @@
     
     [self.anibomb runAction:self.flashAction];
 //    [self addChild:self.anibomb];
-    [spriteSheet addChild:self.anibomb];
+    [spriteSheet addChild:self.anibomb];*/
     
     
     if(touchLocation.y < 70) return;
-    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb  startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
 }

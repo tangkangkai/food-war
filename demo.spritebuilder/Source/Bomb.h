@@ -10,7 +10,7 @@
     
 }
 
-@property CCNode* bomb;
+@property CCSprite* bomb;
 @property CGPoint startPosi;
 @property CGPoint destPosi;
 @property int power;
@@ -20,6 +20,7 @@
 -(void)drop:(CGPoint)start;
 
 -(id)initBomb:(NSString*) img
+              animation:(CCSprite*)ani
               startPosition:(CGPoint) start
               endPosition:(CGPoint) end
               enemyArr:(NSMutableArray*) enemyArray;
