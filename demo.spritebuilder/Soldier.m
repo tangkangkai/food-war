@@ -750,8 +750,11 @@
             CGFloat yDist = ([s soldier].position.y - [self soldier].position.y);
             CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
             if (distance<range+80) {
-                [self Launch:[s soldier].position];
-                return;
+                if ([s soldier].position.x<[self soldier].position.x-20) {
+                    [self Launch:[s soldier].position];
+                    return;
+                }
+                
             }
         }
 
