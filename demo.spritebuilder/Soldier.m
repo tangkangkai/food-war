@@ -295,35 +295,7 @@
 
 @end
 
-@implementation FriesMan
 
-- (id)initFries: (int) lane_num
-      startPos:(CGPoint) start
-       destPos:(CGPoint) dest
-        ourArr:(NSMutableArray*) ourArray
-      enemyArr:(NSMutableArray*) enemyArray
-      level: (int) soldierLevel
-    {
-    
-    // TODO read level from file
-    //level = 1;
-    type = 3;
-    
-    moveSpeed = 20;
-    atkInterval = 10;
-    atkRange = 200;
-    atkPower = 50 + 20 * level;
-    defence = 0.1 + 0.03 * level;
-    value = 200 + 20 * level;
-    health = 150 + 30 * level;
-    total_health = health;
-
-    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    
-    return self;
-}
-
-@end
 
 @implementation PotatoMan
 
@@ -625,3 +597,167 @@
     }
 }
 @end
+
+@implementation FriesMan
+
+- (BOOL) readyToLaunch{
+    
+    if( moving ){
+        return false;
+    }
+    
+    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
+        _readyLaunch = true;
+        [self schedule:@selector(flash) interval:0.1];
+        
+        return true;
+    }
+    return false;
+}
+
+- (void) undoReady{
+    _readyLaunch = false;
+    [self unschedule:@selector(flash)];
+    CCNode *s = [self getSoldier];
+    for( int i = 0; i<[s children].count; i++ ){
+        if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
+            CCSprite *body = [s children][i];
+            body.opacity = 1;
+        }
+    }
+}
+
+- (void) Launch:(CGPoint) targetLoc{
+    CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
+    fire.autoRemoveOnFinish=true;
+    fire.duration=0.2;
+    CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:-90.f];
+    CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc
+                                                         height:80 jumps:1];
+    CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
+    
+    
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
+    // allDone is your method to run...
+    _missile = [CCBReader load:@"friesMissile"];
+    _missile.position = [[ self getSoldier] position];
+    CCNode *parent = [[ self getSoldier ] parent];
+    [parent addChild:_missile];
+    
+    fire.position=_missile.position;
+    [self addChild:fire];
+    [audio playEffect:@"missle_launch.mp3"];
+    [_missile runAction:sequence];
+    
+    last_attack_time = [NSDate date];
+    [self undoReady];
+    
+}
+
+- (void)missileRemoved
+{
+    NSMutableArray *_targetLoseHealth;
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
+    //  make the particle effect clean itself up, once it is completed
+    explosion.autoRemoveOnFinish = TRUE;
+    explosion.duration = 1;
+    
+    // place the particle effect on the seals position
+    explosion.position = _missile.position;
+    // add the particle effect to the same node the seal is on
+    [_missile.parent addChild:explosion];
+    [audio playEffect:@"explode.mp3"];
+    
+    _targetLoseHealth=[self missileDetect];
+    for (Soldier *target in _targetLoseHealth) {
+        [target loseHealth:atkPower];
+    }
+    // finally, remove the destroyed seal
+    [_missile removeFromParent];
+}
+
+//find target the missle hit
+-(NSMutableArray*)missileDetect{
+    //  int nearest_distance=[self missile_atk_range];
+    Soldier *soldier = NULL;
+    NSMutableArray* targets = [NSMutableArray arrayWithObjects:nil ];
+    int dx;
+    int dy;
+    int exploreRange = 40;
+    NSMutableArray *enemyArray = [ self getArray:1 ];
+    for( long i = 0; i < enemyArray.count; i++ ){
+        soldier=[enemyArray objectAtIndex:i];
+        dx=ABS(_missile.position.x-[[soldier soldier]position].x);
+        dy=ABS(_missile.position.y-[[soldier soldier] position].y);
+        double dist = sqrt(dx*dx + dy*dy);
+        if (dist < exploreRange) {
+            [targets addObject:[enemyArray objectAtIndex:i]];
+        }
+    }
+    return targets;
+    
+}
+
+-(void)move{
+    if( !_readyLaunch ){
+        [super move];
+    }
+}
+
+- (id)initFries: (int) lane_num
+       startPos:(CGPoint) start
+        destPos:(CGPoint) dest
+         ourArr:(NSMutableArray*) ourArray
+       enemyArr:(NSMutableArray*) enemyArray
+          level: (int) soldierLevel
+{
+    
+    // TODO read level from file
+ /*   //level = 1;
+    type = 3;
+    
+    moveSpeed = 20;
+    atkInterval = 10;
+    atkRange = 200;
+    atkPower = 50 + 20 * level;
+    defence = 0.1 + 0.03 * level;
+    value = 200 + 20 * level;
+    health = 150 + 30 * level;
+    total_health = health;*/
+    
+    level = 1;
+    type = 3;
+    _readyLaunch = false;
+    moveSpeed = 20;
+    atkInterval = 10;
+    atkRange = 350;
+    atkPower = 40 + 15 * soldierLevel;
+    defence = 0.1 + 0.03 * soldierLevel;
+    value = 100 + 20 * soldierLevel;
+    health = 120 + 20 * soldierLevel;
+    total_health = health;
+    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    [self schedule:@selector(countDown) interval:0.5];
+    return self;
+}
+
+-(void)countDown{
+    NSMutableArray *healthArray = [ self getArray:1 ];
+    if ([self readyToLaunch]) {
+        int range=[self getAtkRange];
+        for( Soldier *s in healthArray ){
+            CGFloat xDist = ([s soldier].position.x - [self soldier].position.x);
+            CGFloat yDist = ([s soldier].position.y - [self soldier].position.y);
+            CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+            if (distance<range+80) {
+                [self Launch:[s soldier].position];
+                return;
+            }
+        }
+
+    }
+}
+
+
+@end
+

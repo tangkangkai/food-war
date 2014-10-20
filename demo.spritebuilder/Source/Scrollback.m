@@ -12,6 +12,7 @@
 @implementation Scrollback{
     int _startlaunch;
     Soldier *s;
+    Soldier *health_s;
     OALSimpleAudio *audio;
 }
 
@@ -81,8 +82,10 @@
     NSArray *start_positions = @[_house4,_house5,_house6];
     NSArray *end_positions=@[_house1,_house2,_house3];
 
-    int soldier_type = arc4random()%2;
+
+  //  int soldier_type = arc4random()%2;
     int lane_num = arc4random()%3;
+    int soldier_type = 3;
     
     CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+30,
                                       [(CCNode*)end_positions[lane_num] position].y);
@@ -108,7 +111,19 @@
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
+    if( soldier_type == 3 ){
+        FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane_num
+                                                       startPos:[(CCNode*)start_positions[lane_num] position]
+                                                        destPos:destination
+                                                         ourArr:_junk_soldiers
+                                                       enemyArr:_healthy_soldiers
+                                                          level:1];
+        [ self addChild: [enemy_soldier soldier]];
+        [enemy_soldier move];
+        
+    }
 }
+
 
 
 - (void)showTrack: (int) num {

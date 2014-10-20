@@ -95,16 +95,7 @@
 
 @end
 
-@interface FriesMan : Soldier
 
-- (id)initFries :(int) lane_num
-       startPos:(CGPoint) start
-        destPos:(CGPoint) dest
-         ourArr:(NSMutableArray*) ourArray
-       enemyArr:(NSMutableArray*) enemyArray
-           level: (int) soldierLevel;
-
-@end
 
 @interface PotatoMan : Soldier
 
@@ -168,5 +159,25 @@
                 ourArr:(NSMutableArray*) ourArray
                 enemyArr:(NSMutableArray*) enemyArray
                 level: (int) soldierLevel;
+
+@end
+
+
+@interface FriesMan : Soldier
+
+@property BOOL readyLaunch;
+@property CCNode* missile;
+
+- (void) undoReady;
+- (BOOL) readyToLaunch;
+- (void) Launch:(CGPoint) targetLoc;
+- (void) move;
+
+- (id)initFries :(int) lane_num
+        startPos:(CGPoint) start
+         destPos:(CGPoint) dest
+          ourArr:(NSMutableArray*) ourArray
+        enemyArr:(NSMutableArray*) enemyArray
+           level: (int) soldierLevel;
 
 @end
