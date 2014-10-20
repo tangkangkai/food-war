@@ -605,11 +605,8 @@
     if( moving ){
         return false;
     }
-    
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         _readyLaunch = true;
-        [self schedule:@selector(flash) interval:0.1];
-        
         return true;
     }
     return false;
@@ -617,14 +614,6 @@
 
 - (void) undoReady{
     _readyLaunch = false;
-    [self unschedule:@selector(flash)];
-    CCNode *s = [self getSoldier];
-    for( int i = 0; i<[s children].count; i++ ){
-        if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
-            CCSprite *body = [s children][i];
-            body.opacity = 1;
-        }
-    }
 }
 
 - (void) Launch:(CGPoint) targetLoc{
@@ -635,7 +624,6 @@
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc
                                                          height:80 jumps:1];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
-    
     
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
     // allDone is your method to run...
@@ -651,7 +639,6 @@
     
     last_attack_time = [NSDate date];
     [self undoReady];
-    
 }
 
 - (void)missileRemoved
@@ -709,23 +696,8 @@
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
-          level: (int) soldierLevel
-{
+          level: (int) soldierLevel {
     
-    // TODO read level from file
- /*   //level = 1;
-    type = 3;
-    
-    moveSpeed = 20;
-    atkInterval = 10;
-    atkRange = 200;
-    atkPower = 50 + 20 * level;
-    defence = 0.1 + 0.03 * level;
-    value = 200 + 20 * level;
-    health = 150 + 30 * level;
-    total_health = health;*/
-    
-    level = 1;
     type = 3;
     _readyLaunch = false;
     moveSpeed = 20;
@@ -733,7 +705,7 @@
     atkRange = 350;
     atkPower = 40 + 15 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
-    value = 100 + 20 * soldierLevel;
+    value = 200 + 20 * soldierLevel;
     health = 120 + 20 * soldierLevel;
     total_health = health;
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
@@ -746,18 +718,20 @@
     if ([self readyToLaunch]) {
         int range=[self getAtkRange];
         for( Soldier *s in healthArray ){
-            CGFloat xDist = ([s soldier].position.x - [self soldier].position.x);
-            CGFloat yDist = ([s soldier].position.y - [self soldier].position.y);
+            CGPoint enemy_pos = [s soldier].position;
+            if( [ s getType ] == 4 ){
+                // make the base reachable
+                enemy_pos.x = enemy_pos.x + 70;
+            }
+            
+            CGFloat xDist = (enemy_pos.x - [self soldier].position.x);
+            CGFloat yDist = (enemy_pos.y - [self soldier].position.y);
             CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
-            if (distance<range+80) {
-                if ([s soldier].position.x<[self soldier].position.x-20) {
-                    [self Launch:[s soldier].position];
-                    return;
-                }
-                
+            if (distance<range && [s soldier].position.x<[self soldier].position.x-20) {
+                [self Launch:[s soldier].position];
+                return;
             }
         }
-
     }
 }
 
