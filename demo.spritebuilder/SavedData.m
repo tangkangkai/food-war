@@ -14,7 +14,7 @@ static int level;
 static NSString *plistPath;
 static NSMutableArray *levelArray;
 static NSMutableDictionary *lineupDictonary;
-static NSMutableDictionary *soldierLevel;
+static NSMutableDictionary *soldierLevel; 
 
 @implementation SavedData
 

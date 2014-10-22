@@ -16,6 +16,10 @@
     CCTextField *_cost2;
     CCTextField *_cost3;
     CCTextField *_cost4;
+    CCTextField *_level1;
+    CCTextField *_level2;
+    CCTextField *_level3;
+    CCTextField *_level4;
     int total;
     int beanCost;
     int bananaCost;
@@ -70,15 +74,20 @@
     beanLevel = [[soldierLevelDict objectForKey:@"bean"] intValue];
     bananaLevel = [[soldierLevelDict objectForKey:@"banana"] intValue];
     
+    //set the level
+    _level1.string = [NSString stringWithFormat:@"Lv.%d", potatoLevel];
+    _level2.string = [NSString stringWithFormat:@"Lv.%d", beanLevel];
+    _level3.string = [NSString stringWithFormat:@"Lv.%d", bananaLevel];
+    
     // calculate the cost of each soldier if upgrading
     beanCost = 200 * beanLevel;
     potatoCost = 150 * potatoLevel;
     bananaCost = 350 * bananaLevel;
     
     //set the price
-    _cost1.string = [NSString stringWithFormat:@" %d", potatoCost];
-    _cost2.string = [NSString stringWithFormat:@" %d", beanCost];
-    _cost3.string = [NSString stringWithFormat:@" %d", bananaCost];
+    _cost1.string = [NSString stringWithFormat:@"$ %d", potatoCost];
+    _cost2.string = [NSString stringWithFormat:@"$ %d", beanCost];
+    _cost3.string = [NSString stringWithFormat:@"$ %d", bananaCost];
     _cost4.string = @"Unknown";
     
     //update the data of soldier
