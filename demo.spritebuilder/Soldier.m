@@ -468,6 +468,8 @@
             body.opacity = 1;
         }
     }
+    CCNode *readySign = [[self getSoldier] children][4];
+    [readySign setVisible:false];
 }
 
 - (void) Launch:(CGPoint) targetLoc{
@@ -494,7 +496,6 @@
 
     last_attack_time = [NSDate date];
     [self undoReady];
-
 }
 
 - (void)missileRemoved
@@ -577,9 +578,18 @@
     CCNodeColor *countBar = [[self getSoldier] children][3];
     if( last_attack_time != nil  ){
         float timeDiff = [last_attack_time timeIntervalSinceNow]*-1;
-        if( timeDiff <= 10){
+        if( timeDiff < 10){
             [countBar setContentSize:CGSizeMake((timeDiff/10.0)*100, 100)];
         }
+        else{
+            [countBar setContentSize:CGSizeMake(100, 100)];
+            CCNode *readySign = [[self getSoldier] children][4];
+            [readySign setVisible:true];
+        }
+    }
+    else if( !moving ){
+        CCNode *readySign = [[self getSoldier] children][4];
+        [readySign setVisible:true];
     }
 }
 
