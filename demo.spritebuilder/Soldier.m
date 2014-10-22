@@ -158,7 +158,7 @@
         _soldier = [CCBReader load:img];
         [_soldier setZOrder:999];
     }
-    start.y += arc4random() % 5;
+    start.y += arc4random() % 8;
     _start_pos = start;
     _dest_pos = dest;
     _soldier.position = start; //CGPoint

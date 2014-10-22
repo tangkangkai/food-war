@@ -32,9 +32,6 @@
 @property Base *healthBase;
 @property Base *junkBase;
 
-
 - (void)showTrack:(int) num;
-
-- (void)bombExplode:(CGPoint)location;
 
 @end

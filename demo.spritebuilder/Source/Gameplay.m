@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 #include <CCDirector.h>
 #import "CCAction.h"
+#import "Level.h"
 
 #define BURGER 1;
 #define COKE 2;
@@ -67,7 +68,7 @@
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     self.userInteractionEnabled = TRUE;
-    mTimeInSec = 300;                              //intialize timer
+    mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
   

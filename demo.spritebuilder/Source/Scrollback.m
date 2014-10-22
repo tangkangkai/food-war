@@ -8,9 +8,11 @@
 
 #import "Scrollback.h"
 #import "Soldier.h"
+#import "Level.h"
 
 @implementation Scrollback{
     int _startlaunch;
+    int time;
     Soldier *s;
     Soldier *health_s;
     OALSimpleAudio *audio;
@@ -20,6 +22,7 @@
     self = [super init];
     if (!self) return(nil);
 
+    time = 0;
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _target = [NSMutableArray arrayWithObjects:nil ];
@@ -34,11 +37,10 @@
     [self addChild:[_junkBase soldier]];
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
-    [self schedule:@selector(enemy_autobuild:) interval:6];
+    [self schedule:@selector(enemy_autobuild:) interval:1];
 }
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
-    NSLog(@"Scrollback touch began");
     CGPoint touchLocation = [touch locationInNode:self];
     long healtharraysize = _healthy_soldiers.count;
 
@@ -78,52 +80,61 @@
 
 
 -(void)enemy_autobuild:(CCTime)dt{
+    for( NSDictionary *d in [[Levels getSelectedLevel] enemySequence] ){
+        NSNumber *num = (NSNumber*)[d objectForKey:@"time"];
+        if( [num isEqualToNumber:[NSNumber numberWithInt:time]] ){
+            NSNumber *laneNum = [d objectForKey:@"lane"];
+            NSArray *soldiers = [d objectForKey:@"enemies"];
+            for( int i=0; i<soldiers.count; i++ ){
+                int soldierType = [(NSNumber*)soldiers[i] intValue]-1;
+                [self buildEnemy:[laneNum intValue]-1 type:soldierType];
+            }
+        }
+    }
+    time++;
+}
+
+
+- (void)buildEnemy:(int) lane
+                    type:(int) type{
+    
     //TODO change to dictionary
     NSArray *start_positions = @[_house4,_house5,_house6];
     NSArray *end_positions=@[_house1,_house2,_house3];
-
-
-  //  int soldier_type = arc4random()%2;
-    int lane_num = arc4random()%3;
-    int soldier_type = 3;
+    CGPoint destination = CGPointMake([(CCNode*)end_positions[lane] position].x+30,
+                                      [(CCNode*)end_positions[lane] position].y);
     
-    CGPoint destination = CGPointMake([(CCNode*)end_positions[lane_num] position].x+30,
-                                      [(CCNode*)end_positions[lane_num] position].y);
-    
-    if( soldier_type == 0 ){
-        BurgerMan* enemy_soldier= [[BurgerMan alloc] initBurger:
-                                             lane_num
-                                             startPos:[(CCNode*)start_positions[lane_num] position]
-                                             destPos:destination
-                                             ourArr:_junk_soldiers
-                                             enemyArr:_healthy_soldiers
-                                             level:1];
-        [ self addChild: [enemy_soldier soldier]];
-        [enemy_soldier move];
-    }
-    if( soldier_type == 1 ){
-        CokeMan* enemy_soldier= [[CokeMan alloc] initCoke: lane_num
-                                                       startPos:[(CCNode*)start_positions[lane_num] position]
-                                                        destPos:destination
-                                                         ourArr:_junk_soldiers
-                                                       enemyArr:_healthy_soldiers
-                                                       level:1];
-        [ self addChild: [enemy_soldier soldier]];
-        [enemy_soldier move];
-    }
-    if( soldier_type == 3 ){
-        FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane_num
-                                                       startPos:[(CCNode*)start_positions[lane_num] position]
+    if( type == 0 ){
+        BurgerMan* enemy_soldier= [[BurgerMan alloc] initBurger:lane
+                                                       startPos:[(CCNode*)start_positions[lane] position]
                                                         destPos:destination
                                                          ourArr:_junk_soldiers
                                                        enemyArr:_healthy_soldiers
                                                           level:1];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
-        
+    }
+    if( type == 1 ){
+        CokeMan* enemy_soldier= [[CokeMan alloc] initCoke: lane
+                                                 startPos:[(CCNode*)start_positions[lane] position]
+                                                  destPos:destination
+                                                   ourArr:_junk_soldiers
+                                                 enemyArr:_healthy_soldiers
+                                                    level:1];
+        [ self addChild: [enemy_soldier soldier]];
+        [enemy_soldier move];
+    }
+    if( type == 2 ){
+        FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane
+                                                    startPos:[(CCNode*)start_positions[lane] position]
+                                                     destPos:destination
+                                                      ourArr:_junk_soldiers
+                                                    enemyArr:_healthy_soldiers
+                                                       level:1];
+        [ self addChild: [enemy_soldier soldier]];
+        [enemy_soldier move];
     }
 }
-
 
 
 - (void)showTrack: (int) num {
