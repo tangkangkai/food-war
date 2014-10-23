@@ -646,9 +646,21 @@
     [self addChild:fire];
     [audio playEffect:@"missle_launch.mp3"];
     [_missile runAction:sequence];
+    [self friesLaunchShock];
     
     last_attack_time = [NSDate date];
     [self undoReady];
+}
+
+-(void) friesLaunchShock{
+    CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(10 , 0)];
+    CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveright, moveback]];
+    
+ //   [self children];
+  //  [[corn children][0] runAction:sequence_0];
+    [[self getSoldier] runAction:sequence];
+
 }
 
 - (void)missileRemoved

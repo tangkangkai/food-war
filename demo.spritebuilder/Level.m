@@ -60,7 +60,7 @@ static Level *Levelselected;
     // codes for enemies 1: burger 2: coke 3:fries
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@5,
                                             @"lane":@1,
-                                            @"enemies":@[@1] } ];
+                                            @"enemies":@[@1,@3] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@8,
                                             @"lane":@1,
                                             @"enemies":@[@2] } ];
