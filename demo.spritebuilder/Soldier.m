@@ -549,6 +549,32 @@
     }
 }
 
+-(void)cornLuanchshock{
+    CCNode *corn=[self getSoldier];
+    
+    CCActionMoveTo *moveleft_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(-10 , 0)];
+    CCActionMoveTo *moveforward_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
+    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveleft_0, moveforward_0]];
+    
+    CCActionMoveTo *moveleft_1 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(18 , -1)];
+    CCActionMoveTo *moveforward_1 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(28,-1)];
+    CCActionSequence *sequence_1 = [CCActionSequence actionWithArray:@[moveleft_1, moveforward_1]];
+    
+    CCActionMoveTo *moveleft_2 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(15 , 50)];
+    CCActionMoveTo *moveforward_2 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(25,50)];
+    CCActionSequence *sequence_2 = [CCActionSequence actionWithArray:@[moveleft_2, moveforward_2]];
+    
+    CCActionMoveTo *moveleft_3 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(15 , 44)];
+    CCActionMoveTo *moveforward_3 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(25,44)];
+    CCActionSequence *sequence_3 = [CCActionSequence actionWithArray:@[moveleft_3, moveforward_3]];
+    
+    
+    [[corn children][0] runAction:sequence_0];
+    [[corn children][1] runAction:sequence_1];
+    [[corn children][2] runAction:sequence_2];
+    [[corn children][3] runAction:sequence_3];
+}
+
 - (id)initCorn: (int) lane_num
         startPos:(CGPoint) start
          destPos:(CGPoint) dest
@@ -654,13 +680,19 @@
 }
 
 -(void) friesLaunchShock{
-    CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(10 , 0)];
-    CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveright, moveback]];
+    CCNode *fries=[self getSoldier];
+    CCActionMoveTo *moveright_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(10 , 0)];
+    CCActionMoveTo *moveback_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
+    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveright_0, moveback_0]];
+    
+    CCActionMoveTo *moveright_1 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(-8 , 29)];
+    CCActionMoveTo *moveback_1 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(-18,29)];
+    CCActionSequence *sequence_1 = [CCActionSequence actionWithArray:@[moveright_1, moveback_1]];
     
  //   [self children];
   //  [[corn children][0] runAction:sequence_0];
-    [[self getSoldier] runAction:sequence];
+    [[fries children][0] runAction:sequence_0];
+    [[fries children][1] runAction:sequence_1];
 
 }
 

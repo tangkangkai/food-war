@@ -152,6 +152,7 @@
 - (BOOL) readyToLaunch;
 - (void) Launch:(CGPoint) targetLoc;
 - (void) move;
+- (void) cornLuanchshock;
 
 - (id)initCorn :(int) lane_num
                 startPos:(CGPoint) start
