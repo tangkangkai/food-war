@@ -198,6 +198,7 @@
     [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
     [self unschedule:@selector(doAttack)];
+    [self unschedule:@selector(countDown)];
 
     if( _group == 1 ){
         [SavedData addMoney:value];
