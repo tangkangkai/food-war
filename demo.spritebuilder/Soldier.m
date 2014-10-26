@@ -779,7 +779,7 @@
         
         ///////////////
 
-        
+        _friesAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
         [super move];
     }
 }
@@ -790,7 +790,7 @@
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
           level: (int) soldierLevel
- friesAnimation: (CCSprite*) friesAni{
+ friesAnimation: (CCNode*) friesAni{
     
     type = 3;
     _readyLaunch = false;
@@ -803,6 +803,11 @@
     health = 120 + 20 * soldierLevel;
     total_health = health;
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    
+//    self.soldier=friesAni;
+    _friesAniNode=friesAni;
+//    _friesAniNode.position = CGPointMake(300, 300);
+//    self.soldier.position = start;
     
     [self schedule:@selector(countDown) interval:0.5];
     

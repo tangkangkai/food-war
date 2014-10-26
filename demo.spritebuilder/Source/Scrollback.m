@@ -153,8 +153,9 @@
         
         CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
         CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
-//        CCNode* newNode = title;
-        CCSprite *aniFries = title;                                     //private
+        CCNode* aniFries = title;
+        CCNode* _aniFries = title;
+//        CCSprite *aniFries = title;                                     //private
         aniFries.position = [(CCNode*)start_positions[lane] position];              //??
         
         
@@ -162,7 +163,8 @@
         
         [aniFries runAction:friesAction];
         //    [self addChild:self.anibomb];
-        [spriteSheet addChild:aniFries];
+//        [spriteSheet addChild:aniFries];
+        [spriteSheet addChild:_aniFries];
         
         
         ///////////////

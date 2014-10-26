@@ -167,6 +167,7 @@
 @interface FriesMan : Soldier
 
 @property BOOL readyLaunch;
+@property CCNode* friesAniNode;
 @property CCNode* missile;
 
 - (void) undoReady;
@@ -180,6 +181,6 @@
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
            level: (int) soldierLevel
-  friesAnimation: (CCSprite*) friesAni;
+  friesAnimation: (CCNode*) friesAni;
 
 @end
