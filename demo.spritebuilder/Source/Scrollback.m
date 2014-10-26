@@ -9,6 +9,10 @@
 #import "Scrollback.h"
 #import "Soldier.h"
 #import "Level.h"
+#import "CCAnimation.h"
+#import <UIKit/UIKit.h>
+#include <CCDirector.h>
+#import "CCAction.h"
 
 @implementation Scrollback{
     int _startlaunch;
@@ -132,12 +136,45 @@
         [enemy_soldier move];
     }
     if( type == 2 ){
+        
+        ///////////////test animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"friesAni.plist"];
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"friesAni.png"];
+        [self addChild:spriteSheet];
+        NSMutableArray *friesAnimFrames = [NSMutableArray array];
+        for (int i=0; i<8; i++) {
+            [friesAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"fries%d.png",i]]];
+        }
+        
+        CCAnimation *friesAnim = [CCAnimation
+                                  animationWithSpriteFrames:friesAnimFrames delay:0.1f];
+        
+        CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
+        CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
+//        CCNode* newNode = title;
+        CCSprite *aniFries = title;                                     //private
+        aniFries.position = [(CCNode*)start_positions[lane] position];              //??
+        
+        
+        CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
+        
+        [aniFries runAction:friesAction];
+        //    [self addChild:self.anibomb];
+        [spriteSheet addChild:aniFries];
+        
+        
+        ///////////////
+        
+        
         FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane
                                                     startPos:[(CCNode*)start_positions[lane] position]
                                                      destPos:destination
                                                       ourArr:_junk_soldiers
                                                     enemyArr:_healthy_soldiers
-                                                       level:1];
+                                                       level:1
+                                               friesAnimation:aniFries];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }

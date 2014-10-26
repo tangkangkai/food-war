@@ -8,7 +8,10 @@
 
 #import "Soldier.h"
 #import "SavedData.h"
-
+#import "CCAnimation.h"
+#import <UIKit/UIKit.h>
+#include <CCDirector.h>
+#import "CCAction.h"
 
 @implementation Soldier{
 
@@ -191,6 +194,9 @@
     int duration = distance/moveSpeed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
                                          position:CGPointMake(_dest_pos.x,[_soldier position].y)];
+    
+    
+    
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
 }
 
@@ -742,6 +748,38 @@
 
 -(void)move{
     if( !_readyLaunch ){
+        
+        ///////////////test animation
+        /*
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"friesAni.plist"];
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"friesAni.png"];
+        [self addChild:spriteSheet];
+        NSMutableArray *friesAnimFrames = [NSMutableArray array];
+        for (int i=0; i<8; i++) {
+            [friesAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"fries%d.png",i]]];
+        }
+        
+        CCAnimation *friesAnim = [CCAnimation
+                                  animationWithSpriteFrames:friesAnimFrames delay:0.1f];
+        
+        CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
+        CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
+        CCSprite *aniFries = title;                                     //private
+        aniFries.position = [self getSoldier].position;
+        
+        
+        CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
+        
+        [aniFries runAction:friesAction];
+        //    [self addChild:self.anibomb];
+        [spriteSheet addChild:aniFries];
+        */
+        
+        ///////////////
+
+        
         [super move];
     }
 }
@@ -751,7 +789,8 @@
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
-          level: (int) soldierLevel {
+          level: (int) soldierLevel
+ friesAnimation: (CCSprite*) friesAni{
     
     type = 3;
     _readyLaunch = false;
@@ -764,7 +803,10 @@
     health = 120 + 20 * soldierLevel;
     total_health = health;
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    
     [self schedule:@selector(countDown) interval:0.5];
+    
+    
     return self;
 }
 

@@ -179,6 +179,7 @@
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
-           level: (int) soldierLevel;
+           level: (int) soldierLevel
+  friesAnimation: (CCSprite*) friesAni;
 
 @end
