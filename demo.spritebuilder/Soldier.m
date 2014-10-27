@@ -46,6 +46,10 @@
     return health;
 }
 
+- (int)getMoveSpeed {
+    return moveSpeed;
+}
+
 - (int)loseHealth:(int)Attack {
     int lostHeath = Attack * (1 - defence);
     health = health - lostHeath;
@@ -287,8 +291,14 @@
     CCNode * parent = [self soldier].parent;
     [parent addChild:bullet];
     float duration = ABS(bullet.position.x - [[target soldier] position].x)/atkRange;
+    
+    CGPoint newLoc = [[target soldier] position];
+    if( [target isMoving] ){
+        newLoc.x = [[target soldier] position].x + [target getMoveSpeed]*duration;
+    }
+    
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
-                                                   position:[[target soldier] position]];
+                                                   position: newLoc];
     CCActionRemove *actionRemove = [CCActionRemove action];
     [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
 }
@@ -360,8 +370,14 @@
     CCNode * parent = [self soldier].parent;
     [parent addChild:bullet];
     float duration = ABS(bullet.position.x - [[target soldier] position].x)/atkRange;
+
+    CGPoint newLoc = [[target soldier] position];
+    if( [target isMoving] ){
+        newLoc.x = [[target soldier] position].x - [target getMoveSpeed]*duration;
+    }
+    
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
-                                                   position:[[target soldier] position]];
+                                                   position: newLoc];
     CCActionRemove *actionRemove = [CCActionRemove action];
     [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
     
