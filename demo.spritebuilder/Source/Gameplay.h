@@ -8,7 +8,7 @@
 
 #import "CCNode.h"
 
-@interface Gameplay : CCNode
+@interface Gameplay : CCNode<CCScrollViewDelegate>
 
 @property (nonatomic, strong) CCSprite *anibomb;
 @property (nonatomic, strong) CCAction *flashAction;

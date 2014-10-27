@@ -23,12 +23,11 @@
 
 
 @implementation Gameplay{
-    CCPhysicsNode *_physicsWorld;
     CCNode *_potatoMan;
     CCNode *_bananaMan;
     CCNode *_beanMan;
     CCNode *_blackBomb;
-    CCNode *_scrollview;
+    CCScrollView *_scrollview;
     Scrollback *scroll;
 
     Soldier *man;           //save the final man
@@ -55,7 +54,6 @@
 - (id)init{
     self = [super init];
     if (!self) return(nil);
-    _physicsWorld=[scroll scroll_physicsWorld];
 
     selected_soldier = NULL;
     man = NULL;
@@ -67,6 +65,7 @@
 - (void)didLoadFromCCB {
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
+    _scrollview.delegate = self;
     self.userInteractionEnabled = TRUE;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
@@ -312,7 +311,8 @@
     CGPoint touchLocation = [touch locationInNode:self];
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
-        [self launchBomb:touchLocation];
+        CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
+        [self launchBomb:scrollPos];
     } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
         NSLog(@"located in track 1");
         [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];

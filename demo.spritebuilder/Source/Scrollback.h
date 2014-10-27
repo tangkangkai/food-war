@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "Soldier.h"
 
-@interface Scrollback : CCNode<CCPhysicsCollisionDelegate>
+@interface Scrollback : CCNode
 
 @property CCNode *house1;
 @property CCNode *house2;
