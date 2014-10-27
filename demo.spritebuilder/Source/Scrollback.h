@@ -34,5 +34,6 @@
 
 @property CCNode* aniFries;
 - (void)showTrack:(int) num;
+- (void)cleanup;
 
 @end
