@@ -32,6 +32,7 @@
 @property Base *healthBase;
 @property Base *junkBase;
 
+@property CCNode* aniFries;
 - (void)showTrack:(int) num;
 
 @end

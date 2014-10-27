@@ -8,7 +8,10 @@
 
 #import "Soldier.h"
 #import "SavedData.h"
-
+#import "CCAnimation.h"
+#import <UIKit/UIKit.h>
+#include <CCDirector.h>
+#import "CCAction.h"
 
 @implementation Soldier{
 
@@ -195,6 +198,9 @@
     int duration = distance/moveSpeed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
                                          position:CGPointMake(_dest_pos.x,[_soldier position].y)];
+    
+    
+    
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
 }
 
@@ -202,6 +208,7 @@
     [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
     [self unschedule:@selector(doAttack)];
+    [self unschedule:@selector(countDown)];
 
     if( _group == 1 ){
         [SavedData addMoney:value];
@@ -564,6 +571,32 @@
     }
 }
 
+-(void)cornLuanchshock{
+    CCNode *corn=[self getSoldier];
+    
+    CCActionMoveTo *moveleft_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(-10 , 0)];
+    CCActionMoveTo *moveforward_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
+    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveleft_0, moveforward_0]];
+    
+    CCActionMoveTo *moveleft_1 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(18 , -1)];
+    CCActionMoveTo *moveforward_1 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(28,-1)];
+    CCActionSequence *sequence_1 = [CCActionSequence actionWithArray:@[moveleft_1, moveforward_1]];
+    
+    CCActionMoveTo *moveleft_2 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(15 , 50)];
+    CCActionMoveTo *moveforward_2 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(25,50)];
+    CCActionSequence *sequence_2 = [CCActionSequence actionWithArray:@[moveleft_2, moveforward_2]];
+    
+    CCActionMoveTo *moveleft_3 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(15 , 44)];
+    CCActionMoveTo *moveforward_3 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(25,44)];
+    CCActionSequence *sequence_3 = [CCActionSequence actionWithArray:@[moveleft_3, moveforward_3]];
+    
+    
+    [[corn children][0] runAction:sequence_0];
+    [[corn children][1] runAction:sequence_1];
+    [[corn children][2] runAction:sequence_2];
+    [[corn children][3] runAction:sequence_3];
+}
+
 - (id)initCorn: (int) lane_num
         startPos:(CGPoint) start
          destPos:(CGPoint) dest
@@ -662,9 +695,27 @@
     [self addChild:fire];
     [audio playEffect:@"missle_launch.mp3"];
     [_missile runAction:sequence];
+    [self friesLaunchShock];
     
     last_attack_time = [NSDate date];
     [self undoReady];
+}
+
+-(void) friesLaunchShock{
+    CCNode *fries=[self getSoldier];
+    CCActionMoveTo *moveright_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(10 , 0)];
+    CCActionMoveTo *moveback_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
+    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveright_0, moveback_0]];
+    
+    CCActionMoveTo *moveright_1 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(-8 , 29)];
+    CCActionMoveTo *moveback_1 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(-18,29)];
+    CCActionSequence *sequence_1 = [CCActionSequence actionWithArray:@[moveright_1, moveback_1]];
+    
+ //   [self children];
+  //  [[corn children][0] runAction:sequence_0];
+    [[fries children][0] runAction:sequence_0];
+    [[fries children][1] runAction:sequence_1];
+
 }
 
 - (void)missileRemoved
@@ -713,6 +764,38 @@
 
 -(void)move{
     if( !_readyLaunch ){
+        
+        ///////////////test animation
+        /*
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"friesAni.plist"];
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"friesAni.png"];
+        [self addChild:spriteSheet];
+        NSMutableArray *friesAnimFrames = [NSMutableArray array];
+        for (int i=0; i<8; i++) {
+            [friesAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"fries%d.png",i]]];
+        }
+        
+        CCAnimation *friesAnim = [CCAnimation
+                                  animationWithSpriteFrames:friesAnimFrames delay:0.1f];
+        
+        CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
+        CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
+        CCSprite *aniFries = title;                                     //private
+        aniFries.position = [self getSoldier].position;
+        
+        
+        CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
+        
+        [aniFries runAction:friesAction];
+        //    [self addChild:self.anibomb];
+        [spriteSheet addChild:aniFries];
+        */
+        
+        ///////////////
+
+        _friesAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
         [super move];
     }
 }
@@ -722,7 +805,8 @@
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
-          level: (int) soldierLevel {
+          level: (int) soldierLevel
+ friesAnimation: (CCNode*) friesAni{
     
     type = 3;
     _readyLaunch = false;
@@ -735,7 +819,15 @@
     health = 120 + 20 * soldierLevel;
     total_health = health;
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    
+//    self.soldier=friesAni;
+    _friesAniNode=friesAni;
+//    _friesAniNode.position = CGPointMake(300, 300);
+//    self.soldier.position = start;
+    
     [self schedule:@selector(countDown) interval:0.5];
+    
+    
     return self;
 }
 

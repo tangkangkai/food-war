@@ -154,6 +154,7 @@
 - (BOOL) readyToLaunch;
 - (void) Launch:(CGPoint) targetLoc;
 - (void) move;
+- (void) cornLuanchshock;
 
 - (id)initCorn :(int) lane_num
                 startPos:(CGPoint) start
@@ -168,6 +169,7 @@
 @interface FriesMan : Soldier
 
 @property BOOL readyLaunch;
+@property CCNode* friesAniNode;
 @property CCNode* missile;
 
 - (void) undoReady;
@@ -180,6 +182,7 @@
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
-           level: (int) soldierLevel;
+           level: (int) soldierLevel
+  friesAnimation: (CCNode*) friesAni;
 
 @end

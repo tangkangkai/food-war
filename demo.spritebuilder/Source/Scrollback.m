@@ -9,6 +9,10 @@
 #import "Scrollback.h"
 #import "Soldier.h"
 #import "Level.h"
+#import "CCAnimation.h"
+#import <UIKit/UIKit.h>
+#include <CCDirector.h>
+#import "CCAction.h"
 
 @implementation Scrollback{
     int _startlaunch;
@@ -43,6 +47,8 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:self];
     long healtharraysize = _healthy_soldiers.count;
+    CGFloat x=0;
+    CGFloat y=0;
 
     if (_startlaunch==1) {
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
@@ -57,13 +63,15 @@
             return;
         }
         else{
-            [(CornMan*)s Launch:touchLocation];
             _startlaunch=0;
+            x=[[s soldier] position ].x;
+            y=[[s soldier] position ].y;
+            [(CornMan*)s Launch:touchLocation];
+            [(CornMan*)s cornLuanchshock];
             return;
         }
     }
-    
-    for( long i = 0; i < healtharraysize; i++ ){
+    for(long i = 0; i < healtharraysize; i++ ){
         Boolean touch=CGRectContainsPoint([[[_healthy_soldiers objectAtIndex:i] soldier] boundingBox],touchLocation);
         s=[_healthy_soldiers objectAtIndex:i];
         int type=[s getType];
@@ -77,6 +85,9 @@
         }
     }
 }
+
+
+
 
 
 -(void)enemy_autobuild:(CCTime)dt{
@@ -125,12 +136,47 @@
         [enemy_soldier move];
     }
     if( type == 2 ){
+        
+        ///////////////test animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"friesAni.plist"];
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"friesAni.png"];
+        [self addChild:spriteSheet];
+        NSMutableArray *friesAnimFrames = [NSMutableArray array];
+        for (int i=0; i<8; i++) {
+            [friesAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"fries%d.png",i]]];
+        }
+        
+        CCAnimation *friesAnim = [CCAnimation
+                                  animationWithSpriteFrames:friesAnimFrames delay:0.1f];
+        
+        CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
+        CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
+        CCNode* aniFries = title;
+        CCNode* _aniFries = title;
+//        CCSprite *aniFries = title;                                     //private
+        aniFries.position = [(CCNode*)start_positions[lane] position];              //??
+        
+        
+        CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
+        
+        [aniFries runAction:friesAction];
+        //    [self addChild:self.anibomb];
+//        [spriteSheet addChild:aniFries];
+        [spriteSheet addChild:_aniFries];
+        
+        
+        ///////////////
+        
+        
         FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane
                                                     startPos:[(CCNode*)start_positions[lane] position]
                                                      destPos:destination
                                                       ourArr:_junk_soldiers
                                                     enemyArr:_healthy_soldiers
-                                                       level:1];
+                                                       level:1
+                                               friesAnimation:aniFries];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }

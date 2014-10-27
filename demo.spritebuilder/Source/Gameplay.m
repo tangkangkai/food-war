@@ -178,24 +178,24 @@
 
     NSLog(@"Button Index =%ld of tag %ld",(long)buttonIndex, (long)[alertView tag]);
     long tag =[alertView tag];
-    if (buttonIndex == 0){
-        if(tag == 1){
+    if (buttonIndex == 0) {
+        if(tag == 1) {
             [[CCDirector sharedDirector] resume];
         }
-        else if(tag==2){
+        else if(tag==2) {
             [[CCDirector sharedDirector] resume];
             CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
             CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
             [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
         }
-        else{
+        else {
             [[CCDirector sharedDirector] resume];
             CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
             CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
             [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
         }
     }
-    else if(buttonIndex == 1){
+    else if(buttonIndex == 1) {
         NSLog(@"You have clicked Quit Game");
         [[CCDirector sharedDirector] resume];
         CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
@@ -204,7 +204,7 @@
     }
 }
 
-- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint touchLocation = [touch locationInNode:self];
     int soldierLevel = 0;
     NSString *soldier = NULL;
