@@ -127,6 +127,10 @@
         }
         
         if( type == 3 ){
+            if( (_group == 0 && [[s soldier] position].x < self_pos.x)
+               || (_group ==1 && [[s soldier] position].x > self_pos.x)){
+                continue;
+            }
             double dx = ABS(self_pos.x-enemy_pos.x);
             double dy = ABS(self_pos.y-enemy_pos.y);
             double dist = sqrt(dx*dx + dy*dy);
@@ -244,8 +248,6 @@
                   enemyArr:(NSMutableArray*) enemyArray
                   level: (int) soldierLevel{
 
-    // TODO read level from file
-    //level = 1;
     type = 0;
     moveSpeed = 30;
     atkInterval = 4;
@@ -271,9 +273,7 @@
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
         level: (int) soldierLevel{
-    
-    // TODO read level from file
-    //level = 1;
+
     type = 2;
 
     moveSpeed = 35;
@@ -322,9 +322,7 @@
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
         level: (int) soldierLevel{
-    
-    // TODO read level from file
-    level = 1;
+
     type = 0;
     
     moveSpeed = 30;
@@ -353,8 +351,7 @@
       enemyArr:(NSMutableArray*) enemyArray
         level: (int) soldierLevel{
     
-    // TODO read level from file
-    level = 1;
+
     type = 2;
     
     moveSpeed = 35;
@@ -367,7 +364,6 @@
     total_health = health;
 
     self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    
     return self;
 }
 - (void)attackAnimation:(Soldier*) target{
@@ -413,8 +409,7 @@
       enemyArr:(NSMutableArray*) enemyArray
       level: (int) soldierLevel{
     
-    // TODO read level from file
-    level = 1;
+
     type = 2;
     
     moveSpeed = 35;
@@ -440,8 +435,7 @@
                ourArr:(NSMutableArray*) ourArray
                enemyArr:(NSMutableArray*) enemyArray{
     
-    // TODO read level from file
-    level = 1;
+
     type = 4;
     _isDead = false;
     //atkInterval = 1;
@@ -571,6 +565,7 @@
     }
 }
 
+
 -(void)cornLuanchshock{
     CCNode *corn=[self getSoldier];
     
@@ -604,8 +599,6 @@
         enemyArr:(NSMutableArray*) enemyArray
            level: (int) soldierLevel{
     
-    // TODO read level from file
-    level = 1;
     type = 3;
     _readyLaunch = false;
     moveSpeed = 20;
@@ -633,7 +626,12 @@
         else{
             [countBar setContentSize:CGSizeMake(100, 100)];
             CCNode *readySign = [[self getSoldier] children][4];
-            [readySign setVisible:true];
+            if( !moving ){
+                [readySign setVisible:true];
+            }
+            else{
+                [readySign setVisible:false];
+            }
         }
     }
     else if( !moving ){
@@ -680,12 +678,10 @@
     fire.autoRemoveOnFinish=true;
     fire.duration=0.2;
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:-90.f];
-    CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc
-                                                         height:80 jumps:1];
+    CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc height:80 jumps:1];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
-    
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
-    // allDone is your method to run...
+    
     _missile = [CCBReader load:@"friesMissile"];
     _missile.position = [[ self getSoldier] position];
     CCNode *parent = [[ self getSoldier ] parent];
@@ -722,13 +718,10 @@
 {
     NSMutableArray *_targetLoseHealth;
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
-    //  make the particle effect clean itself up, once it is completed
     explosion.autoRemoveOnFinish = TRUE;
     explosion.duration = 1;
     
-    // place the particle effect on the seals position
     explosion.position = _missile.position;
-    // add the particle effect to the same node the seal is on
     [_missile.parent addChild:explosion];
     [audio playEffect:@"explode.mp3"];
     
@@ -736,7 +729,6 @@
     for (Soldier *target in _targetLoseHealth) {
         [target loseHealth:atkPower];
     }
-    // finally, remove the destroyed seal
     [_missile removeFromParent];
 }
 
