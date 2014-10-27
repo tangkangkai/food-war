@@ -324,7 +324,6 @@
         level: (int) soldierLevel{
 
     type = 0;
-    
     moveSpeed = 30;
     atkInterval = 4;
     atkRange = 40;
@@ -334,9 +333,14 @@
     health = 200 + 50 * soldierLevel;
     total_health = health;
 
-
-    self = [ super initSoldier:@"potatoMan" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    
+    self = [ super initSoldier:@"potatoMan"
+                   group:0
+                   lane_num:lane_num
+                   startPos:start
+                   destPos:dest
+                   ourArr:ourArray
+                   enemyArr:enemyArray
+                   level:soldierLevel];
     return self;
 }
 
@@ -495,12 +499,10 @@
     fire.duration=0.2;
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:90.f];
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc
-                                                         height:80 jumps:1];
+                                             height:80 jumps:1];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
     
-    
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
-    // allDone is your method to run...
     _missile = [CCBReader load:@"missle"];
     _missile.position = [[ self getSoldier] position];
     CCNode *parent = [[ self getSoldier ] parent];
@@ -519,13 +521,9 @@
 {
     NSMutableArray *_targetLoseHealth;
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
-    //  make the particle effect clean itself up, once it is completed
     explosion.autoRemoveOnFinish = TRUE;
     explosion.duration = 1;
-    
-    // place the particle effect on the seals position
     explosion.position = _missile.position;
-    // add the particle effect to the same node the seal is on
     [_missile.parent addChild:explosion];
     [audio playEffect:@"explode.mp3"];
     
@@ -533,13 +531,11 @@
     for (Soldier *target in _targetLoseHealth) {
         [target loseHealth:atkPower];
     }
-    // finally, remove the destroyed seal
     [_missile removeFromParent];
 }
 
 //find target the missle hit
 -(NSMutableArray*)missileDetect{
-    //  int nearest_distance=[self missile_atk_range];
     Soldier *soldier = NULL;
     NSMutableArray* targets = [NSMutableArray arrayWithObjects:nil ];
     int dx;
