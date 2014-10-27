@@ -108,6 +108,7 @@
 -(void)onExit{
     [super onExit];
     [audio stopBg];
+    [scroll cleanup];
 }
 
 -(void)updateMoney{

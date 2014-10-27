@@ -44,6 +44,12 @@
     [self schedule:@selector(enemy_autobuild:) interval:1];
 }
 
+- (void)cleanup{
+    [_junk_soldiers removeAllObjects];
+    [_healthy_soldiers removeAllObjects];
+    [self unschedule:@selector(enemy_autobuild)];
+}
+
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchLocation = [touch locationInNode:self];
     long healtharraysize = _healthy_soldiers.count;
@@ -85,9 +91,6 @@
         }
     }
 }
-
-
-
 
 
 -(void)enemy_autobuild:(CCTime)dt{
