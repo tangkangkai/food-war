@@ -188,6 +188,14 @@
     [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
 }
 
+- (void)next {
+    
+    CCScene *gameScene = [CCBReader loadAsScene:@"StoreScene2"];
+    
+    CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.01f];
+    [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
+}
+
 -(void)button1 {
     if (potatoCost > total) {
         return;
