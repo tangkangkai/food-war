@@ -831,6 +831,11 @@
     return self;
 }
 
+- (void)dead{
+    [ super dead ];
+    [_friesAniNode removeFromParent];
+}
+
 -(void)countDown{
     NSMutableArray *healthArray = [ self getArray:1 ];
     if ([self readyToLaunch]) {
