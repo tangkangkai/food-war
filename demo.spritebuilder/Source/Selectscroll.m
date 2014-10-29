@@ -36,47 +36,56 @@
     } else {
         gs.text.string = @"Please choose your level";
     }
-    levelArray = [SavedData levelArray];
+    //levelArray = [SavedData levelArray];
 }
 
 
 - (void)level1 {
     [Levels setSelectedLevel:1];
     [self changeLevel:1];
+    [self transit:1];
 }
 
 - (void)level2 {
     [Levels setSelectedLevel:2];
     [self changeLevel:2];
+    [self transit:2];
 }
 
 - (void)level3 {
     [Levels setSelectedLevel:3];
     [self changeLevel:3];
+    [self transit:3];
 }
 
 
 - (void)changeLevel: (int) level {
     gs=[GameScene shareLayer];
-    if ([[levelArray objectAtIndex:level - 1] intValue] == 0) {
-        NSLog(@"level %d:%d",level,[[levelArray objectAtIndex:level - 1] intValue] );
-//        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
-//        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
-//        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
+    NSLog(@"choose level:%d, maxLevel:%d", level, [SavedData level]);
+    
+    if (level > [SavedData level]) {
+        CCTextField *levelText = [textArray objectAtIndex:level-1];
+        NSLog(@"scaleX : %f", levelText.scaleX);
+//        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(levelText.scaleX, levelText.scaleY)];
+//        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(levelText.scaleX , levelText.scaleY)];
+//        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(levelText.scaleX, levelText.scaleY)];
 //        
 //        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveleft, moveright, moveleft, moveright, moveback]];
-     //   [textArray objectAtIndex:level-1][0]=@"Level Locked, please choose again";
-     //   gs.text.string = [NSString stringWithFormat:@"Level %d locked", level];
-     //   [[textArray objectAtIndex:level-1] runAction:sequence];
-        gs.text.string = @"Level Locked, please choose again";
-    } else {
-        CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:0.2f angle:360];
-        [gs.text runAction:rotate];
-        
-        gs.text.string  = [NSString stringWithFormat:@"Level %d", level];
+//        [textArray objectAtIndex:level-1][0]=@"Level Locked, please choose again";
+//        gs.text.string = [NSString stringWithFormat:@"Level %d locked", level];
+//        [levelText runAction:sequence];
+        levelText.string = @"Level Locked, please choose again";
+//        gs.text.string = @"Level Locked, please choose again";
+
+    }
+}
+
+- (void)transit: (int)level {
+    if (level <= [SavedData level]) {
         CCScene *choiceScene = [CCBReader loadAsScene:@"ChoiceScene"];
         CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
         [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
     }
+    
 }
 @end

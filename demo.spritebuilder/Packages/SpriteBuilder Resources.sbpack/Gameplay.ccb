@@ -156,8 +156,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -572,6 +570,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1485,7 +1485,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>fourth</string>
+				<string>third</string>
 				<key>memberVarAssignmentName</key>
 				<string>_fourth</string>
 				<key>memberVarAssignmentType</key>
