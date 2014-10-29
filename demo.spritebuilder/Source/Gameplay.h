@@ -14,5 +14,6 @@
 @property (nonatomic, strong) CCAction *flashAction;
 
 - (void)addBombExplosion:(CGPoint) posi;
++ (void)addEnergy:(int) amount;
 
 @end

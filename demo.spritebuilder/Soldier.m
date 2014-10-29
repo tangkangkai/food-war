@@ -8,6 +8,7 @@
 
 #import "Soldier.h"
 #import "SavedData.h"
+#import "Gameplay.h"
 #import "CCAnimation.h"
 #import <UIKit/UIKit.h>
 #include <CCDirector.h>
@@ -17,10 +18,21 @@
 
 }
 
+// get value of soldier(energy gained/reduced)
+- (int)getValue {
+    return 75 + 25 * [self getLevel];
+}
+
 // get methods implementations add by kk
 - (int)getLevel {
     return level;
 }
+
+- (void)setLevel: (int)newLevel {
+    level = newLevel;
+}
+
+
 - (int)getAtkPower {
     return atkPower;
 }
@@ -157,9 +169,10 @@
                   destPos:(CGPoint) dest
                   ourArr:(NSMutableArray*) ourArray
                   enemyArr:(NSMutableArray*) enemyArray
-                  level: (int) level{
+                  level: (int) soldierLevel{
     
     self = [super init];
+    [self setLevel:soldierLevel];
     moving = false;
     last_attack_time = NULL;
     _lane_num = lane_num;
@@ -215,8 +228,7 @@
     [self unschedule:@selector(countDown)];
 
     if( _group == 1 ){
-        [SavedData addMoney:value];
-        [SavedData saveMoney];
+        [Gameplay addEnergy:value];
     }
     // TODO release
 }
