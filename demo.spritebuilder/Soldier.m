@@ -807,7 +807,7 @@
     health = 120 + 20 * soldierLevel;
     total_health = health;
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    [super soldier].visible = false;
+    [(CCSprite*)[[super soldier] children][0] setVisible:false];
 //    self.soldier=friesAni;
     _friesAniNode=friesAni;
 //    _friesAniNode.position = CGPointMake(300, 300);

@@ -39,6 +39,16 @@
     _junkBase = [[Base alloc] initBase:_base2.position group:1 ourArr:_junk_soldiers enemyArr:_healthy_soldiers];
     [self addChild:[_healthBase soldier]];
     [self addChild:[_junkBase soldier]];
+    
+    int laneNum = [[Levels getSelectedLevel] laneNum];
+    if( laneNum == 1){
+        [_lane1 setVisible:false];
+        [_lane3 setVisible:false];
+    }
+    if( laneNum == 2){
+        [_lane3 setVisible:false];
+    }
+    
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:1];

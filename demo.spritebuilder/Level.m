@@ -59,26 +59,23 @@ static Level *Levelselected;
     NSMutableArray *lvlOneSeq = [ [NSMutableArray alloc] init ];
     // codes for enemies 1: burger 2: coke 3:fries
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@5,
-                                            @"lane":@1,
-                                            @"enemies":@[@1,@3] } ];
+                                            @"lane":@2,
+                                            @"enemies":@[@1] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@8,
-                                            @"lane":@1,
+                                            @"lane":@2,
                                             @"enemies":@[@2] } ];
-    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@10,
-                                            @"lane":@1,
-                                            @"enemies":@[@2] } ];
-    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@20,
+    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@15,
                                             @"lane":@2,
                                             @"enemies":@[@2] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@20,
-                                            @"lane":@3,
-                                            @"enemies":@[@1,@3] } ];
-    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@50,
-                                            @"lane":@1,
-                                            @"enemies":@[@1,@2,@3] } ];
+                                            @"lane":@2,
+                                            @"enemies":@[@1] } ];
+    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@30,
+                                            @"lane":@2,
+                                            @"enemies":@[@3] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@50,
                                             @"lane":@2,
-                                            @"enemies":@[@1,@2,@3] } ];
+                                            @"enemies":@[@1,@2] } ];
     level1 = [ [Level alloc] initLevel:1
                               laneNum:1
                               time:200
@@ -86,23 +83,21 @@ static Level *Levelselected;
                               enemySequence:lvlOneSeq ];
     
     
-    
     NSMutableArray *lvlTwoSeq = [ [NSMutableArray alloc] init ];
-    // codes for enemies 1: burger 2: coke 3:fries
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
                                             @"lane":@1,
                                             @"enemies":@[@1] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
                                             @"lane":@2,
-                                            @"enemies":@[@1] } ];
+                                            @"enemies":@[@2] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
-                                            @"lane":@3,
-                                            @"enemies":@[@1] } ];
+                                            @"lane":@1,
+                                            @"enemies":@[@2] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@15,
                                             @"lane":@2,
                                             @"enemies":@[@2,@3] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@20,
-                                            @"lane":@3,
+                                            @"lane":@2,
                                             @"enemies":@[@1,@3] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@50,
                                             @"lane":@1,
@@ -111,10 +106,38 @@ static Level *Levelselected;
                                             @"lane":@2,
                                             @"enemies":@[@1,@2,@3] } ];
     level2 = [ [Level alloc] initLevel:2
-                                laneNum:1
+                                laneNum:2
                                    time:200
                                   award:2000
                           enemySequence:lvlTwoSeq ];
+    
+    NSMutableArray *lvlThreeSeq = [ [NSMutableArray alloc] init ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
+                                            @"lane":@1,
+                                            @"enemies":@[@1] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
+                                            @"lane":@3,
+                                            @"enemies":@[@2] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
+                                            @"lane":@3,
+                                            @"enemies":@[@2] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@15,
+                                            @"lane":@2,
+                                            @"enemies":@[@2,@3] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@20,
+                                            @"lane":@3,
+                                            @"enemies":@[@1,@3] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@50,
+                                            @"lane":@1,
+                                            @"enemies":@[@1,@2,@3] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@50,
+                                            @"lane":@2,
+                                            @"enemies":@[@1,@2,@3] } ];
+    level3 = [ [Level alloc] initLevel:2
+                               laneNum:3
+                                  time:200
+                                 award:2000
+                         enemySequence:lvlThreeSeq ];
 }
 
 @end

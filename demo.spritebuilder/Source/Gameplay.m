@@ -244,16 +244,7 @@
         self.flashAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:flashAnim]];
         
         [self.anibomb runAction:self.flashAction];
-        //    [self addChild:self.anibomb];
         [spriteSheet addChild:self.anibomb];
-
-        
-        ///////////////
-        /*
-        Bomb* newBomb = [[Bomb alloc] initBomb:@"blackBombRing" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:NULL];
-        item = newBomb;
-        // TODO possible memory leak
-        [self addChild: [newBomb bomb]];*/
         return;
     }
     
@@ -279,8 +270,6 @@
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     if([selected_soldier isEqualToString:@"blackBomb"]){
-//        if(item == NULL) return;
-        
         _anibomb.position = touchLocation;
         return;
     }
@@ -289,13 +278,15 @@
         return;
     }
     [man soldier].position = touchLocation;
-    if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+40, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
+    int laneNum = [[Levels getSelectedLevel] laneNum];
+
+    if( laneNum!=1 && CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [scroll showTrack:1];
         
-    } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+30, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
+    } else if(CGRectContainsPoint(CGRectMake([scroll lane2].boundingBox.origin.x, [scroll lane2].boundingBox.origin.y+35, [scroll lane2].boundingBox.size.width, [scroll lane2].boundingBox.size.height),touchLocation)) {
         [scroll showTrack:2];
 
-    } else if (CGRectContainsPoint(CGRectMake([scroll track3].boundingBox.origin.x, [scroll track3].boundingBox.origin.y+20, [scroll track3].boundingBox.size.width, [scroll track3].boundingBox.size.height),touchLocation)) {
+    } else if( laneNum==3 && CGRectContainsPoint(CGRectMake([scroll lane3].boundingBox.origin.x, [scroll lane3].boundingBox.origin.y+40, [scroll lane3].boundingBox.size.width, [scroll lane3].boundingBox.size.height),touchLocation)) {
         [scroll showTrack:3];
 
     } else {
@@ -305,22 +296,20 @@
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
- //   OALSimpleAudio *blop = [OALSimpleAudio sharedInstance];  // play sound effect
     [audio playEffect:@"blop.mp3"];
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
+    int laneNum = [[Levels getSelectedLevel] laneNum];
+
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBomb:scrollPos];
-    } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
-        NSLog(@"located in track 1");
+    } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];
-    } else if (CGRectContainsPoint(CGRectMake([scroll track2].boundingBox.origin.x, [scroll track2].boundingBox.origin.y+20, [scroll track2].boundingBox.size.width, [scroll track2].boundingBox.size.height),touchLocation)) {
-        NSLog(@"located in track 2");
+    } else if( CGRectContainsPoint(CGRectMake([scroll lane2].boundingBox.origin.x, [scroll lane2].boundingBox.origin.y+35, [scroll lane2].boundingBox.size.width, [scroll lane2].boundingBox.size.height),touchLocation)) {
         [self launchmovingman: [scroll house2] dest:[scroll house5] lane_num:1];
-    } else if (CGRectContainsPoint(CGRectMake([scroll track3].boundingBox.origin.x, [scroll track3].boundingBox.origin.y+20, [scroll track3].boundingBox.size.width, [scroll track3].boundingBox.size.height),touchLocation)) {
-        NSLog(@"located in track 3");
+    } else if( laneNum==3 && CGRectContainsPoint(CGRectMake([scroll lane3].boundingBox.origin.x, [scroll lane3].boundingBox.origin.y+40, [scroll track3].boundingBox.size.width, [scroll lane3].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house3] dest:[scroll house6] lane_num:2];
     } else {
         [self removeChild:[man soldier]];
