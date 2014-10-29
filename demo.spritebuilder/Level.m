@@ -27,6 +27,11 @@
     
 }
 
+- (int)getLevel {
+    
+    return _levelNum;
+}
+
 @end
 
 static Level *level1;
@@ -133,7 +138,7 @@ static Level *Levelselected;
     [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@50,
                                             @"lane":@2,
                                             @"enemies":@[@1,@2,@3] } ];
-    level3 = [ [Level alloc] initLevel:2
+    level3 = [ [Level alloc] initLevel:3
                                laneNum:3
                                   time:200
                                  award:2000

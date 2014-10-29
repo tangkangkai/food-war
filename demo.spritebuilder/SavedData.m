@@ -10,9 +10,9 @@
 
 
 static int money;
-static int level;
+static int maxLevel;
 static NSString *plistPath;
-static NSMutableArray *levelArray;
+//static NSMutableArray *levelArray;
 static NSMutableDictionary *lineupDictonary;
 static NSMutableDictionary *soldierLevel; 
 
@@ -47,11 +47,11 @@ static NSMutableDictionary *soldierLevel;
         
         // Load level
         NSNumber *gameLevel = [unarchivedData objectForKey:@"level"];
-        level = [gameLevel intValue];
+        maxLevel = [gameLevel intValue];
         
         // Load level array
-        NSMutableArray *array = [unarchivedData objectForKey:@"levelarray"];
-        levelArray = [array copy];
+//        NSMutableArray *array = [unarchivedData objectForKey:@"levelarray"];
+//        levelArray = [array copy];
         
         // Load lineup dict
         NSMutableDictionary *dictionary = [unarchivedData objectForKey:@"lineupdict"];
@@ -92,16 +92,16 @@ static NSMutableDictionary *soldierLevel;
 }
 
 // level
-+ (int)level {return level;}
++ (int)level {return maxLevel;}
 
 + (void)setLevel: (int) gameLevel {
-    level = gameLevel;
+    maxLevel = gameLevel;
 }
 
 + (void)saveLevel {
     NSMutableDictionary *dataToSave = [self getSavedDictionary];
     //update level
-    NSNumber *levelNum = [NSNumber numberWithInt:level];
+    NSNumber *levelNum = [NSNumber numberWithInt:maxLevel];
     [dataToSave setObject:levelNum forKey:@"level"];
     [self saveDictionary:dataToSave];
 }
@@ -109,19 +109,20 @@ static NSMutableDictionary *soldierLevel;
 
 
 //level permission array
-+ (NSMutableArray *)levelArray {return levelArray;}
+//+ (NSMutableArray *)levelArray {return levelArray;}
+//
+//+ (void)setLevelArray: (NSMutableArray *) array {
+//    levelArray = array;
+//}
+//
+//+ (void)saveLevelArray {
+//    NSMutableDictionary *dataToSave = [self getSavedDictionary];
+//    //update permission array
+//    
+//    [dataToSave setObject:levelArray forKey:@"levelarray"];
+//    [self saveDictionary:dataToSave];
+//}
 
-+ (void)setLevelArray: (NSMutableArray *) array {
-    levelArray = array;
-}
-
-+ (void)saveLevelArray {
-    NSMutableDictionary *dataToSave = [self getSavedDictionary];
-    //update permission array
-    
-    [dataToSave setObject:levelArray forKey:@"levelarray"];
-    [self saveDictionary:dataToSave];
-}
 
 
 // money
@@ -157,12 +158,16 @@ static NSMutableDictionary *soldierLevel;
     [dataToSave setObject:totalMoney forKey:@"money"];
     
     // level permission
-    NSNumber *level1 = [NSNumber numberWithInt:1];
-    NSNumber *level2 = [NSNumber numberWithInt:1];
-    NSNumber *level3 = [NSNumber numberWithInt:1];
-    //  NSNumber *level4 = [NSNumber numberWithInt:0];
-    levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, nil];
-    [dataToSave setObject:levelArray forKey:@"levelarray"];
+//    NSNumber *level1 = [NSNumber numberWithInt:1];
+//    NSNumber *level2 = [NSNumber numberWithInt:1];
+//    NSNumber *level3 = [NSNumber numberWithInt:1];
+//    //  NSNumber *level4 = [NSNumber numberWithInt:0];
+//    levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, nil];
+//    [dataToSave setObject:levelArray forKey:@"levelarray"];
+    
+    // maxLevel
+    NSNumber *initLevel = [NSNumber numberWithInt:1];
+    [dataToSave setObject:initLevel forKeyedSubscript:@"level"];
     
     //line up dict
     NSMutableDictionary *lineupDict = [[NSMutableDictionary alloc] init];

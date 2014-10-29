@@ -36,7 +36,7 @@
     } else {
         gs.text.string = @"Please choose your level";
     }
-    levelArray = [SavedData levelArray];
+    //levelArray = [SavedData levelArray];
 }
 
 
@@ -58,7 +58,8 @@
 
 - (void)changeLevel: (int) level {
     gs=[GameScene shareLayer];
-    if ([[levelArray objectAtIndex:level - 1] intValue] == 0) {
+    NSLog(@"choose level:%d, maxLevel:%d", level, [SavedData level]);
+    if (level > [SavedData level]) {
         NSLog(@"level %d:%d",level,[[levelArray objectAtIndex:level - 1] intValue] );
 //        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
 //        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];

@@ -24,7 +24,6 @@
 static int energy;
 
 
-
 @implementation Gameplay{
     CCNode *_potatoMan;
     CCNode *_bananaMan;
@@ -165,6 +164,7 @@ static int energy;
                                             cancelButtonTitle:@"Restart"
                                             otherButtonTitles: @"Quit",nil];
     [alert show];
+    [audio stopBg];
 }
 
 - (void)win{
@@ -177,6 +177,7 @@ static int energy;
                                             otherButtonTitles: nil];
     [alert setTag:2];
     [alert show];
+    [audio stopBg];
 }
 
 - (void)menu {
@@ -206,9 +207,17 @@ static int energy;
         }
         else if(tag==2) {
             //add money due to the energy
-            NSLog(@",,,,,%d", energy / 10);
             [SavedData addMoney:energy / 10];
             [SavedData saveMoney];
+            
+            //set unlocked game level to the next level
+            int currLevel = [[Levels getSelectedLevel] getLevel];
+            NSLog(@"currLevel:%d, maxLevel:%d", currLevel, [SavedData level]);
+            if (currLevel != 3 && currLevel == [SavedData level]) {
+                NSLog(@"===");
+                [SavedData setLevel:++currLevel];
+                [SavedData saveLevel];
+            }
             
             [[CCDirector sharedDirector] resume];
             CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
@@ -217,9 +226,10 @@ static int energy;
         }
         else {
             [[CCDirector sharedDirector] resume];
-            CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
+            CCScene *playScene = [CCBReader loadAsScene:@"ChoiceScene"];
             CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.5f];
             [[CCDirector sharedDirector] replaceScene:playScene withTransition:trans];
+            
         }
     }
     else if(buttonIndex == 1) {
