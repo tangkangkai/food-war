@@ -38,7 +38,9 @@
     
     CCLabelTTF *_timerLabel;
     CCLabelTTF *_gameoverLabel;
-    CCLabelTTF *_money;
+    //CCLabelTTF *_money;
+    CCLabelTTF *_energy;
+    int energy;
 
     int mTimeInSec;
     int timeFlag;
@@ -63,6 +65,8 @@
 }
 
 - (void)didLoadFromCCB {
+    //initiate energy
+    energy = 10000;
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     _scrollview.delegate = self;
@@ -110,8 +114,12 @@
     [scroll cleanup];
 }
 
--(void)updateMoney{
-    [_money setString:[NSString stringWithFormat:@"$ %d", [SavedData money]]];
+//-(void)updateMoney{
+//    [_money setString:[NSString stringWithFormat:@"$ %d", [SavedData money]]];
+//}
+
+-(void)updateEnergy{
+    [_energy setString:[NSString stringWithFormat:@"E: %d", energy]];
 }
 
 -(void)tick {
@@ -127,7 +135,7 @@
             timeFlag = 1;
         }
         [_timerLabel setString:[NSString stringWithFormat:@"%d", mTimeInSec]];
-        [self updateMoney];
+        [self updateEnergy];
 
     } else if(timeFlag == 1 ){
         timeFlag = 2;

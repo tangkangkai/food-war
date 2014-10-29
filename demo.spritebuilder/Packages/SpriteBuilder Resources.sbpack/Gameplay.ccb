@@ -998,7 +998,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string>_money</string>
+				<string>_energy</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1056,7 +1056,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>$1000</string>
+							<string>1000</string>
 							<false/>
 						</array>
 					</dict>
@@ -1205,6 +1205,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
