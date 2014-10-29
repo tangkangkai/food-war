@@ -165,7 +165,7 @@
         [aniFries runAction:friesAction];
         //    [self addChild:self.anibomb];
 //        [spriteSheet addChild:aniFries];
-        [spriteSheet addChild:_aniFries];
+        [spriteSheet addChild:aniFries];
         
         
         ///////////////

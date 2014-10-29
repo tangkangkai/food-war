@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>20</integer>
+	<integer>25</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>952.10968017578125</real>
-							<real>55.686931610107422</real>
+							<real>972.10968017578125</real>
+							<real>51.686931610107422</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -160,8 +160,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>930.6988525390625</real>
-							<real>129.94065856933594</real>
+							<real>948.6988525390625</real>
+							<real>116.94065856933594</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -249,8 +249,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>910.0606689453125</real>
-							<real>198.17228698730469</real>
+							<real>928.0606689453125</real>
+							<real>175.17228698730469</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -338,8 +338,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>58.906837463378906</real>
-							<real>55.709980010986328</real>
+							<real>50.906837463378906</real>
+							<real>49.709980010986328</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -427,8 +427,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>86.763580322265625</real>
-							<real>129.891845703125</real>
+							<real>80.763580322265625</real>
+							<real>117.891845703125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -516,8 +516,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>105.57567596435547</real>
-							<real>197.04473876953125</real>
+							<real>92.575675964355469</real>
+							<real>172.04473876953125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -605,8 +605,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>952.381591796875</real>
-							<real>168.86032104492188</real>
+							<real>967.381591796875</real>
+							<real>167.86032104492188</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -770,12 +770,10 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>16</integer>
+				<integer>20</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
 				<key>children</key>
@@ -783,7 +781,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>game background-extend</string>
+				<string>background</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -805,8 +803,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>510</real>
+							<real>134</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -819,8 +817,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -830,8 +828,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.97492748498916626</real>
-							<real>1.1087307929992676</real>
+							<real>0.996104896068573</real>
+							<real>1.1815643310546875</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -844,7 +842,274 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/game background-extend.png</string>
+							<string>foodwar_picture/backgroud-2.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>22</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>lane1</string>
+				<key>memberVarAssignmentName</key>
+				<string>_lane1</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>511</real>
+							<real>172</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.99298256635665894</real>
+							<real>1.1510576009750366</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>foodwar_picture/lane1.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>23</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>lane2</string>
+				<key>memberVarAssignmentName</key>
+				<string>_lane2</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>511</real>
+							<real>115</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1.1350792646408081</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>foodwar_picture/lane2.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>24</integer>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>lane3</string>
+				<key>memberVarAssignmentName</key>
+				<string>_lane3</string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>509</real>
+							<real>50</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.99589496850967407</real>
+							<real>1.2059884071350098</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>foodwar_picture/lane3.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -902,8 +1167,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>509.80670166015625</real>
-							<real>190.54832458496094</real>
+							<real>519.80670166015625</real>
+							<real>173.54832458496094</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -927,8 +1192,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.97662651538848877</real>
-							<real>0.88844889402389526</real>
+							<real>1.0070275068283081</real>
+							<real>1.0747228860855103</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -999,8 +1264,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>500.51675415039062</real>
-							<real>120.87364959716797</real>
+							<real>514.5167236328125</real>
+							<real>109.87364959716797</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1024,8 +1289,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.97662651538848877</real>
-							<real>0.88844889402389526</real>
+							<real>0.9959985613822937</real>
+							<real>0.94869852066040039</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1096,8 +1361,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>495.87176513671875</real>
-							<real>48.102321624755859</real>
+							<real>507.87176513671875</real>
+							<real>49.102321624755859</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1121,8 +1386,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.97662651538848877</real>
-							<real>0.88844889402389526</real>
+							<real>0.99748951196670532</real>
+							<real>0.83274352550506592</real>
 							<false/>
 							<integer>0</integer>
 						</array>
