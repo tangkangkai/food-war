@@ -62,6 +62,7 @@
 - (int)getHealth;
 - (int)getAtkInt;
 - (int)getMoveSpeed;
+- (int)getValue;
 
 - (CCNode*)getSoldier;
 - (NSMutableArray*)getArray:(int) enemy;

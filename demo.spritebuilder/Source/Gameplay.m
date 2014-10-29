@@ -21,6 +21,9 @@
 #define COKE 2;
 #define FRIES 3;
 
+static int energy;
+
+
 
 @implementation Gameplay{
     CCNode *_potatoMan;
@@ -40,7 +43,7 @@
     CCLabelTTF *_gameoverLabel;
     //CCLabelTTF *_money;
     CCLabelTTF *_energy;
-    int energy;
+    
 
     int mTimeInSec;
     int timeFlag;
@@ -76,7 +79,6 @@
     [self schedule:@selector(tick) interval:1.0f];
   
     [audio playBg:@"playBackground.mp3" loop:TRUE];
-
 }
 
 - (void)onEnter {
@@ -117,6 +119,14 @@
 //-(void)updateMoney{
 //    [_money setString:[NSString stringWithFormat:@"$ %d", [SavedData money]]];
 //}
+
+-(void)reduceEnergy:(int) amount {
+    energy -= amount;
+}
+
++(void)addEnergy:(int) amount {
+    energy += amount;
+}
 
 -(void)updateEnergy{
     [_energy setString:[NSString stringWithFormat:@"E: %d", energy]];
@@ -191,6 +201,11 @@
             [[CCDirector sharedDirector] resume];
         }
         else if(tag==2) {
+            //add money due to the energy
+            NSLog(@",,,,,%d", energy / 10);
+            [SavedData addMoney:energy / 10];
+            [SavedData saveMoney];
+            
             [[CCDirector sharedDirector] resume];
             CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
             CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
@@ -333,6 +348,8 @@
     } else {
         [self removeChild:[man soldier]];
     }
+
+    
     man = NULL;
     selected_soldier = NULL;
     [scroll showTrack:0];
@@ -389,12 +406,12 @@
     [self removeChild: [man soldier]];
     
     NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
-    
+    Soldier *newSoldier = NULL;
     // Avoid the physic confliction with the new born enemy
     CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
     if( [selected_soldier  isEqual: @"potatoMan"] ){
         int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
-        PotatoMan *newSoldier = [[PotatoMan alloc] initPotato: lane_num
+        newSoldier = [[PotatoMan alloc] initPotato: lane_num
                                                   startPos:sourcehouse.position
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
@@ -403,7 +420,7 @@
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
-        BeanMan *newSoldier = [[BeanMan alloc] initBean: lane_num
+        newSoldier = [[BeanMan alloc] initBean: lane_num
                                                startPos:sourcehouse.position
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
@@ -412,7 +429,7 @@
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
-        BananaMan *newSoldier = [[BananaMan alloc] initBanana: lane_num
+        newSoldier = [[BananaMan alloc] initBanana: lane_num
                                                    startPos:sourcehouse.position
                                                    destPos: destination
                                                    ourArr:[scroll healthy_soldiers]
@@ -421,7 +438,7 @@
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"corn"]  ){
-        CornMan *newSoldier = [[CornMan alloc] initCorn: lane_num
+        newSoldier = [[CornMan alloc] initCorn: lane_num
                                                      startPos:sourcehouse.position
                                                       destPos: destination
                                                        ourArr:[scroll healthy_soldiers]
@@ -429,6 +446,9 @@
                                             level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
+    }
+    if (newSoldier != NULL) {
+        [self reduceEnergy:[newSoldier getValue]];
     }
 }
 

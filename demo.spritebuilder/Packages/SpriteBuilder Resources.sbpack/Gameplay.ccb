@@ -1056,7 +1056,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>1000</string>
+							<string>E: 10000</string>
 							<false/>
 						</array>
 					</dict>
