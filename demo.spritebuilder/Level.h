@@ -23,6 +23,7 @@
                 award:(int) award
                 enemySequence:(NSMutableArray*) enemies;
 - (int)getLevel;
+- (int)getAward;
 
 @end
 

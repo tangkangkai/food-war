@@ -20,6 +20,7 @@
     
     _levelNum = levelNum;
     _laneNum = laneNum;
+    _award = award;
     _time = time;
     _enemySequence = enemies;
     
@@ -30,6 +31,10 @@
 - (int)getLevel {
     
     return _levelNum;
+}
+
+- (int)getAward {
+    return _award;
 }
 
 @end

@@ -207,7 +207,7 @@ static int energy;
         }
         else if(tag==2) {
             //add money due to the energy
-            [SavedData addMoney:energy / 10];
+            [SavedData addMoney:[[Levels getSelectedLevel] getAward] + mTimeInSec];
             [SavedData saveMoney];
             
             //set unlocked game level to the next level
@@ -340,7 +340,7 @@ static int energy;
 
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
-        [self reduceEnergy:400];
+        [self reduceEnergy:1000];
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBomb:scrollPos];
     } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
