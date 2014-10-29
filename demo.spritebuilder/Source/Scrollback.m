@@ -172,7 +172,6 @@
         
         ///////////////
         
-        
         FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane
                                                     startPos:[(CCNode*)start_positions[lane] position]
                                                      destPos:destination
