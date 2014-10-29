@@ -20,7 +20,7 @@
 
 // get value of soldier(energy gained/reduced)
 - (int)getValue {
-    return 50 + 25 * [self getLevel];
+    return 75 + 25 * [self getLevel];
 }
 
 // get methods implementations add by kk

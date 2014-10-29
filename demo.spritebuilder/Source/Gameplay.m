@@ -188,6 +188,9 @@ static int energy;
                                                 otherButtonTitles: @"Quit", nil];
     [alert setTag:1];
     [alert show];
+    [audio stopBg];
+    
+
 }
 
 
@@ -198,6 +201,7 @@ static int energy;
     long tag =[alertView tag];
     if (buttonIndex == 0) {
         if(tag == 1) {
+            [audio playBg];
             [[CCDirector sharedDirector] resume];
         }
         else if(tag==2) {
@@ -334,6 +338,7 @@ static int energy;
     CGPoint touchLocation = [touch locationInNode:self];
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
+        [self reduceEnergy:400];
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBomb:scrollPos];
     } else if (CGRectContainsPoint(CGRectMake([scroll track1].boundingBox.origin.x, [scroll track1].boundingBox.origin.y+20, [scroll track1].boundingBox.size.width, [scroll track1].boundingBox.size.height),touchLocation)) {
