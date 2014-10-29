@@ -936,7 +936,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string>_level2</string>
+				<string>_level3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1143,7 +1143,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string>_level3</string>
+				<string>_level2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1337,6 +1337,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
