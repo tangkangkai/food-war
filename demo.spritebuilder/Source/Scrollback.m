@@ -157,7 +157,9 @@
         CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
         CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
         CCNode* aniFries = title;
-        aniFries.position = [(CCNode*)start_positions[lane] position];
+//        CCNode* _aniFries = title;
+//        CCSprite *aniFries = title;                                     //private
+        aniFries.position = [(CCNode*)start_positions[lane] position];              //??
         
         
         CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
