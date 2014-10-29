@@ -149,38 +149,7 @@
         [enemy_soldier move];
     }
     if( type == 2 ){
-        
-        ///////////////test animation
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"friesAni.plist"];
-        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"friesAni.png"];
-        [self addChild:spriteSheet];
-        NSMutableArray *friesAnimFrames = [NSMutableArray array];
-        for (int i=0; i<8; i++) {
-            [friesAnimFrames addObject:
-             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-              [NSString stringWithFormat:@"fries%d.png",i]]];
-        }
-        
-        CCAnimation *friesAnim = [CCAnimation
-                                  animationWithSpriteFrames:friesAnimFrames delay:0.1f];
-        
-        CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
-        CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
-        CCNode* aniFries = title;
-//        CCNode* _aniFries = title;
-//        CCSprite *aniFries = title;                                     //private
-        aniFries.position = [(CCNode*)start_positions[lane] position];              //??
-        
-        
-        CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
-        
-        [aniFries runAction:friesAction];
-        //    [self addChild:self.anibomb];
-//        [spriteSheet addChild:aniFries];
-        [spriteSheet addChild:aniFries];
-        
-        
-        ///////////////
+        CCNode *aniFries = [self generateAni:@"friesAni" characterName:@"fries" startPos:[(CCNode*)start_positions[lane] position] frameNumber:8];
         
         FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane
                                                     startPos:[(CCNode*)start_positions[lane] position]
@@ -194,6 +163,39 @@
     }
 }
 
+// This is the animation interface. It accepts 4 parameter: file name without extension, character name, start position and frame number.
+
+-(CCNode*)generateAni:(NSString*) fileName
+        characterName:(NSString*) character
+             startPos:(CGPoint) start
+          frameNumber:(int) frameNum{
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@.plist", fileName]];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", fileName]];
+    [self addChild:spriteSheet];
+    NSMutableArray *soldierAnimFrames = [NSMutableArray array];
+    for (int i=0; i<frameNum; i++) {
+        [soldierAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+//          [NSString stringWithFormat:@"fries%d.png",i]]];
+        [NSString stringWithFormat:@"%@%d.png", character, i]]];
+    }
+    
+    CCAnimation *soldierAnim = [CCAnimation
+                              animationWithSpriteFrames:soldierAnimFrames delay:0.1f];
+    
+    CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
+    CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
+    CCNode* aniSoldier = title;
+    aniSoldier.position = start;
+    
+    
+    CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
+    
+    [aniSoldier runAction:friesAction];
+    [spriteSheet addChild:aniSoldier];
+    return aniSoldier;
+}
 
 - (void)showTrack: (int) num {
     _track1.visible = false;
