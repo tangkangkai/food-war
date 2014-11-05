@@ -37,6 +37,7 @@
 @property CGPoint start_pos;
 @property CGPoint dest_pos;
 @property CCNode* soldier;
+@property CCNode* AniNode;
 @property NSMutableArray* ourArray;
 @property NSMutableArray* enemyArray;
 
@@ -47,7 +48,8 @@
                   destPos:(CGPoint) destPos
                   ourArr:(NSMutableArray*) ourArray
                   enemyArr:(NSMutableArray*) enemyArray
-            level:(int) soldierLevel;
+            level:(int) soldierLevel
+        Animation:(CCNode*)Ani;
 
 
 - (int)loseHealth:(int)Attack;
@@ -81,7 +83,9 @@
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
-         level: (int) soldierLevel;
+         level: (int) soldierLevel
+        Animation: (CCNode*) Ani;
+
 
 @end
 
@@ -96,7 +100,8 @@
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
           level: (int) soldierLevel
-  cokeAnimation: (CCNode*) cokeAni;
+      Animation: (CCNode*) Ani;
+
 
 @end
 
@@ -109,7 +114,9 @@
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
-            level: (int) soldierLevel;
+            level: (int) soldierLevel
+        Animation: (CCNode*) Ani;
+
 
 @end
 
@@ -121,7 +128,9 @@
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
-         level: (int) soldierLevel;
+         level: (int) soldierLevel
+      Animation: (CCNode*) Ani;
+
 
 @end
 
@@ -132,7 +141,9 @@
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
-       level: (int) soldierLevel;
+       level: (int) soldierLevel
+        Animation: (CCNode*) Ani;
+
 
 @end
 
@@ -164,7 +175,8 @@
                 destPos:(CGPoint) dest
                 ourArr:(NSMutableArray*) ourArray
                 enemyArr:(NSMutableArray*) enemyArray
-                level: (int) soldierLevel;
+                level: (int) soldierLevel
+                Animation: (CCNode*) Ani;
 
 @end
 
@@ -172,7 +184,6 @@
 @interface FriesMan : Soldier
 
 @property BOOL readyLaunch;
-@property CCNode* friesAniNode;
 @property CCNode* missile;
 
 - (void) undoReady;
@@ -186,6 +197,6 @@
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
            level: (int) soldierLevel
-  friesAnimation: (CCNode*) friesAni;
+       Animation: (CCNode*) Ani;
 
 @end

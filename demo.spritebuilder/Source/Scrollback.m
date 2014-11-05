@@ -134,7 +134,8 @@
                                                         destPos:destination
                                                          ourArr:_junk_soldiers
                                                        enemyArr:_healthy_soldiers
-                                                          level:1];
+                                                          level:1
+                                                      Animation:NULL];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
@@ -147,7 +148,7 @@
                                                    ourArr:_junk_soldiers
                                                  enemyArr:_healthy_soldiers
                                                     level:1
-                                            cokeAnimation: aniCoke];
+                                            Animation: aniCoke];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
@@ -160,7 +161,7 @@
                                                       ourArr:_junk_soldiers
                                                     enemyArr:_healthy_soldiers
                                                        level:1
-                                               friesAnimation:aniFries];
+                                                   Animation:aniFries];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }

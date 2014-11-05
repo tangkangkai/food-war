@@ -93,18 +93,23 @@
                                            startPos:_hole1.position
                                             destPos: _hole1.position
                                              ourArr:NULL                                                                  enemyArr:NULL
-                                              level:potatoLevel];
+                                              level:potatoLevel
+                                            Animation:NULL];
     bean = [[BeanMan alloc] initBean: -1
                                      startPos:_hole1.position
                                       destPos: _hole1.position
                                        ourArr:NULL                                                                  enemyArr:NULL
-                                        level:beanLevel];
+                                        level:beanLevel
+                           Animation:NULL];
+
     
     banana = [[BananaMan alloc] initBanana: -1
                                              startPos:_hole1.position
                                               destPos: _hole1.position
                                                ourArr:NULL                                                                  enemyArr:NULL
-                                                level:bananaLevel];
+                                                level:bananaLevel
+                                 Animation:NULL];
+
     
     
     [self updateShowedData];
@@ -206,7 +211,9 @@
                                   startPos:_hole1.position
                                    destPos: _hole1.position
                                     ourArr:NULL enemyArr:NULL
-                                     level:++potatoLevel];
+                                     level:++potatoLevel
+                                 Animation:NULL];
+
     //update
     [self updateStoredData];
     [self updateShowedData];
@@ -223,7 +230,9 @@
                                              startPos:_hole1.position
                                               destPos: _hole1.position
                                                ourArr:NULL                                                                  enemyArr:NULL
-                                                level:++beanLevel];
+                                                level:++beanLevel
+                           Animation:NULL];
+
     //update
     [self updateStoredData];
     [self updateShowedData];
@@ -239,7 +248,9 @@
                                          startPos:_hole1.position
                                           destPos: _hole1.position
                                            ourArr:NULL                                                                  enemyArr:NULL
-                                            level:++bananaLevel];
+                                            level:++bananaLevel
+                                 Animation:NULL];
+
 
     //update
     [self updateStoredData];
