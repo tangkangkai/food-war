@@ -87,6 +87,7 @@
 
 
 @interface CokeMan : Soldier
+@property CCNode* cokeAniNode;
 
 - (void)attackAnimation:(Soldier*) target;
 - (id)initCoke :(int) lane_num
@@ -94,7 +95,8 @@
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
-          level: (int) soldierLevel;
+          level: (int) soldierLevel
+  cokeAnimation: (CCNode*) cokeAni;
 
 @end
 
