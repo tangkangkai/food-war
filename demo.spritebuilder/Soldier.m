@@ -206,6 +206,9 @@
     if ( _AniNode == NULL){
         [(CCSprite*)[_soldier children][0] setVisible:true];
     }
+    else{
+        [(CCSprite*)[_soldier children][0] setVisible:false];
+    }
     return self;
 }
 
