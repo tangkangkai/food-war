@@ -14,6 +14,7 @@
                 laneNum:(int) laneNum
                 time:(int) time
                 award:(int) award
+                energy:(int) energy
                 enemySequence:(NSMutableArray*) enemies{
     
     self = [super init];
@@ -21,6 +22,7 @@
     _levelNum = levelNum;
     _laneNum = laneNum;
     _award = award;
+    _energy = energy;
     _time = time;
     _enemySequence = enemies;
     
@@ -35,6 +37,10 @@
 
 - (int)getAward {
     return _award;
+}
+
+- (int)getEnergy {
+    return _energy;
 }
 
 @end
@@ -90,6 +96,7 @@ static Level *Levelselected;
                               laneNum:1
                               time:200
                               award:1000
+                              energy: 3000
                               enemySequence:lvlOneSeq ];
     
     
@@ -119,6 +126,7 @@ static Level *Levelselected;
                                 laneNum:2
                                    time:200
                                   award:2000
+                                energy:5000
                           enemySequence:lvlTwoSeq ];
     
     NSMutableArray *lvlThreeSeq = [ [NSMutableArray alloc] init ];
@@ -147,6 +155,7 @@ static Level *Levelselected;
                                laneNum:3
                                   time:200
                                  award:2000
+                                energy:10000
                          enemySequence:lvlThreeSeq ];
 }
 

@@ -14,14 +14,16 @@
 @property int laneNum;
 @property int time;
 @property int award;
+@property int energy;
 @property NSMutableArray *enemySequence;
 
 
 - (id)initLevel:(int) levelNum
-                laneNum:(int) laneNum
-                time:(int) time
-                award:(int) award
-                enemySequence:(NSMutableArray*) enemies;
+            laneNum:(int) laneNum
+            time:(int) time
+            award:(int) award
+            energy:(int) energy
+            enemySequence:(NSMutableArray*) enemies;
 - (int)getLevel;
 - (int)getAward;
 

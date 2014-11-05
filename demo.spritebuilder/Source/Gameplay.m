@@ -51,6 +51,8 @@ static int energy;
     CCSprite *_third;
     CCSprite *_fourth;
     NSMutableArray *lineupArray;
+    NSMutableArray *spots;
+    NSArray *keys;
     
     OALSimpleAudio *audio;
 }
@@ -68,7 +70,7 @@ static int energy;
 
 - (void)didLoadFromCCB {
     //initiate energy
-    energy = 10000;
+    energy = [[Levels getSelectedLevel] energy];
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     _scrollview.delegate = self;
@@ -86,13 +88,13 @@ static int energy;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"healthy_food.plist"];
     CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
     NSMutableDictionary *soldiers = [SavedData lineupDictonary];
-    NSMutableArray *spots = [[NSMutableArray alloc] init];
+    spots = [[NSMutableArray alloc] init];
     lineupArray = [[NSMutableArray alloc] init];
     [spots addObject:_first];
     [spots addObject:_second];
     [spots addObject:_third];
     [spots addObject:_fourth];
-    NSArray *keys = [soldiers allKeys];
+    keys = [soldiers allKeys];
     NSLog(@"length of lineup: %d", (int)keys.count);
     for (int i = 0; i < (int)keys.count; i++) {
         CCSprite *spot = [spots objectAtIndex:i];
@@ -145,6 +147,16 @@ static int energy;
         }
         [_timerLabel setString:[NSString stringWithFormat:@"%d", mTimeInSec]];
         [self updateEnergy];
+        
+        
+        // check if energy is enough
+        for (int i = (int)keys.count; i < spots.count; i++) {
+        }
+        
+        // check if energy for bomb is enough
+        
+        
+        
 
     } else if(timeFlag == 1 ){
         timeFlag = 2;
@@ -207,7 +219,7 @@ static int energy;
         }
         else if(tag==2) {
             //add money due to the energy
-            [SavedData addMoney:[[Levels getSelectedLevel] getAward] + mTimeInSec];
+            [SavedData addMoney:[[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
             [SavedData saveMoney];
             
             //set unlocked game level to the next level
