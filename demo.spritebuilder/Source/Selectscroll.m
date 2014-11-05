@@ -38,8 +38,12 @@
     }
     //levelArray = [SavedData levelArray];
 }
+/*
 
-
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [scrollView setContentOffset:scrollView.contentOffset animated:NO];
+}
+*/
 - (void)level1 {
     [Levels setSelectedLevel:1];
     [self changeLevel:1];

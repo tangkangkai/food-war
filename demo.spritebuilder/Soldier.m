@@ -284,7 +284,8 @@
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
-        level: (int) soldierLevel{
+           level: (int) soldierLevel
+   cokeAnimation: (CCNode*) cokeAni{
 
     type = 2;
 
@@ -298,6 +299,10 @@
     total_health = health;
 
     self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    
+    [(CCSprite*)[[super soldier] children][0] setVisible:false];
+    _cokeAniNode=cokeAni;
+
     
     return self;
 }
@@ -320,6 +325,16 @@
                                                    position: newLoc];
     CCActionRemove *actionRemove = [CCActionRemove action];
     [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
+}
+
+-(void)move{
+    [super move];
+    _cokeAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
+}
+
+- (void)dead{
+    [ super dead ];
+    [_cokeAniNode removeFromParent];
 }
 
 @end
@@ -829,6 +844,11 @@
     
     
     return self;
+}
+
+- (void)dead{
+    [ super dead ];
+    [_friesAniNode removeFromParent];
 }
 
 -(void)countDown{
