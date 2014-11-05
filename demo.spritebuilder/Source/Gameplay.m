@@ -55,6 +55,9 @@ static int energy;
     NSArray *keys;
     
     OALSimpleAudio *audio;
+    BOOL _audioIsOn;
+    CCNode *_musicon;
+    CCNode *_musicoff;
 }
 
 - (id)init{
@@ -80,6 +83,7 @@ static int energy;
     [self schedule:@selector(tick) interval:1.0f];
   
     [audio playBg:@"playBackground.mp3" loop:TRUE];
+    _audioIsOn = TRUE;
 }
 
 - (void)onEnter {
@@ -205,6 +209,23 @@ static int energy;
     [audio stopBg];
     
 
+}
+
+- (void)voice {
+    if (!_audioIsOn)
+    {
+        _audioIsOn = TRUE;
+        _musicoff.visible = FALSE;
+       // _musicon.visible = TRUE;
+        [audio playBgWithLoop:TRUE];
+    }
+    else
+    {
+        _audioIsOn = FALSE;
+       // _musicon.visible = FALSE;
+        _musicoff.visible = TRUE;
+        [audio stopBg];
+    }
 }
 
 
