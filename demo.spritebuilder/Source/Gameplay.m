@@ -218,6 +218,7 @@ static int energy;
         _musicoff.visible = FALSE;
        // _musicon.visible = TRUE;
         [audio playBgWithLoop:TRUE];
+        
     }
     else
     {
