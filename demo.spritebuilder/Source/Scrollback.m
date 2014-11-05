@@ -139,12 +139,15 @@
         [enemy_soldier move];
     }
     if( type == 1 ){
+        CCNode *aniCoke = [self generateAni:@"cokeAni" characterName:@"coke" startPos:[(CCNode*)start_positions[lane] position] frameNumber:5];
+        
         CokeMan* enemy_soldier= [[CokeMan alloc] initCoke: lane
                                                  startPos:[(CCNode*)start_positions[lane] position]
                                                   destPos:destination
                                                    ourArr:_junk_soldiers
                                                  enemyArr:_healthy_soldiers
-                                                    level:1];
+                                                    level:1
+                                            cokeAnimation: aniCoke];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }
