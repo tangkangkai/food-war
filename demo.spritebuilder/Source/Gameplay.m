@@ -333,6 +333,7 @@ static int energy;
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    NSLog(@"touch end");
     [audio playEffect:@"blop.mp3"];
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];

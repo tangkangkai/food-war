@@ -11,7 +11,7 @@
 static GameScene* GameSceneInstance;
 
 @implementation GameScene {
-    
+    CCScrollView *_selectscroll;
 }
 
 +(GameScene*)shareLayer{
@@ -24,6 +24,60 @@ static GameScene* GameSceneInstance;
         GameSceneInstance=self;
     }
     return self;
+}
+
+- (void)didLoadFromCCB {
+    _selectscroll.delegate = self;
+   // self.userInteractionEnabled = TRUE;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)sender
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    //ensure that the end of scroll is fired.
+    [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:nil afterDelay:0.5];
+    
+}
+
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    float x=[_selectscroll scrollPosition].x;
+    CGPoint page1=CGPointMake(0, 0);
+    CGPoint page2=CGPointMake(524, 0);
+    CGPoint page3=CGPointMake(1032, 0);
+    
+    if(x<250){
+        [_selectscroll setScrollPosition:page1];
+    }
+    if (x>=250&&x<774) {
+        [_selectscroll setScrollPosition:page2];
+    }
+    if (x>=774) {
+        [_selectscroll setScrollPosition:page3];
+    }
+}
+
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    decelerate=NO;
+    float x=[_selectscroll scrollPosition].x;
+    CGPoint page1=CGPointMake(0, 0);
+    CGPoint page2=CGPointMake(524, 0);
+    CGPoint page3=CGPointMake(1032, 0);
+    
+    if(x<250){
+        [_selectscroll setScrollPosition:page1];
+    }
+    if (x>=250&&x<774) {
+        [_selectscroll setScrollPosition:page2];
+    }
+    if (x>=774) {
+        [_selectscroll setScrollPosition:page3];
+    }
+
+
 }
 
 - (void) back {

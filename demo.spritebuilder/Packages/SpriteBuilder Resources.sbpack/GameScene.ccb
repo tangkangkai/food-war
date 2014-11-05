@@ -581,7 +581,7 @@
 				<key>displayName</key>
 				<string>CCScrollView</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_selectscroll</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
