@@ -293,6 +293,9 @@ static BOOL _audioIsOn;
         soldier = [lineupArray objectAtIndex:3];
     
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
+        if (energy < 1000) {
+            return;
+        }
         selected_soldier = @"blackBomb";
         selected_soldier_animation=@"blackBomb";
         
@@ -336,7 +339,11 @@ static BOOL _audioIsOn;
                                                enemyArr:NULL
                                                level:soldierLevel
                                                Animation:NULL];
-        man = newSolider;
+        if ([newSolider getValue] > energy) {
+            return;
+        } else {
+            man = newSolider;
+        }
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
     }
