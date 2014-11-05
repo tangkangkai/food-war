@@ -329,7 +329,10 @@ static int energy;
                                                lane_num:-1
                                                startPos:touchLocation
                                                destPos:touchLocation
-                                               ourArr:NULL enemyArr:NULL level:soldierLevel];
+                                               ourArr:NULL
+                                               enemyArr:NULL
+                                               level:soldierLevel
+                                               Animation:NULL];
         man = newSolider;
         // TODO possible memory leak
         [self addChild: [newSolider soldier]];
@@ -455,7 +458,8 @@ static int energy;
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
                                                   enemyArr:[scroll junk_soldiers]
-                                 level:potatoLevel];
+                                                     level:potatoLevel
+                                                 Animation:NULL];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
@@ -464,16 +468,21 @@ static int energy;
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
                                                enemyArr:[scroll junk_soldiers]
-                               level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
+                               level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
+                                     Animation:NULL];
+
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
+        CCNode *bananaAni = [scroll generateAni:@"bananaAni" characterName:@"banana" startPos:[sourcehouse position] frameNumber:8];
         newSoldier = [[BananaMan alloc] initBanana: lane_num
-                                                   startPos:sourcehouse.position
+                                                   startPos:[sourcehouse position]
                                                    destPos: destination
                                                    ourArr:[scroll healthy_soldiers]
                                                    enemyArr:[scroll junk_soldiers]
-                                 level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
+                                 level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
+                                         Animation:bananaAni];
+
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"corn"]  ){
@@ -482,7 +491,9 @@ static int energy;
                                                       destPos: destination
                                                        ourArr:[scroll healthy_soldiers]
                                                      enemyArr:[scroll junk_soldiers]
-                                            level:[[soldierLevelDict objectForKey:selected_soldier] intValue]];
+                                            level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
+                                     Animation:NULL];
+
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     }

@@ -169,7 +169,8 @@
                   destPos:(CGPoint) dest
                   ourArr:(NSMutableArray*) ourArray
                   enemyArr:(NSMutableArray*) enemyArray
-                  level: (int) soldierLevel{
+                  level: (int) soldierLevel
+                  Animation: (CCNode*)Ani{
     
     self = [super init];
     [self setLevel:soldierLevel];
@@ -201,24 +202,29 @@
     if( _group != -1 ){
         [self schedule:@selector(doAttack) interval:0.1];
     }
+    _AniNode=Ani;
+    if ( _AniNode == NULL){
+        [(CCSprite*)[_soldier children][0] setVisible:true];
+    }
     return self;
 }
 
 
 -(void)move{
+    if( _AniNode != NULL ){
+        [_AniNode setPosition:[_soldier position]];
+    }
     if( moving == true || _group == -1 ){
         return;
     }
-    
+
     moving = true;
     int distance = ABS(_dest_pos.x - [_soldier position].x);
     int duration = distance/moveSpeed;
     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
                                          position:CGPointMake(_dest_pos.x,[_soldier position].y)];
-    
-    
-    
     [_soldier runAction:[CCActionSequence actionWithArray:@[actionMove]]];
+
 }
 
 - (void)dead{
@@ -229,6 +235,10 @@
 
     if( _group == 1 ){
         [Gameplay addEnergy:value];
+    }
+    
+    if( _AniNode != NULL ){
+        [_AniNode removeFromParent];
     }
     // TODO release
 }
@@ -258,7 +268,8 @@
                   destPos:(CGPoint) dest
                   ourArr:(NSMutableArray*) ourArray
                   enemyArr:(NSMutableArray*) enemyArray
-                  level: (int) soldierLevel{
+                  level: (int) soldierLevel
+                  Animation: (CCNode*) Ani{
 
     type = 0;
     moveSpeed = 30;
@@ -270,7 +281,7 @@
     health = 200 + 50 * soldierLevel;
     total_health = health;
 
-    self = [ super initSoldier:@"burgerMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    self = [ super initSoldier:@"burgerMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
     
     return self;
 }
@@ -285,8 +296,7 @@
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
            level: (int) soldierLevel
-   cokeAnimation: (CCNode*) cokeAni{
-
+       Animation: (CCNode*) Ani{
     type = 2;
 
     moveSpeed = 35;
@@ -298,13 +308,8 @@
     health = 100 + 20 * soldierLevel;
     total_health = health;
 
-    self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    
-    [(CCSprite*)[[super soldier] children][0] setVisible:false];
-    _cokeAniNode=cokeAni;
-
-    
-    return self;
+    self = [ super initSoldier:@"cokeMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
+        return self;
 }
 
 
@@ -332,13 +337,7 @@
     _cokeAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
 }
 
-- (void)dead{
-    [ super dead ];
-    [_cokeAniNode removeFromParent];
-}
-
 @end
-
 
 
 @implementation PotatoMan
@@ -348,7 +347,8 @@
         destPos:(CGPoint) dest
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
-        level: (int) soldierLevel{
+        level: (int) soldierLevel
+       Animation: (CCNode*) Ani{
 
     type = 0;
     moveSpeed = 30;
@@ -367,7 +367,8 @@
                    destPos:dest
                    ourArr:ourArray
                    enemyArr:enemyArray
-                   level:soldierLevel];
+                   level:soldierLevel
+                   Animation:Ani];
     return self;
 }
 
@@ -380,8 +381,8 @@
        destPos:(CGPoint) dest
         ourArr:(NSMutableArray*) ourArray
       enemyArr:(NSMutableArray*) enemyArray
-        level: (int) soldierLevel{
-    
+        level: (int) soldierLevel
+     Animation: (CCNode*) Ani{
 
     type = 2;
     
@@ -394,9 +395,10 @@
     health = 100 + 20 * soldierLevel;
     total_health = health;
 
-    self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
     return self;
 }
+
 - (void)attackAnimation:(Soldier*) target{
     CCNode *bullet = [CCBReader load:@"bean_bullet"];
     
@@ -415,7 +417,8 @@
     CCActionRemove *actionRemove = [CCActionRemove action];
     [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
     
-}@end
+}
+@end
 
 @implementation BananaMan
 
@@ -438,8 +441,8 @@
        destPos:(CGPoint) dest
         ourArr:(NSMutableArray*) ourArray
       enemyArr:(NSMutableArray*) enemyArray
-      level: (int) soldierLevel{
-    
+      level: (int) soldierLevel
+    Animation: (CCNode*) Ani{
 
     type = 2;
     
@@ -452,8 +455,7 @@
     health = 140 + 20 * soldierLevel;
     total_health = health;
 
-    self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    
+    self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
     return self;
 }
 @end
@@ -477,7 +479,7 @@
     health = 1000 + 200 * level;
     total_health = health;
 
-    self = [ super initSoldier:@"base" group:group lane_num:-1 startPos:start destPos:start ourArr:ourArray enemyArr:enemyArray level:level];
+    self = [ super initSoldier:@"base" group:group lane_num:-1 startPos:start destPos:start ourArr:ourArray enemyArr:enemyArray level:level Animation:NULL];
     
     return self;
 }
@@ -620,7 +622,9 @@
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
-           level: (int) soldierLevel{
+           level: (int) soldierLevel
+     Animation: (CCNode*) Ani{
+
     
     type = 3;
     _readyLaunch = false;
@@ -633,7 +637,7 @@
     health = 120 + 20 * soldierLevel;
     total_health = health;
     
-    self = [ super initSoldier:@"corn" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
+    self = [ super initSoldier:@"corn" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
     [self schedule:@selector(countDown) interval:0.5];
 
     return self;
@@ -810,7 +814,6 @@
         
         ///////////////
 
-        _friesAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
         [super move];
     }
 }
@@ -821,7 +824,7 @@
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
           level: (int) soldierLevel
- friesAnimation: (CCNode*) friesAni{
+      Animation: (CCNode*) Ani{
     
     type = 3;
     _readyLaunch = false;
@@ -833,22 +836,12 @@
     value = 200 + 20 * soldierLevel;
     health = 120 + 20 * soldierLevel;
     total_health = health;
-    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel];
-    [(CCSprite*)[[super soldier] children][0] setVisible:false];
-//    self.soldier=friesAni;
-    _friesAniNode=friesAni;
-//    _friesAniNode.position = CGPointMake(300, 300);
-//    self.soldier.position = start;
+    self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
+    //[(CCSprite*)[[super soldier] children][0] setVisible:false];
     
     [self schedule:@selector(countDown) interval:0.5];
     
-    
     return self;
-}
-
-- (void)dead{
-    [ super dead ];
-    [_friesAniNode removeFromParent];
 }
 
 -(void)countDown{
