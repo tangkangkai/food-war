@@ -29,6 +29,9 @@
 + (void)saveLineupDict;
 + (void)setLineUp: (NSMutableDictionary *) lineupDict;
 
+// audio
++ (BOOL)audio;
++ (void)setAudio: (BOOL) ifOn;
 
 // Total money
 + (int) money;

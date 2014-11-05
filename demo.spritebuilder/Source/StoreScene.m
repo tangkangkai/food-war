@@ -259,9 +259,7 @@
     
 }
 
--(void)button4 {
-    [self reduceTotalMoney:4];
-}
+
 
 
 -(void)reduceTotalMoney: (int)value {

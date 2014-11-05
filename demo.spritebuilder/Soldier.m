@@ -15,7 +15,7 @@
 #import "CCAction.h"
 
 @implementation Soldier{
-
+    
 }
 
 // get value of soldier(energy gained/reduced)
@@ -539,7 +539,9 @@
 
     fire.position=_missile.position;
     [self addChild:fire];
-    [audio playEffect:@"missle_launch.mp3"];
+    if ([SavedData audio]) {
+        [audio playEffect:@"missle_launch.mp3"];
+    }
     [_missile runAction:sequence];
 
     last_attack_time = [NSDate date];
@@ -554,7 +556,9 @@
     explosion.duration = 1;
     explosion.position = _missile.position;
     [_missile.parent addChild:explosion];
-    [audio playEffect:@"explode.mp3"];
+    if ([SavedData audio]) {
+        [audio playEffect:@"explode.mp3"];
+    }
     
     _targetLoseHealth=[self missileDetect];
     for (Soldier *target in _targetLoseHealth) {
@@ -716,7 +720,9 @@
     
     fire.position=_missile.position;
     [self addChild:fire];
-    [audio playEffect:@"missle_launch.mp3"];
+    if ([SavedData audio]) {
+        [audio playEffect:@"missle_launch.mp3"];
+    }
     [_missile runAction:sequence];
     [self friesLaunchShock];
     
@@ -750,7 +756,10 @@
     
     explosion.position = _missile.position;
     [_missile.parent addChild:explosion];
-    [audio playEffect:@"explode.mp3"];
+    if ([SavedData audio]) {
+        NSLog(@"hehe");
+        [audio playEffect:@"explode.mp3"];
+    }
     
     _targetLoseHealth=[self missileDetect];
     for (Soldier *target in _targetLoseHealth) {

@@ -2,6 +2,7 @@
 #import "Bomb.h"
 #import <CoreMotion/CoreMotion.h>
 #import "Scrollback.h"
+#import "SavedData.h"
 @implementation Bomb {
     float accelator;
     int counter;
@@ -58,7 +59,10 @@
         CCNode *parent = [_bomb parent];
         [parent addChild:fire];
         OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-        [audio playEffect:@"explode.mp3"];
+        if ([SavedData audio]) {
+            [audio playEffect:@"explode.mp3"];
+        }
+        
         
         NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
         for(int i = 0; i < _enemies.count; i++){

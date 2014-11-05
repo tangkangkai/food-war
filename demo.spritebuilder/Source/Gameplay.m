@@ -22,6 +22,7 @@
 #define FRIES 3;
 
 static int energy;
+static BOOL _audioIsOn;
 
 
 @implementation Gameplay{
@@ -55,7 +56,6 @@ static int energy;
     NSArray *keys;
     
     OALSimpleAudio *audio;
-    BOOL _audioIsOn;
     CCNode *_musicon;
     CCNode *_musicoff;
 }
@@ -83,7 +83,7 @@ static int energy;
     [self schedule:@selector(tick) interval:1.0f];
   
     [audio playBg:@"playBackground.mp3" loop:TRUE];
-    _audioIsOn = TRUE;
+    _audioIsOn = [SavedData audio];
 }
 
 - (void)onEnter {
@@ -215,6 +215,7 @@ static int energy;
     if (!_audioIsOn)
     {
         _audioIsOn = TRUE;
+        [SavedData setAudio:TRUE];
         _musicoff.visible = FALSE;
        // _musicon.visible = TRUE;
         [audio playBgWithLoop:TRUE];
@@ -223,6 +224,7 @@ static int energy;
     else
     {
         _audioIsOn = FALSE;
+        [SavedData setAudio:FALSE];
        // _musicon.visible = FALSE;
         _musicoff.visible = TRUE;
         [audio stopBg];
@@ -372,7 +374,9 @@ static int energy;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"touch end");
-    [audio playEffect:@"blop.mp3"];
+    if (_audioIsOn) {
+        [audio playEffect:@"blop.mp3"];
+    }
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     int laneNum = [[Levels getSelectedLevel] laneNum];
@@ -382,6 +386,9 @@ static int energy;
         [self reduceEnergy:1000];
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBomb:scrollPos];
+        if (_audioIsOn) {
+            [audio playEffect:@"missle_launch.mp3"];
+        }
     } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];
     } else if( CGRectContainsPoint(CGRectMake([scroll lane2].boundingBox.origin.x, [scroll lane2].boundingBox.origin.y+35, [scroll lane2].boundingBox.size.width, [scroll lane2].boundingBox.size.height),touchLocation)) {
