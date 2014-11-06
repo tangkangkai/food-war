@@ -7,106 +7,106 @@
             <key>fries0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{202,2},{48,81}}</string>
+                <string>{{96,2},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{152,2},{48,81}}</string>
+                <string>{{80,80},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,2},{48,81}}</string>
+                <string>{{49,2},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{202,2},{48,81}}</string>
+                <string>{{96,2},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{52,2},{48,81}}</string>
+                <string>{{2,80},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{48,81}}</string>
+                <string>{{2,2},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{52,2},{48,81}}</string>
+                <string>{{2,80},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
             <key>fries7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{202,2},{48,81}}</string>
+                <string>{{96,2},{45,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{48,81}}</string>
+                <string>{{0,0},{45,76}}</string>
                 <key>sourceSize</key>
-                <string>{48,81}</string>
+                <string>{45,76}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -116,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>friesAni.png</string>
             <key>size</key>
-            <string>{252,85}</string>
+            <string>{256,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:61d078b66ed23b3e2c4e466966d0091b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:afcf6fdb2e7201a8ab1feda4955a05ab:1/1$</string>
             <key>textureFileName</key>
             <string>friesAni.png</string>
         </dict>
