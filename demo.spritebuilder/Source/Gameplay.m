@@ -381,9 +381,7 @@ static BOOL _audioIsOn;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"touch end");
-    if (_audioIsOn) {
-        [audio playEffect:@"blop.mp3"];
-    }
+
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     int laneNum = [[Levels getSelectedLevel] laneNum];
@@ -415,41 +413,13 @@ static BOOL _audioIsOn;
 
 - (void)launchBomb: (CGPoint)touchLocation {
     scroll=[_scrollview children][0];
-//    if(item== NULL ){
-//        return;
-//    }
-//    [self removeChild: [item bomb]];
+
     [self removeChild: [item bomb]];
     [_anibomb removeFromParent];
     
-    /*
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bombAni.plist"];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bombAni.png"];
-    [self addChild:spriteSheet];
-    NSMutableArray *flashAnimFrames = [NSMutableArray array];
-    for (int i=1; i<=2; i++) {
-        [flashAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"bomb%d.png",i]]];
-    }
-
-    CCAnimation *flashAnim = [CCAnimation
-                             animationWithSpriteFrames:flashAnimFrames delay:0.1f];
-    
-    CCSpriteFrame* bombFrame = [CCSpriteFrame frameWithImageNamed:@"bomb1.png" ];
-    CCSprite* title = [CCSprite spriteWithSpriteFrame:bombFrame];
-    self.anibomb = title;
-    self.anibomb.position = ccp(300, 300);
-    
-    self.flashAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:flashAnim]];
-    
-    [self.anibomb runAction:self.flashAction];
-//    [self addChild:self.anibomb];
-    [spriteSheet addChild:self.anibomb];*/
-    
-    
-    if(touchLocation.y < 70) return;
-    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb  startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
+    if(touchLocation.y < 70)
+        return;
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
 }
@@ -513,6 +483,9 @@ static BOOL _audioIsOn;
         [newSoldier move];
     }
     if (newSoldier != NULL) {
+        if (_audioIsOn) {
+            [audio playEffect:@"blop.mp3"];
+        }
         [self reduceEnergy:[newSoldier getValue]];
     }
 }
