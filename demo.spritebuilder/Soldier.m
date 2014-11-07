@@ -795,37 +795,6 @@
 
 -(void)move{
     if( !_readyLaunch ){
-        
-        ///////////////test animation
-        /*
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"friesAni.plist"];
-        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"friesAni.png"];
-        [self addChild:spriteSheet];
-        NSMutableArray *friesAnimFrames = [NSMutableArray array];
-        for (int i=0; i<8; i++) {
-            [friesAnimFrames addObject:
-             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-              [NSString stringWithFormat:@"fries%d.png",i]]];
-        }
-        
-        CCAnimation *friesAnim = [CCAnimation
-                                  animationWithSpriteFrames:friesAnimFrames delay:0.1f];
-        
-        CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:@"fries0.png" ];
-        CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
-        CCSprite *aniFries = title;                                     //private
-        aniFries.position = [self getSoldier].position;
-        
-        
-        CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:friesAnim]];
-        
-        [aniFries runAction:friesAction];
-        //    [self addChild:self.anibomb];
-        [spriteSheet addChild:aniFries];
-        */
-        
-        ///////////////
-
         [super move];
     }
 }
@@ -849,10 +818,8 @@
     health = 120 + 20 * soldierLevel;
     total_health = health;
     self = [ super initSoldier:@"friesMan" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel Animation:Ani];
-    //[(CCSprite*)[[super soldier] children][0] setVisible:false];
     
     [self schedule:@selector(countDown) interval:0.5];
-    
     return self;
 }
 
@@ -860,20 +827,25 @@
     NSMutableArray *healthArray = [ self getArray:1 ];
     if ([self readyToLaunch]) {
         int range=[self getAtkRange];
+        CGPoint target = CGPointMake(0, 0);
+        float minDistance = range;
         for( Soldier *s in healthArray ){
             CGPoint enemy_pos = [s soldier].position;
             if( [ s getType ] == 4 ){
                 // make the base reachable
-                enemy_pos.x = enemy_pos.x + 70;
+                enemy_pos.x = enemy_pos.x + 40;
             }
             
             CGFloat xDist = (enemy_pos.x - [self soldier].position.x);
             CGFloat yDist = (enemy_pos.y - [self soldier].position.y);
             CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
-            if (distance<range && [s soldier].position.x<[self soldier].position.x-20) {
-                [self Launch:[s soldier].position];
-                return;
+            if (distance<minDistance && [s soldier].position.x<[self soldier].position.x-20) {
+                minDistance = distance;
+                target = [[s soldier] position];
             }
+        }
+        if( target.x != 0){
+            [self Launch:target];
         }
     }
 }
