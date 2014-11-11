@@ -181,18 +181,16 @@
     for (int i=0; i<frameNum; i++) {
         [soldierAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-//          [NSString stringWithFormat:@"fries%d.png",i]]];
         [NSString stringWithFormat:@"%@%d.png", character, i]]];
     }
     
     CCAnimation *soldierAnim = [CCAnimation
-                              animationWithSpriteFrames:soldierAnimFrames delay:0.1f];
+                              animationWithSpriteFrames:soldierAnimFrames delay:0.15f];
     
     CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
     CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
     CCNode* aniSoldier = title;
     aniSoldier.position = start;
-    
     
     CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
     

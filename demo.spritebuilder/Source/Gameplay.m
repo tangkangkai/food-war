@@ -81,9 +81,15 @@ static BOOL _audioIsOn;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
-  
-    [audio playBg:@"playBackground.mp3" loop:TRUE];
     _audioIsOn = [SavedData audio];
+    if (_audioIsOn) {
+        [audio playBg:@"playBackground.mp3" loop:TRUE];
+    } else {
+        _musicoff.visible = TRUE;
+        [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
+
+    }
+    
 }
 
 - (void)onEnter {
@@ -186,7 +192,7 @@ static BOOL _audioIsOn;
 - (void)win{
     NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", [[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
     [[CCDirector sharedDirector] pause];
-    _gameoverLabel.string = [NSString stringWithFormat:@"You win"];
+    //_gameoverLabel.string = [NSString stringWithFormat:@"You win"];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:promptStr
                                                       message:@""
                                                      delegate:self
@@ -218,8 +224,7 @@ static BOOL _audioIsOn;
         [SavedData setAudio:TRUE];
         _musicoff.visible = FALSE;
        // _musicon.visible = TRUE;
-        [audio playBgWithLoop:TRUE];
-        
+        [audio playBg:@"playBackground.mp3" volume:1 pan:0 loop:TRUE];
     }
     else
     {
@@ -227,7 +232,7 @@ static BOOL _audioIsOn;
         [SavedData setAudio:FALSE];
        // _musicon.visible = FALSE;
         _musicoff.visible = TRUE;
-        [audio stopBg];
+        [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
     }
 }
 
@@ -294,6 +299,8 @@ static BOOL _audioIsOn;
     
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
         if (energy < 1000) {
+            selected_soldier = NULL;
+            selected_soldier_animation = NULL;
             return;
         }
         selected_soldier = @"blackBomb";
@@ -327,7 +334,7 @@ static BOOL _audioIsOn;
     
     selected_soldier = soldier;
     selected_soldier_animation = soldier;
-    soldierLevel = [soldierLevelDict objectForKey:soldier];
+    soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
@@ -438,28 +445,31 @@ static BOOL _audioIsOn;
     CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
     if( [selected_soldier  isEqual: @"potatoMan"] ){
         int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
+        CCNode *potatoAni = [scroll generateAni:@"potatoAni" characterName:@"potato" startPos:[sourcehouse position] frameNumber:8];
+
         newSoldier = [[PotatoMan alloc] initPotato: lane_num
                                                   startPos:sourcehouse.position
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
                                                   enemyArr:[scroll junk_soldiers]
                                                      level:potatoLevel
-                                                 Animation:NULL];
+                                                 Animation:potatoAni];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
+        CCNode *beanAni = [scroll generateAni:@"beanAni" characterName:@"bean" startPos:[sourcehouse position] frameNumber:8];
         newSoldier = [[BeanMan alloc] initBean: lane_num
                                                startPos:sourcehouse.position
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
                                                enemyArr:[scroll junk_soldiers]
                                level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                     Animation:NULL];
+                                     Animation:beanAni];
 
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
-        CCNode *bananaAni = [scroll generateAni:@"bananaAni" characterName:@"banana" startPos:[sourcehouse position] frameNumber:8];
+        CCNode *bananaAni = [scroll generateAni:@"bananaAni" characterName:@"banana" startPos:[sourcehouse position] frameNumber:7];
         newSoldier = [[BananaMan alloc] initBanana: lane_num
                                                    startPos:[sourcehouse position]
                                                    destPos: destination
@@ -471,13 +481,14 @@ static BOOL _audioIsOn;
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"corn"]  ){
+        CCNode *cornAni = [scroll generateAni:@"cornAni" characterName:@"corn" startPos:[sourcehouse position] frameNumber:7];
         newSoldier = [[CornMan alloc] initCorn: lane_num
                                                      startPos:sourcehouse.position
                                                       destPos: destination
                                                        ourArr:[scroll healthy_soldiers]
                                                      enemyArr:[scroll junk_soldiers]
                                             level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                     Animation:NULL];
+                                     Animation:cornAni];
 
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];

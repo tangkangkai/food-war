@@ -521,7 +521,7 @@
             body.opacity = 1;
         }
     }
-    CCNode *readySign = [[self getSoldier] children][4];
+    CCNode *readySign = [[self getSoldier] children][3];
     [readySign setVisible:false];
 }
 
@@ -599,6 +599,9 @@
 
 
 -(void)cornLuanchshock{
+    // TODO bug to fix
+    return;
+    
     CCNode *corn=[self getSoldier];
     
     CCActionMoveTo *moveleft_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(-10 , 0)];
@@ -619,9 +622,9 @@
     
     
     [[corn children][0] runAction:sequence_0];
-    [[corn children][1] runAction:sequence_1];
-    [[corn children][2] runAction:sequence_2];
-    [[corn children][3] runAction:sequence_3];
+    //[[corn children][1] runAction:sequence_1];
+    [[corn children][1] runAction:sequence_2];
+    [[corn children][2] runAction:sequence_3];
 }
 
 - (id)initCorn: (int) lane_num
@@ -651,7 +654,7 @@
 }
 
 -(void)countDown{
-    CCNodeColor *countBar = [[self getSoldier] children][3];
+    CCNodeColor *countBar = [[self getSoldier] children][2];
     if( last_attack_time != nil  ){
         float timeDiff = [last_attack_time timeIntervalSinceNow]*-1;
         if( timeDiff < 10){
@@ -659,7 +662,7 @@
         }
         else{
             [countBar setContentSize:CGSizeMake(100, 100)];
-            CCNode *readySign = [[self getSoldier] children][4];
+            CCNode *readySign = [[self getSoldier] children][3];
             if( !moving ){
                 [readySign setVisible:true];
             }
@@ -669,7 +672,7 @@
         }
     }
     else if( !moving ){
-        CCNode *readySign = [[self getSoldier] children][4];
+        CCNode *readySign = [[self getSoldier] children][3];
         [readySign setVisible:true];
     }
 }

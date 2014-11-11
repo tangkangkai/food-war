@@ -11,6 +11,12 @@
 		4904C29319D1CFAC00C6DEF2 /* burger-small-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */; };
 		49320C2819ECE43500980DBF /* corn_cannon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49320C2719ECE43500980DBF /* corn_cannon.png */; };
 		4959BD1619F5C087004AC4C5 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959BD1519F5C087004AC4C5 /* Level.m */; };
+		498440EA1A11436500EACCCE /* potatoAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498440E81A11436500EACCCE /* potatoAni.plist */; };
+		498440EB1A11436500EACCCE /* potatoAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498440E91A11436500EACCCE /* potatoAni.png */; };
+		498CF3661A11DBCC00A22F2C /* beanAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3641A11DBCC00A22F2C /* beanAni.plist */; };
+		498CF3671A11DBCC00A22F2C /* beanAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3651A11DBCC00A22F2C /* beanAni.png */; };
+		498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3691A11EC7100A22F2C /* cornAni.plist */; };
+		498CF36C1A11EC7100A22F2C /* cornAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498CF36A1A11EC7100A22F2C /* cornAni.png */; };
 		49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A8E53219CFF8CF00A7DC61 /* Soldier.m */; };
 		49DEFAA81A0A261900B1E33B /* bananaAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA61A0A261900B1E33B /* bananaAni.plist */; };
 		49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA71A0A261900B1E33B /* bananaAni.png */; };
@@ -91,6 +97,12 @@
 		49320C2719ECE43500980DBF /* corn_cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corn_cannon.png; sourceTree = "<group>"; };
 		4959BD1419F5C087004AC4C5 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		4959BD1519F5C087004AC4C5 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		498440E81A11436500EACCCE /* potatoAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = potatoAni.plist; sourceTree = "<group>"; };
+		498440E91A11436500EACCCE /* potatoAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = potatoAni.png; sourceTree = "<group>"; };
+		498CF3641A11DBCC00A22F2C /* beanAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = beanAni.plist; sourceTree = "<group>"; };
+		498CF3651A11DBCC00A22F2C /* beanAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beanAni.png; sourceTree = "<group>"; };
+		498CF3691A11EC7100A22F2C /* cornAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cornAni.plist; sourceTree = "<group>"; };
+		498CF36A1A11EC7100A22F2C /* cornAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cornAni.png; sourceTree = "<group>"; };
 		49A8E53119CFF8CF00A7DC61 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soldier.h; sourceTree = "<group>"; };
 		49A8E53219CFF8CF00A7DC61 /* Soldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soldier.m; sourceTree = "<group>"; };
 		49DEFAA61A0A261900B1E33B /* bananaAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bananaAni.plist; sourceTree = "<group>"; };
@@ -186,6 +198,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		498440E71A11436500EACCCE /* potatoAni */ = {
+			isa = PBXGroup;
+			children = (
+				498440E81A11436500EACCCE /* potatoAni.plist */,
+				498440E91A11436500EACCCE /* potatoAni.png */,
+			);
+			path = potatoAni;
+			sourceTree = "<group>";
+		};
+		498CF3631A11DBCC00A22F2C /* beanAni */ = {
+			isa = PBXGroup;
+			children = (
+				498CF3641A11DBCC00A22F2C /* beanAni.plist */,
+				498CF3651A11DBCC00A22F2C /* beanAni.png */,
+			);
+			path = beanAni;
+			sourceTree = "<group>";
+		};
+		498CF3681A11EC7100A22F2C /* cornAni */ = {
+			isa = PBXGroup;
+			children = (
+				498CF3691A11EC7100A22F2C /* cornAni.plist */,
+				498CF36A1A11EC7100A22F2C /* cornAni.png */,
+			);
+			path = cornAni;
+			sourceTree = "<group>";
+		};
 		49DEFAA51A0A261900B1E33B /* bananaAni */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +347,9 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				498CF3681A11EC7100A22F2C /* cornAni */,
+				498CF3631A11DBCC00A22F2C /* beanAni */,
+				498440E71A11436500EACCCE /* potatoAni */,
 				49DEFAA51A0A261900B1E33B /* bananaAni */,
 				E97969321A09F3D500AB3CB8 /* cokeAni */,
 				E90C35C119FCC5E600164382 /* friesAni */,
@@ -461,6 +503,8 @@
 				49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */,
 				E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */,
 				E97969361A09F3D500AB3CB8 /* cokeAni.png in Resources */,
+				498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */,
+				498440EB1A11436500EACCCE /* potatoAni.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,
@@ -468,16 +512,20 @@
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				BEBB1D9519ECF7A8007F4FA1 /* healthy_food.plist in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				498CF3661A11DBCC00A22F2C /* beanAni.plist in Resources */,
 				E97969351A09F3D500AB3CB8 /* cokeAni.plist in Resources */,
 				E9C377341A00ABD600D1F524 /* friesAni.plist in Resources */,
 				E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */,
 				E9C377351A00ABD600D1F524 /* friesAni.png in Resources */,
+				498440EA1A11436500EACCCE /* potatoAni.plist in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
+				498CF36C1A11EC7100A22F2C /* cornAni.png in Resources */,
 				4904C29319D1CFAC00C6DEF2 /* burger-small-left.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				498CF3671A11DBCC00A22F2C /* beanAni.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
