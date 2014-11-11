@@ -450,13 +450,14 @@ static BOOL _audioIsOn;
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
+        CCNode *beanAni = [scroll generateAni:@"beanAni" characterName:@"bean" startPos:[sourcehouse position] frameNumber:8];
         newSoldier = [[BeanMan alloc] initBean: lane_num
                                                startPos:sourcehouse.position
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
                                                enemyArr:[scroll junk_soldiers]
                                level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                     Animation:NULL];
+                                     Animation:beanAni];
 
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
