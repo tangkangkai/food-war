@@ -15,6 +15,8 @@
 		498440EB1A11436500EACCCE /* potatoAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498440E91A11436500EACCCE /* potatoAni.png */; };
 		498CF3661A11DBCC00A22F2C /* beanAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3641A11DBCC00A22F2C /* beanAni.plist */; };
 		498CF3671A11DBCC00A22F2C /* beanAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3651A11DBCC00A22F2C /* beanAni.png */; };
+		498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3691A11EC7100A22F2C /* cornAni.plist */; };
+		498CF36C1A11EC7100A22F2C /* cornAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498CF36A1A11EC7100A22F2C /* cornAni.png */; };
 		49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A8E53219CFF8CF00A7DC61 /* Soldier.m */; };
 		49DEFAA81A0A261900B1E33B /* bananaAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA61A0A261900B1E33B /* bananaAni.plist */; };
 		49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA71A0A261900B1E33B /* bananaAni.png */; };
@@ -99,6 +101,8 @@
 		498440E91A11436500EACCCE /* potatoAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = potatoAni.png; sourceTree = "<group>"; };
 		498CF3641A11DBCC00A22F2C /* beanAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = beanAni.plist; sourceTree = "<group>"; };
 		498CF3651A11DBCC00A22F2C /* beanAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beanAni.png; sourceTree = "<group>"; };
+		498CF3691A11EC7100A22F2C /* cornAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cornAni.plist; sourceTree = "<group>"; };
+		498CF36A1A11EC7100A22F2C /* cornAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cornAni.png; sourceTree = "<group>"; };
 		49A8E53119CFF8CF00A7DC61 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soldier.h; sourceTree = "<group>"; };
 		49A8E53219CFF8CF00A7DC61 /* Soldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soldier.m; sourceTree = "<group>"; };
 		49DEFAA61A0A261900B1E33B /* bananaAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bananaAni.plist; sourceTree = "<group>"; };
@@ -210,6 +214,15 @@
 				498CF3651A11DBCC00A22F2C /* beanAni.png */,
 			);
 			path = beanAni;
+			sourceTree = "<group>";
+		};
+		498CF3681A11EC7100A22F2C /* cornAni */ = {
+			isa = PBXGroup;
+			children = (
+				498CF3691A11EC7100A22F2C /* cornAni.plist */,
+				498CF36A1A11EC7100A22F2C /* cornAni.png */,
+			);
+			path = cornAni;
 			sourceTree = "<group>";
 		};
 		49DEFAA51A0A261900B1E33B /* bananaAni */ = {
@@ -334,6 +347,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				498CF3681A11EC7100A22F2C /* cornAni */,
 				498CF3631A11DBCC00A22F2C /* beanAni */,
 				498440E71A11436500EACCCE /* potatoAni */,
 				49DEFAA51A0A261900B1E33B /* bananaAni */,
@@ -489,6 +503,7 @@
 				49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */,
 				E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */,
 				E97969361A09F3D500AB3CB8 /* cokeAni.png in Resources */,
+				498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */,
 				498440EB1A11436500EACCCE /* potatoAni.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
@@ -506,6 +521,7 @@
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
+				498CF36C1A11EC7100A22F2C /* cornAni.png in Resources */,
 				4904C29319D1CFAC00C6DEF2 /* burger-small-left.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,

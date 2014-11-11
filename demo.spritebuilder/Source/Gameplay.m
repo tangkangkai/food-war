@@ -481,13 +481,14 @@ static BOOL _audioIsOn;
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"corn"]  ){
+        CCNode *cornAni = [scroll generateAni:@"cornAni" characterName:@"corn" startPos:[sourcehouse position] frameNumber:7];
         newSoldier = [[CornMan alloc] initCorn: lane_num
                                                      startPos:sourcehouse.position
                                                       destPos: destination
                                                        ourArr:[scroll healthy_soldiers]
                                                      enemyArr:[scroll junk_soldiers]
                                             level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                     Animation:NULL];
+                                     Animation:cornAni];
 
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
