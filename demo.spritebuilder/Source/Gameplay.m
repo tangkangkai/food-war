@@ -192,7 +192,7 @@ static BOOL _audioIsOn;
 - (void)win{
     NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", [[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
     [[CCDirector sharedDirector] pause];
-    _gameoverLabel.string = [NSString stringWithFormat:@"You win"];
+    //_gameoverLabel.string = [NSString stringWithFormat:@"You win"];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:promptStr
                                                       message:@""
                                                      delegate:self
@@ -334,7 +334,7 @@ static BOOL _audioIsOn;
     
     selected_soldier = soldier;
     selected_soldier_animation = soldier;
-    soldierLevel = [soldierLevelDict objectForKey:soldier];
+    soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
