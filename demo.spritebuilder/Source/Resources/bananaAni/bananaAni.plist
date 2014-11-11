@@ -7,106 +7,93 @@
             <key>banana0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{36,77}}</string>
+                <string>{{86,90},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
             <key>banana1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,81},{36,77}}</string>
+                <string>{{86,2},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
             <key>banana2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,2},{36,77}}</string>
+                <string>{{44,90},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
             <key>banana3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{78,2},{36,77}}</string>
+                <string>{{44,2},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
             <key>banana4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,81},{36,77}}</string>
+                <string>{{2,178},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
             <key>banana5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{116,2},{36,77}}</string>
+                <string>{{2,90},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
             <key>banana6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{154,2},{36,77}}</string>
+                <string>{{2,2},{40,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
+                <string>{{0,0},{40,86}}</string>
                 <key>sourceSize</key>
-                <string>{36,77}</string>
-            </dict>
-            <key>banana7.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{36,77}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{36,77}}</string>
-                <key>sourceSize</key>
-                <string>{36,77}</string>
+                <string>{40,86}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -116,9 +103,9 @@
             <key>realTextureFileName</key>
             <string>bananaAni.png</string>
             <key>size</key>
-            <string>{192,119}</string>
+            <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2a62ae69c2954f45cbf925e256fb257c:5f0892c6a19d8e111a6bfb9ceb8012cf:88e1e784a58e84dd2a5b6b01a71a9bf4$</string>
+            <string>$TexturePacker:SmartUpdate:477edfbc67dee46b2b02fab2f6f60bfb:1/1$</string>
             <key>textureFileName</key>
             <string>bananaAni.png</string>
         </dict>

@@ -386,9 +386,7 @@ static BOOL _audioIsOn;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"touch end");
-    if (_audioIsOn) {
-        [audio playEffect:@"blop.mp3"];
-    }
+
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     int laneNum = [[Levels getSelectedLevel] laneNum];
@@ -420,41 +418,13 @@ static BOOL _audioIsOn;
 
 - (void)launchBomb: (CGPoint)touchLocation {
     scroll=[_scrollview children][0];
-//    if(item== NULL ){
-//        return;
-//    }
-//    [self removeChild: [item bomb]];
+
     [self removeChild: [item bomb]];
     [_anibomb removeFromParent];
     
-    /*
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bombAni.plist"];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bombAni.png"];
-    [self addChild:spriteSheet];
-    NSMutableArray *flashAnimFrames = [NSMutableArray array];
-    for (int i=1; i<=2; i++) {
-        [flashAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"bomb%d.png",i]]];
-    }
-
-    CCAnimation *flashAnim = [CCAnimation
-                             animationWithSpriteFrames:flashAnimFrames delay:0.1f];
-    
-    CCSpriteFrame* bombFrame = [CCSpriteFrame frameWithImageNamed:@"bomb1.png" ];
-    CCSprite* title = [CCSprite spriteWithSpriteFrame:bombFrame];
-    self.anibomb = title;
-    self.anibomb.position = ccp(300, 300);
-    
-    self.flashAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:flashAnim]];
-    
-    [self.anibomb runAction:self.flashAction];
-//    [self addChild:self.anibomb];
-    [spriteSheet addChild:self.anibomb];*/
-    
-    
-    if(touchLocation.y < 70) return;
-    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb  startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
+    if(touchLocation.y < 70)
+        return;
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
     [scroll addChild: [newBomb bomb]];
     [newBomb drop:touchLocation];
 }
@@ -473,13 +443,15 @@ static BOOL _audioIsOn;
     CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
     if( [selected_soldier  isEqual: @"potatoMan"] ){
         int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
+        CCNode *potatoAni = [scroll generateAni:@"potatoAni" characterName:@"potato" startPos:[sourcehouse position] frameNumber:8];
+
         newSoldier = [[PotatoMan alloc] initPotato: lane_num
                                                   startPos:sourcehouse.position
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
                                                   enemyArr:[scroll junk_soldiers]
                                                      level:potatoLevel
-                                                 Animation:NULL];
+                                                 Animation:potatoAni];
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
@@ -494,7 +466,7 @@ static BOOL _audioIsOn;
         [scroll addChild: [newSoldier soldier]];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
-        CCNode *bananaAni = [scroll generateAni:@"bananaAni" characterName:@"banana" startPos:[sourcehouse position] frameNumber:8];
+        CCNode *bananaAni = [scroll generateAni:@"bananaAni" characterName:@"banana" startPos:[sourcehouse position] frameNumber:7];
         newSoldier = [[BananaMan alloc] initBanana: lane_num
                                                    startPos:[sourcehouse position]
                                                    destPos: destination
@@ -518,6 +490,9 @@ static BOOL _audioIsOn;
         [newSoldier move];
     }
     if (newSoldier != NULL) {
+        if (_audioIsOn) {
+            [audio playEffect:@"blop.mp3"];
+        }
         [self reduceEnergy:[newSoldier getValue]];
     }
 }
