@@ -299,6 +299,8 @@ static BOOL _audioIsOn;
     
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
         if (energy < 1000) {
+            selected_soldier = NULL;
+            selected_soldier_animation = NULL;
             return;
         }
         selected_soldier = @"blackBomb";
