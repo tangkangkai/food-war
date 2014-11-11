@@ -81,9 +81,15 @@ static BOOL _audioIsOn;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
-  
-    [audio playBg:@"playBackground.mp3" loop:TRUE];
     _audioIsOn = [SavedData audio];
+    if (_audioIsOn) {
+        [audio playBg:@"playBackground.mp3" loop:TRUE];
+    } else {
+        _musicoff.visible = TRUE;
+        [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
+
+    }
+    
 }
 
 - (void)onEnter {
@@ -186,7 +192,7 @@ static BOOL _audioIsOn;
 - (void)win{
     NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", [[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
     [[CCDirector sharedDirector] pause];
-    _gameoverLabel.string = [NSString stringWithFormat:@"You win"];
+    //_gameoverLabel.string = [NSString stringWithFormat:@"You win"];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:promptStr
                                                       message:@""
                                                      delegate:self
@@ -218,8 +224,7 @@ static BOOL _audioIsOn;
         [SavedData setAudio:TRUE];
         _musicoff.visible = FALSE;
        // _musicon.visible = TRUE;
-        [audio playBgWithLoop:TRUE];
-        
+        [audio playBg:@"playBackground.mp3" volume:1 pan:0 loop:TRUE];
     }
     else
     {
@@ -227,7 +232,7 @@ static BOOL _audioIsOn;
         [SavedData setAudio:FALSE];
        // _musicon.visible = FALSE;
         _musicoff.visible = TRUE;
-        [audio stopBg];
+        [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
     }
 }
 
@@ -294,6 +299,8 @@ static BOOL _audioIsOn;
     
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
         if (energy < 1000) {
+            selected_soldier = NULL;
+            selected_soldier_animation = NULL;
             return;
         }
         selected_soldier = @"blackBomb";
@@ -327,7 +334,7 @@ static BOOL _audioIsOn;
     
     selected_soldier = soldier;
     selected_soldier_animation = soldier;
-    soldierLevel = [soldierLevelDict objectForKey:soldier];
+    soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
         Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
