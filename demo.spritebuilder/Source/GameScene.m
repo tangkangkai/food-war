@@ -21,7 +21,7 @@ static GameScene* GameSceneInstance;
 -(id) init
 {
     if( (self=[super init])) {
-        GameSceneInstance=self;
+   //     GameSceneInstance=self;
     }
     return self;
 }
@@ -31,54 +31,83 @@ static GameScene* GameSceneInstance;
    // self.userInteractionEnabled = TRUE;
 }
 
+
+
 -(void)scrollViewDidScroll:(UIScrollView *)sender
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    NSLog(@"running");
+ //   [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //ensure that the end of scroll is fired.
-    [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:nil afterDelay:0.5];
-    
+  //  [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:[_selectscroll:NO] afterDelay:0.5];
+ //   [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:_selectscroll];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:0.1];
 }
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
+    NSLog(@"stop animation");
+
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    CCActionMoveTo *move;
     float x=[_selectscroll scrollPosition].x;
     CGPoint page1=CGPointMake(0, 0);
     CGPoint page2=CGPointMake(524, 0);
     CGPoint page3=CGPointMake(1032, 0);
     
     if(x<250){
+        NSLog(@"level 1 scroll x:%f",x);
+        NSLog(@"position ccp(%f,0)",-x);
+      //  move = [CCActionMoveTo actionWithDuration:0.5f position:page1];
         [_selectscroll setScrollPosition:page1];
     }
     if (x>=250&&x<774) {
+        NSLog(@"level 2 scroll x:%f",x);
+        NSLog(@"position ccp(%f,0)",524-x);
+     //   move = [CCActionMoveTo actionWithDuration:0.5f position:page2];
         [_selectscroll setScrollPosition:page2];
     }
     if (x>=774) {
+        NSLog(@"level 3 scroll x:%f",x);
+        NSLog(@"position ccp(%f,0)",1023-x);
+       // move = [CCActionMoveTo actionWithDuration:0.5f position:page3];
         [_selectscroll setScrollPosition:page3];
     }
 }
-
+/*
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     decelerate=NO;
+    CCActionMoveTo *move;
     float x=[_selectscroll scrollPosition].x;
     CGPoint page1=CGPointMake(0, 0);
     CGPoint page2=CGPointMake(524, 0);
     CGPoint page3=CGPointMake(1032, 0);
     
     if(x<250){
-        [_selectscroll setScrollPosition:page1];
+        move = [CCActionMoveBy actionWithDuration:0.5f position:ccp(-x,0)];
     }
     if (x>=250&&x<774) {
-        [_selectscroll setScrollPosition:page2];
+        move = [CCActionMoveBy actionWithDuration:0.5f position:ccp(524-x,0)];
     }
     if (x>=774) {
-        [_selectscroll setScrollPosition:page3];
+        move = [CCActionMoveBy actionWithDuration:0.5f position:ccp(1023-x,0)];
     }
-
+    [_selectscroll runAction:move];
 
 }
+*/
+
+/*
+-(void)scrollViewDidScroll:(UIScrollView *)sender
+{
+    NSLog(@"running");
+
+}
+*/
+
+
 
 - (void) back {
     CCScene *mainScene = [CCBReader loadAsScene:@"MainScene"];
