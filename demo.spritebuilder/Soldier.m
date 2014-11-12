@@ -289,6 +289,11 @@
     return self;
 }
 
+-(void)move{
+    [super move];
+    _cokeAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
+}
+
 @end
 
 @implementation CokeMan
@@ -333,11 +338,6 @@
                                                    position: newLoc];
     CCActionRemove *actionRemove = [CCActionRemove action];
     [bullet runAction:[CCActionSequence actionWithArray:@[actionMove, actionRemove ]]];
-}
-
--(void)move{
-    [super move];
-    _cokeAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
 }
 
 @end

@@ -129,13 +129,14 @@
                                       [(CCNode*)end_positions[lane] position].y);
     
     if( type == 0 ){
+        CCNode *aniBurger = [self generateAni:@"burgerAni" characterName:@"burger" startPos:[(CCNode*)start_positions[lane] position] frameNumber:8];
         BurgerMan* enemy_soldier= [[BurgerMan alloc] initBurger:lane
                                                        startPos:[(CCNode*)start_positions[lane] position]
                                                         destPos:destination
                                                          ourArr:_junk_soldiers
                                                        enemyArr:_healthy_soldiers
                                                           level:1
-                                                      Animation:NULL];
+                                                      Animation:aniBurger];
         [ self addChild: [enemy_soldier soldier]];
         [enemy_soldier move];
     }

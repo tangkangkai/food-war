@@ -77,7 +77,7 @@
 
 
 @interface BurgerMan : Soldier
-
+@property CCNode* cokeAniNode;
 - (id)initBurger :(int) lane_num
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
