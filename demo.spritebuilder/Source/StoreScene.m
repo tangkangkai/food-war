@@ -90,25 +90,27 @@
     //update the data of soldier
     
     potato = [[PotatoMan alloc] initPotato: -1
-                                           startPos:_hole1.position
+                                            startPos:_hole1.position
                                             destPos: _hole1.position
-                                             ourArr:NULL                                                                  enemyArr:NULL
-                                              level:potatoLevel
-                                            Animation:NULL];
+                                            ourArr:NULL
+                                            enemyArr:NULL
+                                            level:potatoLevel
+                                            bgNode:NULL ];
     bean = [[BeanMan alloc] initBean: -1
-                                     startPos:_hole1.position
-                                      destPos: _hole1.position
-                                       ourArr:NULL                                                                  enemyArr:NULL
-                                        level:beanLevel
-                           Animation:NULL];
-
+                            startPos:_hole1.position
+                             destPos: _hole1.position
+                              ourArr:NULL
+                            enemyArr:NULL
+                               level:beanLevel
+                              bgNode:NULL ];
     
     banana = [[BananaMan alloc] initBanana: -1
-                                             startPos:_hole1.position
-                                              destPos: _hole1.position
-                                               ourArr:NULL                                                                  enemyArr:NULL
-                                                level:bananaLevel
-                                 Animation:NULL];
+                                  startPos:_hole1.position
+                                   destPos: _hole1.position
+                                    ourArr:NULL
+                                  enemyArr:NULL
+                                     level:bananaLevel
+                                    bgNode:NULL ];
 
     
     
@@ -212,7 +214,7 @@
                                    destPos: _hole1.position
                                     ourArr:NULL enemyArr:NULL
                                      level:++potatoLevel
-                                 Animation:NULL];
+                                    bgNode:NULL];
 
     //update
     [self updateStoredData];
@@ -227,11 +229,12 @@
     
     [self reduceTotalMoney:beanCost];
     bean = [[BeanMan alloc] initBean: -1
-                                             startPos:_hole1.position
-                                              destPos: _hole1.position
-                                               ourArr:NULL                                                                  enemyArr:NULL
-                                                level:++beanLevel
-                           Animation:NULL];
+                            startPos:_hole1.position
+                            destPos: _hole1.position
+                            ourArr:NULL
+                            enemyArr:NULL
+                            level:++beanLevel
+                            bgNode:NULL];
 
     //update
     [self updateStoredData];
@@ -245,11 +248,12 @@
     
     [self reduceTotalMoney:bananaCost];
     banana = [[BananaMan alloc] initBanana: -1
-                                         startPos:_hole1.position
-                                          destPos: _hole1.position
-                                           ourArr:NULL                                                                  enemyArr:NULL
-                                            level:++bananaLevel
-                                 Animation:NULL];
+                                startPos:_hole1.position
+                                destPos: _hole1.position
+                                ourArr:NULL
+                                enemyArr:NULL
+                                level:++bananaLevel
+                                bgNode:NULL];
 
 
     //update

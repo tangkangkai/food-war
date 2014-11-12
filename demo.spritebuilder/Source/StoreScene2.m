@@ -49,10 +49,11 @@
     _total.string = [NSString stringWithFormat:@" %d", total];
     corn = [[CornMan alloc] initCorn: -1
                             startPos:_hole4.position
-                                  destPos: _hole4.position
-                                    ourArr:NULL                                                                  enemyArr:NULL
-                                     level:cornLevel
-                                 Animation:NULL];
+                            destPos: _hole4.position
+                            ourArr:NULL
+                            enemyArr:NULL
+                            level:cornLevel
+                            bgNode:NULL];
     [self updateShowedData];
 }
 
@@ -101,12 +102,12 @@
     
     [self reduceTotalMoney:cornCost];
     corn = [[CornMan alloc] initCorn: -1
-                                  startPos:_hole4.position
-                                   destPos: _hole4.position
-                                    ourArr:NULL                                                                  enemyArr:NULL
-                                     level:++cornLevel
-                                 Animation:NULL];
-    
+                            startPos:_hole4.position
+                            destPos: _hole4.position
+                            ourArr:NULL
+                            enemyArr:NULL
+                            level:++cornLevel
+                            bgNode:NULL];
     
     //update
     [self updateStoredData];
