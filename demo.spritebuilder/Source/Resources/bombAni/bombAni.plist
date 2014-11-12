@@ -7,28 +7,28 @@
             <key>bomb1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{115,115}}</string>
+                <string>{{2,2},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{115,115}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{115,115}</string>
+                <string>{60,60}</string>
             </dict>
             <key>bomb2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,119},{115,115}}</string>
+                <string>{{2,64},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{115,115}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{115,115}</string>
+                <string>{60,60}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -38,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>bombAni.png</string>
             <key>size</key>
-            <string>{119,236}</string>
+            <string>{64,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d897076f551902928c3bfba3d430f482:5bb3e041930968b69b2f18ddf27194c1:b3580991c8ca37986783cdb45024aa0e$</string>
+            <string>$TexturePacker:SmartUpdate:76e0b9fd08693ff57cc9f5ad7e7ca331:1/1$</string>
             <key>textureFileName</key>
             <string>bombAni.png</string>
         </dict>
