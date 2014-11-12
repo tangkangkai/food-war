@@ -8,7 +8,7 @@
 
 #import "CCNode.h"
 
-@interface GameScene : CCNode<UIScrollViewDelegate>
+@interface GameScene : CCNode<CCScrollViewDelegate>
 
 +(GameScene*)shareLayer;
 @property CCTextField *text;
