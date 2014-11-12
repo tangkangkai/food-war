@@ -158,38 +158,6 @@
     }
 }
 
-// This is the animation interface. It accepts 4 parameter: file name without extension, character name, start position and frame number.
-
--(CCNode*)generateAni:(NSString*) fileName
-        characterName:(NSString*) character
-             startPos:(CGPoint) start
-          frameNumber:(int) frameNum{
-    
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@.plist", fileName]];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", fileName]];
-    [self addChild:spriteSheet];
-    NSMutableArray *soldierAnimFrames = [NSMutableArray array];
-    for (int i=0; i<frameNum; i++) {
-        [soldierAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-        [NSString stringWithFormat:@"%@%d.png", character, i]]];
-    }
-    
-    CCAnimation *soldierAnim = [CCAnimation
-                              animationWithSpriteFrames:soldierAnimFrames delay:0.15f];
-    
-    CCSpriteFrame* frame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
-    CCSprite* title = [CCSprite spriteWithSpriteFrame:frame];
-    CCNode* aniSoldier = title;
-    aniSoldier.position = start;
-    
-    CCAction *action = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
-    [aniSoldier runAction:action];
-    [spriteSheet addChild:aniSoldier];
-
-    return aniSoldier;
-}
-
 - (void)showTrack: (int) num {
     _track1.visible = false;
     _track2.visible = false;

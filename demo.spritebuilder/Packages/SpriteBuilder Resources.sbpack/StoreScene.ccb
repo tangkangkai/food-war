@@ -188,8 +188,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.28309857845306396</real>
-							<real>0.89687502384185791</real>
+							<real>0.0876760333776474</real>
+							<real>0.90625</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -213,8 +213,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.5489422082901001</real>
-							<real>0.54076135158538818</real>
+							<real>0.25999999046325684</real>
+							<real>0.23000000417232513</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -237,8 +237,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
-							<real>100</real>
+							<real>256</real>
+							<real>171</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -283,7 +283,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/orange_arrow_up.png~c200.png</string>
+							<string>foodwar_picture/back_btn.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -294,8 +294,16 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/orange_arrow_up.png~c200.png</string>
+							<string>foodwar_picture/back_btn.png</string>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundOpacity|Highlighted</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.60000002384185791</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -481,6 +489,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1117,7 +1127,7 @@
 								<key>value</key>
 								<array>
 									<real>75</real>
-									<real>193</real>
+									<real>204.19999694824219</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1131,7 +1141,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.5</real>
+									<real>1.2000000476837158</real>
 								</array>
 							</dict>
 							<dict>
@@ -2004,7 +2014,7 @@
 								<key>value</key>
 								<array>
 									<real>75</real>
-									<real>193</real>
+									<real>204.19999694824219</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2018,7 +2028,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.5</real>
+									<real>1.2000000476837158</real>
 								</array>
 							</dict>
 							<dict>
@@ -2891,7 +2901,7 @@
 								<key>value</key>
 								<array>
 									<real>75</real>
-									<real>193</real>
+									<real>204.19999694824219</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2905,7 +2915,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.5</real>
+									<real>1.2000000476837158</real>
 								</array>
 							</dict>
 							<dict>
@@ -7311,7 +7321,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>357</real>
+							<real>364</real>
 							<real>291.00003051757812</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -7336,8 +7346,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.17174407839775085</real>
-							<real>0.16109940409660339</real>
+							<real>0.10775937139987946</real>
+							<real>0.10775937139987946</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -7604,8 +7614,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
