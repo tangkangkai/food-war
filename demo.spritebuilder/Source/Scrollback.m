@@ -140,7 +140,7 @@
         [enemy_soldier move];
     }
     if( type == 1 ){
-        CCNode *aniCoke = [self generateAni:@"cokeAni" characterName:@"coke" startPos:[(CCNode*)start_positions[lane] position] frameNumber:5];
+        CCNode *aniCoke = [self generateAni:@"cokeAni" characterName:@"coke" startPos:[(CCNode*)start_positions[lane] position] frameNumber:7];
         
         CokeMan* enemy_soldier= [[CokeMan alloc] initCoke: lane
                                                  startPos:[(CCNode*)start_positions[lane] position]

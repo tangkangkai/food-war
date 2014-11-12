@@ -7,7 +7,7 @@
             <key>coke0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,154},{45,74}}</string>
+                <string>{{78,49},{45,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,17 +20,30 @@
             <key>coke1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,78},{45,74}}</string>
+                <string>{{49,2},{45,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{45,74}}</string>
                 <key>sourceSize</key>
                 <string>{45,74}</string>
             </dict>
             <key>coke2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,78},{45,74}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,74}}</string>
+                <key>sourceSize</key>
+                <string>{45,74}</string>
+            </dict>
+            <key>coke3.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{45,74}}</string>
@@ -43,23 +56,36 @@
                 <key>sourceSize</key>
                 <string>{45,74}</string>
             </dict>
-            <key>coke3.png</key>
+            <key>coke4.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,78},{45,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{45,74}}</string>
                 <key>sourceSize</key>
                 <string>{45,74}</string>
             </dict>
-            <key>coke4.png</key>
+            <key>coke5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,154},{45,74}}</string>
+                <string>{{49,2},{45,74}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,74}}</string>
+                <key>sourceSize</key>
+                <string>{45,74}</string>
+            </dict>
+            <key>coke6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{78,49},{45,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -77,9 +103,9 @@
             <key>realTextureFileName</key>
             <string>cokeAni.png</string>
             <key>size</key>
-            <string>{64,256}</string>
+            <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:96a94c9f739bd9743874e0041f399bef:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:d0cf2bbaa08f9db5522975762134c519:1/1$</string>
             <key>textureFileName</key>
             <string>cokeAni.png</string>
         </dict>
