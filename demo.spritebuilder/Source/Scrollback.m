@@ -35,10 +35,8 @@
 }
 
 - (void)didLoadFromCCB {
-    _healthBase = [[Base alloc] initBase:_base1.position group:0 ourArr:_healthy_soldiers enemyArr:_junk_soldiers];
-    _junkBase = [[Base alloc] initBase:_base2.position group:1 ourArr:_junk_soldiers enemyArr:_healthy_soldiers];
-    [self addChild:[_healthBase soldier]];
-    [self addChild:[_junkBase soldier]];
+    _healthBase = [[Base alloc] initBase:_base1.position group:0 ourArr:_healthy_soldiers enemyArr:_junk_soldiers bgNode:self];
+    _junkBase = [[Base alloc] initBase:_base2.position group:1 ourArr:_junk_soldiers enemyArr:_healthy_soldiers bgNode:self];
     
     int laneNum = [[Levels getSelectedLevel] laneNum];
     if( laneNum == 1){
@@ -135,34 +133,27 @@
                                                          ourArr:_junk_soldiers
                                                        enemyArr:_healthy_soldiers
                                                           level:1
-                                                      Animation:NULL];
-        [ self addChild: [enemy_soldier soldier]];
+                                                        bgNode:self];
         [enemy_soldier move];
     }
     if( type == 1 ){
-        CCNode *aniCoke = [self generateAni:@"cokeAni" characterName:@"coke" startPos:[(CCNode*)start_positions[lane] position] frameNumber:5];
-        
         CokeMan* enemy_soldier= [[CokeMan alloc] initCoke: lane
                                                  startPos:[(CCNode*)start_positions[lane] position]
                                                   destPos:destination
                                                    ourArr:_junk_soldiers
                                                  enemyArr:_healthy_soldiers
                                                     level:1
-                                            Animation: aniCoke];
-        [ self addChild: [enemy_soldier soldier]];
+                                                   bgNode:self];
         [enemy_soldier move];
     }
     if( type == 2 ){
-        CCNode *aniFries = [self generateAni:@"friesAni" characterName:@"fries" startPos:[(CCNode*)start_positions[lane] position] frameNumber:8];
-        
         FriesMan* enemy_soldier= [[FriesMan alloc] initFries:lane
                                                     startPos:[(CCNode*)start_positions[lane] position]
                                                      destPos:destination
                                                       ourArr:_junk_soldiers
                                                     enemyArr:_healthy_soldiers
                                                        level:1
-                                                   Animation:aniFries];
-        [ self addChild: [enemy_soldier soldier]];
+                                                    bgNode:self];
         [enemy_soldier move];
     }
 }
@@ -187,15 +178,15 @@
     CCAnimation *soldierAnim = [CCAnimation
                               animationWithSpriteFrames:soldierAnimFrames delay:0.15f];
     
-    CCSpriteFrame* friesFrame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
-    CCSprite* title = [CCSprite spriteWithSpriteFrame:friesFrame];
+    CCSpriteFrame* frame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
+    CCSprite* title = [CCSprite spriteWithSpriteFrame:frame];
     CCNode* aniSoldier = title;
     aniSoldier.position = start;
     
-    CCAction *friesAction = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
-    
-    [aniSoldier runAction:friesAction];
+    CCAction *action = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
+    [aniSoldier runAction:action];
     [spriteSheet addChild:aniSoldier];
+
     return aniSoldier;
 }
 

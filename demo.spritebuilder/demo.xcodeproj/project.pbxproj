@@ -62,6 +62,8 @@
 		BEBB1D9419ECF7A8007F4FA1 /* healthy_food.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D9219ECF7A8007F4FA1 /* healthy_food.png */; };
 		BEBB1D9519ECF7A8007F4FA1 /* healthy_food.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */; };
 		E91638C119DDFB4200115E9B /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = E91638BF19DDFB4200115E9B /* Bomb.m */; };
+		E94CD1BD1A13450500BA5409 /* burgerAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BB1A13450500BA5409 /* burgerAni.plist */; };
+		E94CD1BE1A13450500BA5409 /* burgerAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BC1A13450500BA5409 /* burgerAni.png */; };
 		E97969351A09F3D500AB3CB8 /* cokeAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97969331A09F3D500AB3CB8 /* cokeAni.plist */; };
 		E97969361A09F3D500AB3CB8 /* cokeAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E97969341A09F3D500AB3CB8 /* cokeAni.png */; };
 		E9C377341A00ABD600D1F524 /* friesAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9C377321A00ABD600D1F524 /* friesAni.plist */; };
@@ -164,6 +166,8 @@
 		BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = healthy_food.plist; sourceTree = "<group>"; };
 		E91638BB19DDFA8B00115E9B /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bomb.h; path = Source/Bomb.h; sourceTree = "<group>"; };
 		E91638BF19DDFB4200115E9B /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
+		E94CD1BB1A13450500BA5409 /* burgerAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = burgerAni.plist; path = burgerAni/burgerAni.plist; sourceTree = "<group>"; };
+		E94CD1BC1A13450500BA5409 /* burgerAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = burgerAni.png; path = burgerAni/burgerAni.png; sourceTree = "<group>"; };
 		E97969331A09F3D500AB3CB8 /* cokeAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cokeAni.plist; sourceTree = "<group>"; };
 		E97969341A09F3D500AB3CB8 /* cokeAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cokeAni.png; sourceTree = "<group>"; };
 		E9C377321A00ABD600D1F524 /* friesAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = friesAni.plist; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E94CD1BA1A13447A00BA5409 /* burgerAni */,
 				498CF3681A11EC7100A22F2C /* cornAni */,
 				498CF3631A11DBCC00A22F2C /* beanAni */,
 				498440E71A11436500EACCCE /* potatoAni */,
@@ -383,6 +388,15 @@
 				E9C377331A00ABD600D1F524 /* friesAni.png */,
 			);
 			path = friesAni;
+			sourceTree = "<group>";
+		};
+		E94CD1BA1A13447A00BA5409 /* burgerAni */ = {
+			isa = PBXGroup;
+			children = (
+				E94CD1BB1A13450500BA5409 /* burgerAni.plist */,
+				E94CD1BC1A13450500BA5409 /* burgerAni.png */,
+			);
+			name = burgerAni;
 			sourceTree = "<group>";
 		};
 		E97969321A09F3D500AB3CB8 /* cokeAni */ = {
@@ -510,8 +524,10 @@
 				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,
 				49320C2819ECE43500980DBF /* corn_cannon.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
+				E94CD1BD1A13450500BA5409 /* burgerAni.plist in Resources */,
 				BEBB1D9519ECF7A8007F4FA1 /* healthy_food.plist in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
+				E94CD1BE1A13450500BA5409 /* burgerAni.png in Resources */,
 				498CF3661A11DBCC00A22F2C /* beanAni.plist in Resources */,
 				E97969351A09F3D500AB3CB8 /* cokeAni.plist in Resources */,
 				E9C377341A00ABD600D1F524 /* friesAni.plist in Resources */,

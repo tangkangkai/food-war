@@ -38,6 +38,9 @@
 @property CGPoint dest_pos;
 @property CCNode* soldier;
 @property CCNode* AniNode;
+@property CCNode* bgNode;
+
+@property CCAction* walkingAct;
 @property NSMutableArray* ourArray;
 @property NSMutableArray* enemyArray;
 
@@ -48,10 +51,12 @@
                   destPos:(CGPoint) destPos
                   ourArr:(NSMutableArray*) ourArray
                   enemyArr:(NSMutableArray*) enemyArray
-            level:(int) soldierLevel
-        Animation:(CCNode*)Ani;
+                  level:(int) soldierLevel
+                  bgNode:(CCNode*)bgNode;
 
-
+- (void)generateWalkAni;
+- (void)generateAni:(NSString*) character
+                    frameNumber:(int) frameNum;
 - (int)loseHealth:(int)Attack;
 - (void)attackAnimation:(Soldier*) target;
 - (void)update_health;
@@ -77,14 +82,14 @@
 
 
 @interface BurgerMan : Soldier
-
+@property CCNode* cokeAniNode;
 - (id)initBurger :(int) lane_num
          startPos:(CGPoint) start
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
-         level: (int) soldierLevel
-        Animation: (CCNode*) Ani;
+            level: (int) soldierLevel
+           bgNode:(CCNode*)bgNode;
 
 
 @end
@@ -99,8 +104,8 @@
           destPos:(CGPoint) dest
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
-          level: (int) soldierLevel
-      Animation: (CCNode*) Ani;
+            level: (int) soldierLevel
+           bgNode:(CCNode*)bgNode;
 
 
 @end
@@ -114,8 +119,8 @@
          destPos:(CGPoint) dest
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
-            level: (int) soldierLevel
-        Animation: (CCNode*) Ani;
+           level: (int) soldierLevel
+          bgNode:(CCNode*)bgNode;
 
 
 @end
@@ -129,7 +134,7 @@
            ourArr:(NSMutableArray*) ourArray
          enemyArr:(NSMutableArray*) enemyArray
          level: (int) soldierLevel
-      Animation: (CCNode*) Ani;
+         bgNode:(CCNode*)bgNode;
 
 
 @end
@@ -142,7 +147,7 @@
          ourArr:(NSMutableArray*) ourArray
        enemyArr:(NSMutableArray*) enemyArray
        level: (int) soldierLevel
-        Animation: (CCNode*) Ani;
+           bgNode:(CCNode*)bgNode;
 
 
 @end
@@ -155,7 +160,8 @@
 - (id)initBase :(CGPoint) start
                 group:(int) group
                 ourArr:(NSMutableArray*) ourArray
-                enemyArr:(NSMutableArray*) enemyArray;
+                enemyArr:(NSMutableArray*) enemyArray
+                bgNode:(CCNode*)bgNode;
 
 @end
 
@@ -176,7 +182,7 @@
                 ourArr:(NSMutableArray*) ourArray
                 enemyArr:(NSMutableArray*) enemyArray
                 level: (int) soldierLevel
-                Animation: (CCNode*) Ani;
+                bgNode:(CCNode*)bgNode;
 
 @end
 
@@ -197,6 +203,6 @@
           ourArr:(NSMutableArray*) ourArray
         enemyArr:(NSMutableArray*) enemyArray
            level: (int) soldierLevel
-       Animation: (CCNode*) Ani;
+            bgNode:(CCNode*)bgNode;
 
 @end
