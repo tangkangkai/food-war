@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>127</integer>
+	<integer>130</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -188,8 +188,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.10000000149011612</real>
-							<real>0.89999997615814209</real>
+							<real>0.08415491133928299</real>
+							<real>0.90312498807907104</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -213,8 +213,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.5489422082901001</real>
+							<real>0.54076135158538818</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -237,8 +237,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>100</real>
+							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -271,7 +271,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Back</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -283,7 +283,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>foodwar_picture/orange_arrow_up.png~c200.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -294,7 +294,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/orange_arrow_up.png~c200.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -521,7 +521,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
+									<real>75</real>
 									<real>8</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -728,8 +728,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>66</real>
+									<real>74.5</real>
+									<real>70.5</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -753,8 +753,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.67699998617172241</real>
+									<real>0.83799999952316284</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -777,8 +777,8 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>40</real>
-									<real>40</real>
+									<real>149</real>
+									<real>49</real>
 									<integer>0</integer>
 									<integer>0</integer>
 								</array>
@@ -811,7 +811,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>Upgrade</string>
+									<string></string>
 									<false/>
 								</array>
 							</dict>
@@ -823,7 +823,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonNormal.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -834,7 +834,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonHighlighted.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -1021,6 +1021,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -1054,8 +1056,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>131</real>
+									<real>75</real>
+									<real>140</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1116,8 +1118,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>184</real>
+									<real>75</real>
+									<real>193</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1317,8 +1319,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.01875000074505806</real>
-							<real>0.20624999701976776</real>
+							<real>-0.039348587393760681</real>
+							<real>0.19062499701976776</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1408,7 +1410,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
+									<real>75</real>
 									<real>8</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1615,8 +1617,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>66</real>
+									<real>74.5</real>
+									<real>70.5</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1640,8 +1642,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.67689651250839233</real>
+									<real>0.83817905187606812</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -1664,8 +1666,8 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>40</real>
-									<real>40</real>
+									<real>149</real>
+									<real>49</real>
 									<integer>0</integer>
 									<integer>0</integer>
 								</array>
@@ -1698,7 +1700,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>Upgrade</string>
+									<string></string>
 									<false/>
 								</array>
 							</dict>
@@ -1710,7 +1712,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonNormal.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -1721,7 +1723,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonHighlighted.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -1941,8 +1943,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>131</real>
+									<real>75</real>
+									<real>140</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2003,8 +2005,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>184</real>
+									<real>75</real>
+									<real>193</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2204,8 +2206,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.35708332061767578</real>
-							<real>0.20662501454353333</real>
+							<real>0.29194247722625732</real>
+							<real>0.18475000560283661</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -2295,7 +2297,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
+									<real>75</real>
 									<real>8</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2502,8 +2504,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>66</real>
+									<real>74.5</real>
+									<real>70.5</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2527,8 +2529,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.67699998617172241</real>
+									<real>0.83799999952316284</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -2551,8 +2553,8 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>40</real>
-									<real>40</real>
+									<real>149</real>
+									<real>49</real>
 									<integer>0</integer>
 									<integer>0</integer>
 								</array>
@@ -2585,7 +2587,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>Upgrade</string>
+									<string></string>
 									<false/>
 								</array>
 							</dict>
@@ -2597,7 +2599,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonNormal.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -2608,7 +2610,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonHighlighted.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -2828,8 +2830,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>131</real>
+									<real>75</real>
+									<real>140</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2857,8 +2859,6 @@
 								<string>banana.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -2892,8 +2892,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>184</real>
+									<real>75</real>
+									<real>193</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -3093,8 +3093,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.68708330392837524</real>
-							<real>0.20350000262260437</real>
+							<real>0.63426637649536133</real>
+							<real>0.17537501454353333</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -7414,8 +7414,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>516.69232177734375</real>
-							<real>35.178340911865234</real>
+							<real>531.69232177734375</real>
+							<real>28.178340911865234</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -7520,7 +7520,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/next-sail-icon.png</string>
 						</array>
 					</dict>
 					<dict>

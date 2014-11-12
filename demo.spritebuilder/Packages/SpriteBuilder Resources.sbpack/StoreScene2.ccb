@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>58</integer>
+	<integer>128</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -71,7 +71,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
+							<real>-1</real>
 							<real>2.2268877029418945</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -153,8 +153,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -188,8 +186,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>60.318607330322266</real>
-							<real>48.787925720214844</real>
+							<real>34.318607330322266</real>
+							<real>39.787925720214844</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -294,7 +292,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/previous-sail-icon.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -521,7 +519,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
+									<real>75</real>
 									<real>8</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -728,8 +726,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>66</real>
+									<real>74.5</real>
+									<real>70.5</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -753,8 +751,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.67699998617172241</real>
+									<real>0.83799999952316284</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -777,8 +775,8 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>40</real>
-									<real>40</real>
+									<real>149</real>
+									<real>49</real>
 									<integer>0</integer>
 									<integer>0</integer>
 								</array>
@@ -811,7 +809,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>Upgrade</string>
+									<string></string>
 									<false/>
 								</array>
 							</dict>
@@ -823,7 +821,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonNormal.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -834,7 +832,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/ccbButtonHighlighted.png</string>
+									<string>foodwar_picture/upgrade-button.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -1021,6 +1019,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -1054,8 +1054,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>44</real>
-									<real>133</real>
+									<real>74</real>
+									<real>142</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1116,8 +1116,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>45</real>
-									<real>194</real>
+									<real>75</real>
+									<real>203</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1317,8 +1317,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.01875000074505806</real>
-							<real>0.20624999701976776</real>
+							<real>-0.034066896885633469</real>
+							<real>0.14687499403953552</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
