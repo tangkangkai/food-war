@@ -81,6 +81,7 @@ static BOOL _audioIsOn;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     [self schedule:@selector(tick) interval:1.0f];
+    [self schedule:@selector(updateEnergy) interval:0.1f];
     _audioIsOn = [SavedData audio];
     if (_audioIsOn) {
         [audio playBg:@"playBackground.mp3" loop:TRUE];
@@ -140,7 +141,7 @@ static BOOL _audioIsOn;
 }
 
 -(void)updateEnergy{
-    [_energy setString:[NSString stringWithFormat:@"E: %d", energy]];
+    [_energy setString:[NSString stringWithFormat:@"%d", energy]];
 }
 
 -(void)tick {

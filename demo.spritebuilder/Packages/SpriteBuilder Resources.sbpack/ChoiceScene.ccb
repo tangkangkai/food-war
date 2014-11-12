@@ -127,6 +127,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -161,7 +163,7 @@
 						<key>value</key>
 						<array>
 							<real>0.69866198301315308</real>
-							<real>0.16124999523162842</real>
+							<real>0.16749998927116394</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -185,8 +187,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.62087041139602661</real>
+							<real>0.78595823049545288</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -209,8 +211,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>184</real>
+							<real>48</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -243,7 +245,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Continue</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -255,7 +257,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>foodwar_picture/continue-button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -266,7 +268,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/continue-button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -486,8 +488,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.077746473252773285</real>
-							<real>0.90812504291534424</real>
+							<real>0.093591541051864624</real>
+							<real>0.91750001907348633</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -511,8 +513,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.45862671732902527</real>
+							<real>0.58559828996658325</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -535,8 +537,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>147</real>
+							<real>67</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -569,7 +571,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Back</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -581,7 +583,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>foodwar_picture/back_button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -592,7 +594,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/back_button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3076,7 +3078,7 @@
 						<key>value</key>
 						<array>
 							<real>172</real>
-							<real>51.000007629394531</real>
+							<real>52.000007629394531</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3100,8 +3102,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.69803869724273682</real>
+							<real>0.80370873212814331</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -3124,8 +3126,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>164</real>
+							<real>52</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -3158,7 +3160,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Upgrade</string>
+							<string></string>
 							<false/>
 						</array>
 					</dict>
@@ -3170,7 +3172,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>foodwar_picture/big_upgrade_button.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3181,7 +3183,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/big_upgrade_button.png</string>
 						</array>
 					</dict>
 					<dict>
