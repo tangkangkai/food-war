@@ -263,6 +263,7 @@ static BOOL _audioIsOn;
             }
             
             [[CCDirector sharedDirector] resume];
+            [Levels setSelectedLevel:[[Levels getSelectedLevel] getLevel] + 1];
             CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
             CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
             [[CCDirector sharedDirector] replaceScene:choiceScene withTransition:trans];
