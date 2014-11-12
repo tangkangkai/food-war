@@ -77,8 +77,8 @@
     int cd = [corn getDefence] * 200;
     
     
-    _cornH.string = [NSString stringWithFormat:@"H:%d", ch];
-    _cornAtk.string = [NSString stringWithFormat:@"A:%d", ca];
+    _cornH.string = [NSString stringWithFormat:@"HP:%d", ch];
+    _cornAtk.string = [NSString stringWithFormat:@"Atk:%d", ca];
     _cornD.string = [NSString stringWithFormat:@"D:%d", cd];
     _cornHealth.contentSize = CGSizeMake(ch / 2, _cornHealth.contentSize.height);
     _cornAtkPower.contentSize = CGSizeMake(ca / 2, _cornAtkPower.contentSize.height);

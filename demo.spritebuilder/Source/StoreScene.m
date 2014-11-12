@@ -150,23 +150,23 @@
     int bad = [banana getDefence] * 200;
     
     
-    _potatoH.string = [NSString stringWithFormat:@"H:%d", ph];
-    _potatoAtk.string = [NSString stringWithFormat:@"A:%d", pa];
+    _potatoH.string = [NSString stringWithFormat:@"HP:%d", ph];
+    _potatoAtk.string = [NSString stringWithFormat:@"Atk:%d", pa];
     _potatoD.string = [NSString stringWithFormat:@"D:%d", pd];
     _potatoHealth.contentSize = CGSizeMake(ph, _potatoHealth.contentSize.height);
     _potatoAtkPower.contentSize = CGSizeMake(pa, _potatoAtkPower.contentSize.height);
     _potatoDefense.contentSize = CGSizeMake(pd, _potatoDefense.contentSize.height);
     
     
-    _beanH.string = [NSString stringWithFormat:@"H:%d", beh];
-    _beanAtk.string = [NSString stringWithFormat:@"A:%d", bea];
+    _beanH.string = [NSString stringWithFormat:@"HP:%d", beh];
+    _beanAtk.string = [NSString stringWithFormat:@"Atk:%d", bea];
     _beanD.string = [NSString stringWithFormat:@"D:%d", bed];
     _beanHealth.contentSize = CGSizeMake(beh, _beanHealth.contentSize.height);
     _beanAtkPower.contentSize = CGSizeMake(bea, _beanAtkPower.contentSize.height);
     _beanDefense.contentSize = CGSizeMake(bed, _beanDefense.contentSize.height);
     
-    _bananaH.string = [NSString stringWithFormat:@"H:%d", bah];
-    _bananaAtk.string = [NSString stringWithFormat:@"A:%d", baa];
+    _bananaH.string = [NSString stringWithFormat:@"HP:%d", bah];
+    _bananaAtk.string = [NSString stringWithFormat:@"Atk:%d", baa];
     _bananaD.string = [NSString stringWithFormat:@"D:%d", bad];
     _bananaHealth.contentSize = CGSizeMake(bah, _bananaHealth.contentSize.height);
     _bananaAtkPower.contentSize = CGSizeMake(baa, _bananaAtkPower.contentSize.height);
