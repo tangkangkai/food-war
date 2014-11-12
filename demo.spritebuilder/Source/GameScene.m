@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+#import "Level.h"
 
 static GameScene* GameSceneInstance;
 
@@ -29,6 +30,7 @@ static GameScene* GameSceneInstance;
 - (void)didLoadFromCCB {
     _selectscroll.delegate = self;
    // self.userInteractionEnabled = TRUE;
+    NSLog(@"%d", [[Levels getSelectedLevel] getLevel]);
 }
 
 
