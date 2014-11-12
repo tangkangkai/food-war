@@ -8,11 +8,13 @@
 
 #import "MainScene.h"
 #import "SavedData.h"
+#import "Level.h"
 
 @implementation MainScene
 
 - (void)onEnter {
     [super onEnter];
+    [Levels initLevels];
 }
 
 - (void)start {

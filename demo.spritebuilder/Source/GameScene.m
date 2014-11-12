@@ -37,9 +37,10 @@ static GameScene* GameSceneInstance;
 - (void)didLoadFromCCB {
     _selectscroll.delegate = self;
    // self.userInteractionEnabled = TRUE;
-    if ([SavedData level]==1) {
+
+    if ([[Levels getSelectedLevel] getLevel]==1) {
         [_selectscroll setScrollPosition:page1];
-        NSLog(@"1");
+        NSLog(@"2");
     }
     if ([[Levels getSelectedLevel] getLevel]==2) {
         [_selectscroll setScrollPosition:page2];
@@ -52,9 +53,6 @@ static GameScene* GameSceneInstance;
     if ([[Levels getSelectedLevel] getLevel]==Nil) {
         NSLog(@"nil");
     }
-    
-    NSLog(@"....");
-
 }
 
 

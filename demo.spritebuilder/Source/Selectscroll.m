@@ -30,7 +30,6 @@
     [textArray addObject:_level1];
     [textArray addObject:_level2];
     [textArray addObject:_level3];
-    [ Levels initLevels ];
     if ([SavedData level]) {
         gs.text.string = [NSString stringWithFormat:@"Level %d", [SavedData level]];
     } else {
