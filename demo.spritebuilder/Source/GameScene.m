@@ -49,7 +49,7 @@ static GameScene* GameSceneInstance;
     NSLog(@"stop animation");
 
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    CCActionMoveTo *move;
+    //CCActionMoveTo *move;
     float x=[_selectscroll scrollPosition].x;
     CGPoint page1=CGPointMake(0, 0);
     CGPoint page2=CGPointMake(524, 0);

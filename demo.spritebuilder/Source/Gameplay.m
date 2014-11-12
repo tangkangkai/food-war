@@ -338,22 +338,19 @@ static BOOL _audioIsOn;
     soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
-        Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
-                                               group:-1
-                                               lane_num:-1
-                                               startPos:touchLocation
-                                               destPos:touchLocation
-                                               ourArr:NULL
-                                               enemyArr:NULL
-                                               level:soldierLevel
-                                               Animation:NULL];
-        if ([newSolider getValue] > energy) {
-            return;
-        } else {
+        // TODO Temperoray fix
+        if( 75 + 25 * soldierLevel <= energy ){
+            Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
+                                                         group:-1
+                                                      lane_num:-1
+                                                      startPos:touchLocation
+                                                       destPos:touchLocation
+                                                        ourArr:NULL
+                                                      enemyArr:NULL
+                                                         level:soldierLevel
+                                                        bgNode:self];
             man = newSolider;
         }
-        // TODO possible memory leak
-        [self addChild: [newSolider soldier]];
     }
 }
 
@@ -446,55 +443,45 @@ static BOOL _audioIsOn;
     CGPoint destination = CGPointMake(desthouse.position.x-20, desthouse.position.y);
     if( [selected_soldier  isEqual: @"potatoMan"] ){
         int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
-        CCNode *potatoAni = [scroll generateAni:@"potatoAni" characterName:@"potato" startPos:[sourcehouse position] frameNumber:8];
-
         newSoldier = [[PotatoMan alloc] initPotato: lane_num
                                                   startPos:sourcehouse.position
                                                    destPos: destination
                                                     ourArr:[scroll healthy_soldiers]
                                                   enemyArr:[scroll junk_soldiers]
                                                      level:potatoLevel
-                                                 Animation:potatoAni];
-        [scroll addChild: [newSoldier soldier]];
+                                                    bgNode:scroll];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
-        CCNode *beanAni = [scroll generateAni:@"beanAni" characterName:@"bean" startPos:[sourcehouse position] frameNumber:8];
         newSoldier = [[BeanMan alloc] initBean: lane_num
                                                startPos:sourcehouse.position
                                                destPos: destination
                                                ourArr:[scroll healthy_soldiers]
                                                enemyArr:[scroll junk_soldiers]
                                level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                     Animation:beanAni];
-
-        [scroll addChild: [newSoldier soldier]];
+                                        bgNode:scroll];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
-        CCNode *bananaAni = [scroll generateAni:@"bananaAni" characterName:@"banana" startPos:[sourcehouse position] frameNumber:7];
         newSoldier = [[BananaMan alloc] initBanana: lane_num
                                                    startPos:[sourcehouse position]
                                                    destPos: destination
                                                    ourArr:[scroll healthy_soldiers]
                                                    enemyArr:[scroll junk_soldiers]
                                  level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                         Animation:bananaAni];
+                                            bgNode:scroll];
 
-        [scroll addChild: [newSoldier soldier]];
-        [newSoldier move];
     } else if( [selected_soldier  isEqual: @"corn"]  ){
-        CCNode *cornAni = [scroll generateAni:@"cornAni" characterName:@"corn" startPos:[sourcehouse position] frameNumber:7];
         newSoldier = [[CornMan alloc] initCorn: lane_num
                                                      startPos:sourcehouse.position
                                                       destPos: destination
                                                        ourArr:[scroll healthy_soldiers]
                                                      enemyArr:[scroll junk_soldiers]
                                             level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                     Animation:cornAni];
+                                            bgNode:scroll];
 
-        [scroll addChild: [newSoldier soldier]];
-        [newSoldier move];
     }
     if (newSoldier != NULL) {
+        [newSoldier move];
+
         if (_audioIsOn) {
             [audio playEffect:@"blop.mp3"];
         }
