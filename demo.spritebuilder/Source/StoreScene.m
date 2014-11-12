@@ -9,6 +9,7 @@
 #import "StoreScene.h"
 #import "SavedData.h"
 #import "Soldier.h"
+#import "Level.h"
 
 @implementation StoreScene {
     CCTextField *_total;
@@ -77,6 +78,7 @@
 
 - (void) didLoadFromCCB {
     NSLog(@"enter store scene");
+    NSLog(@"hehehe: %d", [[Levels getSelectedLevel] getLevel]);
     total = [SavedData money];
     [self updateShowedData];
     
