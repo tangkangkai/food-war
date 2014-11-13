@@ -250,7 +250,7 @@ static BOOL _audioIsOn;
         }
         else if(tag==2) {
             //add money due to the energy
-            [SavedData addMoney:[[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
+            [SavedData addMoney:([[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100) / 10];
             [SavedData saveMoney];
             
             //set unlocked game level to the next level
