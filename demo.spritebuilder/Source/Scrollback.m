@@ -107,9 +107,11 @@
         if( [num isEqualToNumber:[NSNumber numberWithInt:time]] ){
             NSNumber *laneNum = [d objectForKey:@"lane"];
             NSArray *soldiers = [d objectForKey:@"enemies"];
+            NSNumber *enemyLev = [d objectForKey:@"lane"];
+
             for( int i=0; i<soldiers.count; i++ ){
                 int soldierType = [(NSNumber*)soldiers[i] intValue]-1;
-                [self buildEnemy:[laneNum intValue]-1 type:soldierType];
+                [self buildEnemy:[laneNum intValue]-1 type:soldierType enemyLev:[enemyLev intValue]];
             }
         }
     }
@@ -118,9 +120,9 @@
 
 
 - (void)buildEnemy:(int) lane
-                    type:(int) type{
+                   type:(int) type
+                   enemyLev:(int)enemyLev{
     
-    //TODO change to dictionary
     NSArray *start_positions = @[_house4,_house5,_house6];
     NSArray *end_positions=@[_house1,_house2,_house3];
     CGPoint destination = CGPointMake([(CCNode*)end_positions[lane] position].x+30,
@@ -132,7 +134,7 @@
                                                         destPos:destination
                                                          ourArr:_junk_soldiers
                                                        enemyArr:_healthy_soldiers
-                                                          level:1
+                                                          level:enemyLev
                                                         bgNode:self];
         [enemy_soldier move];
     }
@@ -142,7 +144,7 @@
                                                   destPos:destination
                                                    ourArr:_junk_soldiers
                                                  enemyArr:_healthy_soldiers
-                                                    level:1
+                                                    level:enemyLev
                                                    bgNode:self];
         [enemy_soldier move];
     }
@@ -152,42 +154,10 @@
                                                      destPos:destination
                                                       ourArr:_junk_soldiers
                                                     enemyArr:_healthy_soldiers
-                                                       level:1
+                                                       level:enemyLev
                                                     bgNode:self];
         [enemy_soldier move];
     }
-}
-
-// This is the animation interface. It accepts 4 parameter: file name without extension, character name, start position and frame number.
-
--(CCNode*)generateAni:(NSString*) fileName
-        characterName:(NSString*) character
-             startPos:(CGPoint) start
-          frameNumber:(int) frameNum{
-    
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@.plist", fileName]];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@.png", fileName]];
-    [self addChild:spriteSheet];
-    NSMutableArray *soldierAnimFrames = [NSMutableArray array];
-    for (int i=0; i<frameNum; i++) {
-        [soldierAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-        [NSString stringWithFormat:@"%@%d.png", character, i]]];
-    }
-    
-    CCAnimation *soldierAnim = [CCAnimation
-                              animationWithSpriteFrames:soldierAnimFrames delay:0.15f];
-    
-    CCSpriteFrame* frame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
-    CCSprite* title = [CCSprite spriteWithSpriteFrame:frame];
-    CCNode* aniSoldier = title;
-    aniSoldier.position = start;
-    
-    CCAction *action = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
-    [aniSoldier runAction:action];
-    [spriteSheet addChild:aniSoldier];
-
-    return aniSoldier;
 }
 
 - (void)showTrack: (int) num {

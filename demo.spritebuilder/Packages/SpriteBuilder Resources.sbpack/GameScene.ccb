@@ -275,8 +275,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.089436627924442291</real>
-							<real>0.91874998807907104</real>
+							<real>0.092957749962806702</real>
+							<real>0.88125002384185791</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -300,8 +300,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.47729361057281494</real>
-							<real>0.6328619122505188</real>
+							<real>0.25999999046325684</real>
+							<real>0.23000000417232513</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -324,8 +324,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>147</real>
-							<real>67</real>
+							<real>256</real>
+							<real>171</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -370,7 +370,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/back_button.png</string>
+							<string>foodwar_picture/back_btn.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -381,8 +381,16 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/back_button.png</string>
+							<string>foodwar_picture/back_btn.png</string>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundOpacity|Highlighted</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.60000002384185791</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -568,8 +576,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

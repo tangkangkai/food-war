@@ -15,6 +15,8 @@
     CCTextField *_total;
     CCTextField *_cost4;
     CCTextField *_level4;
+    CCTextField *_message;
+
     int cornCost;
     int total;
     
@@ -44,6 +46,8 @@
 }
 - (void) didLoadFromCCB {
     NSLog(@"enter store scene2");
+    _message.string = [NSString stringWithFormat:@"You need more money to update"];
+    _message.opacity = 0;
     total = [SavedData money];
     
     _total.string = [NSString stringWithFormat:@" %d", total];
@@ -95,8 +99,16 @@
     [SavedData saveSoldierLevel];
 }
 
+-(void) showMessage {
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.5f opacity:0];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, fadeOut]];
+    [_message runAction:sequence];
+}
+
 -(void)button4 {
     if (cornCost > total) {
+        [self showMessage];
         return;
     }
     
@@ -115,8 +127,8 @@
 }
 
 -(void)reduceTotalMoney: (int)value {
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(412, 270)];
-    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(412, 291)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(496, 270)];
+    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(496, 292)];
     
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveDown, moveUp]];
     [_total runAction:sequence];

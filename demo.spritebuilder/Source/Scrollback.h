@@ -35,9 +35,5 @@
 
 - (void)showTrack:(int) num;
 - (void)cleanup;
--(CCNode*)generateAni:(NSString*) fileName
-        characterName:(NSString*) character
-             startPos:(CGPoint) start
-          frameNumber:(int) frameNum;
 
 @end

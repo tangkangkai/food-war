@@ -191,7 +191,7 @@ static BOOL _audioIsOn;
 }
 
 - (void)win{
-    NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", [[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
+    NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", ([[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100) / 10];
     [[CCDirector sharedDirector] pause];
     //_gameoverLabel.string = [NSString stringWithFormat:@"You win"];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:promptStr

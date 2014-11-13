@@ -32,6 +32,7 @@
 - (void)didLoadFromCCB {
     
     _message.string = [NSString stringWithFormat:@"At level %d, now choose your lineups", [[Levels getSelectedLevel] getLevel]];
+    _message.opacity = 0;
     
     _potatobg.visible = false;
     _beanbg.visible = false;
@@ -80,14 +81,18 @@
     }
 }
 
+
 - (void)go {
     // save lineup
     if (lineupDict.count == 0) {
-        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
-        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
-        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
+//        CCActionMoveTo *moveleft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.4, 0.8)];
+//        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
+//        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
         
-        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveleft, moveright, moveleft, moveright, moveback]];
+        CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
+        CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.5f opacity:0];
+        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, fadeOut]];
+        
         _message.string = [NSString stringWithFormat:@"Please select soldiers"];
         [_message runAction:sequence];
         return;
