@@ -21,6 +21,8 @@
     CCTextField *_level2;
     CCTextField *_level3;
     CCTextField *_level4;
+    CCTextField *_message;
+
     int total;
     int beanCost;
     int bananaCost;
@@ -78,7 +80,8 @@
 
 - (void) didLoadFromCCB {
     NSLog(@"enter store scene");
-    NSLog(@"hehehe: %d", [[Levels getSelectedLevel] getLevel]);
+    _message.string = [NSString stringWithFormat:@"You need more money to update"];
+    _message.opacity = 0;
     total = [SavedData money];
     [self updateShowedData];
     
@@ -205,8 +208,16 @@
     [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
 }
 
+-(void) showMessage {
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.5f opacity:0];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, fadeOut]];
+    [_message runAction:sequence];
+}
+
 -(void)button1 {
     if (potatoCost > total) {
+        [self showMessage];
         return;
     }
     
@@ -226,6 +237,7 @@
 
 -(void)button2 {
     if (beanCost > total) {
+        [self showMessage];
         return;
     }
     
@@ -245,6 +257,7 @@
 
 -(void)button3 {
     if (bananaCost > total) {
+        [self showMessage];
         return;
     }
     
@@ -269,8 +282,8 @@
 
 
 -(void)reduceTotalMoney: (int)value {
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(412, 270)];
-    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(412, 291)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(496, 270)];
+    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(496, 292)];
     
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[moveDown, moveUp]];
     [_total runAction:sequence];
