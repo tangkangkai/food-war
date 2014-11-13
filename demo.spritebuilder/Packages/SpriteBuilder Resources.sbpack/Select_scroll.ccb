@@ -750,7 +750,7 @@
 						<key>value</key>
 						<array>
 							<real>292.5281982421875</real>
-							<real>338.728515625</real>
+							<real>327.728515625</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -774,8 +774,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.7917957305908203</real>
-							<real>2.8807299137115479</real>
+							<real>1</real>
+							<real>1.5</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -981,8 +981,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.7917957305908203</real>
-							<real>2.8807299137115479</real>
+							<real>1</real>
+							<real>1.5</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1188,8 +1188,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.7917957305908203</real>
-							<real>2.8807299137115479</real>
+							<real>1</real>
+							<real>1.5</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1337,8 +1337,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2410,6 +2408,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -2469,7 +2469,7 @@
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
-			<real>128</real>
+			<real>512</real>
 			<key>sequenceId</key>
 			<integer>0</integer>
 			<key>soundChannel</key>

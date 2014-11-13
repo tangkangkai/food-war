@@ -24,6 +24,12 @@
 
 - (void) didLoadFromCCB {
     NSLog(@"Enter Game Level Scene");
+    
+    _level1.opacity = 0;
+    _level2.opacity = 0;
+    _level3.opacity = 0;
+    
+    
     gs=[GameScene shareLayer];
     self.userInteractionEnabled = TRUE;
     textArray = [[NSMutableArray alloc] init];
@@ -62,6 +68,13 @@
 }
 
 
+-(void) showMessage: (CCTextField *)levelText {
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.5f opacity:0];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, fadeOut]];
+    [levelText runAction:sequence];
+}
+
 - (void)changeLevel: (int) level {
     gs=[GameScene shareLayer];
     NSLog(@"choose level:%d, maxLevel:%d", level, [SavedData level]);
@@ -78,6 +91,7 @@
 //        gs.text.string = [NSString stringWithFormat:@"Level %d locked", level];
 //        [levelText runAction:sequence];
         levelText.string = @"Level Locked, please choose again";
+        [self showMessage:levelText];
 //        gs.text.string = @"Level Locked, please choose again";
 
     }
