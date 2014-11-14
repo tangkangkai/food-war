@@ -39,6 +39,7 @@
 @property CCNode* soldier;
 @property CCNode* AniNode;
 @property CCNode* bgNode;
+@property CCNode* dead_body;
 
 @property CCAction* walkingAct;
 @property NSMutableArray* ourArray;

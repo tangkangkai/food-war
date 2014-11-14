@@ -23,6 +23,7 @@
 		599974AC19FED3C800A0626A /* StoreScene2.m in Sources */ = {isa = PBXBuildFile; fileRef = 599974AB19FED3C800A0626A /* StoreScene2.m */; };
 		59B924E019E4F02500C45A85 /* Selectscroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B924DF19E4F02500C45A85 /* Selectscroll.m */; };
 		59BF557019DA288600D30484 /* Scrollback.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BF556F19DA288600D30484 /* Scrollback.m */; };
+		59C4E2B31A1510A6007F1CE4 /* Energy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C4E2B21A1510A6007F1CE4 /* Energy.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
@@ -115,6 +116,8 @@
 		59B924DF19E4F02500C45A85 /* Selectscroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Selectscroll.m; path = Source/Selectscroll.m; sourceTree = "<group>"; };
 		59BF556E19DA288600D30484 /* Scrollback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scrollback.h; path = Source/Scrollback.h; sourceTree = "<group>"; };
 		59BF556F19DA288600D30484 /* Scrollback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Scrollback.m; path = Source/Scrollback.m; sourceTree = "<group>"; };
+		59C4E2B11A1510A6007F1CE4 /* Energy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Energy.h; sourceTree = "<group>"; };
+		59C4E2B21A1510A6007F1CE4 /* Energy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Energy.m; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
 		B71F5908188484E7003F4D28 /* iPad-old@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old@2x.png"; path = "Icons/iPad-old@2x.png"; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				B7378992180767190076A88C /* MainScene.h */,
 				B7378993180767190076A88C /* MainScene.m */,
 				BEB82C4319CA610C009DF48C /* ChoiceScene.h */,
+				59C4E2B11A1510A6007F1CE4 /* Energy.h */,
+				59C4E2B21A1510A6007F1CE4 /* Energy.m */,
 				BEB82C4419CA610C009DF48C /* ChoiceScene.m */,
 				BEB82C4519CA610C009DF48C /* GameScene.h */,
 				BEB82C4619CA610C009DF48C /* GameScene.m */,
@@ -589,6 +594,7 @@
 				BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
+				59C4E2B31A1510A6007F1CE4 /* Energy.m in Sources */,
 				4959BD1619F5C087004AC4C5 /* Level.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 			);

@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) CCSprite *anibomb;
 @property (nonatomic, strong) CCAction *flashAction;
+@property CCNode *energyIcon;
 
 - (void)addBombExplosion:(CGPoint) posi;
 + (void)addEnergy:(int) amount;

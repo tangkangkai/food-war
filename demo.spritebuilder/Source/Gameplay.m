@@ -53,11 +53,13 @@ static BOOL _audioIsOn;
     CCSprite *_fourth;
     NSMutableArray *lineupArray;
     NSMutableArray *spots;
+    NSMutableArray* energyArray;
     NSArray *keys;
     
     OALSimpleAudio *audio;
     CCNode *_musicon;
     CCNode *_musicoff;
+
 }
 
 - (id)init{
@@ -80,8 +82,10 @@ static BOOL _audioIsOn;
     self.userInteractionEnabled = TRUE;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
+    energyArray = [[NSMutableArray alloc] init];
     [self schedule:@selector(tick) interval:1.0f];
     [self schedule:@selector(updateEnergy) interval:0.1f];
+ //   [self schedule:@selector(collectEnergy) interval:0.1f];
     _audioIsOn = [SavedData audio];
     if (_audioIsOn) {
         [audio playBg:@"playBackground.mp3" loop:TRUE];
@@ -90,7 +94,6 @@ static BOOL _audioIsOn;
         [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
 
     }
-    
 }
 
 - (void)onEnter {
@@ -496,6 +499,20 @@ static BOOL _audioIsOn;
     explosion.position = posi;
     [self addChild:explosion];
     return;
+}
+
+-(void) collectEnergy{
+    energyArray=[Scrollback getEnergyArray];
+    if (energyArray==nil) {
+        return;
+    }
+
+    for (CCNode* energy in energyArray) {
+        CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:[_energyIcon position]];
+        [energy runAction:collectEnergy];
+    }
+   
+    
 }
 
 @end

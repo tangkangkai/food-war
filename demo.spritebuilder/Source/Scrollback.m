@@ -13,6 +13,10 @@
 #import <UIKit/UIKit.h>
 #include <CCDirector.h>
 #import "CCAction.h"
+#import "Energy.h"
+#import "Gameplay.h"
+
+static NSMutableArray *energyArray;
 
 @implementation Scrollback{
     int _startlaunch;
@@ -30,6 +34,7 @@
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _target = [NSMutableArray arrayWithObjects:nil ];
+    energyArray = [NSMutableArray arrayWithObjects:nil ];
     audio = [OALSimpleAudio sharedInstance];
     return self;
 }
@@ -64,6 +69,22 @@
     CGFloat x=0;
     CGFloat y=0;
 
+    if (energyArray!=nil) {
+        NSLog(@"1");
+        for (Energy* en in energyArray) {
+            NSLog(@"2");
+        //0    NSLog(@"bounding:(%f,%f)",[[en deadBody]boundingBox].origin.x,[[en deadBody]boundingBox].origin.y);
+            if (CGRectContainsPoint([[en deadBody] boundingBox],touchLocation)) {
+                CCScrollView *c = (CCScrollView*)[self parent];
+                NSLog(@"%f",[c scrollPosition].x);
+                Gameplay* cc = (Gameplay*)[c parent];
+                CCNode* Icon=[cc energyIcon];
+                CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:CGPointMake(Icon.position.x+[c scrollPosition].x, Icon.position.y)];
+                [[en deadBody] runAction:collectEnergy];
+                NSLog(@"touch energy");
+            }
+        }
+    }
     if (_startlaunch==1) {
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
             _startlaunch=0;
@@ -171,6 +192,14 @@
         _track2.visible = true;
     if( num == 3 )
         _track3.visible = true;
+}
+
++ (void) fillEnergyArray:(CCNode*)energy{
+    [energyArray addObject:energy];
+}
+
++ (NSMutableArray*) getEnergyArray{
+    return energyArray;
 }
 
 @end
