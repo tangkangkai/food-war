@@ -13,6 +13,10 @@
 #import <UIKit/UIKit.h>
 #include <CCDirector.h>
 #import "CCAction.h"
+#import "Energy.h"
+#import "Gameplay.h"
+
+static NSMutableArray *energyArray;
 
 @implementation Scrollback{
     int _startlaunch;
@@ -30,6 +34,7 @@
     _junk_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _healthy_soldiers = [NSMutableArray arrayWithObjects:nil ];
     _target = [NSMutableArray arrayWithObjects:nil ];
+    energyArray = [NSMutableArray arrayWithObjects:nil ];
     audio = [OALSimpleAudio sharedInstance];
     return self;
 }
@@ -50,6 +55,7 @@
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:1];
+
 }
 
 - (void)cleanup{
@@ -64,6 +70,16 @@
     CGFloat x=0;
     CGFloat y=0;
 
+    if (energyArray!=nil) {
+        for (Energy* en in energyArray) {
+            if (CGRectContainsPoint([[en deadBody] boundingBox],touchLocation)) {
+                CCScrollView *c = (CCScrollView*)[self parent];
+                Gameplay* cc = (Gameplay*)[c parent];
+                CCNode* Icon=[cc energyIcon];
+                [en collect:Icon Gameplay:c];
+            }
+        }
+    }
     if (_startlaunch==1) {
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
             _startlaunch=0;
@@ -171,6 +187,14 @@
         _track2.visible = true;
     if( num == 3 )
         _track3.visible = true;
+}
+
++ (void) fillEnergyArray:(CCNode*)energy{
+    [energyArray addObject:energy];
+}
+
++ (NSMutableArray*) getEnergyArray{
+    return energyArray;
 }
 
 @end

@@ -40,6 +40,7 @@
 @property CCNode* animationNode;
 
 @property CCNode* bgNode;
+@property CCNode* dead_body;
 
 @property CCAction* walkingAct;
 @property CCAction* fightingAct;

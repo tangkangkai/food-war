@@ -136,8 +136,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -535,7 +533,7 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string>setting</string>
+									<string>newgame</string>
 									<integer>1</integer>
 								</array>
 							</dict>
@@ -580,7 +578,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>Settings    </string>
+									<string>New Game</string>
 									<false/>
 								</array>
 							</dict>
@@ -790,6 +788,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -848,7 +848,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>0.94826853275299072</real>
+									<real>0.997722327709198</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>

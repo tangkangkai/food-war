@@ -13,6 +13,8 @@
 #import <UIKit/UIKit.h>
 #include <CCDirector.h>
 #import "CCAction.h"
+#import "Energy.h"
+#import "Scrollback.h"
 
 @implementation Soldier{
     
@@ -298,14 +300,15 @@
 }
 
 - (void)dead{
+    if( _group == 1 ){
+        Energy* energy= [[Energy alloc] initEnergy:[self getValue] pos:[[self soldier]position] bgNode:[self soldier].parent];
+        [Scrollback fillEnergyArray:energy];
+    }
+    
     [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
     [self unschedule:@selector(doAttack)];
     [self unschedule:@selector(countDown)];
-
-    if( _group == 1 ){
-        [Gameplay addEnergy:value];
-    }
     
     if( _animationNode != NULL ){
         [_animationNode removeFromParent];

@@ -35,5 +35,6 @@
 
 - (void)showTrack:(int) num;
 - (void)cleanup;
-
++ (void)fillEnergyArray:(CCNode*)energy;
++ (NSMutableArray*) getEnergyArray;
 @end

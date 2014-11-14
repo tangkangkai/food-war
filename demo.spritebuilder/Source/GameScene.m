@@ -13,6 +13,9 @@ static GameScene* GameSceneInstance;
 
 @implementation GameScene {
     CCScrollView *_selectscroll;
+    CGPoint page1;
+    CGPoint page2;
+    CGPoint page3;
 }
 
 +(GameScene*)shareLayer{
@@ -22,15 +25,34 @@ static GameScene* GameSceneInstance;
 -(id) init
 {
     if( (self=[super init])) {
-   //     GameSceneInstance=self;
+        GameSceneInstance=self;
+        page1=CGPointMake(0, 0);
+        page2=CGPointMake(524, 0);
+        page3=CGPointMake(1032, 0);
     }
+
     return self;
 }
 
 - (void)didLoadFromCCB {
     _selectscroll.delegate = self;
    // self.userInteractionEnabled = TRUE;
-    NSLog(@"%d", [[Levels getSelectedLevel] getLevel]);
+
+    if ([[Levels getSelectedLevel] getLevel]==1) {
+        [_selectscroll setScrollPosition:page1];
+        NSLog(@"2");
+    }
+    if ([[Levels getSelectedLevel] getLevel]==2) {
+        [_selectscroll setScrollPosition:page2];
+        NSLog(@"2");
+    }
+    if ([[Levels getSelectedLevel] getLevel]==3) {
+        [_selectscroll setScrollPosition:page3];
+        NSLog(@"3");
+    }
+    if ([[Levels getSelectedLevel] getLevel]==Nil) {
+        NSLog(@"nil");
+    }
 }
 
 
@@ -53,9 +75,7 @@ static GameScene* GameSceneInstance;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //CCActionMoveTo *move;
     float x=[_selectscroll scrollPosition].x;
-    CGPoint page1=CGPointMake(0, 0);
-    CGPoint page2=CGPointMake(524, 0);
-    CGPoint page3=CGPointMake(1032, 0);
+
     
     if(x<250){
         NSLog(@"level 1 scroll x:%f",x);
