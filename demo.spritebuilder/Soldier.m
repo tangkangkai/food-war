@@ -65,33 +65,56 @@
     return moveSpeed;
 }
 
-- (void)generateWalkAni{
+- (void)initAnimation{
 }
 
-- (void)generateAni:(NSString*) character
-          frameNumber:(int) frameNum{
-    
+
+- (void)loadFirstAnimation:(NSString*) character{
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@Ani.plist", character]];
+    CCSpriteFrame* frame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
+    _animationNode = [CCSprite spriteWithSpriteFrame:frame];
+    _animationNode.position = [_soldier position];
+    
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%@Ani.png", character]];
     [_bgNode addChild:spriteSheet];
+    
+    [spriteSheet addChild:_animationNode];
 
+}
+
+- (CCAnimation*)loadAnimation:(NSString*) character
+          frameNumber:(int) frameNum
+                 interval:(float)aniInterval{
     NSMutableArray *soldierAnimFrames = [NSMutableArray array];
+    
     for (int i=0; i<frameNum; i++) {
         [soldierAnimFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
           [NSString stringWithFormat:@"%@%d.png", character, i]]];
     }
     
-    CCAnimation *soldierAnim = [CCAnimation
-                                animationWithSpriteFrames:soldierAnimFrames delay:0.15f];
+    return [CCAnimation animationWithSpriteFrames:soldierAnimFrames delay:aniInterval];
+}
+
+- (void)loadWalkAnimation:(NSString*) character
+          frameNumber:(int) frameNum{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@Ani.plist", character]];
+    CCAnimation* ani = [self loadAnimation:character frameNumber:frameNum interval:0.15f];
     
-    CCSpriteFrame* frame = [CCSpriteFrame frameWithImageNamed:[NSString stringWithFormat:@"%@0.png", character]];
-    _AniNode = [CCSprite spriteWithSpriteFrame:frame];
-    _AniNode.position = [_soldier position];
-    
-    _walkingAct = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:soldierAnim]];
+    _walkingAct = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:ani]];
     _walkingAct.tag = 10;
-    [spriteSheet addChild:_AniNode];
+}
+
+
+- (void)loadFightAnimation:(NSString*) character
+              frameNumber:(int) frameNum{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@FightAni.plist", character]];
+    CCAnimation* ani = [self loadAnimation:character frameNumber:frameNum interval:0.04f];
+    
+    _fightingAct = [CCActionAnimate actionWithAnimation:ani];
+    _fightingAct.tag = 11;
 }
 
 - (int)loseHealth:(int)Attack {
@@ -129,8 +152,8 @@
         return;
     }
     [[ self soldier ] stopAllActions ];
-    if(_AniNode != NULL){
-        [_AniNode stopAction:_walkingAct];
+    if(_animationNode != NULL){
+        [_animationNode stopAction:_walkingAct];
         // TODO switch to fight animation
     }
     moving = false;
@@ -140,7 +163,9 @@
     
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
-        
+        if( _fightingAct != nil){
+            [_animationNode runAction:_fightingAct];
+        }
         [self attackAnimation:target];
         if( [ target loseHealth:atkPower ] == 0 ){
             if( [self detectEnemy] == NULL ){
@@ -238,8 +263,8 @@
     }
     if( _group != -1 ){
         [self schedule:@selector(doAttack) interval:0.1];
-        [self generateWalkAni];
-        if ( _AniNode == NULL){
+        [self initAnimation];
+        if ( _animationNode == NULL){
             [(CCSprite*)[_soldier children][0] setVisible:true];
         }
         else{
@@ -253,11 +278,11 @@
 
 
 -(void)move{
-    if( _AniNode != NULL ){
-        [_AniNode setPosition:[_soldier position]];
-        CCAction* act = [_AniNode getActionByTag:10];
+    if( _animationNode != NULL ){
+        [_animationNode setPosition:[_soldier position]];
+        CCAction* act = [_animationNode getActionByTag:10];
         if( act == nil )
-            [_AniNode runAction:_walkingAct];
+            [_animationNode runAction:_walkingAct];
     }
     if( moving == true || _group == -1 ){
         return;
@@ -282,8 +307,8 @@
         [Gameplay addEnergy:value];
     }
     
-    if( _AniNode != NULL ){
-        [_AniNode removeFromParent];
+    if( _animationNode != NULL ){
+        [_animationNode removeFromParent];
     }
     // TODO release
 }
@@ -338,13 +363,9 @@
     return self;
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"burger" frameNumber:8];
-}
-
--(void)move{
-    [super move];
-    _cokeAniNode.position = CGPointMake(self.getSoldier.position.x, self.getSoldier.position.y);
+- (void)initAnimation{
+    [self loadFirstAnimation:@"burger"];
+    [self loadWalkAnimation:@"burger" frameNumber:8];
 }
 
 @end
@@ -381,8 +402,9 @@
     return self;
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"coke" frameNumber:7];
+- (void)initAnimation{
+    [self loadFirstAnimation:@"coke"];
+    [self loadWalkAnimation:@"coke" frameNumber:7];
 }
 
 - (void)attackAnimation:(Soldier*) target{
@@ -439,8 +461,9 @@
     return self;
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"potato" frameNumber:8];
+- (void)initAnimation{
+    [self loadFirstAnimation:@"potato"];
+    [self loadWalkAnimation:@"potato" frameNumber:8];
 }
 
 @end
@@ -470,8 +493,9 @@
     return self;
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"bean" frameNumber:8];
+- (void)initAnimation{
+    [self loadFirstAnimation:@"bean"];
+    [self loadWalkAnimation:@"bean" frameNumber:8];
 }
 
 - (void)attackAnimation:(Soldier*) target{
@@ -534,8 +558,10 @@
     return self;
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"banana" frameNumber:7];
+- (void)initAnimation{
+    [self loadFirstAnimation:@"banana"];
+    [self loadWalkAnimation:@"banana" frameNumber:7];
+    [self loadFightAnimation:@"banana" frameNumber:9];
 }
 
 @end
@@ -754,8 +780,9 @@
     }
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"corn" frameNumber:7];
+- (void)initAnimation{
+    [self loadFirstAnimation:@"corn"];
+    [self loadWalkAnimation:@"corn" frameNumber:7];
 }
 
 -(void)flash{
@@ -906,8 +933,9 @@
     return self;
 }
 
-- (void)generateWalkAni{
-    [self generateAni:@"fries" frameNumber:8];
+- (void)initAnimation{
+    [self loadFirstAnimation:@"fries"];
+    [self loadWalkAnimation:@"fries" frameNumber:8];
 }
 
 -(void)countDown{

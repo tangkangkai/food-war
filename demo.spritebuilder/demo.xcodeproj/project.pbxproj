@@ -20,6 +20,8 @@
 		49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A8E53219CFF8CF00A7DC61 /* Soldier.m */; };
 		49DEFAA81A0A261900B1E33B /* bananaAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA61A0A261900B1E33B /* bananaAni.plist */; };
 		49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA71A0A261900B1E33B /* bananaAni.png */; };
+		49F3FC101A15EB8200438286 /* bananaFightAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49F3FC0E1A15EB8200438286 /* bananaFightAni.plist */; };
+		49F3FC111A15EB8200438286 /* bananaFightAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F3FC0F1A15EB8200438286 /* bananaFightAni.png */; };
 		599974AC19FED3C800A0626A /* StoreScene2.m in Sources */ = {isa = PBXBuildFile; fileRef = 599974AB19FED3C800A0626A /* StoreScene2.m */; };
 		59B924E019E4F02500C45A85 /* Selectscroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B924DF19E4F02500C45A85 /* Selectscroll.m */; };
 		59BF557019DA288600D30484 /* Scrollback.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BF556F19DA288600D30484 /* Scrollback.m */; };
@@ -109,6 +111,8 @@
 		49A8E53219CFF8CF00A7DC61 /* Soldier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soldier.m; sourceTree = "<group>"; };
 		49DEFAA61A0A261900B1E33B /* bananaAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bananaAni.plist; sourceTree = "<group>"; };
 		49DEFAA71A0A261900B1E33B /* bananaAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaAni.png; sourceTree = "<group>"; };
+		49F3FC0E1A15EB8200438286 /* bananaFightAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bananaFightAni.plist; sourceTree = "<group>"; };
+		49F3FC0F1A15EB8200438286 /* bananaFightAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaFightAni.png; sourceTree = "<group>"; };
 		599974AA19FED3C800A0626A /* StoreScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreScene2.h; path = Source/StoreScene2.h; sourceTree = "<group>"; };
 		599974AB19FED3C800A0626A /* StoreScene2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreScene2.m; path = Source/StoreScene2.m; sourceTree = "<group>"; };
 		59B924DE19E4F02500C45A85 /* Selectscroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Selectscroll.h; path = Source/Selectscroll.h; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 		49DEFAA51A0A261900B1E33B /* bananaAni */ = {
 			isa = PBXGroup;
 			children = (
+				49F3FC0E1A15EB8200438286 /* bananaFightAni.plist */,
+				49F3FC0F1A15EB8200438286 /* bananaFightAni.png */,
 				49DEFAA61A0A261900B1E33B /* bananaAni.plist */,
 				49DEFAA71A0A261900B1E33B /* bananaAni.png */,
 			);
@@ -511,6 +517,7 @@
 				BE18BDED19EC7D68009A495A /* playBackground.mp3 in Resources */,
 				E9ECC79919EDAA68009E03D4 /* explode.mp3 in Resources */,
 				49DEFAA81A0A261900B1E33B /* bananaAni.plist in Resources */,
+				49F3FC111A15EB8200438286 /* bananaFightAni.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
@@ -519,6 +526,7 @@
 				E97969361A09F3D500AB3CB8 /* cokeAni.png in Resources */,
 				498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */,
 				498440EB1A11436500EACCCE /* potatoAni.png in Resources */,
+				49F3FC101A15EB8200438286 /* bananaFightAni.plist in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */,

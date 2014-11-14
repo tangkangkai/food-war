@@ -37,10 +37,13 @@
 @property CGPoint start_pos;
 @property CGPoint dest_pos;
 @property CCNode* soldier;
-@property CCNode* AniNode;
+@property CCNode* animationNode;
+
 @property CCNode* bgNode;
 
 @property CCAction* walkingAct;
+@property CCAction* fightingAct;
+
 @property NSMutableArray* ourArray;
 @property NSMutableArray* enemyArray;
 
@@ -54,9 +57,15 @@
                   level:(int) soldierLevel
                   bgNode:(CCNode*)bgNode;
 
-- (void)generateWalkAni;
-- (void)generateAni:(NSString*) character
+- (void)initAnimation;
+
+- (CCAnimation*)loadAnimation:(NSString*) character
+                  frameNumber:(int) frameNum
+                     interval:(float)aniInterval;
+- (void)loadWalkAnimation:(NSString*) character
                     frameNumber:(int) frameNum;
+- (void)loadFightAnimation:(NSString*) character
+               frameNumber:(int) frameNum;
 - (int)loseHealth:(int)Attack;
 - (void)attackAnimation:(Soldier*) target;
 - (void)update_health;
@@ -96,7 +105,6 @@
 
 
 @interface CokeMan : Soldier
-@property CCNode* cokeAniNode;
 
 - (void)attackAnimation:(Soldier*) target;
 - (id)initCoke :(int) lane_num
