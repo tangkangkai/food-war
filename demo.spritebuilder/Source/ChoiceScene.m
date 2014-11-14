@@ -86,9 +86,12 @@
 //        CCActionMoveTo *moveright = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.6, 0.8)];
 //        CCActionMoveTo *moveback = [CCActionMoveTo actionWithDuration:0.05f position:ccp(0.5, 0.8)];
         
-        CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
-        CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.5f opacity:0];
-        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, fadeOut]];
+        CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.01f opacity:255];
+        CCActionMoveTo *moveLeft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(260, 281)];
+        CCActionMoveTo *moveRight = [CCActionMoveTo actionWithDuration:0.05f position:ccp(304, 281)];
+        CCActionMoveTo *moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(282, 281)];
+        CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:1.0f opacity:0];
+        CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveLeft, moveRight, moveLeft, moveRight, moveBack, fadeOut]];
         
         _message.string = [NSString stringWithFormat:@"Please select soldiers"];
         [_message runAction:sequence];
