@@ -55,6 +55,7 @@ static NSMutableArray *energyArray;
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:1];
+
 }
 
 - (void)cleanup{
@@ -70,18 +71,12 @@ static NSMutableArray *energyArray;
     CGFloat y=0;
 
     if (energyArray!=nil) {
-        NSLog(@"1");
         for (Energy* en in energyArray) {
-            NSLog(@"2");
-        //0    NSLog(@"bounding:(%f,%f)",[[en deadBody]boundingBox].origin.x,[[en deadBody]boundingBox].origin.y);
             if (CGRectContainsPoint([[en deadBody] boundingBox],touchLocation)) {
                 CCScrollView *c = (CCScrollView*)[self parent];
-                NSLog(@"%f",[c scrollPosition].x);
                 Gameplay* cc = (Gameplay*)[c parent];
                 CCNode* Icon=[cc energyIcon];
-                CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:CGPointMake(Icon.position.x+[c scrollPosition].x, Icon.position.y)];
-                [[en deadBody] runAction:collectEnergy];
-                NSLog(@"touch energy");
+                [en collect:Icon Gameplay:c];
             }
         }
     }

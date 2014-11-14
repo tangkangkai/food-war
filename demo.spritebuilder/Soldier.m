@@ -285,10 +285,10 @@
     [self unschedule:@selector(doAttack)];
     [self unschedule:@selector(countDown)];
     
-    if( _group == 1 ){
+ /*   if( _group == 1 ){
            [Gameplay addEnergy:value];
     }
-    
+    */
     if( _AniNode != NULL ){
         [_AniNode removeFromParent];
     }
