@@ -209,9 +209,13 @@
 }
 
 -(void) showMessage {
-    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
-    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.5f opacity:0];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, fadeOut]];
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
+    CCActionMoveTo *moveLeft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(258, 293)];
+    CCActionMoveTo *moveRight = [CCActionMoveTo actionWithDuration:0.05f position:ccp(298, 293)];
+    CCActionMoveTo *moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(278, 293)];
+
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:1.0f opacity:0];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveLeft, moveRight, moveLeft, moveRight, moveBack, fadeOut]];
     [_message runAction:sequence];
 }
 

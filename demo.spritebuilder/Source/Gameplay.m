@@ -44,6 +44,8 @@ static BOOL _audioIsOn;
     //CCLabelTTF *_money;
     CCLabelTTF *_energy;
     
+    CCTextField *_energyPrompt;
+    
 
     int mTimeInSec;
     int timeFlag;
@@ -78,6 +80,10 @@ static BOOL _audioIsOn;
     energy = [[Levels getSelectedLevel] energy];
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
+    // _energyPrompt opacity set to 0
+    _energyPrompt.opacity = 0;
+    
+    
     _scrollview.delegate = self;
     self.userInteractionEnabled = TRUE;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
@@ -253,7 +259,7 @@ static BOOL _audioIsOn;
         }
         else if(tag==2) {
             //add money due to the energy
-            [SavedData addMoney:[[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100];
+            [SavedData addMoney:([[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100) / 10];
             [SavedData saveMoney];
             
             //set unlocked game level to the next level
@@ -306,6 +312,7 @@ static BOOL _audioIsOn;
         if (energy < 1000) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
+            
             return;
         }
         selected_soldier = @"blackBomb";
@@ -354,8 +361,20 @@ static BOOL _audioIsOn;
                                                          level:soldierLevel
                                                         bgNode:self];
             man = newSolider;
+        } else {
+            [self showMessage];
         }
     }
+}
+
+-(void) showMessage {
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.4f position:ccp(120, 250)];
+    
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
+    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(120, 270)];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveDown, fadeOut, moveBack]];
+    [_energyPrompt runAction:sequence];
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
