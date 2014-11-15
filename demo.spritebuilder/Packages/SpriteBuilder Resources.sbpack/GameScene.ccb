@@ -186,8 +186,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.500865638256073</real>
+							<real>0.49779114127159119</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -211,8 +211,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.4040169715881348</real>
-							<real>3.3054141998291016</real>
+							<real>0.44632977247238159</real>
+							<real>0.40202116966247559</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -225,7 +225,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/Level_Background2.png</string>
+							<string>foodwar_picture/blue-background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -694,6 +694,8 @@
 						<false/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>285</real>
-							<real>166</real>
+							<real>285.05633544921875</real>
+							<real>161.83108520507812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>4.4225831031799316</real>
-							<real>3.487180233001709</real>
+							<real>0.44586014747619629</real>
+							<real>0.40319696068763733</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/Level_Background2.png</string>
+							<string>foodwar_picture/blue-background.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -828,8 +828,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.11999998986721039</real>
-							<real>0.33000001311302185</real>
+							<real>0.11871057003736496</real>
+							<real>0.36661967635154724</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -879,9 +879,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.20999999344348907</real>
-							<real>0.64999997615814209</real>
-							<real>0.87000000476837158</real>
+							<real>0.0</real>
+							<real>1</real>
+							<real>1</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -927,8 +927,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>108</real>
-							<real>156.00001525878906</real>
+							<real>107.26760101318359</real>
+							<real>167.71830749511719</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1253,8 +1253,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.33098593354225159</real>
-							<real>0.33000001311302185</real>
+							<real>0.32969650626182556</real>
+							<real>0.36661967635154724</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1304,9 +1304,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.20999999344348907</real>
-							<real>0.64999997615814209</real>
-							<real>0.87000000476837158</real>
+							<real>0.0</real>
+							<real>1</real>
+							<real>1</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -1352,8 +1352,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>230</real>
-							<real>155.00001525878906</real>
+							<real>229.26760864257812</real>
+							<real>166.71830749511719</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1678,8 +1678,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5369718074798584</real>
-							<real>0.33000001311302185</real>
+							<real>0.53568238019943237</real>
+							<real>0.36661967635154724</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1729,9 +1729,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.20999999344348907</real>
-							<real>0.64999997615814209</real>
-							<real>0.87000000476837158</real>
+							<real>0.0</real>
+							<real>1</real>
+							<real>1</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -1777,8 +1777,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>347</real>
-							<real>156.00001525878906</real>
+							<real>346.26760864257812</real>
+							<real>167.71830749511719</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2103,8 +2103,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.73000001907348633</real>
-							<real>0.33000001311302185</real>
+							<real>0.7287105917930603</real>
+							<real>0.36661967635154724</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -2154,9 +2154,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.20999999344348907</real>
-							<real>0.64999997615814209</real>
-							<real>0.87000000476837158</real>
+							<real>0.0</real>
+							<real>1</real>
+							<real>1</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -2202,8 +2202,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>454</real>
-							<real>154.00001525878906</real>
+							<real>453.26760864257812</real>
+							<real>165.71830749511719</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2528,8 +2528,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>137</real>
-							<real>198</real>
+							<real>136.26760864257812</real>
+							<real>209.71829223632812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2617,8 +2617,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>250</real>
-							<real>199</real>
+							<real>249.26760864257812</real>
+							<real>210.71829223632812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2706,8 +2706,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>369</real>
-							<real>199</real>
+							<real>368.26760864257812</real>
+							<real>210.71829223632812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2795,8 +2795,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>480</real>
-							<real>197</real>
+							<real>479.26760864257812</real>
+							<real>208.71829223632812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2862,7 +2862,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCButton</string>
+				<string>Upgrade</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2884,8 +2884,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>295</real>
-							<real>54.000007629394531</real>
+							<real>136.07069396972656</real>
+							<real>56.197189331054688</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3248,7 +3248,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>Sample Text</string>
+							<string>PLEASE CHOOSE</string>
 							<false/>
 						</array>
 					</dict>

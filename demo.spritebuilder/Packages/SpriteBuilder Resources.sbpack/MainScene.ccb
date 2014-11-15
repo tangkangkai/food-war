@@ -80,8 +80,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-9.8952808380126953</real>
-									<real>-0.99688512086868286</real>
+									<real>0.98952865600585938</real>
+									<real>-1.9937702417373657</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -105,7 +105,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>0.60000002384185791</real>
+									<real>0.58666855096817017</real>
 									<real>0.60000002384185791</real>
 									<false/>
 									<integer>0</integer>
@@ -169,8 +169,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.45890754461288452</real>
-									<real>0.5034555196762085</real>
+									<real>0.77423250675201416</real>
+									<real>0.3819601833820343</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -194,8 +194,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1.1011203527450562</real>
-									<real>1.2068184614181519</real>
+									<real>1.1125078201293945</real>
+									<real>0.66250258684158325</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -264,7 +264,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>foodwar_picture/StartGame1.png</string>
+									<string>foodwar_picture/new game.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -275,8 +275,16 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>foodwar_picture/StartGame1.png</string>
+									<string>foodwar_picture/new game.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>backgroundOpacity|Highlighted</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>0.69999998807907104</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -462,6 +470,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -495,8 +505,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.74587619304656982</real>
-									<real>0.45574384927749634</real>
+									<real>0.66922265291213989</real>
+									<real>0.18160037696361542</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -578,7 +588,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>New Game</string>
+									<string>Reset        </string>
 									<false/>
 								</array>
 							</dict>
@@ -788,8 +798,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -823,8 +831,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.74649930000305176</real>
-									<real>0.3093360960483551</real>
+									<real>0.88064301013946533</real>
+									<real>0.18472546339035034</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>

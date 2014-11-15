@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>85</integer>
+	<integer>86</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -195,10 +195,107 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>85</integer>
+				<key>baseClass</key>
+				<string>CCNodeColor</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>CCNodeColor</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>1</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>-1.015904426574707</real>
+							<real>289.93637084960938</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>100</real>
+							<real>100</real>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>5.7038812637329102</real>
+							<real>0.30873078107833862</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>0.99092072248458862</real>
+							<real>0.99183738231658936</real>
+							<real>0.80000001192092896</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>opacity</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.80000001192092896</real>
+					</dict>
+				</array>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -232,8 +329,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>78.00006103515625</real>
-							<real>301.00003051757812</real>
+							<real>64.120025634765625</real>
+							<real>304.57989501953125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -289,7 +386,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>18</real>
+							<real>20</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -300,6 +397,19 @@
 						<string>Check</string>
 						<key>value</key>
 						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>1</real>
+						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -646,8 +756,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>533.88934326171875</real>
-							<real>296.68966674804688</real>
+							<real>536.53485107421875</real>
+							<real>304.62606811523438</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -671,8 +781,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.14568494260311127</real>
-							<real>0.152639240026474</real>
+							<real>0.099735766649246216</real>
+							<real>0.099735766649246216</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -972,8 +1082,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>171.99996948242188</real>
-							<real>299.99996948242188</real>
+							<real>162.06361389160156</real>
+							<real>304.98406982421875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1048,9 +1158,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
+							<real>0.068158380687236786</real>
+							<real>0.74347710609436035</real>
 							<real>1</real>
-							<real>0.56019270420074463</real>
-							<real>0.11619469523429871</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -1704,7 +1814,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCButton</string>
+				<string>music-on</string>
 				<key>memberVarAssignmentName</key>
 				<string>_musicon</string>
 				<key>memberVarAssignmentType</key>
@@ -1726,8 +1836,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>499</real>
-							<real>301.00003051757812</real>
+							<real>492.3863525390625</real>
+							<real>304.30685424804688</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1751,8 +1861,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.59763503074645996</real>
-							<real>0.53649967908859253</real>
+							<real>0.41147541999816895</real>
+							<real>0.45170047879219055</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2030,7 +2140,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>music_off-128</string>
+				<string>music_off</string>
 				<key>memberVarAssignmentName</key>
 				<string>_musicoff</string>
 				<key>memberVarAssignmentType</key>
@@ -2060,8 +2170,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>494</real>
-							<real>301</real>
+							<real>489.3863525390625</real>
+							<real>304.30682373046875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2085,8 +2195,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.58039075136184692</real>
-							<real>0.51660501956939697</real>
+							<real>0.35121271014213562</real>
+							<real>0.44047087430953979</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2149,8 +2259,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>44.999992370605469</real>
-							<real>299</real>
+							<real>30.23088264465332</real>
+							<real>305.96478271484375</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2174,8 +2284,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.035420753061771393</real>
-							<real>0.036105431616306305</real>
+							<real>0.11761149764060974</real>
+							<real>0.11761149764060974</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2198,8 +2308,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>665</real>
-							<real>755</real>
+							<real>255</real>
+							<real>255</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2244,7 +2354,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/alarm-clock-png-orologio_clock_alarm_icon-1331px.png</string>
+							<string>foodwar_picture/timer.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2475,8 +2585,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>132</real>
-							<real>301</real>
+							<real>123.40225219726562</real>
+							<real>304.96817016601562</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2500,8 +2610,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.13251765072345734</real>
-							<real>0.14266930520534515</real>
+							<real>0.056998558342456818</real>
+							<real>0.056998558342456818</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2531,8 +2641,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2566,8 +2674,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>120</real>
-							<real>270.00003051757812</real>
+							<real>187.45925903320312</real>
+							<real>295.79324340820312</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2591,8 +2699,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.93351340293884277</real>
+							<real>0.93351340293884277</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2623,7 +2731,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>12</real>
+							<real>14</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2644,7 +2752,7 @@
 						<array>
 							<real>1</real>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.19026398658752441</real>
 							<real>1</real>
 						</array>
 					</dict>

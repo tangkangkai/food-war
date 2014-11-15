@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>133</integer>
+	<integer>134</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -41,17 +41,15 @@
 		<array>
 			<dict>
 				<key>UUID</key>
-				<integer>1</integer>
+				<integer>133</integer>
 				<key>baseClass</key>
-				<string>CCNodeGradient</string>
+				<string>CCSprite</string>
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNodeGradient</string>
-				<key>locked</key>
-				<true/>
+				<string>CCSprite</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -73,24 +71,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>284</real>
+							<real>155</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentSize</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<integer>2</integer>
-							<integer>2</integer>
 						</array>
 					</dict>
 					<dict>
@@ -100,8 +85,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -111,47 +96,34 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.44583761692047119</real>
+							<real>0.41787761449813843</real>
 							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>startColor</string>
+						<string>spriteFrame</string>
 						<key>type</key>
-						<string>Color3</string>
+						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
-							<real>0.87000000476837158</real>
-							<real>0.8212350606918335</real>
-							<real>0.19058161973953247</real>
-							<real>1</real>
+							<string></string>
+							<string>foodwar_picture/blue-background.png</string>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>endColor</string>
+						<string>color</string>
 						<key>type</key>
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.80000001192092896</real>
-							<real>0.61046123504638672</real>
-							<real>0.62012207508087158</real>
 							<real>1</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>vector</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.0</real>
-							<real>-1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
 						</array>
 					</dict>
 				</array>
@@ -529,8 +501,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>75</real>
-									<real>8</real>
+									<real>77</real>
+									<real>-11</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -543,8 +515,8 @@
 								<string>Point</string>
 								<key>value</key>
 								<array>
-									<real>0.5</real>
-									<real>0.5</real>
+									<real>0.59090906381607056</real>
+									<real>-0.6875</real>
 								</array>
 							</dict>
 							<dict>
@@ -1124,8 +1096,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>75</real>
-									<real>204.19999694824219</real>
+									<real>78</real>
+									<real>216.19999694824219</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1138,8 +1110,8 @@
 								<string>Point</string>
 								<key>value</key>
 								<array>
-									<real>0.5</real>
-									<real>1.2000000476837158</real>
+									<real>0.63636362552642822</real>
+									<real>1.9500000476837158</real>
 								</array>
 							</dict>
 							<dict>
@@ -1417,7 +1389,7 @@
 								<key>value</key>
 								<array>
 									<real>75</real>
-									<real>8</real>
+									<real>-13</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1431,7 +1403,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.5</real>
+									<real>-0.8125</real>
 								</array>
 							</dict>
 							<dict>
@@ -1965,7 +1937,7 @@
 								<array>
 									<real>1</real>
 									<real>1</real>
-									<false/>
+									<true/>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -2304,7 +2276,7 @@
 								<key>value</key>
 								<array>
 									<real>75</real>
-									<real>8</real>
+									<real>-15</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -2318,7 +2290,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.5</real>
+									<real>-0.9375</real>
 								</array>
 							</dict>
 							<dict>
@@ -3229,7 +3201,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/Purple_Shield.png</string>
+									<string>foodwar_picture/Purple_Shield.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -3318,7 +3290,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/boxing_glove.png</string>
+									<string>foodwar_picture/boxing_glove.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -3581,7 +3553,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/Purple_Shield.png</string>
+									<string>foodwar_picture/Purple_Shield.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -3670,7 +3642,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/boxing_glove.png</string>
+									<string>foodwar_picture/boxing_glove.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -3933,7 +3905,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/Purple_Shield.png</string>
+									<string>foodwar_picture/Purple_Shield.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -4022,7 +3994,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>ccbResources/boxing_glove.png</string>
+									<string>foodwar_picture/boxing_glove.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -6993,8 +6965,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>531.69232177734375</real>
-							<real>28.178340911865234</real>
+							<real>521.69232177734375</real>
+							<real>46.178340911865234</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -7018,8 +6990,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.74024301767349243</real>
-							<real>0.46504679322242737</real>
+							<real>1.0654997825622559</real>
+							<real>0.61855846643447876</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -8111,8 +8083,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

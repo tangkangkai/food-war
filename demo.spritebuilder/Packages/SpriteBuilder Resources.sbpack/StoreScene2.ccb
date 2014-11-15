@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>143</integer>
+	<integer>147</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -41,15 +41,15 @@
 		<array>
 			<dict>
 				<key>UUID</key>
-				<integer>1</integer>
+				<integer>146</integer>
 				<key>baseClass</key>
-				<string>CCNodeGradient</string>
+				<string>CCSprite</string>
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNodeGradient</string>
+				<string>CCSprite</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -71,22 +71,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-1</real>
-							<real>2.2268877029418945</real>
+							<real>284</real>
+							<real>161</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>contentSize</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>100</real>
-							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -98,8 +85,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -109,52 +96,37 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>5.6825470924377441</real>
-							<real>3.1788272857666016</real>
+							<real>0.44491922855377197</real>
+							<real>0.40152055025100708</real>
 							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>startColor</string>
+						<string>spriteFrame</string>
 						<key>type</key>
-						<string>Color3</string>
+						<string>SpriteFrame</string>
 						<key>value</key>
 						<array>
-							<real>0.87000000476837158</real>
-							<real>0.85314381122589111</real>
-							<real>0.29556822776794434</real>
-							<real>1</real>
+							<string></string>
+							<string>foodwar_picture/blue-background.png</string>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>endColor</string>
+						<string>color</string>
 						<key>type</key>
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.80000001192092896</real>
-							<real>0.54546701908111572</real>
-							<real>0.52014827728271484</real>
 							<real>1</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>vector</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.0</real>
-							<real>-1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -188,8 +160,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>34.318607330322266</real>
-							<real>39.787925720214844</real>
+							<real>46.318607330322266</real>
+							<real>36.787925720214844</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -213,8 +185,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.74000000953674316</real>
-							<real>0.46500000357627869</real>
+							<real>1.189589262008667</real>
+							<real>0.67170906066894531</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -521,8 +493,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>75</real>
-									<real>8</real>
+									<real>76</real>
+									<real>-9</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -535,8 +507,8 @@
 								<string>Point</string>
 								<key>value</key>
 								<array>
-									<real>0.5</real>
-									<real>0.5</real>
+									<real>0.54545456171035767</real>
+									<real>-0.5625</real>
 								</array>
 							</dict>
 							<dict>
@@ -1440,7 +1412,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/Purple_Shield.png</string>
+							<string>foodwar_picture/Purple_Shield.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1529,7 +1501,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/boxing_glove.png</string>
+							<string>foodwar_picture/boxing_glove.png</string>
 						</array>
 					</dict>
 					<dict>
