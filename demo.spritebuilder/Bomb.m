@@ -6,6 +6,7 @@
 @implementation Bomb {
     float accelator;
     int counter;
+    CCNode *bombRing;
 }
 
 /*
@@ -28,32 +29,11 @@
     
 }
 
-/*
--(id)initBomb:(NSString*) img animation:(CCSprite*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end               enemyArr:(NSMutableArray*) enemyArray;
-{
-    self = [super init];
-    
-    start.y -= 30;
-    end.y -= 80;
-//    _bomb = [CCBReader load:img];
-    _bomb = ani;
-    _startPosi = start;
-    _destPosi = end;
-    _bomb.position = start;         //init CCNode;
-    _bomb.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _bomb.contentSize} cornerRadius:0];
-    _enemies = enemyArray;
-    accelator = 0;
-    _power= 90 ;
-    //    _motionManager = [[CMMotionManager alloc] init];
-    
-
-    return self;
-}
-*/
 -(id) initBomb:(NSString *)img animation:(CCSprite *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray{
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray];
     accelator = 0;
     self.power = 90;
+
     return self;
 }
 
@@ -95,13 +75,6 @@
     self.item.position = posi;
     accelator += 0.05;
     
-    
-    /*
-     CMAccelerometerData *accelerometerData = _motionManager.accelerometerData;
-     CMAcceleration acceleration = accelerometerData.acceleration;
-     CGFloat newXPosition = _bomb.position.x + acceleration.y * 1000 * delta;
-     newXPosition = clampf(newXPosition, 0, self.contentSize.width);
-     _bomb.position = CGPointMake(newXPosition, _bomb.position.y);*/
 }
 
 

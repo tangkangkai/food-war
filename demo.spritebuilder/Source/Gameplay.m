@@ -35,6 +35,7 @@ static BOOL _audioIsOn;
 
     Soldier *man;           //save the final man
     Bomb *bomb;
+    CCNode *bombRing;
     
     NSString *selected_soldier;
     NSString *selected_soldier_animation;
@@ -341,6 +342,14 @@ static BOOL _audioIsOn;
         
         [self.anibomb runAction:self.flashAction];
         [spriteSheet addChild:self.anibomb];
+        
+        //bombRing
+        CCSpriteFrame* bombRingFrame = [CCSpriteFrame frameWithImageNamed:@"bombRing.png"];
+        bombRing = [CCSprite spriteWithSpriteFrame:bombRingFrame];
+        bombRing.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
+        [self addChild:bombRing];
+        
+        
         return;
     }
     
@@ -383,6 +392,7 @@ static BOOL _audioIsOn;
     CGPoint touchLocation = [touch locationInNode:self];
     if([selected_soldier isEqualToString:@"blackBomb"]){
         _anibomb.position = touchLocation;
+        bombRing.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
         return;
     }
     
@@ -416,6 +426,7 @@ static BOOL _audioIsOn;
 
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
+        [self removeChild: bombRing];
         [self reduceEnergy:1000];
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBomb:scrollPos];
