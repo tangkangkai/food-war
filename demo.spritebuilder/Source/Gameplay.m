@@ -34,7 +34,7 @@ static BOOL _audioIsOn;
     Scrollback *scroll;
 
     Soldier *man;           //save the final man
-    Bomb *item;
+    Bomb *bomb;
     
     NSString *selected_soldier;
     NSString *selected_soldier_animation;
@@ -442,13 +442,13 @@ static BOOL _audioIsOn;
 - (void)launchBomb: (CGPoint)touchLocation {
     scroll=[_scrollview children][0];
 
-    [self removeChild: [item bomb]];
+    [self removeChild: [bomb item]];
     [_anibomb removeFromParent];
     
     if(touchLocation.y < 70)
         return;
     Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
-    [scroll addChild: [newBomb bomb]];
+    [scroll addChild: [newBomb item]];
     [newBomb drop:touchLocation];
 }
 
