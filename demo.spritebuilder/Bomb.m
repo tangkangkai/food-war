@@ -6,6 +6,7 @@
 @implementation Bomb {
     float accelator;
     int counter;
+    CCNode *bombRing;
 }
 
 /*
@@ -28,35 +29,22 @@
     
 }
 
-
--(id)initBomb:(NSString*) img animation:(CCSprite*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end               enemyArr:(NSMutableArray*) enemyArray;
-{
-    self = [super init];
-    
-    start.y -= 30;
-    end.y -= 80;
-//    _bomb = [CCBReader load:img];
-    _bomb = ani;
-    _startPosi = start;
-    _destPosi = end;
-    _bomb.position = start;         //init CCNode;
-    _bomb.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _bomb.contentSize} cornerRadius:0];
-    _enemies = enemyArray;
+-(id) initBomb:(NSString *)img animation:(CCSprite *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray{
+    self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray];
     accelator = 0;
-    _power= 90 ;
-    //    _motionManager = [[CMMotionManager alloc] init];
-    
+    self.power = 90;
 
     return self;
 }
+
 
 - (void)update{
     if(accelator > 3) {
 
         CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
         fire.autoRemoveOnFinish = YES;
-        fire.position = _destPosi;
-        CCNode *parent = [_bomb parent];
+        fire.position = self.destPosi;
+        CCNode *parent = [self.item parent];
         [parent addChild:fire];
         OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
         if ([SavedData audio]) {
@@ -65,38 +53,28 @@
         
         
         NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
-        for(int i = 0; i < _enemies.count; i++){
-            Soldier *s = [_enemies objectAtIndex:i];
-            float dx = ABS([s getSoldier].position.x - _bomb.position.x);
-            float dy = ABS([s getSoldier].position.y - _bomb.position.y);
+        for(int i = 0; i < self.enemies.count; i++){
+            Soldier *s = [self.enemies objectAtIndex:i];
+            float dx = ABS([s getSoldier].position.x - self.item.position.x);
+            float dy = ABS([s getSoldier].position.y - self.item.position.y);
             double dist = sqrt(dx*dx + dy*dy);
             if(dist < 100){
-                [targets addObject:[_enemies objectAtIndex:i]];
+                [targets addObject:[self.enemies objectAtIndex:i]];
             }
         }
         long num = [targets count];
         for(int i = 0; i < num; i++){
             Soldier *s = [targets objectAtIndex:i];
-            [s loseHealth:_power];
+            [s loseHealth:self.power];
         }
         [self unschedule:@selector(update)];
-        [_bomb removeFromParent];
+        [self.item removeFromParent];
         return;
     }
-    CGPoint posi = CGPointMake(_bomb.position.x, _bomb.position.y - accelator);
-    _bomb.position = posi;
+    CGPoint posi = CGPointMake(self.item.position.x, self.item.position.y - accelator);
+    self.item.position = posi;
     accelator += 0.05;
     
-    
-    /*
-     CMAccelerometerData *accelerometerData = _motionManager.accelerometerData;
-     CMAcceleration acceleration = accelerometerData.acceleration;
-     CGFloat newXPosition = _bomb.position.x + acceleration.y * 1000 * delta;
-     newXPosition = clampf(newXPosition, 0, self.contentSize.width);
-     _bomb.position = CGPointMake(newXPosition, _bomb.position.y);*/
-}
--(int) getPower{
-    return _power;
 }
 
 
