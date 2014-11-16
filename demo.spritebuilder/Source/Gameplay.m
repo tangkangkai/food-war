@@ -46,6 +46,7 @@ static BOOL _audioIsOn;
     CCLabelTTF *_energy;
     
     CCTextField *_energyPrompt;
+    CCTextField *_bombPrompt;
     
 
     int mTimeInSec;
@@ -89,6 +90,7 @@ static BOOL _audioIsOn;
     scroll=[_scrollview children][0];
     // _energyPrompt opacity set to 0
     _energyPrompt.opacity = 0;
+    _bombPrompt.opacity = 0;
     
     
     
@@ -332,7 +334,7 @@ static BOOL _audioIsOn;
         if (bombnumber < 1) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
-            
+            [self showBombMessage];
             return;
         }
         selected_soldier = @"blackBomb";
@@ -390,12 +392,12 @@ static BOOL _audioIsOn;
                                                         bgNode:self];
             man = newSolider;
         } else {
-            [self showMessage];
+            [self showEnergyMessage];
         }
     }
 }
 
--(void) showMessage {
+-(void) showEnergyMessage {
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
     CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.4f position:ccp(120, 250)];
     
@@ -403,6 +405,16 @@ static BOOL _audioIsOn;
     CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(120, 270)];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveDown, fadeOut, moveBack]];
     [_energyPrompt runAction:sequence];
+}
+
+-(void) showBombMessage {
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
+    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.2f position:ccp(507, 70)];
+    
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
+    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(507, 55)];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveUp, fadeOut, moveBack]];
+    [_bombPrompt runAction:sequence];
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
