@@ -71,8 +71,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>9</real>
-							<real>15</real>
+							<real>23</real>
+							<real>24</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -85,8 +85,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.80000001192092896</real>
+							<real>0.46172532439231873</real>
+							<real>0.46534088253974915</real>
 						</array>
 					</dict>
 					<dict>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.15000000596046448</real>
-							<real>0.15000000596046448</real>
+							<real>0.51942098140716553</real>
+							<real>0.48147881031036377</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -110,16 +110,8 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/energyBall.png</string>
+							<string>foodwar_picture/energy.png</string>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>opacity</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.80000001192092896</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -131,12 +123,10 @@
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-							<real>0.80000001192092896</real>
+							<real>1</real>
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -178,8 +168,8 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>30</real>
-					<real>30</real>
+					<real>45</real>
+					<real>45</real>
 					<integer>0</integer>
 					<integer>0</integer>
 				</array>
@@ -209,6 +199,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
