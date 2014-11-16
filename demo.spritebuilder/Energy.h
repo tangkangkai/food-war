@@ -20,4 +20,5 @@
 -(CCNode*)getDeadBody;
 -(void) collect:(CCNode*)Icon Gameplay:(CCScrollView*)c;
 -(void) arrive;
+-(void) disappear;
 @end
