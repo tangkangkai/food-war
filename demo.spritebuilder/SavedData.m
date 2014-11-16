@@ -64,15 +64,21 @@ static NSMutableDictionary *soldierLevel;
         
         // Load bomb Number
         NSNumber *bombNumber = [unarchivedData objectForKey:@"bombNum"];
+        bombNum = [bombNumber intValue];
     }
 }
 
 // bomb number
-+ (NSNumber *)bombNum {return bombNum;}
++ (int) bombNum {return bombNum;}
 
-+ (void)setBombNum: (NSNumber *) newBombNum {
++ (void)setBombNum: (int)newBombNum {
     bombNum = newBombNum;
 }
+
++ (void)saveBombNum {
+    
+}
+
 
 // soldier level
 + (NSMutableDictionary *)soldierLevel {return soldierLevel;}
