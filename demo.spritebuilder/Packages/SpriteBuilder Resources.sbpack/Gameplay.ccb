@@ -195,6 +195,8 @@
 						<false/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -2610,11 +2612,19 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.056998558342456818</real>
-							<real>0.056998558342456818</real>
+							<real>0.13206680119037628</real>
+							<real>0.11655028909444809</real>
 							<false/>
 							<integer>0</integer>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>rotation</string>
+						<key>type</key>
+						<string>Degrees</string>
+						<key>value</key>
+						<real>-6.2738704681396484</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2624,7 +2634,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/water.png</string>
+							<string>foodwar_picture/energybar.png</string>
 						</array>
 					</dict>
 					<dict>
