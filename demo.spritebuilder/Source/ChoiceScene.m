@@ -19,6 +19,13 @@
     CCNode *_bananabg;
     CCNode *_cornbg;
     
+    CCNode *_bananabgUn;
+    CCNode *_cornbgUn;
+    CCNode *_bananaunavl;
+    CCNode *_cornunavl;
+    
+    
+    
     //tick
     CCNode *_potatochoosed;
     CCNode *_beanchoosed;
@@ -27,11 +34,14 @@
     
     //
     NSMutableDictionary *lineupDict;
+    
+    //current level
+    int currLevel;
 }
 
 - (void)didLoadFromCCB {
-    
-    _message.string = [NSString stringWithFormat:@"At level %d, now choose your lineups", [[Levels getSelectedLevel] getLevel]];
+    currLevel = [[Levels getSelectedLevel] getLevel];
+    _message.string = [NSString stringWithFormat:@"At level %d, now choose your lineups", currLevel];
     _message.opacity = 0;
     
     _potatobg.visible = false;
@@ -43,6 +53,24 @@
     _beanchoosed.visible = false;
     _bananachoosed.visible = false;
     _cornchoosed.visible = false;
+    
+    if (currLevel == 1) {
+        _bananabgUn.visible = true;
+        _bananaunavl.visible = true;
+        _cornbgUn.visible = true;
+        _cornunavl.visible = true;
+    } else if (currLevel == 2) {
+        _bananabgUn.visible = false;
+        _bananaunavl.visible = false;
+        _cornbgUn.visible = true;
+        _cornunavl.visible = true;
+    } else {
+        _bananabgUn.visible = false;
+        _bananaunavl.visible = false;
+        _cornbgUn.visible = false;
+        _cornunavl.visible = false;
+        
+    }
     
     lineupDict = [[NSMutableDictionary alloc] init];
 }
@@ -57,10 +85,16 @@
 }
 
 - (void)banana {
+    if (currLevel == 1) {
+        return;
+    }
     [self chooseSoldier:@"banana" background:_bananabg choosed:_bananachoosed];
 }
 
 - (void)corn {
+    if (currLevel <= 2) {
+        return;
+    }
     [self chooseSoldier:@"corn" background:_cornbg choosed:_cornchoosed];
 }
 

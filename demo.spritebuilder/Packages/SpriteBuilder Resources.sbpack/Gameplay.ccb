@@ -195,8 +195,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -331,8 +329,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>64.120025634765625</real>
-							<real>304.57989501953125</real>
+							<real>62.120025634765625</real>
+							<real>305.57989501953125</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -345,7 +343,7 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
+							<real>0.55000001192092896</real>
 							<real>0.5</real>
 						</array>
 					</dict>
@@ -518,6 +516,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2684,8 +2684,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>187.45925903320312</real>
-							<real>295.79324340820312</real>
+							<real>113.45925903320312</real>
+							<real>270.79324340820312</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
