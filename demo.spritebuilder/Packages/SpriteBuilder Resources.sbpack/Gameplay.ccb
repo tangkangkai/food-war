@@ -195,6 +195,8 @@
 						<false/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -2610,8 +2612,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.13206680119037628</real>
-							<real>0.11655028909444809</real>
+							<real>0.053125757724046707</real>
+							<real>0.049649965018033981</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2622,7 +2624,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>-6.2738704681396484</real>
+						<real>1.2609348297119141</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2632,7 +2634,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/energybar.png</string>
+							<string>foodwar_picture/water.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3636,8 +3638,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
