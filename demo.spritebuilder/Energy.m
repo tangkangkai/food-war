@@ -13,19 +13,23 @@
 @implementation Energy{
     CGPoint _arrivePosition;
     NSDate *last_attack_time;
+    NSDate *flash_time;
+    CCSprite *img;
+
 }
-
-
 
 -(id)initEnergy:(int) value pos:(CGPoint) position bgNode:(CCNode*)bgNode
 {
+    self = [super init];
+
     _deadBody=[CCBReader load:@"energy"];
+    img=[_deadBody children][0];
     position.y=position.y-30;
     _deadBody.position=position;
     [bgNode addChild:_deadBody];
     _engergyValue=value;
-  //  [self schedule:@selector(disappear) interval:0.1f];
-
+    last_attack_time = [NSDate date];
+    [self schedule:@selector(disappear) interval:0.1];
     return self;
 }
 
@@ -48,9 +52,25 @@
 }
 
 -(void) disappear{
-    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= 2 ){
-        last_attack_time = [NSDate date];
-        [self removeFromParent];
+    if( [ last_attack_time timeIntervalSinceNow ]*-1 >= 5 ){
+        flash_time=[NSDate date];
+        NSLog(@"1");
+        [self unschedule:@selector(disappear)];
+        [self schedule:@selector(flash) interval:0.1];
     }
+}
+
+-(void) flash{
+    NSLog(@"flash");
+    if ([ flash_time timeIntervalSinceNow ]*-1 >= 5) {
+        [self unschedule:@selector(flash)];
+        [_deadBody removeFromParent];
+    }
+    img.opacity = img.opacity+0.1;
+    if(img.opacity > 1 ){
+        img.opacity = img.opacity-1;
+    }
+
+
 }
 @end
