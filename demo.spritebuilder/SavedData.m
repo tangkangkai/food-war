@@ -75,10 +75,6 @@ static NSMutableDictionary *soldierLevel;
     bombNum = newBombNum;
 }
 
-+ (void)saveBombNum {
-    
-}
-
 
 // soldier level
 + (NSMutableDictionary *)soldierLevel {return soldierLevel;}
