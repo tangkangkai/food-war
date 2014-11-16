@@ -91,7 +91,7 @@ static BOOL _audioIsOn;
     timeFlag = 0;
     energyArray = [[NSMutableArray alloc] init];
     [self schedule:@selector(tick) interval:1.0f];
-    [self schedule:@selector(updateEnergy) interval:0.1f];
+    [self schedule:@selector(updateEnergy) interval:0.01f];
  //   [self schedule:@selector(collectEnergy) interval:0.1f];
     _audioIsOn = [SavedData audio];
     if (_audioIsOn) {
