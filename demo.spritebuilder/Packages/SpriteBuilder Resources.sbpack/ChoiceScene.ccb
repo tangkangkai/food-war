@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>62</integer>
+	<integer>64</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -127,6 +127,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1220,8 +1222,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -3617,8 +3617,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>368.26760864257812</real>
-							<real>207.71829223632812</real>
+							<real>329.26760864257812</real>
+							<real>141.71829223632812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3642,8 +3642,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.029999999329447746</real>
-							<real>0.029999999329447746</real>
+							<real>0.24721416831016541</real>
+							<real>0.25423288345336914</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -3656,7 +3656,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/cancel.png</string>
+							<string>foodwar_picture/circle cancel.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3676,7 +3676,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>60</integer>
+				<integer>63</integer>
 				<key>baseClass</key>
 				<string>CCSprite</string>
 				<key>children</key>
@@ -3706,8 +3706,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>476.26760864257812</real>
-							<real>206.71829223632812</real>
+							<real>441.26760864257812</real>
+							<real>140.71829223632812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3731,8 +3731,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.029999999329447746</real>
-							<real>0.029999999329447746</real>
+							<real>0.24721416831016541</real>
+							<real>0.25423288345336914</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -3745,7 +3745,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/cancel.png</string>
+							<string>foodwar_picture/circle cancel.png</string>
 						</array>
 					</dict>
 					<dict>

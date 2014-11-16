@@ -62,22 +62,10 @@ static NSMutableDictionary *soldierLevel;
         NSMutableDictionary *dictionary2 = [unarchivedData objectForKey:@"soldierlevel"];
         soldierLevel = [dictionary2 mutableCopy];
         
-        // Load bomb Number
-        NSNumber *bombNumber = [unarchivedData objectForKey:@"bombNum"];
-        bombNum = [bombNumber intValue];
     }
 }
 
-// bomb number
-+ (int) bombNum {return bombNum;}
 
-+ (void)setBombNum: (int)newBombNum {
-    bombNum = newBombNum;
-}
-
-+ (void)saveBombNum {
-    
-}
 
 
 // soldier level
@@ -205,10 +193,9 @@ static NSMutableDictionary *soldierLevel;
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"coke" ];
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"fries"];
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"hamburger"];
+
     [dataToSave setObject:soldierLevel forKey:@"soldierlevel"];
-    
-    
-    [self saveDictionary:dataToSave];
+
 }
 
 + (NSMutableDictionary *)getSavedDictionary {
