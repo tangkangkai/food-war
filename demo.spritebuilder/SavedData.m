@@ -8,7 +8,7 @@
 
 #import "SavedData.h"
 
-
+static int bombNum;
 static int money;
 static int maxLevel;
 static BOOL audioIsOn = TRUE;
@@ -61,11 +61,21 @@ static NSMutableDictionary *soldierLevel;
         // Load soldier level
         NSMutableDictionary *dictionary2 = [unarchivedData objectForKey:@"soldierlevel"];
         soldierLevel = [dictionary2 mutableCopy];
+        
+        // Load bomb Number
+        NSNumber *bombNumber = [unarchivedData objectForKey:@"bombNum"];
     }
 }
 
+// bomb number
++ (NSNumber *)bombNum {return bombNum;}
+
++ (void)setBombNum: (NSNumber *) newBombNum {
+    bombNum = newBombNum;
+}
+
 // soldier level
-+ (NSMutableDictionary *)soldierLevel; {return soldierLevel;}
++ (NSMutableDictionary *)soldierLevel {return soldierLevel;}
 
 + (void)setSoldierLevel: (NSMutableDictionary *) soldierLevelDict {
     soldierLevel = soldierLevelDict;

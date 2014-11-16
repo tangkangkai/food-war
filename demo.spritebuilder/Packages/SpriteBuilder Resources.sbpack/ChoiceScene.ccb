@@ -1033,7 +1033,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/potato2.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1220,6 +1220,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1458,7 +1460,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/bean.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1982,7 +1984,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/banana.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2506,7 +2508,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>foodwar_picture/corn_cannon.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -3671,8 +3673,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
