@@ -19,6 +19,7 @@
 -(id)initEnergy:(int) value pos:(CGPoint) position bgNode:(CCNode*)bgNode
 {
     _deadBody=[CCBReader load:@"energy"];
+    position.y=position.y-10;
     _deadBody.position=position;
     [bgNode addChild:_deadBody];
     _engergyValue=value;
@@ -33,7 +34,7 @@
 -(void) collect:(CCNode*)Icon Gameplay:(CCScrollView*)c{
     _arrivePosition=CGPointMake(Icon.position.x+[c scrollPosition].x, Icon.position.y);
    // CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:_arrivePosition];
-    CCActionRotateBy *actionRotate = [CCActionRotateBy actionWithDuration: 0.5f angle:720];
+    CCActionRotateBy *actionRotate = [CCActionRotateBy actionWithDuration: 0.5f angle:360];
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:_arrivePosition height:40 jumps:2];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[jumpUp,actionRotate]];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(arrive)]]];

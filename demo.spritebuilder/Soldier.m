@@ -242,6 +242,7 @@
     _bgNode = bgNode;
     if (img != NULL) {
         _soldier = [CCBReader load:img];
+
         [_soldier setZOrder:999];
         if( _bgNode != NULL){
             [_bgNode addChild:_soldier];
@@ -300,7 +301,7 @@
 }
 
 - (void)dead{
-    if( _group == 1 ){
+    if( _group == 1 && [self getType]!=4){
         Energy* energy= [[Energy alloc] initEnergy:[self getValue] pos:[[self soldier]position] bgNode:[self soldier].parent];
         [Scrollback fillEnergyArray:energy];
     }
@@ -369,7 +370,7 @@
 - (void)initAnimation{
     [self loadFirstAnimation:@"burger"];
     [self loadWalkAnimation:@"burger" frameNumber:8];
-    [self loadFightAnimation:@"burger" frameNumber:6];
+    [self loadFightAnimation:@"burger" frameNumber:8];
 }
 
 @end
@@ -613,6 +614,7 @@
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         _readyLaunch = true;
         [self schedule:@selector(flash) interval:0.1];
+        [self schedule:@selector(detectTarget) interval:0.1];
 
         return true;
     }
@@ -622,6 +624,8 @@
 - (void) undoReady{
     _readyLaunch = false;
     [self unschedule:@selector(flash)];
+    [self unschedule:@selector(detectTarget)];
+    [self cancelDetectTarget];
     CCNode *s = [self getSoldier];
     for( int i = 0; i<[s children].count; i++ ){
         if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
@@ -682,8 +686,8 @@
 -(NSMutableArray*)missileDetect{
     Soldier *soldier = NULL;
     NSMutableArray* targets = [NSMutableArray arrayWithObjects:nil ];
-    int dx;
-    int dy;
+    double dx;
+    double dy;
     int exploreRange = 40;
     NSMutableArray *enemyArray = [ self getArray:1 ];
     for( long i = 0; i < enemyArray.count; i++ ){
@@ -698,6 +702,37 @@
     return targets;
     
 }
+
+-(void)detectTarget{
+    NSMutableArray *enemyArray = [ self getArray:1 ];
+    double dx;
+    double dy;
+    
+    for (Soldier* enemy in enemyArray) {
+        dx=ABS([[self soldier] position].x-[[enemy soldier] position].x);
+        dy=ABS([[self soldier] position].y-[[enemy soldier] position].y);
+        double dist = sqrt(dx*dx + dy*dy);
+        if (dist<=[self getAtkRange]) {
+            for (CCSprite* target in [[enemy soldier] children]) {
+                if ([[target name] isEqual:@"target"]) {
+                    [target setVisible:1];
+                }
+            }
+        }
+    }
+}
+
+-(void)cancelDetectTarget{
+    NSMutableArray *enemyArray = [ self getArray:1 ];
+    for (Soldier* enemy in enemyArray) {
+        for (CCSprite* target in [[enemy soldier] children]) {
+            if ([[target name] isEqual:@"target"]) {
+            [target setVisible:0];
+                }
+        }
+    }
+}
+
 
 -(void)move{
     if( !_readyLaunch ){
@@ -795,7 +830,6 @@
     for( int i = 0; i<[s children].count; i++ ){
         if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
             CCSprite *body = [s children][i];
-                
             body.opacity = body.opacity+0.1;
             if( body.opacity > 1 )
                 body.opacity = body.opacity-1;
