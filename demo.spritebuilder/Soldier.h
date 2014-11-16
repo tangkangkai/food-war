@@ -62,7 +62,8 @@
 
 - (CCAnimation*)loadAnimation:(NSString*) character
                   frameNumber:(int) frameNum
-                     interval:(float)aniInterval;
+                     interval:(float)aniInterval
+                    doubleInt:(BOOL)doubleInt;
 - (void)loadWalkAnimation:(NSString*) character
                     frameNumber:(int) frameNum;
 - (void)loadFightAnimation:(NSString*) character

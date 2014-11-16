@@ -85,14 +85,22 @@
 }
 
 - (CCAnimation*)loadAnimation:(NSString*) character
-          frameNumber:(int) frameNum
-                 interval:(float)aniInterval{
+                              frameNumber:(int) frameNum
+                              interval:(float)aniInterval
+                              doubleInt:(BOOL)doubleInt{
     NSMutableArray *soldierAnimFrames = [NSMutableArray array];
     
     for (int i=0; i<frameNum; i++) {
-        [soldierAnimFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"%@%d.png", character, i]]];
+        if( doubleInt && i<10 ){
+            [soldierAnimFrames addObject:
+                [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+                [NSString stringWithFormat:@"%@0%d.png", character, i]]];
+        }
+        else{
+            [soldierAnimFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"%@%d.png", character, i]]];
+        }
     }
     
     return [CCAnimation animationWithSpriteFrames:soldierAnimFrames delay:aniInterval];
@@ -102,7 +110,7 @@
           frameNumber:(int) frameNum{
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@Ani.plist", character]];
-    CCAnimation* ani = [self loadAnimation:character frameNumber:frameNum interval:0.15f];
+    CCAnimation* ani = [self loadAnimation:character frameNumber:frameNum interval:0.15f doubleInt:false];
     
     _walkingAct = [CCActionRepeatForever actionWithAction:[CCActionAnimate actionWithAnimation:ani]];
     _walkingAct.tag = 10;
@@ -113,8 +121,13 @@
               frameNumber:(int) frameNum{
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: [NSString stringWithFormat:@"%@FightAni.plist", character]];
-    CCAnimation* ani = [self loadAnimation:character frameNumber:frameNum interval:0.04f];
-    
+    CCAnimation* ani;
+    if( frameNum > 10 ){
+        ani = [self loadAnimation:character frameNumber:frameNum interval:0.04f doubleInt:true];
+    }
+    else{
+        ani = [self loadAnimation:character frameNumber:frameNum interval:0.04f doubleInt:false];
+    }
     _fightingAct = [CCActionAnimate actionWithAnimation:ani];
     _fightingAct.tag = 11;
 }
@@ -469,6 +482,8 @@
 - (void)initAnimation{
     [self loadFirstAnimation:@"potato"];
     [self loadWalkAnimation:@"potato" frameNumber:8];
+    [self loadFightAnimation:@"potato" frameNumber:12];
+
 }
 
 @end
