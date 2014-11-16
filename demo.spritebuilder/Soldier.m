@@ -369,7 +369,7 @@
 - (void)initAnimation{
     [self loadFirstAnimation:@"burger"];
     [self loadWalkAnimation:@"burger" frameNumber:8];
-    [self loadFightAnimation:@"banana" frameNumber:6];
+    [self loadFightAnimation:@"burger" frameNumber:6];
 }
 
 @end
