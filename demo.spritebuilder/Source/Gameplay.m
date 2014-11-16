@@ -46,6 +46,7 @@ static BOOL _audioIsOn;
     CCLabelTTF *_energy;
     
     CCTextField *_energyPrompt;
+    CCTextField *_bombPrompt;
     
 
     int mTimeInSec;
@@ -62,6 +63,10 @@ static BOOL _audioIsOn;
     OALSimpleAudio *audio;
     CCNode *_musicon;
     CCNode *_musicoff;
+    
+    //bomb number
+    CCTextField *_bombnumber;
+    int bombnumber;
 
 }
 
@@ -79,10 +84,14 @@ static BOOL _audioIsOn;
 - (void)didLoadFromCCB {
     //initiate energy
     energy = [[Levels getSelectedLevel] energy];
+    //get bomb number
+    bombnumber = 1;
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     // _energyPrompt opacity set to 0
     _energyPrompt.opacity = 0;
+    _bombPrompt.opacity = 0;
+    
     
     
     _scrollview.delegate = self;
@@ -105,6 +114,9 @@ static BOOL _audioIsOn;
 
 - (void)onEnter {
     [super onEnter];
+    
+    
+    
     //get the lineup soldier from dictionary and write to scene
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"healthy_food.plist"];
     CCSpriteFrameCache* cache = [CCSpriteFrameCache sharedSpriteFrameCache];
@@ -152,6 +164,8 @@ static BOOL _audioIsOn;
 
 -(void)updateEnergy{
     [_energy setString:[NSString stringWithFormat:@"%d", energy]];
+    //update bomb number as well
+    [_bombnumber setString:[NSString stringWithFormat:@"%d", bombnumber]];
 }
 
 -(void)tick {
@@ -187,6 +201,13 @@ static BOOL _audioIsOn;
         //do nothing
     }
 }
+
+
+// interface for bomb
+- (void) addBombNumber {
+    bombnumber++;
+}
+
 
 - (void)gameover{
     [[CCDirector sharedDirector] pause];
@@ -310,10 +331,10 @@ static BOOL _audioIsOn;
         soldier = [lineupArray objectAtIndex:3];
     
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
-        if (energy < 1000) {
+        if (bombnumber < 1) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
-            
+            [self showBombMessage];
             return;
         }
         selected_soldier = @"blackBomb";
@@ -371,12 +392,12 @@ static BOOL _audioIsOn;
                                                         bgNode:self];
             man = newSolider;
         } else {
-            [self showMessage];
+            [self showEnergyMessage];
         }
     }
 }
 
--(void) showMessage {
+-(void) showEnergyMessage {
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
     CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.4f position:ccp(120, 250)];
     
@@ -384,6 +405,16 @@ static BOOL _audioIsOn;
     CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(120, 270)];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveDown, fadeOut, moveBack]];
     [_energyPrompt runAction:sequence];
+}
+
+-(void) showBombMessage {
+    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
+    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.2f position:ccp(507, 70)];
+    
+    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
+    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(507, 55)];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveUp, fadeOut, moveBack]];
+    [_bombPrompt runAction:sequence];
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -427,7 +458,7 @@ static BOOL _audioIsOn;
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
         [self removeChild: bombRing];
-        [self reduceEnergy:1000];
+        bombnumber--;
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBomb:scrollPos];
         if (_audioIsOn) {

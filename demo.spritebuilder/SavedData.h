@@ -33,6 +33,8 @@
 + (BOOL)audio;
 + (void)setAudio: (BOOL) ifOn;
 
+
+
 // Total money
 + (int) money;
 + (void)setMoney: (int) totalMoney;
