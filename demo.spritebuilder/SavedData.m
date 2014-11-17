@@ -195,7 +195,7 @@ static NSMutableDictionary *soldierLevel;
     [soldierLevel setObject:[NSNumber numberWithInt:1] forKey:@"hamburger"];
 
     [dataToSave setObject:soldierLevel forKey:@"soldierlevel"];
-
+    [self saveDictionary:dataToSave];
 }
 
 + (NSMutableDictionary *)getSavedDictionary {
