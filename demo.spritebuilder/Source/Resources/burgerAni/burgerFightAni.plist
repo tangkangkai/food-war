@@ -7,106 +7,106 @@
             <key>burger0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{55,59}}</string>
+                <string>{{2,2},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{59,2},{55,59}}</string>
+                <string>{{59,2},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,63},{55,59}}</string>
+                <string>{{2,62},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{59,63},{55,59}}</string>
+                <string>{{59,62},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,124},{55,59}}</string>
+                <string>{{2,122},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{59,63},{55,59}}</string>
+                <string>{{59,62},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,63},{55,59}}</string>
+                <string>{{2,62},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
             <key>burger7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{59,2},{55,59}}</string>
+                <string>{{59,2},{55,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{55,59}}</string>
+                <string>{{0,0},{55,58}}</string>
                 <key>sourceSize</key>
-                <string>{55,59}</string>
+                <string>{55,58}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -118,7 +118,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e5b997d059ae6774db83b0f868f815f1:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:3ae7e7f35a9d6c8b2ad8dd68a45b0f0a:1/1$</string>
             <key>textureFileName</key>
             <string>burgerFightAni.png</string>
         </dict>
