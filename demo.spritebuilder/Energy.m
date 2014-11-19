@@ -8,6 +8,7 @@
 
 #import "Energy.h"
 #import "Gameplay.h"
+#import "Scrollback.h"
 
 
 @implementation Energy{
@@ -28,6 +29,7 @@
     _deadBody.position=position;
     [bgNode addChild:_deadBody];
     _engergyValue=value;
+    _touch=0;
     last_attack_time = [NSDate date];
     [self schedule:@selector(disappear) interval:0.1];
     return self;
@@ -62,6 +64,15 @@
 
 -(void) flash{
     NSLog(@"flash");
+    NSLog(@"%d",_touch);
+   // NSLog(@"(%f,%f)",_deadBody.position.x,_deadBody.position.y);
+    if (_touch==1) {
+        [self children];
+        img.opacity=1;
+        [self unschedule:@selector(flash)];
+        return;
+
+    }
     if ([ flash_time timeIntervalSinceNow ]*-1 >= 5) {
         [self unschedule:@selector(flash)];
         [_deadBody removeFromParent];
@@ -73,4 +84,9 @@
 
 
 }
+
+-(void) setTouch{
+    _touch=1;
+}
+
 @end

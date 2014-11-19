@@ -15,10 +15,12 @@
 
 @property int engergyValue;
 @property CCNode* deadBody;
+@property int touch;
 
 -(id)initEnergy:(int) value pos:(CGPoint) position bgNode:(CCNode*)bgNode;
 -(CCNode*)getDeadBody;
 -(void) collect:(CCNode*)Icon Gameplay:(CCScrollView*)c;
 -(void) arrive;
 -(void) disappear;
+-(void) setTouch;
 @end
