@@ -324,7 +324,6 @@
     [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
     [self unschedule:@selector(doAttack)];
-    [self unschedule:@selector(countDown)];
     
     if( _animationNode != NULL ){
         [_animationNode removeFromParent];
@@ -621,6 +620,11 @@
 @end
 
 @implementation CornMan
+
+-(void)dead{
+    [super dead];
+    [self unschedule:@selector(countDown)];
+}
 
 - (BOOL) readyToLaunch{
     
@@ -939,6 +943,11 @@
     }
     
     return targets;
+}
+
+-(void)dead{
+    [super dead];
+    [self unschedule:@selector(countDown)];
 }
 
 -(void)move{
