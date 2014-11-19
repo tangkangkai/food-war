@@ -165,15 +165,14 @@
     Soldier *target = [self detectEnemy];
     if( target == NULL){
         [self move];
-        moving = true;
         return;
     }
     [[ self soldier ] stopAllActions ];
     if(_animationNode != NULL){
         [_animationNode stopAction:_walkingAct];
-        // TODO switch to fight animation
     }
     moving = false;
+    
     // for missle launcher
     if( type == 3 )
         return;
@@ -644,13 +643,8 @@
     [self unschedule:@selector(flash)];
     [self unschedule:@selector(detectTarget)];
     [self cancelDetectTarget];
-    CCNode *s = [self getSoldier];
-    for( int i = 0; i<[s children].count; i++ ){
-        if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
-            CCSprite *body = [s children][i];
-            body.opacity = 1;
-        }
-    }
+    CCNode *body = [self animationNode];
+    body.opacity = 1;
     CCNode *readySign = [[self getSoldier] children][3];
     [readySign setVisible:false];
 }
@@ -731,9 +725,9 @@
         dy=ABS([[self soldier] position].y-[[enemy soldier] position].y);
         double dist = sqrt(dx*dx + dy*dy);
         if (dist<=[self getAtkRange]) {
-            for (CCSprite* target in [[enemy soldier] children]) {
-                if ([[target name] isEqual:@"target"]) {
-                    [target setVisible:1];
+            for (CCSprite* prop in [[enemy soldier] children]) {
+                if ([[prop name] isEqual:@"target"]) {
+                    [prop setVisible:true];
                 }
             }
         }
@@ -760,32 +754,12 @@
 
 
 -(void)cornLuanchshock{
-    // TODO bug to fix
-    return;
-    
-    CCNode *corn=[self getSoldier];
-    
-    CCActionMoveTo *moveleft_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(-10 , 0)];
-    CCActionMoveTo *moveforward_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
-    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveleft_0, moveforward_0]];
-    
-    CCActionMoveTo *moveleft_1 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(18 , -1)];
-    CCActionMoveTo *moveforward_1 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(28,-1)];
-    CCActionSequence *sequence_1 = [CCActionSequence actionWithArray:@[moveleft_1, moveforward_1]];
-    
-    CCActionMoveTo *moveleft_2 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(15 , 50)];
-    CCActionMoveTo *moveforward_2 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(25,50)];
-    CCActionSequence *sequence_2 = [CCActionSequence actionWithArray:@[moveleft_2, moveforward_2]];
-    
-    CCActionMoveTo *moveleft_3 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(15 , 44)];
-    CCActionMoveTo *moveforward_3 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(25,44)];
-    CCActionSequence *sequence_3 = [CCActionSequence actionWithArray:@[moveleft_3, moveforward_3]];
-    
-    
-    [[corn children][0] runAction:sequence_0];
-    //[[corn children][1] runAction:sequence_1];
-    [[corn children][1] runAction:sequence_2];
-    [[corn children][2] runAction:sequence_3];
+    CGPoint oldPos = [[self animationNode] position];
+    CCActionMoveTo *moveLeft = [CCActionMoveTo actionWithDuration:0.05f position:ccp(oldPos.x - 20 , oldPos.y)];
+    CCActionMoveTo *moveBack = [CCActionMoveTo actionWithDuration:0.5f position:oldPos];
+    CCActionSequence *shock = [CCActionSequence actionWithArray:@[moveLeft, moveBack]];
+
+    [[self animationNode] runAction:shock];
 }
 
 - (id)initCorn: (int) lane_num
@@ -831,9 +805,14 @@
             }
         }
     }
-    else if( !moving ){
+    else{
         CCNode *readySign = [[self getSoldier] children][3];
-        [readySign setVisible:true];
+        if( !moving ){
+            [readySign setVisible:true];
+        }
+        else{
+            [readySign setVisible:false];
+        }
     }
 }
 
@@ -844,15 +823,11 @@
 
 -(void)flash{
     
-    CCNode *s = [self getSoldier];
-    for( int i = 0; i<[s children].count; i++ ){
-        if( [ [s children][i] isKindOfClass:[CCSprite class]] ){
-            CCSprite *body = [s children][i];
-            body.opacity = body.opacity+0.1;
-            if( body.opacity > 1 )
-                body.opacity = body.opacity-1;
-        }
-    }
+    CCNode *body = [self animationNode];
+
+    body.opacity = body.opacity+0.1;
+    if( body.opacity > 1 )
+        body.opacity = body.opacity-1;
 }
 @end
 
