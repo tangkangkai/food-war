@@ -727,10 +727,17 @@
         dx=ABS([[self soldier] position].x-[[enemy soldier] position].x);
         dy=ABS([[self soldier] position].y-[[enemy soldier] position].y);
         double dist = sqrt(dx*dx + dy*dy);
-        if (dist<=[self getAtkRange]) {
+        if (dist<=[self getAtkRange] && [[self soldier] position].x<[[enemy soldier] position].x) {
             for (CCSprite* target in [[enemy soldier] children]) {
                 if ([[target name] isEqual:@"target"]) {
                     [target setVisible:1];
+                }
+            }
+        }
+        else{
+            for (CCSprite* target in [[enemy soldier] children]) {
+                if ([[target name] isEqual:@"target"]) {
+                    [target setVisible:0];
                 }
             }
         }
