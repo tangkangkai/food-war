@@ -110,6 +110,8 @@ static BOOL _audioIsOn;
         [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
 
     }
+    
+    [self schedule:@selector(itemAutoBuild) interval:10];
 }
 
 - (void)onEnter {
@@ -491,7 +493,7 @@ static BOOL _audioIsOn;
         return;
     Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
     [scroll addChild: [newBomb item]];
-    [newBomb fly:touchLocation];
+    [newBomb drop:touchLocation];
 }
 
 
@@ -572,8 +574,29 @@ static BOOL _audioIsOn;
         CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:[_energyIcon position]];
         [energy runAction:collectEnergy];
     }
-   
+}
+
+
+-(void)itemAutoBuild {
+//    int type = arc4random_uniform(100) % 2;
+    NSLog(@"autoBuilding items!!!!");
+    int type = 0;
+    int x = arc4random_uniform(300) + 100;
+    CGPoint rndPosi = CGPointMake(x, 480);
+    [self dropItem:type position:rndPosi];
     
+}
+
+
+- (void)dropItem: (int) type position: (CGPoint) location{
+    
+    if( type == 0 ){
+        CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
+        CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
+        Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers]];
+        [self addChild: [newBomb item]];
+        [newBomb fly:location];
+    }
 }
 
 @end
