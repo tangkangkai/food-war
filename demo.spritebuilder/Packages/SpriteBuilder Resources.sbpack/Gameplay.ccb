@@ -195,8 +195,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -1304,7 +1302,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>285</real>
+							<real>286</real>
 							<real>28</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1418,7 +1416,7 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.93233096599578857</real>
+							<real>0.9100000262260437</real>
 							<real>0.80950778722763062</real>
 							<false/>
 							<integer>0</integer>
@@ -1449,6 +1447,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1482,8 +1482,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>99.000030517578125</real>
-							<real>29.000007629394531</real>
+							<real>101.00003051757812</real>
+							<real>28.000007629394531</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1507,8 +1507,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.93199998140335083</real>
-							<real>0.81000000238418579</real>
+							<real>0.89999997615814209</real>
+							<real>0.80000001192092896</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1596,8 +1596,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.93233096599578857</real>
-							<real>0.80950778722763062</real>
+							<real>0.9100000262260437</real>
+							<real>0.80000001192092896</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1749,7 +1749,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>529</real>
+							<real>534</real>
 							<real>30</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2904,7 +2904,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>550</real>
+							<real>554</real>
 							<real>36.000007629394531</real>
 							<integer>0</integer>
 							<integer>0</integer>
