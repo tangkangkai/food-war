@@ -595,7 +595,7 @@ static BOOL _audioIsOn;
         CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
         Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers]];
         [self addChild: [newBomb item]];
-        [newBomb fly:location];
+        [newBomb fly2:location];
     }
 }
 

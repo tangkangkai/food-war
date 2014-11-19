@@ -22,6 +22,8 @@ startPosition:(CGPoint) start
   endPosition:(CGPoint) end
      enemyArr:(NSMutableArray*) enemyArray;
 
+-(void)fly: (CGPoint)start;
+-(void)fly2: (CGPoint)start;
 
 
 @end

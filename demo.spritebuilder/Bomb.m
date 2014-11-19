@@ -43,6 +43,7 @@
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray];
     accelator = 0;
     self.power = 90;
+    
     timeInterval = 0.01f;
     
     t = 0;
@@ -58,7 +59,7 @@
     return self;
 }
 
-
+/*
 -(void)fly: (CGPoint)start{
     NSLog(@"Bomb start flying");
     [self schedule:@selector(hover) interval:timeInterval];
@@ -89,7 +90,7 @@
         [self.item removeFromParent];
     }
 }
-
+*/
 
 - (void)update{
     if(accelator > 3) {
