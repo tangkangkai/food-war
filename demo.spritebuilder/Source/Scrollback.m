@@ -74,6 +74,7 @@ static NSMutableArray *energyArray;
     if (energyArray!=nil) {
         for (Energy* en in energyArray) {
             if (CGRectContainsPoint([[en deadBody] boundingBox],touchLocation)) {
+                [en setTouch];
                 CCScrollView *c = (CCScrollView*)[self parent];
                 Gameplay* cc = (Gameplay*)[c parent];
                 CCNode* Icon=[cc energyIcon];
@@ -202,5 +203,6 @@ static NSMutableArray *energyArray;
 + (NSMutableArray*) getEnergyArray{
     return energyArray;
 }
+
 
 @end
