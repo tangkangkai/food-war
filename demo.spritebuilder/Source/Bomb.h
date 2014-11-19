@@ -18,7 +18,8 @@
 @property NSMutableArray* enemies;*/
 
 
--(void)drop:(CGPoint)start;
+-(void)drop: (CGPoint)start;
+-(void)fly: (CGPoint)start;
 
 -(id)initBomb:(NSString*) img
               animation:(CCSprite*)ani

@@ -491,7 +491,7 @@ static BOOL _audioIsOn;
         return;
     Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
     [scroll addChild: [newBomb item]];
-    [newBomb drop:touchLocation];
+    [newBomb fly:touchLocation];
 }
 
 
