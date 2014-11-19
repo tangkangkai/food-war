@@ -52,10 +52,11 @@ static NSMutableArray *energyArray;
         [_lane3 setVisible:false];
     }
     
+    [self showTrack:0];
+    
     // tell this scene to accept touches
     self.userInteractionEnabled = TRUE;
     [self schedule:@selector(enemy_autobuild:) interval:1];
-
 }
 
 - (void)cleanup{
@@ -178,16 +179,21 @@ static NSMutableArray *energyArray;
 }
 
 - (void)showTrack: (int) num {
-    _track1.visible = false;
-    _track2.visible = false;
-    _track3.visible = false;
+    [_track1 setVisible:false];
+    [_track2 setVisible:false];
+    [_track3 setVisible:false];
 
     if( num == 1 )
-        _track1.visible = true;
-    if( num == 2 )
-        _track2.visible = true;
+        [_track1 setVisible:true];
+    if( num == 2 ){
+        [_track2 setVisible:true];
+    }
     if( num == 3 )
-        _track3.visible = true;
+        [_track3 setVisible:true];
+    
+    for (Soldier* junk in _junk_soldiers) {
+        [[junk getSoldier] setZOrder:2000];
+    }
 }
 
 + (void) fillEnergyArray:(CCNode*)energy{

@@ -81,6 +81,8 @@
     [_bgNode addChild:spriteSheet];
     
     [spriteSheet addChild:_animationNode];
+    [spriteSheet setZOrder:900];
+    [_animationNode setZOrder:900];
 
 }
 
@@ -256,10 +258,11 @@
     if (img != NULL) {
         _soldier = [CCBReader load:img];
 
-        [_soldier setZOrder:999];
         if( _bgNode != NULL){
             [_bgNode addChild:_soldier];
         }
+        [_soldier setZOrder:999];
+
     }
     start.y += arc4random() % 8;
     _start_pos = start;
