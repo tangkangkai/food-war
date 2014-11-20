@@ -99,6 +99,7 @@ static BOOL _audioIsOn;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     energyArray = [[NSMutableArray alloc] init];
+    _flyingItems = [NSMutableArray arrayWithObjects:nil ];
     [self schedule:@selector(tick) interval:1.0f];
     [self schedule:@selector(updateEnergy) interval:0.01f];
  //   [self schedule:@selector(collectEnergy) interval:0.1f];
@@ -110,6 +111,8 @@ static BOOL _audioIsOn;
         [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
 
     }
+    
+    [self schedule:@selector(itemAutoBuild) interval:10];
 }
 
 - (void)onEnter {
@@ -502,9 +505,9 @@ static BOOL _audioIsOn;
     
     if(touchLocation.y < 70)
         return;
-    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
     [scroll addChild: [newBomb item]];
-    [newBomb fly:touchLocation];
+    [newBomb drop:touchLocation];
 }
 
 
@@ -585,8 +588,29 @@ static BOOL _audioIsOn;
         CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:[_energyIcon position]];
         [energy runAction:collectEnergy];
     }
-   
+}
+
+
+-(void)itemAutoBuild {
+//    int type = arc4random_uniform(100) % 2;
+    NSLog(@"autoBuilding items!!!!");
+    int type = 0;
+    int x = arc4random_uniform(300) + 100;
+    CGPoint rndPosi = CGPointMake(x, 480);
+    [self dropItem:type position:rndPosi];
+}
+
+
+- (void)dropItem: (int) type position: (CGPoint) location{
     
+    if( type == 0 ){
+        CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
+        CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
+        Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
+        [self addChild: [newBomb item]];
+        [newBomb fly2:location];
+        [_flyingItems addObject:newBomb];
+    }
 }
 
 @end

@@ -15,13 +15,18 @@
 @property CGPoint destPosi;
 @property int power;
 @property NSMutableArray* enemies;
+@property NSMutableArray* flyingItems;
 
 -(id)initItem:(NSString*) img
     animation:(CCSprite*) ani
 startPosition:(CGPoint) start
   endPosition:(CGPoint) end
-     enemyArr:(NSMutableArray*) enemyArray;
+     enemyArr:(NSMutableArray*) enemyArray
+flyingItemsArray:(NSMutableArray*) flyingItemsArr;
 
+
+-(void)fly: (CGPoint)start;
+-(void)fly2: (CGPoint)start;
 
 
 @end

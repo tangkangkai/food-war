@@ -68,6 +68,7 @@
 		E91638C119DDFB4200115E9B /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = E91638BF19DDFB4200115E9B /* Bomb.m */; };
 		E94CD1BD1A13450500BA5409 /* burgerAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BB1A13450500BA5409 /* burgerAni.plist */; };
 		E94CD1BE1A13450500BA5409 /* burgerAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BC1A13450500BA5409 /* burgerAni.png */; };
+		E95AE2671A1D54A7009B89B2 /* parachuteBox.png in Resources */ = {isa = PBXBuildFile; fileRef = E95AE2661A1D54A7009B89B2 /* parachuteBox.png */; };
 		E97969351A09F3D500AB3CB8 /* cokeAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E97969331A09F3D500AB3CB8 /* cokeAni.plist */; };
 		E97969361A09F3D500AB3CB8 /* cokeAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E97969341A09F3D500AB3CB8 /* cokeAni.png */; };
 		E9C377341A00ABD600D1F524 /* friesAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9C377321A00ABD600D1F524 /* friesAni.plist */; };
@@ -180,6 +181,7 @@
 		E91638BF19DDFB4200115E9B /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
 		E94CD1BB1A13450500BA5409 /* burgerAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = burgerAni.plist; path = burgerAni/burgerAni.plist; sourceTree = "<group>"; };
 		E94CD1BC1A13450500BA5409 /* burgerAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = burgerAni.png; path = burgerAni/burgerAni.png; sourceTree = "<group>"; };
+		E95AE2661A1D54A7009B89B2 /* parachuteBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachuteBox.png; sourceTree = "<group>"; };
 		E97969331A09F3D500AB3CB8 /* cokeAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cokeAni.plist; sourceTree = "<group>"; };
 		E97969341A09F3D500AB3CB8 /* cokeAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cokeAni.png; sourceTree = "<group>"; };
 		E9C377321A00ABD600D1F524 /* friesAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = friesAni.plist; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E95AE2661A1D54A7009B89B2 /* parachuteBox.png */,
 				E94CD1BA1A13447A00BA5409 /* burgerAni */,
 				498CF3681A11EC7100A22F2C /* cornAni */,
 				498CF3631A11DBCC00A22F2C /* beanAni */,
@@ -569,6 +572,7 @@
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				498CF36C1A11EC7100A22F2C /* cornAni.png in Resources */,
+				E95AE2671A1D54A7009B89B2 /* parachuteBox.png in Resources */,
 				4904C29319D1CFAC00C6DEF2 /* burger-small-left.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,

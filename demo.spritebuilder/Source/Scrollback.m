@@ -120,6 +120,7 @@ static NSMutableArray *energyArray;
 
 
 -(void)enemy_autobuild:(CCTime)dt{
+    
     for( NSDictionary *d in [[Levels getSelectedLevel] enemySequence] ){
         NSNumber *num = (NSNumber*)[d objectForKey:@"time"];
         if( [num isEqualToNumber:[NSNumber numberWithInt:time]] ){

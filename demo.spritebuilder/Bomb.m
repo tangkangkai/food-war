@@ -39,10 +39,11 @@
 }
 
 
--(id) initBomb:(NSString *)img animation:(CCSprite *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray{
-    self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray];
+-(id) initBomb:(NSString *)img animation:(CCSprite *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray flyingItemsArray: flyingItemsArr{
+    self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray flyingItemsArray:flyingItemsArr];
     accelator = 0;
     self.power = 90;
+    
     timeInterval = 0.01f;
     
     t = 0;
@@ -56,38 +57,6 @@
     reverseFlag = NO;
     
     return self;
-}
-
-
--(void)fly: (CGPoint)start{
-    NSLog(@"Bomb start flying");
-    [self schedule:@selector(hover) interval:timeInterval];
-    
-}
-
--(void)hover{
-    float yt = self.item.position.y - V0y * timeInterval;
-    float xt;
-    
-    Vtx = Vtx - a * timeInterval;
-    if(Vtx < 0) {
-        reverseFlag = !reverseFlag;
-        Vtx = V0x;
-    }
-    
-    float deltaS = (2 * Vtx + a * timeInterval) * timeInterval / 2;          // deltaS = (Vt1 + Vt2) * (Vt1-Vt2) / 2a
-    NSLog(@"Vtx: %f", Vtx);
-    
-    if(reverseFlag == NO){
-        xt = self.item.position.x + deltaS;
-    } else {
-        xt = self.item.position.x - deltaS;
-    }
-    
-    self.item.position = CGPointMake(xt, yt);
-    if(yt < 0){
-        [self.item removeFromParent];
-    }
 }
 
 

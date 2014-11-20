@@ -14,6 +14,8 @@
 @property (nonatomic, strong) CCAction *flashAction;
 @property CCNode *energyIcon;
 
+@property NSMutableArray* flyingItems;
+
 - (void)addBombExplosion:(CGPoint) posi;
 + (void)addEnergy:(int) amount;
 
