@@ -379,8 +379,21 @@ static BOOL _audioIsOn;
     soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
-        // TODO Temperoray fix
-        if( 75 + 25 * soldierLevel <= energy ){
+       
+        int energyCost = 0;
+        if( [selected_soldier  isEqual: @"banana"]){
+            energyCost = [BananaMan getEnergy: soldierLevel];
+        }
+        if( [selected_soldier  isEqual: @"bean"]){
+            energyCost = [BeanMan getEnergy: soldierLevel];
+        }
+        if( [selected_soldier  isEqual: @"potatoMan"]){
+            energyCost = [PotatoMan getEnergy: soldierLevel];
+        }
+        if( [selected_soldier  isEqual: @"corn"]){
+            energyCost = [CornMan getEnergy: soldierLevel];
+        }
+        if( energyCost <= energy ){
             Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
                                                          group:-1
                                                       lane_num:-1
@@ -550,7 +563,7 @@ static BOOL _audioIsOn;
         if (_audioIsOn) {
             [audio playEffect:@"blop.mp3"];
         }
-        [self reduceEnergy:[newSoldier getValue]];
+        [self reduceEnergy:[newSoldier getEnergy]];
     }
 }
 

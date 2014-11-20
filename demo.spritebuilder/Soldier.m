@@ -20,6 +20,7 @@
     
 }
 
+
 // get value of soldier(energy gained/reduced)
 - (int)getValue {
     return 75 + 25 * [self getLevel];
@@ -57,6 +58,10 @@
 
 - (double)getDefence {
     return defence;
+}
+
+- (int)getEnergy{
+    return energy;
 }
 
 - (int)getHealth {
@@ -368,7 +373,7 @@
     value = 100 + 20 * soldierLevel;
     health = 200 + 50 * soldierLevel;
     total_health = health;
-
+    
     self = [ super initSoldier:@"burgerMan"
                                group:1
                                lane_num:lane_num
@@ -466,6 +471,8 @@
     defence = 0.2 + 0.05 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 200 + 50 * soldierLevel;
+    energy = [PotatoMan getEnergy:soldierLevel];
+
     total_health = health;
 
     self = [ super initSoldier:@"potatoMan"
@@ -478,6 +485,10 @@
                    level:soldierLevel
                    bgNode:bgNode];
     return self;
+}
+
++ (int)getEnergy: (int) lvl{
+    return 200 + 40 * lvl;
 }
 
 - (void)initAnimation{
@@ -508,6 +519,8 @@
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 100 + 20 * soldierLevel;
+    energy = [BeanMan getEnergy:soldierLevel];
+
     total_health = health;
 
     self = [ super initSoldier:@"bean" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
@@ -517,6 +530,10 @@
 - (void)initAnimation{
     [self loadFirstAnimation:@"bean"];
     [self loadWalkAnimation:@"bean" frameNumber:8];
+}
+
++ (int)getEnergy: (int) lvl{
+    return 210 + 45 * lvl;
 }
 
 - (void)attackAnimation:(Soldier*) target{
@@ -556,6 +573,10 @@
     last_attack_time = [NSDate date];
 }
 
++ (int)getEnergy: (int) lvl{
+    return 230 + 50 * lvl;
+}
+
 - (id)initBanana: (int) lane_num
       startPos:(CGPoint) start
        destPos:(CGPoint) dest
@@ -569,16 +590,19 @@
     moveSpeed = 35;
     atkInterval = 2;
     atkRange = 40;
-    atkPower = 15 + 6 * soldierLevel;
+    atkPower = 20 + 8 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 140 + 20 * soldierLevel;
+    energy = [BananaMan getEnergy:soldierLevel];
+
     total_health = health;
 
     self = [ super initSoldier:@"banana" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
     return self;
 }
 
+   
 - (void)initAnimation{
     [self loadFirstAnimation:@"banana"];
     [self loadWalkAnimation:@"banana" frameNumber:7];
@@ -624,6 +648,10 @@
 -(void)dead{
     [super dead];
     [self unschedule:@selector(countDown)];
+}
+
++ (int)getEnergy: (int) lvl{
+    return 300 + 50 * lvl;
 }
 
 - (BOOL) readyToLaunch{
@@ -786,11 +814,13 @@
     _readyLaunch = false;
     moveSpeed = 20;
     atkInterval = 10;
-    atkRange = 350;
-    atkPower = 40 + 15 * soldierLevel;
+    atkRange = 360;
+    atkPower = 50 + 20 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
     health = 120 + 20 * soldierLevel;
+    energy = [CornMan getEnergy:soldierLevel];
+
     total_health = health;
     
     self = [ super initSoldier:@"corn" group:0 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];

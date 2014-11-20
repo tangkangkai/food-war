@@ -20,7 +20,8 @@
     float atkInterval;  // the time interval between every attack
     float defence;    // value is from 0 ~ 1(100%)
     int moveSpeed;   // the distance soldier can move per second
-    int value;
+    int value;       // the resource gained when the enemy dead
+    int energy;
     int level;
     OALSimpleAudio *audio;
 
@@ -74,6 +75,7 @@
 - (void)move;
 - (void)dead;
 - (int)getLevel;
+- (int)getEnergy;
 - (int)getAtkPower;
 - (int)getAtkRange;
 - (double)getDefence;
@@ -124,6 +126,7 @@
 
 @interface PotatoMan : Soldier
 
++ (int) getEnergy: (int)lvl;
 - (id)initPotato :(int) lane_num
         startPos:(CGPoint) start
          destPos:(CGPoint) dest
@@ -137,6 +140,7 @@
 
 @interface BeanMan : Soldier
 
++ (int) getEnergy: (int)lvl;
 - (void)attackAnimation:(Soldier*) target;
 - (id)initBean :(int) lane_num
          startPos:(CGPoint) start
@@ -151,6 +155,7 @@
 
 @interface BananaMan : Soldier
 
++ (int) getEnergy: (int)lvl;
 - (id)initBanana :(int) lane_num
        startPos:(CGPoint) start
         destPos:(CGPoint) dest
@@ -180,6 +185,7 @@
 @property BOOL readyLaunch;
 @property CCNode* missile;
 
++ (int) getEnergy: (int)lvl;
 - (void) undoReady;
 - (BOOL) readyToLaunch;
 - (void) Launch:(CGPoint) targetLoc;

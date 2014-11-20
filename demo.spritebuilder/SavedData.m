@@ -8,7 +8,7 @@
 
 #import "SavedData.h"
 
-static int bombNum;
+//static int bombNum;
 static int money;
 static int maxLevel;
 static BOOL audioIsOn = TRUE;
