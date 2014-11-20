@@ -16,6 +16,9 @@ static GameScene* GameSceneInstance;
     CGPoint page1;
     CGPoint page2;
     CGPoint page3;
+    CCNodeColor* _level1;
+    CCNodeColor* _level2;
+    CCNodeColor* _level3;
 }
 
 +(GameScene*)shareLayer{
@@ -53,9 +56,28 @@ static GameScene* GameSceneInstance;
     if ([[Levels getSelectedLevel] getLevel]==Nil) {
         NSLog(@"nil");
     }
+    [self setNodes];
 }
 
+- (void) setNodes {
+    float x=[_selectscroll scrollPosition].x;
+    if (x<250) {
+        _level1.opacity=1;
+        _level2.opacity=0.5;
+        _level3.opacity=0.5;
+    }
+    if (x>=250&&x<774) {
+        _level1.opacity=0.5;
+        _level2.opacity=1;
+        _level3.opacity=0.5;
+    }
+    if (x>=774) {
+        _level1.opacity=0.5;
+        _level2.opacity=0.5;
+        _level3.opacity=1;
+    }
 
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)sender
 {
@@ -64,8 +86,14 @@ static GameScene* GameSceneInstance;
     //ensure that the end of scroll is fired.
   //  [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:[_selectscroll:NO] afterDelay:0.5];
  //   [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:_selectscroll];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:0.1];
+  
+    
+    
+    //[NSObject cancelPreviousPerformRequestsWithTarget:self];
+ 
+    //[self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:0.1];
+    [self setNodes];
+
 }
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
