@@ -1,4 +1,4 @@
-//
+
 //  Gameplay.m
 //  manmove
 //
@@ -32,7 +32,7 @@ static BOOL _audioIsOn;
     CCNode *_blackBomb;
     CCScrollView *_scrollview;
     Scrollback *scroll;
-
+    
     Soldier *man;           //save the final man
     Bomb *bomb;
     CCNode *bombRing;
@@ -48,7 +48,7 @@ static BOOL _audioIsOn;
     CCTextField *_energyPrompt;
     CCTextField *_bombPrompt;
     
-
+    
     int mTimeInSec;
     int timeFlag;
     CCSprite *_first;
@@ -67,13 +67,30 @@ static BOOL _audioIsOn;
     //bomb number
     CCTextField *_bombnumber;
     int bombnumber;
-
+    
+    
+    int _soldiertype;
+    CCNodeColor *_cooldown0;
+    int x0;
+    int lock0;
+    
+    CCNodeColor *_cooldown1;
+    int x1;
+    int lock1;
+    
+    CCNodeColor *_cooldown2;
+    int x2;
+    int lock2;
+    
+    CCNodeColor *_cooldown3;
+    int x3;
+    int lock3;
 }
 
 - (id)init{
     self = [super init];
     if (!self) return(nil);
-
+    
     selected_soldier = NULL;
     man = NULL;
     
@@ -99,17 +116,16 @@ static BOOL _audioIsOn;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     energyArray = [[NSMutableArray alloc] init];
-    _flyingItems = [NSMutableArray arrayWithObjects:nil ];
     [self schedule:@selector(tick) interval:1.0f];
     [self schedule:@selector(updateEnergy) interval:0.01f];
- //   [self schedule:@selector(collectEnergy) interval:0.1f];
+    //   [self schedule:@selector(collectEnergy) interval:0.1f];
     _audioIsOn = [SavedData audio];
     if (_audioIsOn) {
         [audio playBg:@"playBackground.mp3" loop:TRUE];
     } else {
         _musicoff.visible = TRUE;
         [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
-
+        
     }
     
     [self schedule:@selector(itemAutoBuild) interval:10];
@@ -195,11 +211,11 @@ static BOOL _audioIsOn;
         
         
         
-
+        
     } else if(timeFlag == 1 ){
         timeFlag = 2;
         [self gameover];
-
+        
     } else{
         //do nothing
     }
@@ -241,15 +257,15 @@ static BOOL _audioIsOn;
 - (void)menu {
     [[CCDirector sharedDirector] pause];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:@"Pause"
-                                                message:@""
-                                                delegate:self
-                                                cancelButtonTitle:@"Resume"
-                                                otherButtonTitles: @"Quit", nil];
+                                                      message:@""
+                                                     delegate:self
+                                            cancelButtonTitle:@"Resume"
+                                            otherButtonTitles: @"Quit", nil];
     [alert setTag:1];
     [alert show];
     [audio stopBg];
     
-
+    
 }
 
 - (void)voice {
@@ -258,14 +274,14 @@ static BOOL _audioIsOn;
         _audioIsOn = TRUE;
         [SavedData setAudio:TRUE];
         _musicoff.visible = FALSE;
-       // _musicon.visible = TRUE;
+        // _musicon.visible = TRUE;
         [audio playBg:@"playBackground.mp3" volume:1 pan:0 loop:TRUE];
     }
     else
     {
         _audioIsOn = FALSE;
         [SavedData setAudio:FALSE];
-       // _musicon.visible = FALSE;
+        // _musicon.visible = FALSE;
         _musicoff.visible = TRUE;
         [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
     }
@@ -274,7 +290,7 @@ static BOOL _audioIsOn;
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-
+    
     NSLog(@"Button Index =%ld of tag %ld",(long)buttonIndex, (long)[alertView tag]);
     long tag =[alertView tag];
     if (buttonIndex == 0) {
@@ -325,14 +341,26 @@ static BOOL _audioIsOn;
     NSString *soldier = NULL;
     NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
     if (_first.spriteFrame!=NULL && CGRectContainsPoint(_first.boundingBox,touchLocation)) {
-        soldier = [lineupArray objectAtIndex:0];
+        if (lock0==0) {
+            soldier = [lineupArray objectAtIndex:0];
+            _soldiertype=0;
+        }
     } else if (_second.spriteFrame!=NULL && CGRectContainsPoint(_second.boundingBox,touchLocation)) {
-        soldier = [lineupArray objectAtIndex:1];
+        if (lock1==0) {
+            soldier = [lineupArray objectAtIndex:1];
+            _soldiertype=1;
+        }
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_third.boundingBox,touchLocation)) {
-        soldier = [lineupArray objectAtIndex:2];
+        if (lock2==0) {
+            soldier = [lineupArray objectAtIndex:2];
+            _soldiertype=2;
+        }
+        
     } else if (_third.spriteFrame!=NULL && CGRectContainsPoint(_fourth.boundingBox,touchLocation)) {
-        soldier = [lineupArray objectAtIndex:3];
-    
+        if (lock3==0) {
+            soldier = [lineupArray objectAtIndex:3];
+            _soldiertype=3;
+        }
     } else if(CGRectContainsPoint(_blackBomb.boundingBox,touchLocation)) {
         if (bombnumber < 1) {
             selected_soldier = NULL;
@@ -382,21 +410,8 @@ static BOOL _audioIsOn;
     soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
-       
-        int energyCost = 0;
-        if( [selected_soldier  isEqual: @"banana"]){
-            energyCost = [BananaMan getEnergy: soldierLevel];
-        }
-        if( [selected_soldier  isEqual: @"bean"]){
-            energyCost = [BeanMan getEnergy: soldierLevel];
-        }
-        if( [selected_soldier  isEqual: @"potatoMan"]){
-            energyCost = [PotatoMan getEnergy: soldierLevel];
-        }
-        if( [selected_soldier  isEqual: @"corn"]){
-            energyCost = [CornMan getEnergy: soldierLevel];
-        }
-        if( energyCost <= energy ){
+        // TODO Temperoray fix
+        if( 75 + 25 * soldierLevel <= energy ){
             Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
                                                          group:-1
                                                       lane_num:-1
@@ -448,16 +463,16 @@ static BOOL _audioIsOn;
     }
     [man soldier].position = touchLocation;
     int laneNum = [[Levels getSelectedLevel] laneNum];
-
+    
     if( laneNum!=1 && CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [scroll showTrack:1];
         
     } else if(CGRectContainsPoint(CGRectMake([scroll lane2].boundingBox.origin.x, [scroll lane2].boundingBox.origin.y+35, [scroll lane2].boundingBox.size.width, [scroll lane2].boundingBox.size.height),touchLocation)) {
         [scroll showTrack:2];
-
+        
     } else if( laneNum==3 && CGRectContainsPoint(CGRectMake([scroll lane3].boundingBox.origin.x, [scroll lane3].boundingBox.origin.y+40, [scroll lane3].boundingBox.size.width, [scroll lane3].boundingBox.size.height),touchLocation)) {
         [scroll showTrack:3];
-
+        
     } else {
         [scroll showTrack:0];
     }
@@ -466,11 +481,11 @@ static BOOL _audioIsOn;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"touch end");
-
+    
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     int laneNum = [[Levels getSelectedLevel] laneNum];
-
+    
     if([selected_soldier_animation isEqualToString:@"blackBomb"]) {
         NSLog(@"release BOMB!");
         [self removeChild: bombRing];
@@ -482,24 +497,110 @@ static BOOL _audioIsOn;
         }
     } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];
+        [self cooldown:_soldiertype];
     } else if( CGRectContainsPoint(CGRectMake([scroll lane2].boundingBox.origin.x, [scroll lane2].boundingBox.origin.y+35, [scroll lane2].boundingBox.size.width, [scroll lane2].boundingBox.size.height),touchLocation)) {
         [self launchmovingman: [scroll house2] dest:[scroll house5] lane_num:1];
+        [self cooldown:_soldiertype];
     } else if( laneNum==3 && CGRectContainsPoint(CGRectMake([scroll lane3].boundingBox.origin.x, [scroll lane3].boundingBox.origin.y+40, [scroll track3].boundingBox.size.width, [scroll lane3].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house3] dest:[scroll house6] lane_num:2];
+        [self cooldown:_soldiertype];
     } else {
         [self removeChild:[man soldier]];
     }
-
+    
     
     man = NULL;
     selected_soldier = NULL;
     [scroll showTrack:0];
+    
 }
 
+- (void) cooldown:(int) num {
+    if (num==0&&lock0==0) {
+        lock0=1;
+        x0=1;
+        [_cooldown0 setVisible:1];
+        [_cooldown0 setContentSize:CGSizeMake(100, 100)];
+        [self schedule:@selector(update0) interval:0.7];
+    }
+    else if (num==1&&lock1==0){
+        lock1=1;
+        x1=1;
+        [_cooldown1 setVisible:1];
+        [_cooldown1 setContentSize:CGSizeMake(100, 100)];
+        [self schedule:@selector(update1) interval:0.9];
+    }
+    else if (num==2&&lock2==0){
+        lock2=1;
+        x2=1;
+        [_cooldown2 setVisible:1];
+        [_cooldown2 setContentSize:CGSizeMake(100, 100)];
+        [self schedule:@selector(update2) interval:1.1];
+    }
+    else if (num==3&&lock3==0){
+        lock3=1;
+        x3=1;
+        [_cooldown3 setVisible:1];
+        [_cooldown3 setContentSize:CGSizeMake(100, 100)];
+        [self schedule:@selector(update3) interval:1.5];
+    }
+}
+
+- (void) update0{
+    int y=100-10*x0;
+    [_cooldown0 setContentSize:CGSizeMake(100, y)];
+    x0++;
+    if (y==0) {
+        [self unschedule:@selector(update0)];
+      //  x0=0;
+        lock0=0;
+        [_cooldown0 setVisible:0];
+        return;
+    }
+}
+
+- (void) update1{
+    int y=100-10*x1;
+    [_cooldown1 setContentSize:CGSizeMake(100, y)];
+    x1++;
+    if (y==0) {
+        [self unschedule:@selector(update1)];
+       // x1=0;
+        lock1=0;
+        [_cooldown1 setVisible:0];
+        return;
+    }
+}
+
+- (void) update2{
+    int y=100-10*x2;
+    [_cooldown2 setContentSize:CGSizeMake(100, y)];
+    x2++;
+    if (y==0) {
+        [self unschedule:@selector(update2)];
+      //  x2=0;
+        lock2=0;
+        [_cooldown2 setVisible:0];
+        return;
+    }
+}
+
+- (void) update3{
+    int y=100-10*x3;
+    [_cooldown3 setContentSize:CGSizeMake(100, y)];
+    x3++;
+    if (y==0) {
+        [self unschedule:@selector(update3)];
+     //   x3=0;
+        lock3=0;
+        [_cooldown3 setVisible:0];
+        return;
+    }
+}
 
 - (void)launchBomb: (CGPoint)touchLocation {
     scroll=[_scrollview children][0];
-
+    
     [self removeChild: [bomb item]];
     [_anibomb removeFromParent];
     
@@ -525,48 +626,48 @@ static BOOL _audioIsOn;
     if( [selected_soldier  isEqual: @"potatoMan"] ){
         int potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
         newSoldier = [[PotatoMan alloc] initPotato: lane_num
-                                                  startPos:sourcehouse.position
-                                                   destPos: destination
-                                                    ourArr:[scroll healthy_soldiers]
-                                                  enemyArr:[scroll junk_soldiers]
-                                                     level:potatoLevel
-                                                    bgNode:scroll];
+                                          startPos:sourcehouse.position
+                                           destPos: destination
+                                            ourArr:[scroll healthy_soldiers]
+                                          enemyArr:[scroll junk_soldiers]
+                                             level:potatoLevel
+                                            bgNode:scroll];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"bean"]  ){
         newSoldier = [[BeanMan alloc] initBean: lane_num
-                                               startPos:sourcehouse.position
-                                               destPos: destination
-                                               ourArr:[scroll healthy_soldiers]
-                                               enemyArr:[scroll junk_soldiers]
-                               level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
+                                      startPos:sourcehouse.position
+                                       destPos: destination
+                                        ourArr:[scroll healthy_soldiers]
+                                      enemyArr:[scroll junk_soldiers]
+                                         level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
                                         bgNode:scroll];
         [newSoldier move];
     } else if( [selected_soldier  isEqual: @"banana"]  ){
         newSoldier = [[BananaMan alloc] initBanana: lane_num
-                                                   startPos:[sourcehouse position]
-                                                   destPos: destination
-                                                   ourArr:[scroll healthy_soldiers]
-                                                   enemyArr:[scroll junk_soldiers]
-                                 level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
+                                          startPos:[sourcehouse position]
+                                           destPos: destination
+                                            ourArr:[scroll healthy_soldiers]
+                                          enemyArr:[scroll junk_soldiers]
+                                             level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
                                             bgNode:scroll];
-
+        
     } else if( [selected_soldier  isEqual: @"corn"]  ){
         newSoldier = [[CornMan alloc] initCorn: lane_num
-                                                     startPos:sourcehouse.position
-                                                      destPos: destination
-                                                       ourArr:[scroll healthy_soldiers]
-                                                     enemyArr:[scroll junk_soldiers]
-                                            level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
-                                            bgNode:scroll];
-
+                                      startPos:sourcehouse.position
+                                       destPos: destination
+                                        ourArr:[scroll healthy_soldiers]
+                                      enemyArr:[scroll junk_soldiers]
+                                         level:[[soldierLevelDict objectForKey:selected_soldier] intValue]
+                                        bgNode:scroll];
+        
     }
     if (newSoldier != NULL) {
         [newSoldier move];
-
+        
         if (_audioIsOn) {
             [audio playEffect:@"blop.mp3"];
         }
-        [self reduceEnergy:[newSoldier getEnergy]];
+        [self reduceEnergy:[newSoldier getValue]];
     }
 }
 
@@ -583,7 +684,7 @@ static BOOL _audioIsOn;
     if (energyArray==nil) {
         return;
     }
-
+    
     for (CCNode* energy in energyArray) {
         CCActionMoveTo *collectEnergy = [CCActionMoveTo actionWithDuration:1.0f position:[_energyIcon position]];
         [energy runAction:collectEnergy];
@@ -592,12 +693,13 @@ static BOOL _audioIsOn;
 
 
 -(void)itemAutoBuild {
-//    int type = arc4random_uniform(100) % 2;
+    //    int type = arc4random_uniform(100) % 2;
     NSLog(@"autoBuilding items!!!!");
     int type = 0;
     int x = arc4random_uniform(300) + 100;
     CGPoint rndPosi = CGPointMake(x, 480);
     [self dropItem:type position:rndPosi];
+    
 }
 
 
