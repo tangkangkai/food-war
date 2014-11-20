@@ -491,7 +491,7 @@ static BOOL _audioIsOn;
     
     if(touchLocation.y < 70)
         return;
-    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers]];
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
     [scroll addChild: [newBomb item]];
     [newBomb drop:touchLocation];
 }
@@ -584,7 +584,6 @@ static BOOL _audioIsOn;
     int x = arc4random_uniform(300) + 100;
     CGPoint rndPosi = CGPointMake(x, 480);
     [self dropItem:type position:rndPosi];
-    
 }
 
 
@@ -593,9 +592,10 @@ static BOOL _audioIsOn;
     if( type == 0 ){
         CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
         CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
-        Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers]];
+        Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
         [self addChild: [newBomb item]];
         [newBomb fly2:location];
+//        [_flyingItems addObject:[newBomb item]];
     }
 }
 

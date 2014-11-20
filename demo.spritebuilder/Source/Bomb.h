@@ -25,5 +25,6 @@
               animation:(CCSprite*)ani
               startPosition:(CGPoint) start
               endPosition:(CGPoint) end
-              enemyArr:(NSMutableArray*) enemyArray;
+              enemyArr:(NSMutableArray*) enemyArray
+      flyingItemsArray: flyingItemsArr;
 @end

@@ -11,6 +11,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "Scrollback.h"
 #import "SavedData.h"
+#import "Gameplay.h"
 
 @implementation Item{
     float V0x;           //variables used for flying
@@ -24,7 +25,7 @@
     
 }
 
--(id)initItem:(NSString*) img animation:(CCSprite*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end               enemyArr:(NSMutableArray*) enemyArray;
+-(id)initItem:(NSString*) img animation:(CCSprite*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end enemyArr:(NSMutableArray*) enemyArray flyingItemsArray: flyingItemsArr;
 {
     self = [super init];
     
@@ -37,6 +38,7 @@
     _item.position = start;         //init CCNode;
     _item.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _item.contentSize} cornerRadius:0];
     _enemies = enemyArray;
+    _flyingItems = flyingItemsArr;
 
     timeInterval = 0.01f;       //intialize v
     V0y = 20;
@@ -50,9 +52,6 @@
     reduceFlag = YES;
     return self;
     
-    
-    
-    return self;
 }
 
 -(void)fly: (CGPoint)start{     // Now we use fly2. This function is preserved to be referance;
@@ -128,6 +127,7 @@
     if(yt < 0){
         [self.item removeFromParent];
         [self unschedule:@selector(hover2)];
+        
     }
 }
 
