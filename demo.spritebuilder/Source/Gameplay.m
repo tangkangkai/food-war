@@ -99,6 +99,7 @@ static BOOL _audioIsOn;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     energyArray = [[NSMutableArray alloc] init];
+    _flyingItems = [NSMutableArray arrayWithObjects:nil ];
     [self schedule:@selector(tick) interval:1.0f];
     [self schedule:@selector(updateEnergy) interval:0.01f];
  //   [self schedule:@selector(collectEnergy) interval:0.1f];
@@ -595,7 +596,7 @@ static BOOL _audioIsOn;
         Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
         [self addChild: [newBomb item]];
         [newBomb fly2:location];
-        [_flyingItems addObject:[newBomb item]];
+        [_flyingItems addObject:newBomb];
     }
 }
 
