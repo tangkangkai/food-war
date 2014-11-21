@@ -403,6 +403,14 @@ static BOOL _audioIsOn;
         
         
         return;
+    } else{
+        NSLog(@"checking clicked items");
+        for(int i = 0; i < [_flyingItems count]; i++){
+            Item* tmp = [_flyingItems objectAtIndex:i];
+            if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
+                NSLog(@"Item clicked!");
+            }
+        }
     }
     
     selected_soldier = soldier;
@@ -706,12 +714,18 @@ static BOOL _audioIsOn;
 - (void)dropItem: (int) type position: (CGPoint) location{
     
     if( type == 0 ){
+        
         CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
         CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
+//        CCNode *flyingItem = [CCBReader load:@"parachuteBox"];
         Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
         [self addChild: [newBomb item]];
         [newBomb fly2:location];
         [_flyingItems addObject:newBomb];
+        
+        CGRect boundingBox = flyingItem.boundingBox;
+        NSLog(@"bounding width: %f", boundingBox.size.width);
+        NSLog(@"bounding height: %f", boundingBox.size.height);
     }
 }
 

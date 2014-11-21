@@ -25,13 +25,13 @@
     
 }
 
--(id)initItem:(NSString*) img animation:(CCSprite*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end enemyArr:(NSMutableArray*) enemyArray flyingItemsArray: flyingItemsArr;
+-(id)initItem:(NSString*) img animation:(CCNode*) ani startPosition:(CGPoint) start endPosition:(CGPoint) end enemyArr:(NSMutableArray*) enemyArray flyingItemsArray: flyingItemsArr;
 {
     self = [super init];
     
     start.y -= 30;                  //adjust coordinates
     end.y -= 80;
-    //    _bomb = [CCBReader load:img];
+//    _item = [CCBReader load:img];
     _item = ani;
     _startPosi = start;
     _destPosi = end;

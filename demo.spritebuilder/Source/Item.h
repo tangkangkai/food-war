@@ -10,7 +10,7 @@
     
 }
 
-@property CCSprite* item;
+@property CCNode* item;
 @property CGPoint startPosi;
 @property CGPoint destPosi;
 @property int power;
@@ -18,7 +18,7 @@
 @property NSMutableArray* flyingItems;
 
 -(id)initItem:(NSString*) img
-    animation:(CCSprite*) ani
+    animation:(CCNode*) ani
 startPosition:(CGPoint) start
   endPosition:(CGPoint) end
      enemyArr:(NSMutableArray*) enemyArray

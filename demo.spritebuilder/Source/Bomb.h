@@ -22,7 +22,7 @@
 -(void)fly: (CGPoint)start;
 
 -(id)initBomb:(NSString*) img
-              animation:(CCSprite*)ani
+              animation:(CCNode*)ani
               startPosition:(CGPoint) start
               endPosition:(CGPoint) end
               enemyArr:(NSMutableArray*) enemyArray
