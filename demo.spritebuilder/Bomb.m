@@ -8,14 +8,6 @@
     int counter;
     CCNode *bombRing;
     
-    float V0x;           //variables used for flying
-    float V0y;
-    float Vtx;
-    float S;
-    float a;
-    float t;
-    BOOL reverseFlag;
-    float timeInterval;
 }
 
 /*
@@ -44,17 +36,6 @@
     accelator = 0;
     self.power = 90;
     
-    timeInterval = 0.01f;
-    
-    t = 0;
-    V0y = 20;
-    V0x = 300;
-    
-    Vtx = V0x;
-    S = 200;
-    a = V0x * V0x / (2*S);
-    
-    reverseFlag = NO;
     
     return self;
 }

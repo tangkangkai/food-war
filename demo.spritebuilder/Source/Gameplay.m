@@ -719,7 +719,9 @@ static BOOL _audioIsOn;
         CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
 //        CCNode *flyingItem = [CCBReader load:@"parachuteBox"];
         Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
-        [self addChild: [newBomb item]];
+//        [self addChild: [newBomb item]];
+        CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+location.x, location.y);
+        [scroll addChild:[newBomb item]];
         [newBomb fly2:location];
         [_flyingItems addObject:newBomb];
         
