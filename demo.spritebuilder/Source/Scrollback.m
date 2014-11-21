@@ -15,6 +15,7 @@
 #import "CCAction.h"
 #import "Energy.h"
 #import "Gameplay.h"
+#import "Item.h"
 
 static NSMutableArray *energyArray;
 
@@ -82,6 +83,17 @@ static NSMutableArray *energyArray;
             }
         }
     }
+
+    NSLog(@"checking clicked items");
+    
+    for(int i = 0; i < [[Gameplay getItArray] count]; i++){
+        Item* tmp = [[Gameplay getItArray] objectAtIndex:i];
+        
+        if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
+            NSLog(@"Item clicked!");
+        }
+    }
+    
     if (_startlaunch==1) {
         if (CGRectContainsPoint([[s soldier] boundingBox],touchLocation)) {
             _startlaunch=0;

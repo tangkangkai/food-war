@@ -18,5 +18,6 @@
 
 - (void)addBombExplosion:(CGPoint) posi;
 + (void)addEnergy:(int) amount;
++ (NSMutableArray*) getItArray;
 
 @end

@@ -125,7 +125,7 @@
     }
     
     self.item.position = CGPointMake(xt, yt);
-    if(yt < 0){
+    if(yt < -100){
         [self.item removeFromParent];
         [self unschedule:@selector(hover2)];
         [[self flyingItems] removeObject:self];

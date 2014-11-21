@@ -23,7 +23,7 @@
 
 static int energy;
 static BOOL _audioIsOn;
-
+static NSMutableArray *itArray;
 
 @implementation Gameplay{
     CCNode *_potatoMan;
@@ -179,6 +179,10 @@ static BOOL _audioIsOn;
 
 +(void)addEnergy:(int) amount {
     energy += amount;
+}
+
++ (NSMutableArray*) getItArray{
+    return itArray;
 }
 
 -(void)updateEnergy{
@@ -715,15 +719,16 @@ static BOOL _audioIsOn;
     
     if( type == 0 ){
         
-        CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
-        CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
-//        CCNode *flyingItem = [CCBReader load:@"parachuteBox"];
-        Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
+//        CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
+//        CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
+        CCNode *flyingItem = [CCBReader load:@"parachuteBox"];
+        Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:itArray];
 //        [self addChild: [newBomb item]];
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+location.x, location.y);
         [scroll addChild:[newBomb item]];
         [newBomb fly2:location];
-        [_flyingItems addObject:newBomb];
+//        [_flyingItems addObject:newBomb];
+        [itArray addObject:newBomb];
         
         CGRect boundingBox = flyingItem.boundingBox;
         NSLog(@"bounding width: %f", boundingBox.size.width);
