@@ -129,7 +129,7 @@ static NSMutableArray *itArray;
         
     }
     
-    [self schedule:@selector(itemAutoBuild) interval:10];
+//    [self schedule:@selector(itemAutoBuild) interval:10];
 }
 
 - (void)onEnter {
