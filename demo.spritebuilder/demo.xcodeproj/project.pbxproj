@@ -24,6 +24,7 @@
 		49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49DEFAA71A0A261900B1E33B /* bananaAni.png */; };
 		49F3FC101A15EB8200438286 /* bananaFightAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49F3FC0E1A15EB8200438286 /* bananaFightAni.plist */; };
 		49F3FC111A15EB8200438286 /* bananaFightAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F3FC0F1A15EB8200438286 /* bananaFightAni.png */; };
+		5915FDBB1A21A9F800670E2F /* updateScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 5915FDBA1A21A9F800670E2F /* updateScroll.m */; };
 		599974AC19FED3C800A0626A /* StoreScene2.m in Sources */ = {isa = PBXBuildFile; fileRef = 599974AB19FED3C800A0626A /* StoreScene2.m */; };
 		59B924E019E4F02500C45A85 /* Selectscroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B924DF19E4F02500C45A85 /* Selectscroll.m */; };
 		59BF557019DA288600D30484 /* Scrollback.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BF556F19DA288600D30484 /* Scrollback.m */; };
@@ -122,6 +123,8 @@
 		49DEFAA71A0A261900B1E33B /* bananaAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaAni.png; sourceTree = "<group>"; };
 		49F3FC0E1A15EB8200438286 /* bananaFightAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bananaFightAni.plist; sourceTree = "<group>"; };
 		49F3FC0F1A15EB8200438286 /* bananaFightAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaFightAni.png; sourceTree = "<group>"; };
+		5915FDB91A21A9F800670E2F /* updateScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateScroll.h; sourceTree = "<group>"; };
+		5915FDBA1A21A9F800670E2F /* updateScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateScroll.m; sourceTree = "<group>"; };
 		599974AA19FED3C800A0626A /* StoreScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreScene2.h; path = Source/StoreScene2.h; sourceTree = "<group>"; };
 		599974AB19FED3C800A0626A /* StoreScene2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreScene2.m; path = Source/StoreScene2.m; sourceTree = "<group>"; };
 		59B924DE19E4F02500C45A85 /* Selectscroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Selectscroll.h; path = Source/Selectscroll.h; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				BEB82C4419CA610C009DF48C /* ChoiceScene.m */,
 				BEB82C4519CA610C009DF48C /* GameScene.h */,
 				BEB82C4619CA610C009DF48C /* GameScene.m */,
+				5915FDB91A21A9F800670E2F /* updateScroll.h */,
+				5915FDBA1A21A9F800670E2F /* updateScroll.m */,
 				BEB82C5219CA62C1009DF48C /* Gameplay.h */,
 				BEB82C5319CA62C1009DF48C /* Gameplay.m */,
 				E91638BB19DDFA8B00115E9B /* Bomb.h */,
@@ -624,6 +629,7 @@
 				BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */,
 				BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */,
 				BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */,
+				5915FDBB1A21A9F800670E2F /* updateScroll.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				59C4E2B31A1510A6007F1CE4 /* Energy.m in Sources */,
