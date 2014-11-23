@@ -11,6 +11,7 @@
 @interface Gameplay : CCNode<CCScrollViewDelegate>
 
 @property (nonatomic, strong) CCSprite *anibomb;
+@property (nonatomic, strong) CCSprite *aniIceBucket;
 @property (nonatomic, strong) CCAction *flashAction;
 @property CCNode *energyIcon;
 
@@ -19,5 +20,7 @@
 - (void)addBombExplosion:(CGPoint) posi;
 + (void)addEnergy:(int) amount;
 + (NSMutableArray*) getItArray;
-
+-(void)addBombNumber;
+- (void)dropItem: (int) type position: (CGPoint) location;
+-(void)itemAutoBuild;
 @end

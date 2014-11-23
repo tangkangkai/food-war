@@ -10,14 +10,6 @@
     
 }
 
-/*
- - (id)init
- {
- self = [super init];
- _moveSpeed = 80;
- 
- return self;
- }*/
 
 -(void)drop: (CGPoint)start{
     NSLog(@"Bomb start dropping");

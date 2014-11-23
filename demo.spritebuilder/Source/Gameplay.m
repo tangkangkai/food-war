@@ -30,6 +30,7 @@ static NSMutableArray *itArray;
     CCNode *_bananaMan;
     CCNode *_beanMan;
     CCNode *_blackBomb;
+    CCNode *_iceBucket;
     CCScrollView *_scrollview;
     Scrollback *scroll;
     
@@ -116,6 +117,7 @@ static NSMutableArray *itArray;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     energyArray = [[NSMutableArray alloc] init];
+    itArray = [[NSMutableArray alloc] init];
     [self schedule:@selector(tick) interval:1.0f];
     [self schedule:@selector(updateEnergy) interval:0.01f];
     //   [self schedule:@selector(collectEnergy) interval:0.1f];
@@ -128,7 +130,7 @@ static NSMutableArray *itArray;
         
     }
     
-    [self schedule:@selector(itemAutoBuild) interval:10];
+//    [self schedule:@selector(itemAutoBuild) interval:10];
 }
 
 - (void)onEnter {
@@ -407,14 +409,15 @@ static NSMutableArray *itArray;
         
         
         return;
-    } else{
-        NSLog(@"checking clicked items");
-        for(int i = 0; i < [_flyingItems count]; i++){
-            Item* tmp = [_flyingItems objectAtIndex:i];
-            if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
-                NSLog(@"Item clicked!");
-            }
-        }
+    } else if(CGRectContainsPoint(_iceBucket.boundingBox,touchLocation)){
+        NSLog(@"IceBucket Clicked");
+        selected_soldier = @"iceBucket";
+        selected_soldier_animation=@"iceBucket";
+        CCSpriteFrame* bucketFrame = [CCSpriteFrame frameWithImageNamed:@"iceBucket.png"];
+        _aniIceBucket = [CCSprite spriteWithSpriteFrame:bucketFrame];
+//        _aniIceBucket = (CCSprite*)[CCBReader load:@"iceBucket"];
+        [self addChild:_aniIceBucket];
+        return;
     }
     
     selected_soldier = soldier;
@@ -469,7 +472,11 @@ static NSMutableArray *itArray;
         bombRing.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
         return;
     }
-    
+    if([selected_soldier isEqualToString:@"iceBucket"]){
+        NSLog(@"iceBucketMoved");
+        _aniIceBucket.position = touchLocation;
+        return;
+    }
     if( man == NULL ){
         return;
     }
@@ -507,6 +514,9 @@ static NSMutableArray *itArray;
         if (_audioIsOn) {
             [audio playEffect:@"missle_launch.mp3"];
         }
+    } else if([selected_soldier isEqualToString:@"iceBucket"]){
+        NSLog(@"release Bucket!");
+        
     } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];
         [self cooldown:_soldiertype];
@@ -615,6 +625,18 @@ static NSMutableArray *itArray;
     
     [self removeChild: [bomb item]];
     [_anibomb removeFromParent];
+    
+    if(touchLocation.y < 70)
+        return;
+    Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:self.anibomb startPosition:touchLocation endPosition:touchLocation enemyArr:[scroll junk_soldiers] flyingItemsArray:_flyingItems];
+    [scroll addChild: [newBomb item]];
+    [newBomb drop:touchLocation];
+}
+
+- (void)launchBucket: (CGPoint)touchLocation {
+    scroll=[_scrollview children][0];
+    
+    [_aniIceBucket removeFromParent];
     
     if(touchLocation.y < 70)
         return;

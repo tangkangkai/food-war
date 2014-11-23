@@ -82,6 +82,11 @@ static Level *Levelselected;
                                             @"lane":@2,
                                             @"enemyLev":@1,
                                             @"enemies":@[@2] } ];
+    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@8,
+                                            @"lane":@2,
+                                            @"items":@[@1],
+                                            @"enemyLev":@1,
+                                            @"enemies":@[] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@15,
                                             @"lane":@2,
                                             @"enemyLev":@1,

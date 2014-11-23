@@ -79,8 +79,10 @@
 		E9C5956C1A1871820007E717 /* burgerFightAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C5956A1A1871820007E717 /* burgerFightAni.png */; };
 		E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D5AB7E19F19D460076F5A3 /* bombAni.plist */; };
 		E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D5AB7F19F19D460076F5A3 /* bombAni.png */; };
+		E9DB7B251A22643600649C0A /* iceBucket.png in Resources */ = {isa = PBXBuildFile; fileRef = E9DB7B241A22643600649C0A /* iceBucket.png */; };
 		E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996119EB0DB900FB214D /* punch1.mp3 */; };
 		E9DE996519EB110800FB214D /* blop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996419EB110800FB214D /* blop.mp3 */; };
+		E9E4A47B1A21CE8900B58AE7 /* IceBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E4A47A1A21CE8900B58AE7 /* IceBucket.m */; };
 		E9E777A31A17BE21006A03FD /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E777A21A17BE21006A03FD /* Item.m */; };
 		E9ECC79919EDAA68009E03D4 /* explode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9ECC79719EDAA68009E03D4 /* explode.mp3 */; };
 		E9ECC79A19EDAA68009E03D4 /* missle_launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9ECC79819EDAA68009E03D4 /* missle_launch.mp3 */; };
@@ -194,8 +196,11 @@
 		E9C5956A1A1871820007E717 /* burgerFightAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = burgerFightAni.png; path = burgerAni/burgerFightAni.png; sourceTree = "<group>"; };
 		E9D5AB7E19F19D460076F5A3 /* bombAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bombAni.plist; sourceTree = "<group>"; };
 		E9D5AB7F19F19D460076F5A3 /* bombAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bombAni.png; sourceTree = "<group>"; };
+		E9DB7B241A22643600649C0A /* iceBucket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iceBucket.png; sourceTree = "<group>"; };
 		E9DE996119EB0DB900FB214D /* punch1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch1.mp3; path = Audio/punch1.mp3; sourceTree = "<group>"; };
 		E9DE996419EB110800FB214D /* blop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blop.mp3; path = Audio/blop.mp3; sourceTree = "<group>"; };
+		E9E4A4781A21CE0E00B58AE7 /* IceBucket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IceBucket.h; path = Source/IceBucket.h; sourceTree = "<group>"; };
+		E9E4A47A1A21CE8900B58AE7 /* IceBucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IceBucket.m; path = Source/IceBucket.m; sourceTree = "<group>"; };
 		E9E777A01A17BDF3006A03FD /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Item.h; path = Source/Item.h; sourceTree = "<group>"; };
 		E9E777A21A17BE21006A03FD /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = Source/Item.m; sourceTree = "<group>"; };
 		E9ECC79719EDAA68009E03D4 /* explode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = explode.mp3; path = Audio/explode.mp3; sourceTree = "<group>"; };
@@ -293,6 +298,8 @@
 				BEB82C5319CA62C1009DF48C /* Gameplay.m */,
 				E91638BB19DDFA8B00115E9B /* Bomb.h */,
 				E91638BF19DDFB4200115E9B /* Bomb.m */,
+				E9E4A4781A21CE0E00B58AE7 /* IceBucket.h */,
+				E9E4A47A1A21CE8900B58AE7 /* IceBucket.m */,
 				59B924DE19E4F02500C45A85 /* Selectscroll.h */,
 				59B924DF19E4F02500C45A85 /* Selectscroll.m */,
 				BEB82C4719CA610C009DF48C /* StoreScene.h */,
@@ -382,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				E95AE2661A1D54A7009B89B2 /* parachuteBox.png */,
+				E9DB7B241A22643600649C0A /* iceBucket.png */,
 				E94CD1BA1A13447A00BA5409 /* burgerAni */,
 				498CF3681A11EC7100A22F2C /* cornAni */,
 				498CF3631A11DBCC00A22F2C /* beanAni */,
@@ -573,6 +581,7 @@
 				E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */,
 				E9C377351A00ABD600D1F524 /* friesAni.png in Resources */,
 				498440EA1A11436500EACCCE /* potatoAni.plist in Resources */,
+				E9DB7B251A22643600649C0A /* iceBucket.png in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
@@ -629,6 +638,7 @@
 				BEB82C4B19CA610C009DF48C /* StoreScene.m in Sources */,
 				BEB82C4A19CA610C009DF48C /* GameScene.m in Sources */,
 				BEB82C5819CA62C1009DF48C /* Gameplay.m in Sources */,
+				E9E4A47B1A21CE8900B58AE7 /* IceBucket.m in Sources */,
 				5915FDBB1A21A9F800670E2F /* updateScroll.m in Sources */,
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,

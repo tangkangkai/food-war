@@ -84,12 +84,15 @@ static NSMutableArray *energyArray;
         }
     }
 
-    NSLog(@"checking clicked items");
     
     for(int i = 0; i < [[Gameplay getItArray] count]; i++){
         Item* tmp = [[Gameplay getItArray] objectAtIndex:i];
         
         if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
+            CCScrollView* ccs = (CCScrollView*)[self parent];
+            Gameplay* g = (Gameplay*)[ccs parent];
+            [g addBombNumber];
+            [tmp disappear];
             NSLog(@"Item clicked!");
         }
     }
@@ -138,8 +141,18 @@ static NSMutableArray *energyArray;
         if( [num isEqualToNumber:[NSNumber numberWithInt:time]] ){
             NSNumber *laneNum = [d objectForKey:@"lane"];
             NSArray *soldiers = [d objectForKey:@"enemies"];
+            NSArray *items = [d objectForKey:@"items"];
             NSNumber *enemyLev = [d objectForKey:@"lane"];
 
+            for( int i=0; i<items.count; i++ ){
+                int itemType = [(NSNumber*)items[i] intValue]-1;
+                // TODO
+                CCScrollView* ccs = (CCScrollView*)[self parent];
+                Gameplay* g = (Gameplay*)[ccs parent];
+                [g itemAutoBuild];
+            }
+         
+            
             for( int i=0; i<soldiers.count; i++ ){
                 int soldierType = [(NSNumber*)soldiers[i] intValue]-1;
                 [self buildEnemy:[laneNum intValue]-1 type:soldierType enemyLev:[enemyLev intValue]];

@@ -27,6 +27,6 @@ flyingItemsArray:(NSMutableArray*) flyingItemsArr;
 
 -(void)fly: (CGPoint)start;
 -(void)fly2: (CGPoint)start;
-
+-(void)disappear;
 
 @end
