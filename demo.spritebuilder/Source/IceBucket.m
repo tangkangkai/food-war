@@ -12,7 +12,7 @@
 #import "SavedData.h"
 @implementation IceBucket{
     float accelator;
-    
+    CCSprite* snow;
 }
 
 
@@ -48,14 +48,24 @@
             float dy = ABS([s getSoldier].position.y - self.item.position.y);
             double dist = sqrt(dx*dx + dy*dy);
             if(dist < 100){
-                [targets addObject:[self.enemies objectAtIndex:i]];
+//              [targets addObject:[self.enemies objectAtIndex:i]];
+                CCSpriteFrame* snowFrame = [CCSpriteFrame frameWithImageNamed:@"snowEffect.png"];
+                snow = [CCSprite spriteWithSpriteFrame:snowFrame];
+                snow.position = CGPointMake([[[self enemies] objectAtIndex:i] getSoldier].position.x, [[[self enemies] objectAtIndex:i] getSoldier].position.y);
+                CCNode *parent = [self.item parent];
+                [parent addChild:snow];
+                NSLog(@"Snow added");
+                
             }
         }
+        
+        /*
         long num = [targets count];
         for(int i = 0; i < num; i++){
             Soldier *s = [targets objectAtIndex:i];
             [s loseHealth:self.power];
         }
+        */
         [self unschedule:@selector(updateBucket)];
         [self.item removeFromParent];
         return;
@@ -66,6 +76,13 @@
     accelator += 0.05;
 }
 
+-(void) addSnow{
+    /*
+    CCSpriteFrame* snowFrame = [CCSpriteFrame frameWithImageNamed:@"snowEffect.png"];
+    snow = [CCSprite spriteWithSpriteFrame:snowFrame];
+    snow.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
+    [self addChild:snow];*/
+}
 
 
 @end

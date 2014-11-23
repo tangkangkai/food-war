@@ -80,6 +80,7 @@
 		E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D5AB7E19F19D460076F5A3 /* bombAni.plist */; };
 		E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D5AB7F19F19D460076F5A3 /* bombAni.png */; };
 		E9DB7B251A22643600649C0A /* iceBucket.png in Resources */ = {isa = PBXBuildFile; fileRef = E9DB7B241A22643600649C0A /* iceBucket.png */; };
+		E9DB7B271A229D0800649C0A /* snowEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = E9DB7B261A229D0800649C0A /* snowEffect.png */; };
 		E9DE996319EB0DB900FB214D /* punch1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996119EB0DB900FB214D /* punch1.mp3 */; };
 		E9DE996519EB110800FB214D /* blop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9DE996419EB110800FB214D /* blop.mp3 */; };
 		E9E4A47B1A21CE8900B58AE7 /* IceBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E4A47A1A21CE8900B58AE7 /* IceBucket.m */; };
@@ -197,6 +198,7 @@
 		E9D5AB7E19F19D460076F5A3 /* bombAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bombAni.plist; sourceTree = "<group>"; };
 		E9D5AB7F19F19D460076F5A3 /* bombAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bombAni.png; sourceTree = "<group>"; };
 		E9DB7B241A22643600649C0A /* iceBucket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iceBucket.png; sourceTree = "<group>"; };
+		E9DB7B261A229D0800649C0A /* snowEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snowEffect.png; sourceTree = "<group>"; };
 		E9DE996119EB0DB900FB214D /* punch1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch1.mp3; path = Audio/punch1.mp3; sourceTree = "<group>"; };
 		E9DE996419EB110800FB214D /* blop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = blop.mp3; path = Audio/blop.mp3; sourceTree = "<group>"; };
 		E9E4A4781A21CE0E00B58AE7 /* IceBucket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IceBucket.h; path = Source/IceBucket.h; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				49320C2719ECE43500980DBF /* corn_cannon.png */,
 				BEBB1D9219ECF7A8007F4FA1 /* healthy_food.png */,
 				E9C595641A17EC440007E717 /* bombRing.png */,
+				E9DB7B261A229D0800649C0A /* snowEffect.png */,
 				BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */,
 				4904C29219D1CFAC00C6DEF2 /* burger-small-left.png */,
 				4904C28E19D1CF1600C6DEF2 /* burger-small.png */,
@@ -562,6 +565,7 @@
 				49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */,
 				E9D5AB8019F19D460076F5A3 /* bombAni.plist in Resources */,
 				E97969361A09F3D500AB3CB8 /* cokeAni.png in Resources */,
+				E9DB7B271A229D0800649C0A /* snowEffect.png in Resources */,
 				498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */,
 				498440EB1A11436500EACCCE /* potatoAni.png in Resources */,
 				49F3FC101A15EB8200438286 /* bananaFightAni.plist in Resources */,
