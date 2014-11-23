@@ -84,8 +84,6 @@ static NSMutableArray *energyArray;
         }
     }
 
-    NSLog(@"checking clicked items");
-    NSMutableArray* testtmp = [Gameplay getItArray];
     
     for(int i = 0; i < [[Gameplay getItArray] count]; i++){
         Item* tmp = [[Gameplay getItArray] objectAtIndex:i];
@@ -93,8 +91,8 @@ static NSMutableArray *energyArray;
         if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
             CCScrollView* ccs = (CCScrollView*)[self parent];
             Gameplay* g = (Gameplay*)[ccs parent];
-            g.addBombNumber;
-            
+            [g addBombNumber];
+            [tmp disappear];
             NSLog(@"Item clicked!");
         }
     }

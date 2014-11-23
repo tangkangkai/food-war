@@ -129,7 +129,15 @@
         [self.item removeFromParent];
         [self unschedule:@selector(hover2)];
         [[self flyingItems] removeObject:self];
+        [self removeFromParent];
     }
+}
+
+-(void)disappear{
+    [self.item removeFromParent];
+    [self unschedule:@selector(hover2)];
+    [[self flyingItems] removeObject:self];
+    [self removeFromParent];
 }
 
 @end
