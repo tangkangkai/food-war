@@ -1,41 +1,35 @@
+//
+//  IceBucket.m
+//  demo
+//
+//  Created by Yaning Wu on 11/23/14.
+//  Copyright (c) 2014 Apportable. All rights reserved.
+//
+
 #import <Foundation/Foundation.h>
-#import "Bomb.h"
-#import <CoreMotion/CoreMotion.h>
-#import "Scrollback.h"
+#import "IceBucket.h"
+#import "Soldier.h"
 #import "SavedData.h"
-@implementation Bomb {
+@implementation IceBucket{
     float accelator;
-    int counter;
-    CCNode *bombRing;
     
 }
 
 
--(void)drop: (CGPoint)start{
-    NSLog(@"Bomb start dropping");
-    //    [_motionManager startAccelerometerUpdates];
-    [self schedule:@selector(update) interval:0.005f];
-    /*
-     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
-     position:_destPosi];*/
-    //    [_bomb runAction:[CCActionSequence actionWithArray:@[actionMove]]];
-    
-}
 
-
--(id) initBomb:(NSString *)img animation:(CCNode *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray flyingItemsArray: flyingItemsArr{
+-(id) initIceBucket:(NSString *)img animation:(CCNode *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray flyingItemsArray: flyingItemsArr{
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray flyingItemsArray:flyingItemsArr];
     accelator = 0;
-    self.power = 90;
-    
-    
     return self;
 }
 
+-(void)dropBucket{
+    [self schedule:@selector(updateBucket) interval:0.005f];
+}
 
-- (void)update{
+-(void)updateBucket{
     if(accelator > 3) {
-
+        
         CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
         fire.autoRemoveOnFinish = YES;
         fire.position = self.destPosi;
@@ -62,15 +56,16 @@
             Soldier *s = [targets objectAtIndex:i];
             [s loseHealth:self.power];
         }
-        [self unschedule:@selector(update)];
+        [self unschedule:@selector(updateBucket)];
         [self.item removeFromParent];
         return;
     }
+    
     CGPoint posi = CGPointMake(self.item.position.x, self.item.position.y - accelator);
     self.item.position = posi;
     accelator += 0.05;
-    
 }
+
 
 
 @end

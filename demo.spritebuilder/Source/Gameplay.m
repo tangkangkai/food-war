@@ -30,6 +30,7 @@ static NSMutableArray *itArray;
     CCNode *_bananaMan;
     CCNode *_beanMan;
     CCNode *_blackBomb;
+    CCNode *_iceBucket;
     CCScrollView *_scrollview;
     Scrollback *scroll;
     
@@ -408,14 +409,12 @@ static NSMutableArray *itArray;
         
         
         return;
-    } else{
-        NSLog(@"checking clicked items");
-        for(int i = 0; i < [_flyingItems count]; i++){
-            Item* tmp = [_flyingItems objectAtIndex:i];
-            if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
-                NSLog(@"Item clicked!");
-            }
-        }
+    } else if(CGRectContainsPoint(_iceBucket.boundingBox,touchLocation)){
+        NSLog(@"IceBucket Clicked");
+        selected_soldier = @"iceBucket";
+        selected_soldier_animation=@"iceBucket";
+        _aniIceBucket = [CCBReader load:@"iceBucket"];
+        return;
     }
     
     selected_soldier = soldier;
@@ -470,7 +469,11 @@ static NSMutableArray *itArray;
         bombRing.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
         return;
     }
-    
+    if([selected_soldier isEqualToString:@"iceBucket"]){
+        NSLog(@"iceBucketMoved");
+        _aniIceBucket.position = touchLocation;
+        return;
+    }
     if( man == NULL ){
         return;
     }

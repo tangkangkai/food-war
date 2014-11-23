@@ -3321,9 +3321,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>iceBomb</string>
+				<string>iceBucket</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>_iceBucket</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3344,7 +3344,7 @@
 						<key>value</key>
 						<array>
 							<real>471</real>
-							<real>26</real>
+							<real>30</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3368,8 +3368,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.18786802887916565</real>
-							<real>0.18786802887916565</real>
+							<real>0.21926151216030121</real>
+							<real>0.21926151216030121</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -3382,7 +3382,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/iceBomb.png</string>
+							<string>foodwar_picture/ice_bucket.png</string>
 						</array>
 					</dict>
 					<dict>
