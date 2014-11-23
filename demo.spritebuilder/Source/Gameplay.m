@@ -116,6 +116,7 @@ static NSMutableArray *itArray;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
     energyArray = [[NSMutableArray alloc] init];
+    itArray = [[NSMutableArray alloc] init];
     [self schedule:@selector(tick) interval:1.0f];
     [self schedule:@selector(updateEnergy) interval:0.01f];
     //   [self schedule:@selector(collectEnergy) interval:0.1f];
