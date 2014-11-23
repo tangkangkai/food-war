@@ -83,114 +83,11 @@
     _message.string = [NSString stringWithFormat:@"You need more money to update"];
     _message.opacity = 0;
     total = [SavedData money];
-    [self updateShowedData];
     
     //set the state(atkPower, health, defense value)
-    
-
-    
-    
     _total.string = [NSString stringWithFormat:@" %d", total];
-    
-    //update the data of soldier
-    
-    potato = [[PotatoMan alloc] initPotato: -1
-                                            startPos:_hole1.position
-                                            destPos: _hole1.position
-                                            ourArr:NULL
-                                            enemyArr:NULL
-                                            level:potatoLevel
-                                            bgNode:NULL ];
-    bean = [[BeanMan alloc] initBean: -1
-                            startPos:_hole1.position
-                             destPos: _hole1.position
-                              ourArr:NULL
-                            enemyArr:NULL
-                               level:beanLevel
-                              bgNode:NULL ];
-    
-    banana = [[BananaMan alloc] initBanana: -1
-                                  startPos:_hole1.position
-                                   destPos: _hole1.position
-                                    ourArr:NULL
-                                  enemyArr:NULL
-                                     level:bananaLevel
-                                    bgNode:NULL ];
-
-    
-    
-    [self updateShowedData];
 }
 
-- (void)updateShowedData {
-    NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
-    //get level of soldiers
-    potatoLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
-    beanLevel = [[soldierLevelDict objectForKey:@"bean"] intValue];
-    bananaLevel = [[soldierLevelDict objectForKey:@"banana"] intValue];
-    
-    //set the level
-    _level1.string = [NSString stringWithFormat:@"Lv.%d", potatoLevel];
-    _level2.string = [NSString stringWithFormat:@"Lv.%d", beanLevel];
-    _level3.string = [NSString stringWithFormat:@"Lv.%d", bananaLevel];
-    
-    // calculate the cost of each soldier if upgrading
-    beanCost = 200 * beanLevel;
-    potatoCost = 150 * potatoLevel;
-    bananaCost = 350 * bananaLevel;
-    
-    //set the price
-    _cost1.string = [NSString stringWithFormat:@"$ %d", potatoCost];
-    _cost2.string = [NSString stringWithFormat:@"$ %d", beanCost];
-    _cost3.string = [NSString stringWithFormat:@"$ %d", bananaCost];
-    _cost4.string = @"Unknown";
-    
-    // value of health, atkPower, defense
-    int ph = [potato getHealth] / 5;
-    int pa = [potato getAtkPower];
-    int pd = [potato getDefence] * 200;
-    int beh = [bean getHealth] / 5;
-    int bea = [bean getAtkPower];
-    int bed = [bean getDefence] * 200;
-    int bah = [banana getHealth] / 5;
-    int baa = [banana getAtkPower];
-    int bad = [banana getDefence] * 200;
-    
-    
-    _potatoH.string = [NSString stringWithFormat:@"HP:%d", ph];
-    _potatoAtk.string = [NSString stringWithFormat:@"Atk:%d", pa];
-    _potatoD.string = [NSString stringWithFormat:@"D:%d", pd];
-    _potatoHealth.contentSize = CGSizeMake(ph, _potatoHealth.contentSize.height);
-    _potatoAtkPower.contentSize = CGSizeMake(pa, _potatoAtkPower.contentSize.height);
-    _potatoDefense.contentSize = CGSizeMake(pd, _potatoDefense.contentSize.height);
-    
-    
-    _beanH.string = [NSString stringWithFormat:@"HP:%d", beh];
-    _beanAtk.string = [NSString stringWithFormat:@"Atk:%d", bea];
-    _beanD.string = [NSString stringWithFormat:@"D:%d", bed];
-    _beanHealth.contentSize = CGSizeMake(beh, _beanHealth.contentSize.height);
-    _beanAtkPower.contentSize = CGSizeMake(bea, _beanAtkPower.contentSize.height);
-    _beanDefense.contentSize = CGSizeMake(bed, _beanDefense.contentSize.height);
-    
-    _bananaH.string = [NSString stringWithFormat:@"HP:%d", bah];
-    _bananaAtk.string = [NSString stringWithFormat:@"Atk:%d", baa];
-    _bananaD.string = [NSString stringWithFormat:@"D:%d", bad];
-    _bananaHealth.contentSize = CGSizeMake(bah, _bananaHealth.contentSize.height);
-    _bananaAtkPower.contentSize = CGSizeMake(baa, _bananaAtkPower.contentSize.height);
-    _bananaDefense.contentSize = CGSizeMake(bad, _bananaDefense.contentSize.height);
-    
-}
-
-- (void)updateStoredData {
-    
-    NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
-    [soldierLevelDict setObject:[NSNumber numberWithInt:potatoLevel] forKey:@"potato"];
-    [soldierLevelDict setObject:[NSNumber numberWithInt:beanLevel] forKey:@"bean"];
-    [soldierLevelDict setObject:[NSNumber numberWithInt:bananaLevel] forKey:@"banana"];
-    
-    [SavedData setSoldierLevel:soldierLevelDict];
-    [SavedData saveSoldierLevel];
-}
 
 - (void)back {
     
@@ -200,12 +97,8 @@
     [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
 }
 
-- (void)next {
-    
-    CCScene *gameScene = [CCBReader loadAsScene:@"StoreScene2"];
-    
-    CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:0.01f];
-    [[CCDirector sharedDirector] replaceScene:gameScene withTransition:trans];
+-(void)updateTotal:(int)totalMoney {
+    _total.string = [NSString stringWithFormat:@" %d", totalMoney];
 }
 
 -(void) showMessage {
@@ -219,72 +112,6 @@
     [_message runAction:sequence];
 }
 
--(void)button1 {
-    if (potatoCost > total) {
-        [self showMessage];
-        return;
-    }
-    
-    [self reduceTotalMoney:potatoCost];
-    potato = [[PotatoMan alloc] initPotato: -1
-                                  startPos:_hole1.position
-                                   destPos: _hole1.position
-                                    ourArr:NULL enemyArr:NULL
-                                     level:++potatoLevel
-                                    bgNode:NULL];
-
-    //update
-    [self updateStoredData];
-    [self updateShowedData];
-    
-}
-
--(void)button2 {
-    if (beanCost > total) {
-        [self showMessage];
-        return;
-    }
-    
-    [self reduceTotalMoney:beanCost];
-    bean = [[BeanMan alloc] initBean: -1
-                            startPos:_hole1.position
-                            destPos: _hole1.position
-                            ourArr:NULL
-                            enemyArr:NULL
-                            level:++beanLevel
-                            bgNode:NULL];
-
-    //update
-    [self updateStoredData];
-    [self updateShowedData];
-}
-
--(void)button3 {
-    if (bananaCost > total) {
-        [self showMessage];
-        return;
-    }
-    
-    [self reduceTotalMoney:bananaCost];
-    banana = [[BananaMan alloc] initBanana: -1
-                                startPos:_hole1.position
-                                destPos: _hole1.position
-                                ourArr:NULL
-                                enemyArr:NULL
-                                level:++bananaLevel
-                                bgNode:NULL];
-
-
-    //update
-    [self updateStoredData];
-    [self updateShowedData];
-    
-    
-}
-
-
-
-
 -(void)reduceTotalMoney: (int)value {
     CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.1f position:ccp(496, 270)];
     CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.1f position:ccp(496, 292)];
@@ -296,4 +123,5 @@
     [SavedData setMoney:total];
     [SavedData saveMoney];
 }
+
 @end
