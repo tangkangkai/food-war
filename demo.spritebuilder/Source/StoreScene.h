@@ -10,4 +10,7 @@
 
 @interface StoreScene : CCNode
 
+-(void) showMessage;
+-(void)reduceTotalMoney: (int)value;
+
 @end
