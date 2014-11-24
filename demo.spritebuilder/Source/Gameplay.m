@@ -19,7 +19,7 @@
 #import "Level.h"
 
 #define BURGER 1;
-#define COKE 2;
+#define COKE 2;ƒ
 #define FRIES 3;
 
 static int energy;
@@ -105,6 +105,7 @@ static NSMutableArray *itArray;
     energy = [[Levels getSelectedLevel] energy];
     //get bomb number
     bombnumber = 1;
+    _soldiertype=4;
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     // _energyPrompt opacity set to 0
