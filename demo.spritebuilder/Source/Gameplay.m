@@ -105,7 +105,7 @@ static NSMutableArray *itArray;
     energy = [[Levels getSelectedLevel] energy];
     //get bomb number
     bombnumber = 1;
-    _soldiertype=4;
+    _soldiertype=-1;
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     // _energyPrompt opacity set to 0
@@ -555,22 +555,23 @@ static NSMutableArray *itArray;
         x1=1;
         [_cooldown1 setVisible:1];
         [_cooldown1 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update1) interval:0.9];
+        [self schedule:@selector(update1) interval:0.7];
     }
     else if (num==2&&lock2==0){
         lock2=1;
         x2=1;
         [_cooldown2 setVisible:1];
         [_cooldown2 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update2) interval:1.1];
+        [self schedule:@selector(update2) interval:0.7];
     }
     else if (num==3&&lock3==0){
         lock3=1;
         x3=1;
         [_cooldown3 setVisible:1];
         [_cooldown3 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update3) interval:1.5];
+        [self schedule:@selector(update3) interval:0.7];
     }
+    _soldiertype=-1;
 }
 
 - (void) update0{
