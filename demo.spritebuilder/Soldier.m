@@ -756,7 +756,7 @@
         dx=ABS([[self soldier] position].x-[[enemy soldier] position].x);
         dy=ABS([[self soldier] position].y-[[enemy soldier] position].y);
         double dist = sqrt(dx*dx + dy*dy);
-        if (dist<=[self getAtkRange] && [[self soldier] position].x<[[enemy soldier] position].x) {
+        if (dist<=[self getAtkRange] && [[self soldier] position].x+40<[[enemy soldier] position].x) {
             for (CCSprite* prop in [[enemy soldier] children]) {
                 if ([[prop name] isEqual:@"target"]) {
                     [prop setVisible:true];
