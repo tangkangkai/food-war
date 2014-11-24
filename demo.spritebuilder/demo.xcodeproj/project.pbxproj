@@ -15,6 +15,8 @@
 		4959BD1619F5C087004AC4C5 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959BD1519F5C087004AC4C5 /* Level.m */; };
 		498440EA1A11436500EACCCE /* potatoAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498440E81A11436500EACCCE /* potatoAni.plist */; };
 		498440EB1A11436500EACCCE /* potatoAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498440E91A11436500EACCCE /* potatoAni.png */; };
+		498581F11A23184C007AF271 /* foodtruckAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498581EF1A23184C007AF271 /* foodtruckAni.plist */; };
+		498581F21A23184C007AF271 /* foodtruckAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498581F01A23184C007AF271 /* foodtruckAni.png */; };
 		498CF3661A11DBCC00A22F2C /* beanAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3641A11DBCC00A22F2C /* beanAni.plist */; };
 		498CF3671A11DBCC00A22F2C /* beanAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3651A11DBCC00A22F2C /* beanAni.png */; };
 		498CF36B1A11EC7100A22F2C /* cornAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 498CF3691A11EC7100A22F2C /* cornAni.plist */; };
@@ -116,6 +118,8 @@
 		4959BD1519F5C087004AC4C5 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		498440E81A11436500EACCCE /* potatoAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = potatoAni.plist; sourceTree = "<group>"; };
 		498440E91A11436500EACCCE /* potatoAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = potatoAni.png; sourceTree = "<group>"; };
+		498581EF1A23184C007AF271 /* foodtruckAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = foodtruckAni.plist; sourceTree = "<group>"; };
+		498581F01A23184C007AF271 /* foodtruckAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foodtruckAni.png; sourceTree = "<group>"; };
 		498CF3641A11DBCC00A22F2C /* beanAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = beanAni.plist; sourceTree = "<group>"; };
 		498CF3651A11DBCC00A22F2C /* beanAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beanAni.png; sourceTree = "<group>"; };
 		498CF3691A11EC7100A22F2C /* cornAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cornAni.plist; sourceTree = "<group>"; };
@@ -240,6 +244,15 @@
 				498440E91A11436500EACCCE /* potatoAni.png */,
 			);
 			path = potatoAni;
+			sourceTree = "<group>";
+		};
+		498581EE1A23184C007AF271 /* foodtruckAni */ = {
+			isa = PBXGroup;
+			children = (
+				498581EF1A23184C007AF271 /* foodtruckAni.plist */,
+				498581F01A23184C007AF271 /* foodtruckAni.png */,
+			);
+			path = foodtruckAni;
 			sourceTree = "<group>";
 		};
 		498CF3631A11DBCC00A22F2C /* beanAni */ = {
@@ -390,6 +403,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				498581EE1A23184C007AF271 /* foodtruckAni */,
 				E95AE2661A1D54A7009B89B2 /* parachuteBox.png */,
 				E9DB7B241A22643600649C0A /* iceBucket.png */,
 				E94CD1BA1A13447A00BA5409 /* burgerAni */,
@@ -560,6 +574,7 @@
 				E9C595651A17EC440007E717 /* bombRing.png in Resources */,
 				49F3FC111A15EB8200438286 /* bananaFightAni.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
+				498581F21A23184C007AF271 /* foodtruckAni.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				49DEFAA91A0A261900B1E33B /* bananaAni.png in Resources */,
@@ -598,6 +613,7 @@
 				498CF3671A11DBCC00A22F2C /* beanAni.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				498581F11A23184C007AF271 /* foodtruckAni.plist in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 				4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */,
 				E9DE996519EB110800FB214D /* blop.mp3 in Resources */,

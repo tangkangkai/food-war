@@ -1179,8 +1179,8 @@
 }
 
 - (void)initAnimation{
-    //[self loadFirstAnimation:@"fries"];
-    //[self loadWalkAnimation:@"fries" frameNumber:8];
+    [self loadFirstAnimation:@"foodtruck"];
+    [self loadWalkAnimation:@"foodtruck" frameNumber:3];
 }
 
 -(void)countDown{
