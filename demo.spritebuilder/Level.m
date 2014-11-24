@@ -150,6 +150,10 @@ static Level *Levelselected;
                           enemySequence:lvlTwoSeq ];
     
     NSMutableArray *lvlThreeSeq = [ [NSMutableArray alloc] init ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@1,
+                                              @"lane":@2,
+                                              @"enemyLev":@1,
+                                              @"enemies":@[@4] } ];
     [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
                                               @"lane":@1,
                                               @"enemyLev":@2,

@@ -1045,3 +1045,171 @@
 
 @end
 
+@implementation FoodTruck
+
+- (BOOL) readyToLaunch{
+    
+    if( moving ){
+        return false;
+    }
+    if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
+        _readyLaunch = true;
+        return true;
+    }
+    return false;
+}
+
+- (void) undoReady{
+    _readyLaunch = false;
+}
+
+- (void) Launch:(CGPoint) targetLoc{
+    CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
+    fire.autoRemoveOnFinish=true;
+    fire.duration=0.2;
+    CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:-90.f];
+    CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc height:80 jumps:1];
+    CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
+    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
+    
+    _missile = [CCBReader load:@"friesMissile"];
+    _missile.position = [[ self getSoldier] position];
+    CCNode *parent = [[ self getSoldier ] parent];
+    [parent addChild:_missile];
+    
+    fire.position=_missile.position;
+    [self addChild:fire];
+    if ([SavedData audio]) {
+        [audio playEffect:@"missle_launch.mp3"];
+    }
+    [_missile runAction:sequence];
+    [self friesLaunchShock];
+    
+    last_attack_time = [NSDate date];
+    [self undoReady];
+}
+
+-(void) friesLaunchShock{
+    CCNode *fries=[self getSoldier];
+    CCActionMoveTo *moveright_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(10 , 0)];
+    CCActionMoveTo *moveback_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
+    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveright_0, moveback_0]];
+    
+    [[fries children][0] runAction:sequence_0];
+    
+}
+
+- (void)missileRemoved
+{
+    NSMutableArray *_targetLoseHealth;
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
+    explosion.autoRemoveOnFinish = TRUE;
+    explosion.duration = 1;
+    
+    explosion.position = _missile.position;
+    [_missile.parent addChild:explosion];
+    if ([SavedData audio]) {
+        NSLog(@"hehe");
+        [audio playEffect:@"explode.mp3"];
+    }
+    
+    _targetLoseHealth=[self missileDetect];
+    for (Soldier *target in _targetLoseHealth) {
+        [target loseHealth:atkPower];
+    }
+    [_missile removeFromParent];
+}
+
+//find target the missle hit
+-(NSMutableArray*)missileDetect{
+    //  int nearest_distance=[self missile_atk_range];
+    Soldier *soldier = NULL;
+    NSMutableArray* targets = [NSMutableArray arrayWithObjects:nil ];
+    int dx;
+    int dy;
+    int exploreRange = 40;
+    NSMutableArray *enemyArray = [ self getArray:1 ];
+    
+    for( long i = 0; i < enemyArray.count; i++ ){
+        soldier=[enemyArray objectAtIndex:i];
+        dx=ABS(_missile.position.x-[[soldier soldier]position].x);
+        dy=ABS(_missile.position.y-[[soldier soldier] position].y);
+        double dist = sqrt(dx*dx + dy*dy);
+        if (dist < exploreRange) {
+            [targets addObject:[enemyArray objectAtIndex:i]];
+        }
+    }
+    
+    return targets;
+}
+
+-(void)dead{
+    [super dead];
+    [self unschedule:@selector(countDown)];
+}
+
+-(void)move{
+    if( !_readyLaunch ){
+        [super move];
+    }
+}
+
+- (id)initFoodTruck: (int) lane_num
+       startPos:(CGPoint) start
+        destPos:(CGPoint) dest
+         ourArr:(NSMutableArray*) ourArray
+       enemyArr:(NSMutableArray*) enemyArray
+          level: (int) soldierLevel
+         bgNode:(CCNode*)bgNode{
+    
+    type = 3;
+    _readyLaunch = false;
+    moveSpeed = 15;
+    atkInterval = 10;
+    atkRange = 350;
+    atkPower = 40 + 15 * soldierLevel;
+    defence = 0.1 + 0.03 * soldierLevel;
+    value = 200 + 20 * soldierLevel;
+    health = 120 + 20 * soldierLevel;
+    total_health = health;
+    self = [ super initSoldier:@"foodTruck" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
+    
+    [self schedule:@selector(countDown) interval:0.5];
+    return self;
+}
+
+- (void)initAnimation{
+    //[self loadFirstAnimation:@"fries"];
+    //[self loadWalkAnimation:@"fries" frameNumber:8];
+}
+
+-(void)countDown{
+    NSMutableArray *healthArray = [ self getArray:1 ];
+    if ([self readyToLaunch]) {
+        int range=[self getAtkRange];
+        CGPoint target = CGPointMake(0, 0);
+        float minDistance = range;
+        for( Soldier *s in healthArray ){
+            CGPoint enemy_pos = [s soldier].position;
+            if( [ s getType ] == 4 ){
+                // make the base reachable
+                enemy_pos.x = enemy_pos.x + 40;
+            }
+            
+            CGFloat xDist = (enemy_pos.x - [self soldier].position.x);
+            CGFloat yDist = (enemy_pos.y - [self soldier].position.y);
+            CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+            if (distance<minDistance && [s soldier].position.x<[self soldier].position.x-20) {
+                minDistance = distance;
+                target = [[s soldier] position];
+            }
+        }
+        if( target.x != 0){
+            [self Launch:target];
+        }
+    }
+}
+
+
+@end
+

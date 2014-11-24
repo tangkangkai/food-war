@@ -202,6 +202,17 @@ static NSMutableArray *energyArray;
                                                     bgNode:self];
         [enemy_soldier move];
     }
+    if( type == 3 ){
+        FoodTruck* enemy_soldier= [[FoodTruck alloc] initFoodTruck:lane
+                                                    startPos:[(CCNode*)start_positions[lane] position]
+                                                     destPos:destination
+                                                      ourArr:_junk_soldiers
+                                                    enemyArr:_healthy_soldiers
+                                                       level:enemyLev
+                                                      bgNode:self];
+        [enemy_soldier move];
+    }
+
 }
 
 - (void)showTrack: (int) num {

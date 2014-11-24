@@ -222,3 +222,23 @@
             bgNode:(CCNode*)bgNode;
 
 @end
+
+@interface FoodTruck : Soldier
+
+@property BOOL readyLaunch;
+@property CCNode* missile;
+
+- (void) undoReady;
+- (BOOL) readyToLaunch;
+- (void) Launch:(CGPoint) targetLoc;
+- (void) move;
+
+- (id)initFoodTruck :(int) lane_num
+        startPos:(CGPoint) start
+         destPos:(CGPoint) dest
+          ourArr:(NSMutableArray*) ourArray
+        enemyArr:(NSMutableArray*) enemyArray
+           level: (int) soldierLevel
+          bgNode:(CCNode*)bgNode;
+
+@end
