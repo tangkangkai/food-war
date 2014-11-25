@@ -154,27 +154,27 @@ static Level *Levelselected;
                                               @"lane":@2,
                                               @"enemyLev":@1,
                                               @"enemies":@[@4] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@25,
                                               @"lane":@1,
                                               @"enemyLev":@2,
                                               @"enemies":@[@1] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@25,
                                               @"lane":@2,
                                               @"enemyLev":@1,
                                               @"enemies":@[@2] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@25,
                                               @"lane":@3,
                                               @"enemyLev":@3,
                                               @"enemies":@[@2] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@20,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@50,
                                               @"lane":@2,
                                               @"enemyLev":@2,
                                               @"enemies":@[@1,@3] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@20,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@60,
                                               @"lane":@2,
                                               @"enemyLev":@3,
                                               @"enemies":@[@1,@2] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@50,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@70,
                                               @"lane":@1,
                                               @"enemyLev":@2,
                                               @"enemies":@[@3] } ];

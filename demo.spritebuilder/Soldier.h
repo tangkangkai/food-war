@@ -84,6 +84,10 @@
 - (int)getMoveSpeed;
 - (int)getValue;
 
+- (NSMutableArray*)getOurArray;
+- (NSMutableArray*)getEnemeyArray;
+
+- (CCNode*)getBgNode;
 - (CCNode*)getSoldier;
 - (NSMutableArray*)getArray:(int) enemy;
 

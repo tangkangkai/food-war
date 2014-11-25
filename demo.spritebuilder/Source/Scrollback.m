@@ -212,7 +212,6 @@ static NSMutableArray *energyArray;
                                                       bgNode:self];
         [enemy_soldier move];
     }
-
 }
 
 - (void)showTrack: (int) num {

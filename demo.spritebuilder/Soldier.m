@@ -15,6 +15,7 @@
 #import "CCAction.h"
 #import "Energy.h"
 #import "Scrollback.h"
+#include <stdlib.h>
 
 @implementation Soldier{
     
@@ -72,8 +73,21 @@
     return moveSpeed;
 }
 
+- (CCNode*)getBgNode{
+    return _bgNode;
+}
+
 - (void)initAnimation{
 }
+
+- (NSMutableArray*)getOurArray{
+    return _ourArray;
+}
+
+- (NSMutableArray*)getEnemeyArray{
+    return _enemyArray;
+}
+
 
 
 - (void)loadFirstAnimation:(NSString*) character{
@@ -268,7 +282,7 @@
         [_soldier setZOrder:999];
 
     }
-    start.y += arc4random() % 8;
+    start.y += arc4random() % 5;
     _start_pos = start;
     _dest_pos = dest;
     _soldier.position = start; //CGPoint
@@ -322,8 +336,8 @@
 
 - (void)dead{
     if( _group == 1 && [self getType]!=4){
-        Energy* energy= [[Energy alloc] initEnergy:[self getValue] pos:[[self soldier]position] bgNode:[self soldier].parent];
-        [Scrollback fillEnergyArray:energy];
+        Energy* dropoff= [[Energy alloc] initEnergy:[self getValue] pos:[[self soldier]position] bgNode:[self soldier].parent];
+        [Scrollback fillEnergyArray:dropoff];
     }
     
     [[self ourArray] removeObject:self];
@@ -333,7 +347,6 @@
     if( _animationNode != NULL ){
         [_animationNode removeFromParent];
     }
-    // TODO release
 }
 
 - (void)update_health{
@@ -1139,6 +1152,8 @@
 -(void)dead{
     [super dead];
     [self unschedule:@selector(countDown)];
+    [self unschedule:@selector(createSolider)];
+
 }
 
 -(void)move{
@@ -1172,7 +1187,58 @@
     self = [ super initSoldier:@"foodTruck" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
     
     [self schedule:@selector(countDown) interval:0.5];
+    [self schedule:@selector(createSolider) interval:8];
+
     return self;
+}
+
+- (void)createSolider{
+
+    
+    Scrollback *sb = (Scrollback*)[self getBgNode];
+    NSArray *start_positions = @[[sb house4], [sb house5], [sb house6]];
+    NSArray *end_positions=@[ [sb house1], [sb house2], [sb house3]];
+    int lane = arc4random_uniform(3);
+
+    CGPoint destination = CGPointMake([(CCNode*)end_positions[lane] position].x+30,
+                                      [(CCNode*)end_positions[lane] position].y);
+    CGPoint selfPos = [[ self getSoldier ] position];
+    
+    // we move the truck position to make it stand on the lane,
+    // so we need to change the position back to the original
+    selfPos.y = selfPos.y - 25;
+
+    CGPoint newStart = CGPointMake(selfPos.x - 20, [(CCNode*)start_positions[lane] position].y);
+    
+    int soldierType = arc4random_uniform(2);
+    
+    if( soldierType == 0 ){
+        BurgerMan* enemy_soldier= [[BurgerMan alloc] initBurger:lane
+                                                                startPos: selfPos
+                                                                destPos: destination
+                                                                ourArr:[self getOurArray]
+                                                                enemyArr:[self getEnemeyArray]
+                                                                level:2
+                                                                bgNode:sb];
+        CCAction *actionMove=[CCActionMoveTo actionWithDuration: 1
+                                             position: newStart];
+        [[enemy_soldier getSoldier] runAction:[CCActionSequence actionWithArray:@[actionMove]]];
+        
+        [enemy_soldier move];
+    }
+    if( soldierType == 1 ){
+        CokeMan* enemy_soldier= [[CokeMan alloc] initCoke:lane
+                                                       startPos: selfPos
+                                                        destPos: destination
+                                                         ourArr:[self getOurArray]
+                                                       enemyArr:[self getEnemeyArray]
+                                                          level:2
+                                                         bgNode:sb];
+        CCAction *actionMove=[CCActionMoveTo actionWithDuration: 1
+                                                       position: newStart];
+        [[enemy_soldier getSoldier] runAction:[CCActionSequence actionWithArray:@[actionMove]]];
+        [enemy_soldier move];
+    }
 }
 
 - (void)initAnimation{
@@ -1205,15 +1271,15 @@
             if ( [s soldier].position.x<[self soldier].position.x-20 ) {
                 if( [s lane_num] == 0 && distance < minDistance0 ){
                     minDistance0 = distance;
-                    target0 = [[s soldier] position];
+                    target0 = enemy_pos;
                 }
-                if( [s lane_num] == 1 && distance < minDistance1 ){
+                if( ( [s lane_num] == 1 || [s lane_num] == -1 ) && distance < minDistance1 ){
                     minDistance1 = distance;
-                    target1 = [[s soldier] position];
+                    target1 = enemy_pos;
                 }
                 if( [s lane_num] == 2 && distance < minDistance2 ){
                     minDistance2 = distance;
-                    target2 = [[s soldier] position];
+                    target2 = enemy_pos;
                 }
             }
         }
@@ -1221,7 +1287,7 @@
         if( target0.x != 0){
             [self Launch:target0];
         }
-        if( target1.x != 1){
+        if( target1.x != 0){
             [self Launch:target1];
         }
         if( target2.x != 0){
