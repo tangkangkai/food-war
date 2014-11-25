@@ -226,7 +226,6 @@
 @interface FoodTruck : Soldier
 
 @property BOOL readyLaunch;
-@property CCNode* missile;
 
 - (void) undoReady;
 - (BOOL) readyToLaunch;

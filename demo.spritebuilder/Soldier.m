@@ -1067,61 +1067,54 @@
     CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
     fire.autoRemoveOnFinish=true;
     fire.duration=0.2;
+    CCNode *missle = [CCBReader load:@"friesMissile"];
+    missle.position = [[ self getSoldier] position];
     CCActionRotateBy *rotate = [CCActionRotateBy actionWithDuration:1.0f angle:-90.f];
     CCActionJumpTo* jumpUp = [CCActionJumpTo actionWithDuration:1.0f position:targetLoc height:80 jumps:1];
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[rotate, jumpUp]];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(missileRemoved)]]];
-    
-    _missile = [CCBReader load:@"friesMissile"];
-    _missile.position = [[ self getSoldier] position];
+    CCActionSequence *sequence = [CCActionSequence
+                                  actionWithArray:@[ groupAction,
+                                                     [CCActionCallBlock actionWithBlock:^{
+                                                        [self missileRemoved:missle];
+                                                        }]]];
+
     CCNode *parent = [[ self getSoldier ] parent];
-    [parent addChild:_missile];
+    [parent addChild:missle];
     
-    fire.position=_missile.position;
+    fire.position=missle.position;
     [self addChild:fire];
     if ([SavedData audio]) {
         [audio playEffect:@"missle_launch.mp3"];
     }
-    [_missile runAction:sequence];
-    [self friesLaunchShock];
+    [missle runAction:sequence];
     
     last_attack_time = [NSDate date];
     [self undoReady];
 }
 
--(void) friesLaunchShock{
-    CCNode *fries=[self getSoldier];
-    CCActionMoveTo *moveright_0 = [CCActionMoveTo actionWithDuration:0.05f position:ccp(10 , 0)];
-    CCActionMoveTo *moveback_0 = [CCActionMoveTo actionWithDuration:0.5f position:ccp(0,0)];
-    CCActionSequence *sequence_0 = [CCActionSequence actionWithArray:@[moveright_0, moveback_0]];
-    
-    [[fries children][0] runAction:sequence_0];
-    
-}
-
-- (void)missileRemoved
+- (void)missileRemoved:(CCNode*) missile
 {
     NSMutableArray *_targetLoseHealth;
     CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"explosion"];
     explosion.autoRemoveOnFinish = TRUE;
     explosion.duration = 1;
     
-    explosion.position = _missile.position;
-    [_missile.parent addChild:explosion];
+    explosion.position = missile.position;
+    [missile.parent addChild:explosion];
     if ([SavedData audio]) {
         NSLog(@"hehe");
         [audio playEffect:@"explode.mp3"];
     }
     
-    _targetLoseHealth=[self missileDetect];
+    _targetLoseHealth=[self missileDetect:missile];
     for (Soldier *target in _targetLoseHealth) {
         [target loseHealth:atkPower];
     }
-    [_missile removeFromParent];
+    [missile removeFromParent];
 }
 
 //find target the missle hit
--(NSMutableArray*)missileDetect{
+-(NSMutableArray*)missileDetect:(CCNode*)missile{
     //  int nearest_distance=[self missile_atk_range];
     Soldier *soldier = NULL;
     NSMutableArray* targets = [NSMutableArray arrayWithObjects:nil ];
@@ -1132,8 +1125,8 @@
     
     for( long i = 0; i < enemyArray.count; i++ ){
         soldier=[enemyArray objectAtIndex:i];
-        dx=ABS(_missile.position.x-[[soldier soldier]position].x);
-        dy=ABS(_missile.position.y-[[soldier soldier] position].y);
+        dx=ABS(missile.position.x-[[soldier soldier]position].x);
+        dy=ABS(missile.position.y-[[soldier soldier] position].y);
         double dist = sqrt(dx*dx + dy*dy);
         if (dist < exploreRange) {
             [targets addObject:[enemyArray objectAtIndex:i]];
@@ -1168,10 +1161,14 @@
     atkInterval = 10;
     atkRange = 350;
     atkPower = 40 + 15 * soldierLevel;
-    defence = 0.1 + 0.03 * soldierLevel;
+    defence = 0.2 + 0.03 * soldierLevel;
     value = 200 + 20 * soldierLevel;
-    health = 120 + 20 * soldierLevel;
+    health = 400 + 50 * soldierLevel;
     total_health = health;
+    
+    // Fix the position so that it stand on the lane
+    start.y += 25;
+    
     self = [ super initSoldier:@"foodTruck" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
     
     [self schedule:@selector(countDown) interval:0.5];
@@ -1187,8 +1184,14 @@
     NSMutableArray *healthArray = [ self getArray:1 ];
     if ([self readyToLaunch]) {
         int range=[self getAtkRange];
-        CGPoint target = CGPointMake(0, 0);
-        float minDistance = range;
+        CGPoint target0 = CGPointMake(0, 0);
+        CGPoint target1 = CGPointMake(0, 0);
+        CGPoint target2 = CGPointMake(0, 0);
+
+        float minDistance0 = range;
+        float minDistance1 = range;
+        float minDistance2 = range;
+
         for( Soldier *s in healthArray ){
             CGPoint enemy_pos = [s soldier].position;
             if( [ s getType ] == 4 ){
@@ -1199,13 +1202,30 @@
             CGFloat xDist = (enemy_pos.x - [self soldier].position.x);
             CGFloat yDist = (enemy_pos.y - [self soldier].position.y);
             CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
-            if (distance<minDistance && [s soldier].position.x<[self soldier].position.x-20) {
-                minDistance = distance;
-                target = [[s soldier] position];
+            if ( [s soldier].position.x<[self soldier].position.x-20 ) {
+                if( [s lane_num] == 0 && distance < minDistance0 ){
+                    minDistance0 = distance;
+                    target0 = [[s soldier] position];
+                }
+                if( [s lane_num] == 1 && distance < minDistance1 ){
+                    minDistance1 = distance;
+                    target1 = [[s soldier] position];
+                }
+                if( [s lane_num] == 2 && distance < minDistance2 ){
+                    minDistance2 = distance;
+                    target2 = [[s soldier] position];
+                }
             }
         }
-        if( target.x != 0){
-            [self Launch:target];
+        
+        if( target0.x != 0){
+            [self Launch:target0];
+        }
+        if( target1.x != 1){
+            [self Launch:target1];
+        }
+        if( target2.x != 0){
+            [self Launch:target2];
         }
     }
 }
