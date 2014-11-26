@@ -13,6 +13,7 @@
 @implementation IceBucket{
     float accelator;
     CCSprite* snow;
+    NSMutableArray *snowArray;
 }
 
 
@@ -20,6 +21,7 @@
 -(id) initIceBucket:(NSString *)img animation:(CCNode *)ani startPosition:(CGPoint)start endPosition:(CGPoint)end enemyArr:(NSMutableArray *)enemyArray flyingItemsArray: flyingItemsArr{
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray flyingItemsArray:flyingItemsArr];
     accelator = 0;
+    snowArray = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -53,9 +55,11 @@
                 snow = [CCSprite spriteWithSpriteFrame:snowFrame];
                 snow.position = CGPointMake([[[self enemies] objectAtIndex:i] getSoldier].position.x, [[[self enemies] objectAtIndex:i] getSoldier].position.y);
                 CCNode *parent = [self.item parent];
+                [snow setZOrder:3000];
                 [parent addChild:snow];
+                [snowArray addObject:snow];
                 NSLog(@"Snow added");
-                
+                [self schedule:@selector(removeSnow) interval:1];
             }
         }
         
@@ -82,6 +86,23 @@
     snow = [CCSprite spriteWithSpriteFrame:snowFrame];
     snow.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
     [self addChild:snow];*/
+}
+
+-(void) removeSnow{
+//    [snow removeFromParent];
+    NSLog(@"removing snow");
+    while([snowArray count] != 0){
+        NSLog(@"Enter While loop");
+        CCSprite* tmpsnow = [snowArray objectAtIndex:0];
+        [tmpsnow removeFromParent];
+        [snowArray removeObjectAtIndex:0];
+    }
+    /*
+    for(int i = 0; i < [snowArray count]; i++){
+        snow = [snowArray objectAtIndex:i];
+        [snow removeFromParent];
+    }*/
+    [self unschedule:@selector(removeSnow)];
 }
 
 

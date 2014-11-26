@@ -34,7 +34,7 @@
 
 
 - (void)update{
-    if(accelator > 3) {
+    if(accelator > 2) {
 
         CCParticleSystem *fire = (CCParticleSystem *)[CCBReader load:@"fire"];
         fire.autoRemoveOnFinish = YES;
@@ -68,7 +68,7 @@
     }
     CGPoint posi = CGPointMake(self.item.position.x, self.item.position.y - accelator);
     self.item.position = posi;
-    accelator += 0.05;
+    accelator += 0.03;
     
 }
 
