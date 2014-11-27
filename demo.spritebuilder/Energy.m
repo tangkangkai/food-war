@@ -46,6 +46,8 @@
     CCActionSpawn *groupAction = [CCActionSpawn actionWithArray:@[jumpUp,actionRotate]];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[groupAction, [CCActionCallFunc actionWithTarget:self selector:@selector(arrive)]]];
     [_deadBody runAction:sequence];
+    OALSimpleAudio *energyAudio = [OALSimpleAudio sharedInstance];
+    [energyAudio playEffect:@"bubble.mp3"];
 }
 
 -(void) arrive{

@@ -232,8 +232,8 @@ static NSMutableArray *itArray;
 
 // interface for bomb
 - (void) addBombNumber {
-    OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
-    [audio playEffect:@"bell1.mp3"];
+    OALSimpleAudio *itemAudio = [OALSimpleAudio sharedInstance];
+    [itemAudio playEffect:@"bell1.mp3"];
     bombnumber++;
 }
 

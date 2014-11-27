@@ -72,6 +72,7 @@
 		E93EBEFC1A26B1C1007774B0 /* bgHp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBEFB1A26B1C1007774B0 /* bgHp.mp3 */; };
 		E93EBF001A26B1CD007774B0 /* bell1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBEFE1A26B1CD007774B0 /* bell1.mp3 */; };
 		E93EBF011A26B1CD007774B0 /* bell2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBEFF1A26B1CD007774B0 /* bell2.mp3 */; };
+		E93EBF031A26B845007774B0 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBF021A26B845007774B0 /* bubble.mp3 */; };
 		E94CD1BD1A13450500BA5409 /* burgerAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BB1A13450500BA5409 /* burgerAni.plist */; };
 		E94CD1BE1A13450500BA5409 /* burgerAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BC1A13450500BA5409 /* burgerAni.png */; };
 		E95AE2671A1D54A7009B89B2 /* parachuteBox.png in Resources */ = {isa = PBXBuildFile; fileRef = E95AE2661A1D54A7009B89B2 /* parachuteBox.png */; };
@@ -195,6 +196,7 @@
 		E93EBEFB1A26B1C1007774B0 /* bgHp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgHp.mp3; sourceTree = "<group>"; };
 		E93EBEFE1A26B1CD007774B0 /* bell1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell1.mp3; sourceTree = "<group>"; };
 		E93EBEFF1A26B1CD007774B0 /* bell2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell2.mp3; sourceTree = "<group>"; };
+		E93EBF021A26B845007774B0 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
 		E94CD1BB1A13450500BA5409 /* burgerAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = burgerAni.plist; path = burgerAni/burgerAni.plist; sourceTree = "<group>"; };
 		E94CD1BC1A13450500BA5409 /* burgerAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = burgerAni.png; path = burgerAni/burgerAni.png; sourceTree = "<group>"; };
 		E95AE2661A1D54A7009B89B2 /* parachuteBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachuteBox.png; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 				E93EBEFB1A26B1C1007774B0 /* bgHp.mp3 */,
 				E93EBEFE1A26B1CD007774B0 /* bell1.mp3 */,
 				E93EBEFF1A26B1CD007774B0 /* bell2.mp3 */,
+				E93EBF021A26B845007774B0 /* bubble.mp3 */,
 				BE18BDEC19EC7D68009A495A /* playBackground.mp3 */,
 				E9ECC79719EDAA68009E03D4 /* explode.mp3 */,
 				E9ECC79819EDAA68009E03D4 /* missle_launch.mp3 */,
@@ -629,6 +632,7 @@
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 				4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */,
 				E9DE996519EB110800FB214D /* blop.mp3 in Resources */,
+				E93EBF031A26B845007774B0 /* bubble.mp3 in Resources */,
 				E9ECC79A19EDAA68009E03D4 /* missle_launch.mp3 in Resources */,
 				BEBB1D9419ECF7A8007F4FA1 /* healthy_food.png in Resources */,
 				490957031A18881600710C92 /* potatoFightAni.plist in Resources */,
