@@ -69,6 +69,9 @@
 		BEBB1D9419ECF7A8007F4FA1 /* healthy_food.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D9219ECF7A8007F4FA1 /* healthy_food.png */; };
 		BEBB1D9519ECF7A8007F4FA1 /* healthy_food.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */; };
 		E91638C119DDFB4200115E9B /* Bomb.m in Sources */ = {isa = PBXBuildFile; fileRef = E91638BF19DDFB4200115E9B /* Bomb.m */; };
+		E93EBEFC1A26B1C1007774B0 /* bgHp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBEFB1A26B1C1007774B0 /* bgHp.mp3 */; };
+		E93EBF001A26B1CD007774B0 /* bell1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBEFE1A26B1CD007774B0 /* bell1.mp3 */; };
+		E93EBF011A26B1CD007774B0 /* bell2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E93EBEFF1A26B1CD007774B0 /* bell2.mp3 */; };
 		E94CD1BD1A13450500BA5409 /* burgerAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BB1A13450500BA5409 /* burgerAni.plist */; };
 		E94CD1BE1A13450500BA5409 /* burgerAni.png in Resources */ = {isa = PBXBuildFile; fileRef = E94CD1BC1A13450500BA5409 /* burgerAni.png */; };
 		E95AE2671A1D54A7009B89B2 /* parachuteBox.png in Resources */ = {isa = PBXBuildFile; fileRef = E95AE2661A1D54A7009B89B2 /* parachuteBox.png */; };
@@ -189,6 +192,9 @@
 		BEBB1D9319ECF7A8007F4FA1 /* healthy_food.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = healthy_food.plist; sourceTree = "<group>"; };
 		E91638BB19DDFA8B00115E9B /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bomb.h; path = Source/Bomb.h; sourceTree = "<group>"; };
 		E91638BF19DDFB4200115E9B /* Bomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bomb.m; sourceTree = "<group>"; };
+		E93EBEFB1A26B1C1007774B0 /* bgHp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgHp.mp3; sourceTree = "<group>"; };
+		E93EBEFE1A26B1CD007774B0 /* bell1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell1.mp3; sourceTree = "<group>"; };
+		E93EBEFF1A26B1CD007774B0 /* bell2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell2.mp3; sourceTree = "<group>"; };
 		E94CD1BB1A13450500BA5409 /* burgerAni.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = burgerAni.plist; path = burgerAni/burgerAni.plist; sourceTree = "<group>"; };
 		E94CD1BC1A13450500BA5409 /* burgerAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = burgerAni.png; path = burgerAni/burgerAni.png; sourceTree = "<group>"; };
 		E95AE2661A1D54A7009B89B2 /* parachuteBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parachuteBox.png; sourceTree = "<group>"; };
@@ -479,6 +485,9 @@
 		E9DE995A19EB060E00FB214D /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				E93EBEFB1A26B1C1007774B0 /* bgHp.mp3 */,
+				E93EBEFE1A26B1CD007774B0 /* bell1.mp3 */,
+				E93EBEFF1A26B1CD007774B0 /* bell2.mp3 */,
 				BE18BDEC19EC7D68009A495A /* playBackground.mp3 */,
 				E9ECC79719EDAA68009E03D4 /* explode.mp3 */,
 				E9ECC79819EDAA68009E03D4 /* missle_launch.mp3 */,
@@ -568,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE18BDED19EC7D68009A495A /* playBackground.mp3 in Resources */,
+				E93EBF001A26B1CD007774B0 /* bell1.mp3 in Resources */,
 				E9ECC79919EDAA68009E03D4 /* explode.mp3 in Resources */,
 				E9C5956B1A1871820007E717 /* burgerFightAni.plist in Resources */,
 				49DEFAA81A0A261900B1E33B /* bananaAni.plist in Resources */,
@@ -598,6 +608,7 @@
 				E97969351A09F3D500AB3CB8 /* cokeAni.plist in Resources */,
 				E9C377341A00ABD600D1F524 /* friesAni.plist in Resources */,
 				E9D5AB8119F19D460076F5A3 /* bombAni.png in Resources */,
+				E93EBF011A26B1CD007774B0 /* bell2.mp3 in Resources */,
 				E9C377351A00ABD600D1F524 /* friesAni.png in Resources */,
 				498440EA1A11436500EACCCE /* potatoAni.plist in Resources */,
 				E9DB7B251A22643600649C0A /* iceBucket.png in Resources */,
@@ -614,6 +625,7 @@
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				498581F11A23184C007AF271 /* foodtruckAni.plist in Resources */,
+				E93EBEFC1A26B1C1007774B0 /* bgHp.mp3 in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 				4904C28F19D1CF1600C6DEF2 /* burger-small.png in Resources */,
 				E9DE996519EB110800FB214D /* blop.mp3 in Resources */,

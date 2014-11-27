@@ -103,6 +103,14 @@ static Level *Levelselected;
                                             @"lane":@2,
                                             @"enemyLev":@1,
                                             @"enemies":@[@1,@2] } ];
+    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@15,
+                                            @"lane":@2,
+                                            @"items":@[@1],
+                                            @"enemyLev":@1} ];
+    [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@18,
+                                            @"lane":@2,
+                                            @"items":@[@1],
+                                            @"enemyLev":@1} ];
     level1 = [ [Level alloc] initLevel:1
                               laneNum:1
                               time:200
@@ -142,6 +150,14 @@ static Level *Levelselected;
                                             @"lane":@2,
                                             @"enemyLev":@1,
                                             @"enemies":@[@1,@2] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
+                                            @"lane":@2,
+                                            @"items":@[@1],
+                                            @"enemyLev":@1} ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@14,
+                                            @"lane":@2,
+                                            @"items":@[@1],
+                                            @"enemyLev":@1} ];
     level2 = [ [Level alloc] initLevel:2
                                 laneNum:2
                                    time:200
