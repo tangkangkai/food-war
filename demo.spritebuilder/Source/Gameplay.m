@@ -129,10 +129,10 @@ static NSMutableArray *itArray;
     //   [self schedule:@selector(collectEnergy) interval:0.1f];
     _audioIsOn = [SavedData audio];
     if (_audioIsOn) {
-        [audio playBg:@"playBackground.mp3" loop:TRUE];
+        [audio playBg:@"bgHp.mp3" loop:TRUE];
     } else {
         _musicoff.visible = TRUE;
-        [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
+        [audio playBg:@"bgHp.mp3" volume:0 pan:0 loop:TRUE];
         
     }
     
@@ -258,6 +258,8 @@ static NSMutableArray *itArray;
 
 // interface for bomb
 - (void) addBombNumber {
+    OALSimpleAudio *itemAudio = [OALSimpleAudio sharedInstance];
+    [itemAudio playEffect:@"bell1.mp3"];
     bombnumber++;
 }
 
@@ -309,7 +311,7 @@ static NSMutableArray *itArray;
         [SavedData setAudio:TRUE];
         _musicoff.visible = FALSE;
         // _musicon.visible = TRUE;
-        [audio playBg:@"playBackground.mp3" volume:1 pan:0 loop:TRUE];
+        [audio playBg:@"bgHp.mp3" volume:1 pan:0 loop:TRUE];
     }
     else
     {
@@ -317,7 +319,7 @@ static NSMutableArray *itArray;
         [SavedData setAudio:FALSE];
         // _musicon.visible = FALSE;
         _musicoff.visible = TRUE;
-        [audio playBg:@"playBackground.mp3" volume:0 pan:0 loop:TRUE];
+        [audio playBg:@"bgHp.mp3" volume:0 pan:0 loop:TRUE];
     }
 }
 
