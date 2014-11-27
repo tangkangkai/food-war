@@ -18,6 +18,12 @@
 			<key>translations</key>
 			<dict/>
 		</dict>
+		<dict>
+			<key>key</key>
+			<string>100</string>
+			<key>translations</key>
+			<dict/>
+		</dict>
 	</array>
 </dict>
 </plist>

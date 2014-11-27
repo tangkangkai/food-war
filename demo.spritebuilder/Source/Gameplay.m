@@ -57,6 +57,10 @@ static NSMutableArray *itArray;
     CCSprite *_second;
     CCSprite *_third;
     CCSprite *_fourth;
+    CCNode *_firstCost;
+    CCNode *_secondCost;
+    CCNode *_thirdCost;
+    CCNode *_fourthCost;
     NSMutableArray *lineupArray;
     NSMutableArray *spots;
     NSMutableArray* energyArray;
@@ -154,10 +158,14 @@ static NSMutableArray *itArray;
     NSLog(@"length of lineup: %d", (int)keys.count);
     for (int i = 0; i < (int)keys.count; i++) {
         CCSprite *spot = [spots objectAtIndex:i];
-        CCNode *soldier = [keys objectAtIndex:i];
+        NSString *soldier = [keys objectAtIndex:i];
         CCSpriteFrame* frame = [cache spriteFrameByName:[soldiers objectForKey:soldier]];
         spot.spriteFrame = frame;
         [lineupArray addObject:soldier];
+        // TODO Load level
+        int energyCost = [self getEnergy: soldier
+                             soldier_lvl:1];
+        [self updateEnergy:i energy:energyCost];
         NSLog(@"%@", [soldiers objectForKey:soldier]);
     }
     
@@ -167,15 +175,33 @@ static NSMutableArray *itArray;
     }
 }
 
+- (void)updateEnergy: (int)spot
+                      energy: (int)energy{
+    if( spot == 0){
+        [[_firstCost children][0] setString:[NSString stringWithFormat:@"%d", energy]];
+        [_firstCost setVisible:true];
+    }
+    if( spot == 1){
+        [[_secondCost children][0] setString:[NSString stringWithFormat:@"%d", energy]];
+        [_secondCost setVisible:true];
+    }
+    if( spot == 2){
+        [[_thirdCost children][0] setString:[NSString stringWithFormat:@"%d", energy]];
+        [_thirdCost setVisible:true];
+    }
+    if( spot == 3){
+        [[_fourthCost children][0] setString:[NSString stringWithFormat:@"%d", energy]];
+        [_fourthCost setVisible:true];
+
+    }
+}
+
 -(void)onExit{
     [super onExit];
     [audio stopBg];
     [scroll cleanup];
 }
 
-//-(void)updateMoney{
-//    [_money setString:[NSString stringWithFormat:@"$ %d", [SavedData money]]];
-//}
 
 -(void)reduceEnergy:(int) amount {
     energy -= amount;
@@ -427,8 +453,9 @@ static NSMutableArray *itArray;
     soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
     
     if (selected_soldier != NULL){
-        // TODO Temperoray fix
-        if( 75 + 25 * soldierLevel <= energy ){
+        int energyCost = [self getEnergy: selected_soldier
+                                          soldier_lvl:soldierLevel];
+        if( energyCost <= energy ){
             Soldier* newSolider = [[Soldier alloc] initSoldier:selected_soldier
                                                          group:-1
                                                       lane_num:-1
@@ -443,6 +470,24 @@ static NSMutableArray *itArray;
             [self showEnergyMessage];
         }
     }
+}
+
+-(int) getEnergy:(NSString*) soldier
+                 soldier_lvl:(int)lvl{
+    int energyCost = 0;
+    if( [soldier  isEqual: @"banana"]){
+        energyCost = [BananaMan getEnergy: lvl];
+    }
+    if( [soldier  isEqual: @"bean"]){
+        energyCost = [BeanMan getEnergy: lvl];
+    }
+    if( [soldier  isEqual: @"potatoMan"]){
+        energyCost = [PotatoMan getEnergy: lvl];
+    }
+    if( [soldier  isEqual: @"corn"]){
+        energyCost = [CornMan getEnergy: lvl];
+    }
+    return energyCost;
 }
 
 -(void) showEnergyMessage {
@@ -707,7 +752,7 @@ static NSMutableArray *itArray;
         if (_audioIsOn) {
             [audio playEffect:@"blop.mp3"];
         }
-        [self reduceEnergy:[newSoldier getValue]];
+        [self reduceEnergy:[newSoldier getEnergy]];
     }
 }
 

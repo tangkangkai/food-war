@@ -3,10 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>filenames</key>
-	<dict>
-		<key>foodwar_picture/item_bar.psd</key>
-		<string>foodwar_picture/item_bar.png</string>
-	</dict>
+	<dict/>
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
