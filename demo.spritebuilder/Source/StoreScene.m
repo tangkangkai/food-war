@@ -9,73 +9,11 @@
 #import "StoreScene.h"
 #import "SavedData.h"
 #import "Soldier.h"
-#import "Level.h"
 
 @implementation StoreScene {
     CCTextField *_total;
-    CCTextField *_cost1;
-    CCTextField *_cost2;
-    CCTextField *_cost3;
-    CCTextField *_cost4;
-    CCTextField *_level1;
-    CCTextField *_level2;
-    CCTextField *_level3;
-    CCTextField *_level4;
     CCTextField *_message;
-
     int total;
-    int beanCost;
-    int bananaCost;
-    int potatoCost;
-    int cost4;
-    
-    CCNode *_hole1;
-    CCNode *_hole2;
-    CCNode *_hole3;
-    CCNode *_hole4;
-    
-    // Level State parameters
-    // level
-    int potatoLevel;
-    int beanLevel;
-    int bananaLevel;
-    
-    // health
-    
-        //bar
-    CCNode *_potatoHealth;
-    CCNode *_beanHealth;
-    CCNode *_bananaHealth;
-        //value
-    CCTextField *_potatoH;
-    CCTextField *_beanH;
-    CCTextField *_bananaH;
-    
-    // attack
-        //bar
-    CCNode *_potatoAtkPower;
-    CCNode *_beanAtkPower;
-    CCNode *_bananaAtkPower;
-        //value
-    CCTextField *_potatoAtk;
-    CCTextField *_beanAtk;
-    CCTextField *_bananaAtk;
-    
-    // defence
-        //bar
-    CCNode *_potatoDefense;
-    CCNode *_beanDefense;
-    CCNode *_bananaDefense;
-        //value
-    CCTextField *_potatoD;
-    CCTextField *_beanD;
-    CCTextField *_bananaD;
-    
-    
-    PotatoMan *potato;
-    BananaMan *banana;
-    BeanMan *bean;
-
 }
 
 - (void) didLoadFromCCB {
