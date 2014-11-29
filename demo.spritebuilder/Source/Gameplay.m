@@ -168,9 +168,17 @@ static NSMutableArray *itArray;
         CCSpriteFrame* frame = [cache spriteFrameByName:[soldiers objectForKey:soldier]];
         spot.spriteFrame = frame;
         [lineupArray addObject:soldier];
-        // TODO Load level
+
+        NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
+        int level;
+        if( [soldier isEqualToString:@"potatoMan"] ){
+            level = [[soldierLevelDict objectForKey:@"potato"] intValue];
+        }
+        else{
+            level = [[soldierLevelDict objectForKey:soldier] intValue];
+        }
         int energyCost = [self getEnergy: soldier
-                             soldier_lvl:1];
+                             soldier_lvl:level];
         [self updateEnergy:i energy:energyCost];
         NSLog(@"%@", [soldiers objectForKey:soldier]);
     }
@@ -462,8 +470,12 @@ static NSMutableArray *itArray;
     
     selected_soldier = soldier;
     selected_soldier_animation = soldier;
-    soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
-    
+    if( [soldier isEqualToString:@"potatoMan"] ){
+        soldierLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
+    }
+    else{
+        soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
+    }
     if (selected_soldier != NULL){
         int energyCost = [self getEnergy: selected_soldier
                                           soldier_lvl:soldierLevel];
