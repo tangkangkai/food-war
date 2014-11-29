@@ -21,6 +21,8 @@
     float defence;    // value is from 0 ~ 1(100%)
     int moveSpeed;   // the distance soldier can move per second
     int value;       // the resource gained when the enemy dead
+    int cost;
+    int costInc;
     int energy;
     int level;
     OALSimpleAudio *audio;
@@ -83,6 +85,7 @@
 - (int)getAtkInt;
 - (int)getMoveSpeed;
 - (int)getValue;
+- (int)getUpgradeCost:(int)level;
 
 - (NSMutableArray*)getOurArray;
 - (NSMutableArray*)getEnemeyArray;

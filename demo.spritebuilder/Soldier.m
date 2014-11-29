@@ -69,6 +69,11 @@
     return health;
 }
 
+- (int)getUpgradeCost:(int)level{
+    return cost + costInc*level;
+}
+
+
 - (int)getMoveSpeed {
     return moveSpeed;
 }
@@ -76,6 +81,7 @@
 - (CCNode*)getBgNode{
     return _bgNode;
 }
+
 
 - (void)initAnimation{
 }
@@ -424,6 +430,7 @@
     atkPower = 5 + 5 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
+    
     health = 100 + 20 * soldierLevel;
     total_health = health;
 
@@ -483,6 +490,8 @@
     atkPower = 20 + 5 * soldierLevel;
     defence = 0.2 + 0.05 * soldierLevel;
     value = 100 + 20 * soldierLevel;
+    cost = 200;
+    costInc = 100;
     health = 200 + 50 * soldierLevel;
     energy = [PotatoMan getEnergy:soldierLevel];
 
@@ -531,6 +540,8 @@
     atkPower = 5 + 5 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
+    cost = 200;
+    costInc = 120;
     health = 100 + 20 * soldierLevel;
     energy = [BeanMan getEnergy:soldierLevel];
 
@@ -606,6 +617,8 @@
     atkPower = 20 + 8 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
+    cost = 250;
+    costInc = 130;
     health = 140 + 20 * soldierLevel;
     energy = [BananaMan getEnergy:soldierLevel];
 
@@ -831,6 +844,8 @@
     atkPower = 50 + 20 * soldierLevel;
     defence = 0.1 + 0.03 * soldierLevel;
     value = 100 + 20 * soldierLevel;
+    cost = 400;
+    costInc = 200;
     health = 120 + 20 * soldierLevel;
     energy = [CornMan getEnergy:soldierLevel];
 

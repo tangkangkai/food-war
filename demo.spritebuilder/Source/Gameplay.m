@@ -19,8 +19,9 @@
 #import "Level.h"
 
 #define BURGER 1;
-#define COKE 2;ƒ
+#define COKE 2;
 #define FRIES 3;
+
 
 static int energy;
 static BOOL _audioIsOn;
@@ -49,6 +50,7 @@ static NSMutableArray *itArray;
     
     CCTextField *_energyPrompt;
     CCTextField *_bombPrompt;
+    CCTextField *_messagePrompt;
     
     
     int mTimeInSec;
@@ -73,6 +75,10 @@ static NSMutableArray *itArray;
     //bomb number
     CCTextField *_bombnumber;
     int bombnumber;
+    
+    //ice bucket number
+    CCTextField *_bucketnumber;
+    int bucketnumber;
     
     
     int _soldiertype;
@@ -110,12 +116,12 @@ static NSMutableArray *itArray;
     //get bomb number
     bombnumber = 1;
     _soldiertype=-1;
+    //get bucket number
+    bucketnumber = 1;
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     // _energyPrompt opacity set to 0
-    _energyPrompt.opacity = 0;
-    _bombPrompt.opacity = 0;
-    
+    _messagePrompt.opacity = 0;
     
     
     _scrollview.delegate = self;
@@ -211,14 +217,29 @@ static NSMutableArray *itArray;
     energy += amount;
 }
 
+// interface for items
+-(void)addItem:(int) item {
+    if (item == 1) { // 1: add bomb number and its effect
+        OALSimpleAudio *itemAudio = [OALSimpleAudio sharedInstance];
+        [itemAudio playEffect:@"bell1.mp3"];
+        bombnumber++;
+    } else if (item == 2) { // 2: add ice bucket number and its effect
+        OALSimpleAudio *itemAudio = [OALSimpleAudio sharedInstance];
+        [itemAudio playEffect:@"bell1.mp3"];
+        bucketnumber++;
+    }
+}
+
+
 + (NSMutableArray*) getItArray{
     return itArray;
 }
 
 -(void)updateEnergy{
     [_energy setString:[NSString stringWithFormat:@"%d", energy]];
-    //update bomb number as well
+    //update bomb number, bucket number as well
     [_bombnumber setString:[NSString stringWithFormat:@"%d", bombnumber]];
+    [_bucketnumber setString:[NSString stringWithFormat:@"%d", bucketnumber]];
 }
 
 -(void)tick {
@@ -236,16 +257,6 @@ static NSMutableArray *itArray;
         [_timerLabel setString:[NSString stringWithFormat:@"%d", mTimeInSec]];
         [self updateEnergy];
         
-        
-        // check if energy is enough
-        for (int i = (int)keys.count; i < spots.count; i++) {
-        }
-        
-        // check if energy for bomb is enough
-        
-        
-        
-        
     } else if(timeFlag == 1 ){
         timeFlag = 2;
         [self gameover];
@@ -253,14 +264,6 @@ static NSMutableArray *itArray;
     } else{
         //do nothing
     }
-}
-
-
-// interface for bomb
-- (void) addBombNumber {
-    OALSimpleAudio *itemAudio = [OALSimpleAudio sharedInstance];
-    [itemAudio playEffect:@"bell1.mp3"];
-    bombnumber++;
 }
 
 
@@ -401,7 +404,7 @@ static NSMutableArray *itArray;
         if (bombnumber < 1) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
-            [self showBombMessage];
+            [self showMessage:[NSString stringWithFormat:@"No Bomb"]];
             return;
         }
         selected_soldier = @"blackBomb";
@@ -441,6 +444,12 @@ static NSMutableArray *itArray;
         return;
     } else if(CGRectContainsPoint(_iceBucket.boundingBox,touchLocation)){
         NSLog(@"IceBucket Clicked");
+        if (bucketnumber < 1) {
+            selected_soldier = NULL;
+            selected_soldier_animation = NULL;
+            [self showMessage:[NSString stringWithFormat:@"No Ice Bucket"]];
+            return;
+        }
         selected_soldier = @"iceBucket";
         selected_soldier_animation=@"iceBucket";
         CCSpriteFrame* bucketFrame = [CCSpriteFrame frameWithImageNamed:@"iceBucket.png"];
@@ -470,7 +479,7 @@ static NSMutableArray *itArray;
                                                         bgNode:self];
             man = newSolider;
         } else {
-            [self showEnergyMessage];
+            [self showMessage:[NSString stringWithFormat:@"No Energy"]];
         }
     }
 }
@@ -493,24 +502,15 @@ static NSMutableArray *itArray;
     return energyCost;
 }
 
--(void) showEnergyMessage {
+-(void) showMessage: (NSString*) message {
+    _messagePrompt.string = message;
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.4f position:ccp(120, 250)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.5f position:ccp(300, 288)];
     
     CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
-    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(120, 270)];
+    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(200, 288)];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveDown, fadeOut, moveBack]];
-    [_energyPrompt runAction:sequence];
-}
-
--(void) showBombMessage {
-    CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
-    CCActionMoveTo *moveUp = [CCActionMoveTo actionWithDuration:0.2f position:ccp(507, 70)];
-    
-    CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
-    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(507, 55)];
-    CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveUp, fadeOut, moveBack]];
-    [_bombPrompt runAction:sequence];
+    [_messagePrompt runAction:sequence];
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -567,6 +567,7 @@ static NSMutableArray *itArray;
         }
     } else if([selected_soldier isEqualToString:@"iceBucket"]){
         NSLog(@"release Bucket!");
+        bucketnumber--;
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBucket:scrollPos];
         
