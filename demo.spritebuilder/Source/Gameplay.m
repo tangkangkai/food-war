@@ -400,7 +400,7 @@ static NSMutableArray *itArray;
         if (bombnumber < 1) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
-            [self showMessage:1];
+            [self showMessage:[NSString stringWithFormat:@"No Bomb"]];
             return;
         }
         selected_soldier = @"blackBomb";
@@ -469,7 +469,7 @@ static NSMutableArray *itArray;
                                                         bgNode:self];
             man = newSolider;
         } else {
-            [self showMessage:0];
+            [self showMessage:[NSString stringWithFormat:@"No Energy"]];
         }
     }
 }
@@ -492,13 +492,8 @@ static NSMutableArray *itArray;
     return energyCost;
 }
 
--(void) showMessage: (int) messageIndex {
-    if (messageIndex == 0) {
-        _messagePrompt.string = [NSString stringWithFormat:@"Lack Energy"];
-    } else if (messageIndex == 1) {
-        _messagePrompt.string = [NSString stringWithFormat:@"No Bomb"];
-    }
-    
+-(void) showMessage: (NSString*) message {
+    _messagePrompt.string = message;
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
     CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.5f position:ccp(320, 288)];
     
