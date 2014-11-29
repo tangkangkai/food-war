@@ -446,6 +446,7 @@ static NSMutableArray *itArray;
         CCSpriteFrame* bucketFrame = [CCSpriteFrame frameWithImageNamed:@"iceBucket.png"];
         _aniIceBucket = [CCSprite spriteWithSpriteFrame:bucketFrame];
 //        _aniIceBucket = (CCSprite*)[CCBReader load:@"iceBucket"];
+        _aniIceBucket.position = CGPointMake(touchLocation.x, touchLocation.y);
         [self addChild:_aniIceBucket];
         return;
     }
