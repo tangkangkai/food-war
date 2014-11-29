@@ -2707,7 +2707,7 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.8651553392410278</real>
+							<real>1.7194315195083618</real>
 							<real>2.0912282466888428</real>
 							<false/>
 							<integer>0</integer>
@@ -2884,7 +2884,7 @@
 				<key>displayName</key>
 				<string>iceNum</string>
 				<key>memberVarAssignmentName</key>
-				<string>_bombnumber</string>
+				<string>_bucketnumber</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>

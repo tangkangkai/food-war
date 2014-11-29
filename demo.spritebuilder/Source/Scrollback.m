@@ -17,9 +17,16 @@
 #import "Gameplay.h"
 #import "Item.h"
 
+
+
+
 static NSMutableArray *energyArray;
 
+const int BOMB = 1;
+const int ICEBUCKET = 2;
+
 @implementation Scrollback{
+
     int _startlaunch;
     int time;
     Soldier *s;
@@ -91,7 +98,7 @@ static NSMutableArray *energyArray;
         if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
             CCScrollView* ccs = (CCScrollView*)[self parent];
             Gameplay* g = (Gameplay*)[ccs parent];
-            [g addBombNumber];
+            [g addItem:BOMB];
             [tmp disappear];
             NSLog(@"Item clicked!");
         }
