@@ -27,7 +27,6 @@
 		49F3FC101A15EB8200438286 /* bananaFightAni.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49F3FC0E1A15EB8200438286 /* bananaFightAni.plist */; };
 		49F3FC111A15EB8200438286 /* bananaFightAni.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F3FC0F1A15EB8200438286 /* bananaFightAni.png */; };
 		5915FDBB1A21A9F800670E2F /* updateScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 5915FDBA1A21A9F800670E2F /* updateScroll.m */; };
-		599974AC19FED3C800A0626A /* StoreScene2.m in Sources */ = {isa = PBXBuildFile; fileRef = 599974AB19FED3C800A0626A /* StoreScene2.m */; };
 		59B924E019E4F02500C45A85 /* Selectscroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B924DF19E4F02500C45A85 /* Selectscroll.m */; };
 		59BF557019DA288600D30484 /* Scrollback.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BF556F19DA288600D30484 /* Scrollback.m */; };
 		59C4E2B31A1510A6007F1CE4 /* Energy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C4E2B21A1510A6007F1CE4 /* Energy.m */; };
@@ -136,8 +135,6 @@
 		49F3FC0F1A15EB8200438286 /* bananaFightAni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bananaFightAni.png; sourceTree = "<group>"; };
 		5915FDB91A21A9F800670E2F /* updateScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateScroll.h; sourceTree = "<group>"; };
 		5915FDBA1A21A9F800670E2F /* updateScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateScroll.m; sourceTree = "<group>"; };
-		599974AA19FED3C800A0626A /* StoreScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreScene2.h; path = Source/StoreScene2.h; sourceTree = "<group>"; };
-		599974AB19FED3C800A0626A /* StoreScene2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreScene2.m; path = Source/StoreScene2.m; sourceTree = "<group>"; };
 		59B924DE19E4F02500C45A85 /* Selectscroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Selectscroll.h; path = Source/Selectscroll.h; sourceTree = "<group>"; };
 		59B924DF19E4F02500C45A85 /* Selectscroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Selectscroll.m; path = Source/Selectscroll.m; sourceTree = "<group>"; };
 		59BF556E19DA288600D30484 /* Scrollback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scrollback.h; path = Source/Scrollback.h; sourceTree = "<group>"; };
@@ -329,8 +326,6 @@
 				59BF556E19DA288600D30484 /* Scrollback.h */,
 				59BF556F19DA288600D30484 /* Scrollback.m */,
 				BEB82C4819CA610C009DF48C /* StoreScene.m */,
-				599974AA19FED3C800A0626A /* StoreScene2.h */,
-				599974AB19FED3C800A0626A /* StoreScene2.m */,
 				BE9A416A19D7BF480060E00D /* SavedData.h */,
 				BE9A416B19D7BF480060E00D /* SavedData.m */,
 				4959BD1419F5C087004AC4C5 /* Level.h */,
@@ -666,7 +661,6 @@
 				E9E777A31A17BE21006A03FD /* Item.m in Sources */,
 				E91638C119DDFB4200115E9B /* Bomb.m in Sources */,
 				49A8E53319CFF8CF00A7DC61 /* Soldier.m in Sources */,
-				599974AC19FED3C800A0626A /* StoreScene2.m in Sources */,
 				BE9A416C19D7BF480060E00D /* SavedData.m in Sources */,
 				BEB82C4919CA610C009DF48C /* ChoiceScene.m in Sources */,
 				59B924E019E4F02500C45A85 /* Selectscroll.m in Sources */,
