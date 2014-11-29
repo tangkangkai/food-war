@@ -39,7 +39,8 @@
         [parent addChild:fire];
         OALSimpleAudio *audio = [OALSimpleAudio sharedInstance];
         if ([SavedData audio]) {
-            [audio playEffect:@"explode.mp3"];
+            [audio playEffect:@"bucketSpl.mp3"];
+            [audio playEffect:@"waterSpl.mp3"];
         }
         
         
