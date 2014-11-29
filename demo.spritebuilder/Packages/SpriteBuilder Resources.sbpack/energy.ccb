@@ -71,7 +71,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>23</real>
+							<real>21</real>
 							<real>24</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -96,8 +96,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.51942098140716553</real>
-							<real>0.48147881031036377</real>
+							<real>0.16697922348976135</real>
+							<real>0.16697922348976135</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>foodwar_picture/energy.png</string>
+							<string>foodwar_picture/energyBall.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -199,8 +199,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
