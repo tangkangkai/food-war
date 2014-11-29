@@ -20,7 +20,7 @@
 - (void)addBombExplosion:(CGPoint) posi;
 + (void)addEnergy:(int) amount;
 + (NSMutableArray*) getItArray;
--(void)addBombNumber;
+-(void)addItem:(int) item;
 - (void)dropItem: (int) type position: (CGPoint) location;
 -(void)itemAutoBuild;
 @end
