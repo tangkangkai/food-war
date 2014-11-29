@@ -49,6 +49,7 @@ static NSMutableArray *itArray;
     
     CCTextField *_energyPrompt;
     CCTextField *_bombPrompt;
+    CCTextField *_messagePrompt;
     
     
     int mTimeInSec;
@@ -113,9 +114,7 @@ static NSMutableArray *itArray;
     // tell this scene to accept touches
     scroll=[_scrollview children][0];
     // _energyPrompt opacity set to 0
-    _energyPrompt.opacity = 0;
-    _bombPrompt.opacity = 0;
-    
+    _messagePrompt.opacity = 0;
     
     
     _scrollview.delegate = self;
@@ -401,7 +400,7 @@ static NSMutableArray *itArray;
         if (bombnumber < 1) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
-            [self showBombMessage];
+            [self showMessage:1];
             return;
         }
         selected_soldier = @"blackBomb";
@@ -470,7 +469,7 @@ static NSMutableArray *itArray;
                                                         bgNode:self];
             man = newSolider;
         } else {
-            [self showEnergyMessage];
+            [self showMessage:0];
         }
     }
 }
@@ -493,14 +492,20 @@ static NSMutableArray *itArray;
     return energyCost;
 }
 
--(void) showEnergyMessage {
+-(void) showMessage: (int) messageIndex {
+    if (messageIndex == 0) {
+        _messagePrompt.string = [NSString stringWithFormat:@"Lack Energy"];
+    } else if (messageIndex == 1) {
+        _messagePrompt.string = [NSString stringWithFormat:@"No Bomb"];
+    }
+    
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.4f position:ccp(120, 250)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.5f position:ccp(320, 288)];
     
     CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
-    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(120, 270)];
+    CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(200, 288)];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveDown, fadeOut, moveBack]];
-    [_energyPrompt runAction:sequence];
+    [_messagePrompt runAction:sequence];
 }
 
 -(void) showBombMessage {
@@ -510,7 +515,7 @@ static NSMutableArray *itArray;
     CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
     CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(507, 55)];
     CCActionSequence *sequence = [CCActionSequence actionWithArray:@[fadeIn, moveUp, fadeOut, moveBack]];
-    [_bombPrompt runAction:sequence];
+    [_messagePrompt runAction:sequence];
 }
 
 - (void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
