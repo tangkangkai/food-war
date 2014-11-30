@@ -341,8 +341,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -1222,7 +1220,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>defence</string>
+								<string>attack</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -1429,7 +1427,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attack</string>
+								<string>speed</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -1636,7 +1634,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attackSpeed</string>
+								<string>defence</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -3001,7 +2999,7 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string>button1</string>
+									<string>button4</string>
 									<integer>1</integer>
 								</array>
 							</dict>
@@ -3280,7 +3278,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>defence</string>
+								<string>attack</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -3487,7 +3485,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attack</string>
+								<string>speed</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -3694,7 +3692,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attackSpeed</string>
+								<string>defence</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -5059,7 +5057,7 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string>button1</string>
+									<string>button2</string>
 									<integer>1</integer>
 								</array>
 							</dict>
@@ -5314,6 +5312,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -5338,7 +5338,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>defence</string>
+								<string>attack</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -5545,7 +5545,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attack</string>
+								<string>speed</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -5752,7 +5752,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attackSpeed</string>
+								<string>defence</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -7117,7 +7117,7 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string>button1</string>
+									<string>button3</string>
 									<integer>1</integer>
 								</array>
 							</dict>
@@ -7396,7 +7396,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>defence</string>
+								<string>attack</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -7603,7 +7603,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attack</string>
+								<string>speed</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -7810,7 +7810,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>attackSpeed</string>
+								<string>defence</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -8313,7 +8313,7 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>2000</real>
+					<real>2100</real>
 					<real>360</real>
 					<integer>0</integer>
 					<integer>0</integer>
