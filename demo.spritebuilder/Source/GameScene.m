@@ -81,7 +81,7 @@ static GameScene* GameSceneInstance;
 
 -(void)scrollViewDidScroll:(UIScrollView *)sender
 {
-    NSLog(@"running");
+    //NSLog(@"running");
  //   [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //ensure that the end of scroll is fired.
   //  [self performSelector:@selector(scrollViewDidEndDragging:willDecelerate:) withObject:[_selectscroll:NO] afterDelay:0.5];

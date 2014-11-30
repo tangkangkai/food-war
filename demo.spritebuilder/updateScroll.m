@@ -109,7 +109,7 @@
     attackSpeed.string = [NSString stringWithFormat:@"%d", atkSpd];
 
     CCTextField *costStr = (CCTextField*)[soliderBlock getChildByName:@"cost" recursively:true];
-    costStr.string = [NSString stringWithFormat:@"$ %d", totalCost];
+    costStr.string = [NSString stringWithFormat:@"%d", totalCost];
     
     return;
 }
