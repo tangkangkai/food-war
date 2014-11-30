@@ -65,15 +65,11 @@
 }
 
 -(void) flash{
-    NSLog(@"flash");
-    NSLog(@"%d",_touch);
-   // NSLog(@"(%f,%f)",_deadBody.position.x,_deadBody.position.y);
     if (_touch==1) {
         [self children];
         img.opacity=1;
         [self unschedule:@selector(flash)];
         return;
-
     }
     if ([ flash_time timeIntervalSinceNow ]*-1 >= 5) {
         [self unschedule:@selector(flash)];
@@ -83,8 +79,6 @@
     if(img.opacity > 1 ){
         img.opacity = img.opacity-1;
     }
-
-
 }
 
 -(void) setTouch{
