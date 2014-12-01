@@ -97,6 +97,8 @@ static NSMutableArray *itArray;
     CCNodeColor *_cooldown3;
     int x3;
     int lock3;
+    
+    int _iscooldown;
 }
 
 - (id)init{
@@ -128,6 +130,7 @@ static NSMutableArray *itArray;
     self.userInteractionEnabled = TRUE;
     mTimeInSec = [[Levels getSelectedLevel] time];                              //intialize timer
     timeFlag = 0;
+    _iscooldown=1;
     energyArray = [[NSMutableArray alloc] init];
     itArray = [[NSMutableArray alloc] init];
     [self schedule:@selector(tick) interval:1.0f];
@@ -168,9 +171,17 @@ static NSMutableArray *itArray;
         CCSpriteFrame* frame = [cache spriteFrameByName:[soldiers objectForKey:soldier]];
         spot.spriteFrame = frame;
         [lineupArray addObject:soldier];
-        // TODO Load level
+
+        NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
+        int level;
+        if( [soldier isEqualToString:@"potatoMan"] ){
+            level = [[soldierLevelDict objectForKey:@"potato"] intValue];
+        }
+        else{
+            level = [[soldierLevelDict objectForKey:soldier] intValue];
+        }
         int energyCost = [self getEnergy: soldier
-                             soldier_lvl:1];
+                             soldier_lvl:level];
         [self updateEnergy:i energy:energyCost];
         NSLog(@"%@", [soldiers objectForKey:soldier]);
     }
@@ -462,8 +473,12 @@ static NSMutableArray *itArray;
     
     selected_soldier = soldier;
     selected_soldier_animation = soldier;
-    soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
-    
+    if( [soldier isEqualToString:@"potatoMan"] ){
+        soldierLevel = [[soldierLevelDict objectForKey:@"potato"] intValue];
+    }
+    else{
+        soldierLevel = [[soldierLevelDict objectForKey:soldier] intValue];
+    }
     if (selected_soldier != NULL){
         int energyCost = [self getEnergy: selected_soldier
                                           soldier_lvl:soldierLevel];
@@ -478,8 +493,10 @@ static NSMutableArray *itArray;
                                                          level:soldierLevel
                                                         bgNode:self];
             man = newSolider;
+            _iscooldown=1;
         } else {
             [self showMessage:[NSString stringWithFormat:@"No Energy"]];
+            _iscooldown=0;
         }
     }
 }
@@ -592,35 +609,40 @@ static NSMutableArray *itArray;
 }
 
 - (void) cooldown:(int) num {
-    if (num==0&&lock0==0) {
-        lock0=1;
-        x0=1;
-        [_cooldown0 setVisible:1];
-        [_cooldown0 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update0) interval:0.7];
+    if (_iscooldown==1) {
+        if (num==0&&lock0==0) {
+            lock0=1;
+            x0=1;
+            [_cooldown0 setVisible:1];
+            [_cooldown0 setContentSize:CGSizeMake(100, 100)];
+            [self schedule:@selector(update0) interval:0.7];
+        }
+        else if (num==1&&lock1==0){
+            lock1=1;
+            x1=1;
+            [_cooldown1 setVisible:1];
+            [_cooldown1 setContentSize:CGSizeMake(100, 100)];
+            [self schedule:@selector(update1) interval:0.7];
+        }
+        else if (num==2&&lock2==0){
+            lock2=1;
+            x2=1;
+            [_cooldown2 setVisible:1];
+            [_cooldown2 setContentSize:CGSizeMake(100, 100)];
+            [self schedule:@selector(update2) interval:0.7];
+        }
+        else if (num==3&&lock3==0){
+            lock3=1;
+            x3=1;
+            [_cooldown3 setVisible:1];
+            [_cooldown3 setContentSize:CGSizeMake(100, 100)];
+            [self schedule:@selector(update3) interval:0.7];
+        }
+        _soldiertype=-1;
     }
-    else if (num==1&&lock1==0){
-        lock1=1;
-        x1=1;
-        [_cooldown1 setVisible:1];
-        [_cooldown1 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update1) interval:0.7];
+    else{
+        return;
     }
-    else if (num==2&&lock2==0){
-        lock2=1;
-        x2=1;
-        [_cooldown2 setVisible:1];
-        [_cooldown2 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update2) interval:0.7];
-    }
-    else if (num==3&&lock3==0){
-        lock3=1;
-        x3=1;
-        [_cooldown3 setVisible:1];
-        [_cooldown3 setContentSize:CGSizeMake(100, 100)];
-        [self schedule:@selector(update3) interval:0.7];
-    }
-    _soldiertype=-1;
 }
 
 - (void) update0{

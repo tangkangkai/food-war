@@ -97,19 +97,20 @@
     int hlt = [soldier getHealth];
     int atk = [soldier getAtkPower];
     int def = [soldier getDefence]*100;
-    int atkSpd = 100/[soldier getAtkInt];
+    int atkSpd = 20/[soldier getAtkInt];
+    int moveSpd = [soldier getMoveSpeed];
 
     CCTextField *health = (CCTextField*)[soliderBlock getChildByName:@"healthy" recursively:true];
     CCTextField *attack = (CCTextField*)[soliderBlock getChildByName:@"attack" recursively:true];
     CCTextField *defence = (CCTextField*)[soliderBlock getChildByName:@"defence" recursively:true];
-    CCTextField *attackSpeed = (CCTextField*)[soliderBlock getChildByName:@"attackSpeed" recursively:true];
+    CCTextField *speed = (CCTextField*)[soliderBlock getChildByName:@"speed" recursively:true];
     health.string = [NSString stringWithFormat:@"%d", hlt];
-    attack.string = [NSString stringWithFormat:@"%d", atk];
+    attack.string = [NSString stringWithFormat:@"%d", atk*atkSpd];
     defence.string = [NSString stringWithFormat:@"%d", def];
-    attackSpeed.string = [NSString stringWithFormat:@"%d", atkSpd];
+    speed.string = [NSString stringWithFormat:@"%d", moveSpd];
 
     CCTextField *costStr = (CCTextField*)[soliderBlock getChildByName:@"cost" recursively:true];
-    costStr.string = [NSString stringWithFormat:@"$ %d", totalCost];
+    costStr.string = [NSString stringWithFormat:@"%d", totalCost];
     
     return;
 }
@@ -117,7 +118,7 @@
 -(void)button1 {
     CCTextField *costStr = (CCTextField*)[_potato getChildByName:@"cost" recursively:true];
     NSString *cost = costStr.string;
-    int totalCost = [[cost substringFromIndex:2] intValue];
+    int totalCost = [cost intValue];
     if (totalCost > total) {
         [self showMessage];
         return;
@@ -134,7 +135,7 @@
 -(void)button2 {
     CCTextField *costStr = (CCTextField*)[_bean getChildByName:@"cost" recursively:true];
     NSString *cost = costStr.string;
-    int totalCost = [[cost substringFromIndex:2] intValue];
+    int totalCost = [cost intValue];
     if (totalCost > total) {
         [self showMessage];
         return;
@@ -151,7 +152,7 @@
 -(void)button3 {
     CCTextField *costStr = (CCTextField*)[_banana getChildByName:@"cost" recursively:true];
     NSString *cost = costStr.string;
-    int totalCost = [[cost substringFromIndex:2] intValue];
+    int totalCost = [cost intValue];
     if (totalCost > total) {
         [self showMessage];
         return;
@@ -168,7 +169,7 @@
 -(void)button4 {
     CCTextField *costStr = (CCTextField*)[_corn getChildByName:@"cost" recursively:true];
     NSString *cost = costStr.string;
-    int totalCost = [[cost substringFromIndex:2] intValue];
+    int totalCost = [cost intValue];
     if (totalCost > total) {
         [self showMessage];
         return;

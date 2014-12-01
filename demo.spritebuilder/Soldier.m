@@ -106,8 +106,14 @@
     [_bgNode addChild:spriteSheet];
     
     [spriteSheet addChild:_animationNode];
-    [spriteSheet setZOrder:900];
-    [_animationNode setZOrder:900];
+    if( [character isEqualToString:@"foodtruck"]){
+        [spriteSheet setZOrder:2000];
+        [_animationNode setZOrder:2000];
+    }
+    else{
+        [spriteSheet setZOrder:900];
+        [_animationNode setZOrder:900];
+    }
 
 }
 
@@ -181,6 +187,10 @@
 
 - (CCNode*)getSoldier{
     return _soldier;
+}
+
+- (CCNode*)getAniNode{
+    return _animationNode;
 }
 
 - (void)doAttack{
@@ -1197,7 +1207,7 @@
     total_health = health;
     
     // Fix the position so that it stand on the lane
-    start.y += 25;
+    start.y += 15;
     
     self = [ super initSoldier:@"foodTruck" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
     
@@ -1221,12 +1231,11 @@
     
     // we move the truck position to make it stand on the lane,
     // so we need to change the position back to the original
-    selfPos.y = selfPos.y - 25;
+    selfPos.y = selfPos.y - 15;
 
-    CGPoint newStart = CGPointMake(selfPos.x - 20, [(CCNode*)start_positions[lane] position].y);
+    CGPoint newStart = CGPointMake(selfPos.x - 15, [(CCNode*)start_positions[lane] position].y);
     
     int soldierType = arc4random_uniform(2);
-    
     if( soldierType == 0 ){
         BurgerMan* enemy_soldier= [[BurgerMan alloc] initBurger:lane
                                                                 startPos: selfPos
@@ -1238,7 +1247,6 @@
         CCAction *actionMove=[CCActionMoveTo actionWithDuration: 1
                                              position: newStart];
         [[enemy_soldier getSoldier] runAction:[CCActionSequence actionWithArray:@[actionMove]]];
-        
         [enemy_soldier move];
     }
     if( soldierType == 1 ){

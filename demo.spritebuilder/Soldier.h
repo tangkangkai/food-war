@@ -92,6 +92,8 @@
 
 - (CCNode*)getBgNode;
 - (CCNode*)getSoldier;
+- (CCNode*)getAniNode;
+
 - (NSMutableArray*)getArray:(int) enemy;
 
 - (int)getType;
