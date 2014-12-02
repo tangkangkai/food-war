@@ -15,7 +15,7 @@
     CCSprite* snow;
     NSMutableArray *snowArray;
     NSMutableArray *frozenEnemies;
-
+    NSDate *last_check_time;
 }
 
 
@@ -69,7 +69,7 @@
                 [frozenEnemies addObject:s];
             }
         }
-        [self schedule:@selector(removeSnow) interval:4];
+        [self schedule:@selector(removeSnow) interval:0.2];
 
         /*
         long num = [targets count];
@@ -97,24 +97,43 @@
 }
 
 -(void) removeSnow{
-//    [snow removeFromParent];
-    NSLog(@"removing snow");
-    while([snowArray count] != 0){
-        NSLog(@"Enter While loop");
-        CCSprite* tmpsnow = [snowArray objectAtIndex:0];
-        [tmpsnow removeFromParent];
-        [snowArray removeObjectAtIndex:0];
-    }
     
     for(Soldier *s in frozenEnemies){
-        [s unfreeze];
+        if( [s status] == 0){
+            NSMutableArray *tempArr = [snowArray mutableCopy];
+            for(CCSprite *tmpSnow in tempArr){
+                if( [tmpSnow position].y == [[s soldier] position].y &&
+                   [tmpSnow position].x == [[s soldier] position].x ){
+                    [tmpSnow removeFromParent];
+                    [snowArray removeObject:tmpSnow];
+                }
+            }
+        }
     }
-    /*
-    for(int i = 0; i < [snowArray count]; i++){
-        snow = [snowArray objectAtIndex:i];
-        [snow removeFromParent];
-    }*/
-    [self unschedule:@selector(removeSnow)];
+    
+    if( last_check_time == nil ){
+        last_check_time = [NSDate date];
+        return;
+    }
+    
+    if( [ last_check_time timeIntervalSinceNow ]*-1 >= 4 ){
+    
+        NSLog(@"removing snow");
+        while([snowArray count] != 0){
+            CCSprite* tmpsnow = [snowArray objectAtIndex:0];
+            [tmpsnow removeFromParent];
+            [snowArray removeObjectAtIndex:0];
+        }
+    
+        for(Soldier *s in frozenEnemies){
+            [s unfreeze];
+        }
+        
+        last_check_time = nil;
+        [self unschedule:@selector(removeSnow)];
+
+    }
+
 }
 
 
