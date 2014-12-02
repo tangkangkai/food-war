@@ -209,7 +209,7 @@
     moving = false;
     
     // for missle launcher
-    if( type == 3 )
+    if( type == 3 || type == 5 )
         return;
     
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
@@ -247,7 +247,11 @@
             }
         }
         
-        if( type == 3 ){
+        if( [ s getType ] == 5 ){
+            enemy_pos.x = enemy_pos.x - 40;
+        }
+        
+        if( type == 3 || type == 5){
             if( (_group == 0 && [[s soldier] position].x < self_pos.x)
                || (_group ==1 && [[s soldier] position].x > self_pos.x)){
                 continue;
@@ -1243,7 +1247,6 @@
 }
 
 - (void)createSolider{
-
     Scrollback *sb = (Scrollback*)[self getBgNode];
     NSArray *start_positions = @[[sb house4], [sb house5], [sb house6]];
     NSArray *end_positions=@[ [sb house1], [sb house2], [sb house3]];
