@@ -11,7 +11,6 @@
 @interface Gameplay : CCNode<CCScrollViewDelegate>
 
 @property (nonatomic, strong) CCSprite *anibomb;
-@property (nonatomic, strong) CCSprite *aniIceBucket;
 @property (nonatomic, strong) CCAction *flashAction;
 @property CCNode *energyIcon;
 

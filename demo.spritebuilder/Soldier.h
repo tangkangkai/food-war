@@ -37,13 +37,14 @@
 
 @property int ability_id;
 @property int lane_num;
+@property int status;
+
 @property CGPoint start_pos;
 @property CGPoint dest_pos;
 @property CCNode* soldier;
 @property CCNode* animationNode;
 
 @property CCNode* bgNode;
-@property CCNode* dead_body;
 
 @property CCAction* walkingAct;
 @property CCAction* fightingAct;
@@ -86,6 +87,9 @@
 - (int)getMoveSpeed;
 - (int)getValue;
 - (int)getUpgradeCost:(int)level;
+
+- (void)freeze;
+- (void)unfreeze;
 
 - (NSMutableArray*)getOurArray;
 - (NSMutableArray*)getEnemeyArray;

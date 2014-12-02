@@ -14,6 +14,8 @@
     float accelator;
     CCSprite* snow;
     NSMutableArray *snowArray;
+    NSMutableArray *frozenEnemies;
+    NSDate *last_check_time;
 }
 
 
@@ -22,6 +24,8 @@
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray flyingItemsArray:flyingItemsArr];
     accelator = 0;
     snowArray = [[NSMutableArray alloc] init];
+    frozenEnemies = [[NSMutableArray alloc] init];
+
     return self;
 }
 
@@ -44,9 +48,11 @@
         }
         
         
-        NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
-        for(int i = 0; i < self.enemies.count; i++){
-            Soldier *s = [self.enemies objectAtIndex:i];
+        //NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
+        for(Soldier *s in self.enemies){
+            if( [s getType] == 4 || [s getType] == 5 ){
+                continue;
+            }
             float dx = ABS([s getSoldier].position.x - self.item.position.x);
             float dy = ABS([s getSoldier].position.y - self.item.position.y);
             double dist = sqrt(dx*dx + dy*dy);
@@ -54,16 +60,17 @@
 //              [targets addObject:[self.enemies objectAtIndex:i]];
                 CCSpriteFrame* snowFrame = [CCSpriteFrame frameWithImageNamed:@"snowEffect.png"];
                 snow = [CCSprite spriteWithSpriteFrame:snowFrame];
-                snow.position = CGPointMake([[[self enemies] objectAtIndex:i] getSoldier].position.x, [[[self enemies] objectAtIndex:i] getSoldier].position.y);
+                snow.position = CGPointMake([s getSoldier].position.x, [s getSoldier].position.y);
                 CCNode *parent = [self.item parent];
                 [snow setZOrder:3000];
                 [parent addChild:snow];
                 [snowArray addObject:snow];
-                NSLog(@"Snow added");
-                [self schedule:@selector(removeSnow) interval:1];
+                [ s freeze ];
+                [frozenEnemies addObject:s];
             }
         }
-        
+        [self schedule:@selector(removeSnow) interval:0.2];
+
         /*
         long num = [targets count];
         for(int i = 0; i < num; i++){
@@ -90,20 +97,43 @@
 }
 
 -(void) removeSnow{
-//    [snow removeFromParent];
-    NSLog(@"removing snow");
-    while([snowArray count] != 0){
-        NSLog(@"Enter While loop");
-        CCSprite* tmpsnow = [snowArray objectAtIndex:0];
-        [tmpsnow removeFromParent];
-        [snowArray removeObjectAtIndex:0];
+    
+    for(Soldier *s in frozenEnemies){
+        if( [s status] == 0){
+            NSMutableArray *tempArr = [snowArray mutableCopy];
+            for(CCSprite *tmpSnow in tempArr){
+                if( [tmpSnow position].y == [[s soldier] position].y &&
+                   [tmpSnow position].x == [[s soldier] position].x ){
+                    [tmpSnow removeFromParent];
+                    [snowArray removeObject:tmpSnow];
+                }
+            }
+        }
     }
-    /*
-    for(int i = 0; i < [snowArray count]; i++){
-        snow = [snowArray objectAtIndex:i];
-        [snow removeFromParent];
-    }*/
-    [self unschedule:@selector(removeSnow)];
+    
+    if( last_check_time == nil ){
+        last_check_time = [NSDate date];
+        return;
+    }
+    
+    if( [ last_check_time timeIntervalSinceNow ]*-1 >= 4 ){
+    
+        NSLog(@"removing snow");
+        while([snowArray count] != 0){
+            CCSprite* tmpsnow = [snowArray objectAtIndex:0];
+            [tmpsnow removeFromParent];
+            [snowArray removeObjectAtIndex:0];
+        }
+    
+        for(Soldier *s in frozenEnemies){
+            [s unfreeze];
+        }
+        
+        last_check_time = nil;
+        [self unschedule:@selector(removeSnow)];
+
+    }
+
 }
 
 
