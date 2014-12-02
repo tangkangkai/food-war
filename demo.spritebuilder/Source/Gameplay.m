@@ -389,7 +389,7 @@ static NSMutableArray *itArray;
     CGPoint touchLocation = [touch locationInNode:self];
     int soldierLevel = 0;
     _anibomb = nil;
-
+    bombRing = nil;
     NSString *soldier = NULL;
     NSMutableDictionary *soldierLevelDict = [SavedData soldierLevel];
     if (_first.spriteFrame!=NULL && CGRectContainsPoint(_first.boundingBox,touchLocation)) {
@@ -602,7 +602,8 @@ static NSMutableArray *itArray;
     } else {
         if( _anibomb != nil){
             [_anibomb removeFromParent];
-            [self removeChild: bombRing];
+            if( bombRing != nil)
+                [self removeChild: bombRing];
         }
         if( man != nil){
             [self removeChild:[man soldier]];
