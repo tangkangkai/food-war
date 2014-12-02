@@ -282,6 +282,7 @@
                   bgNode:(CCNode*)bgNode{
     
     self = [super init];
+    _status = 1;
     [self setLevel:soldierLevel];
     moving = false;
     last_attack_time = NULL;
@@ -350,12 +351,24 @@
 
 }
 
+- (void)freeze{
+    [[ self soldier ] stopAllActions ];
+    [_animationNode stopAllActions];
+    moving = false;
+    [self unschedule:@selector(doAttack)];
+}
+
+- (void)unfreeze{
+    [self schedule:@selector(doAttack) interval:0.1];
+}
+
 - (void)dead{
     if( _group == 1 && [self getType]!=4){
         Energy* dropoff= [[Energy alloc] initEnergy:[self getValue] pos:[[self soldier]position] bgNode:[self soldier].parent];
         [Scrollback fillEnergyArray:dropoff];
     }
-    
+    _status = 0; // dead status
+    moving = false;
     [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
     [self unschedule:@selector(doAttack)];
@@ -912,6 +925,17 @@
 
 @implementation FriesMan
 
+
+- (void)freeze{
+    [super freeze];
+    [self unschedule:@selector(countDown)];
+}
+
+- (void)unfreeze{
+    [super unfreeze];
+    [self schedule:@selector(countDown) interval:0.5];
+}
+
 - (BOOL) readyToLaunch{
     
     if( moving ){
@@ -926,6 +950,7 @@
 
 - (void) undoReady{
     _readyLaunch = false;
+    
 }
 
 - (void) Launch:(CGPoint) targetLoc{
@@ -1195,7 +1220,7 @@
           level: (int) soldierLevel
          bgNode:(CCNode*)bgNode{
     
-    type = 3;
+    type = 5;
     _readyLaunch = false;
     moveSpeed = 15;
     atkInterval = 10;
@@ -1219,7 +1244,6 @@
 
 - (void)createSolider{
 
-    
     Scrollback *sb = (Scrollback*)[self getBgNode];
     NSArray *start_positions = @[[sb house4], [sb house5], [sb house6]];
     NSArray *end_positions=@[ [sb house1], [sb house2], [sb house3]];

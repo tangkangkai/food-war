@@ -14,6 +14,8 @@
     float accelator;
     CCSprite* snow;
     NSMutableArray *snowArray;
+    NSMutableArray *frozenEnemies;
+
 }
 
 
@@ -22,6 +24,8 @@
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray flyingItemsArray:flyingItemsArr];
     accelator = 0;
     snowArray = [[NSMutableArray alloc] init];
+    frozenEnemies = [[NSMutableArray alloc] init];
+
     return self;
 }
 
@@ -44,9 +48,11 @@
         }
         
         
-        NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
-        for(int i = 0; i < self.enemies.count; i++){
-            Soldier *s = [self.enemies objectAtIndex:i];
+        //NSMutableArray *targets = [NSMutableArray arrayWithObjects:nil ];
+        for(Soldier *s in self.enemies){
+            if( [s getType] == 4 || [s getType] == 5 ){
+                continue;
+            }
             float dx = ABS([s getSoldier].position.x - self.item.position.x);
             float dy = ABS([s getSoldier].position.y - self.item.position.y);
             double dist = sqrt(dx*dx + dy*dy);
@@ -54,16 +60,17 @@
 //              [targets addObject:[self.enemies objectAtIndex:i]];
                 CCSpriteFrame* snowFrame = [CCSpriteFrame frameWithImageNamed:@"snowEffect.png"];
                 snow = [CCSprite spriteWithSpriteFrame:snowFrame];
-                snow.position = CGPointMake([[[self enemies] objectAtIndex:i] getSoldier].position.x, [[[self enemies] objectAtIndex:i] getSoldier].position.y);
+                snow.position = CGPointMake([s getSoldier].position.x, [s getSoldier].position.y);
                 CCNode *parent = [self.item parent];
                 [snow setZOrder:3000];
                 [parent addChild:snow];
                 [snowArray addObject:snow];
-                NSLog(@"Snow added");
-                [self schedule:@selector(removeSnow) interval:1];
+                [ s freeze ];
+                [frozenEnemies addObject:s];
             }
         }
-        
+        [self schedule:@selector(removeSnow) interval:4];
+
         /*
         long num = [targets count];
         for(int i = 0; i < num; i++){
@@ -97,6 +104,10 @@
         CCSprite* tmpsnow = [snowArray objectAtIndex:0];
         [tmpsnow removeFromParent];
         [snowArray removeObjectAtIndex:0];
+    }
+    
+    for(Soldier *s in frozenEnemies){
+        [s unfreeze];
     }
     /*
     for(int i = 0; i < [snowArray count]; i++){
