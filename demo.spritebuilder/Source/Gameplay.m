@@ -254,6 +254,7 @@ static NSMutableArray *itArray;
 }
 
 -(void)tick {
+    energy++;
     if(timeFlag == 0){
         if( [[scroll healthBase] isDead]){
             [self gameover];
