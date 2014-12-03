@@ -463,6 +463,11 @@ static NSMutableArray *itArray;
 //        _aniIceBucket = (CCSprite*)[CCBReader load:@"iceBucket"];
         _anibomb.position = CGPointMake(touchLocation.x, touchLocation.y);
         [self addChild:_anibomb];
+        //bucketRing
+        CCSpriteFrame* bombRingFrame = [CCSpriteFrame frameWithImageNamed:@"bombRing.png"];
+        bombRing = [CCSprite spriteWithSpriteFrame:bombRingFrame];
+        bombRing.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
+        [self addChild:bombRing];
         return;
     }
     
@@ -536,6 +541,7 @@ static NSMutableArray *itArray;
     }
     if([selected_soldier isEqualToString:@"iceBucket"]){
         _anibomb.position = touchLocation;
+        bombRing.position = CGPointMake(touchLocation.x, touchLocation.y - 90);
         return;
     }
     if( man == NULL ){
@@ -577,6 +583,7 @@ static NSMutableArray *itArray;
     } else if([selected_soldier isEqualToString:@"iceBucket"] && touchLocation.y > 120){
         bucketnumber--;
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
+        [self removeChild: bombRing];
         [self launchBucket:scrollPos];
         
     } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
