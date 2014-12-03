@@ -252,7 +252,7 @@ static NSMutableArray *itArray;
 }
 
 -(void)tick {
-    energy++;
+    energy = energy +10;
     if(timeFlag == 0){
         if( [[scroll healthBase] isDead]){
             [self gameover];
@@ -290,7 +290,7 @@ static NSMutableArray *itArray;
 }
 
 - (void)win{
-    NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", ([[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100) / 10];
+    NSString* promptStr = [NSString stringWithFormat:@"You win!\nYou get $%d rewards!", ([[Levels getSelectedLevel] getAward] + mTimeInSec + energy / 100) ];
     [[CCDirector sharedDirector] pause];
     //_gameoverLabel.string = [NSString stringWithFormat:@"You win"];
     UIAlertView * alert = [[UIAlertView alloc ] initWithTitle:promptStr
