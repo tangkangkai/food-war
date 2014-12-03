@@ -55,7 +55,6 @@
 }
 
 -(void)fly: (CGPoint)start{     // Now we use fly2. This function is preserved to be referance;
-    NSLog(@"Bomb start flying");
     [self schedule:@selector(hover) interval:timeInterval];
     
 }
@@ -71,8 +70,6 @@
     }
     
     float deltaS = (2 * Vtx + a * timeInterval) * timeInterval / 2;          // deltaS = (Vt1 + Vt2) * (Vt1-Vt2) / 2a
-    NSLog(@"Vtx: %f", Vtx);
-    
     if(reverseFlag == NO){
         xt = self.item.position.x + deltaS;
     } else {
@@ -88,7 +85,6 @@
 }
 
 -(void)fly2: (CGPoint)start{
-    NSLog(@"Bomb start flying");
     [self schedule:@selector(hover2) interval:timeInterval];
     
 }

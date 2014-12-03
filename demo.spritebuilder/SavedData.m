@@ -13,7 +13,6 @@ static int money;
 static int maxLevel;
 static BOOL audioIsOn = TRUE;
 static NSString *plistPath;
-//static NSMutableArray *levelArray;
 static NSMutableDictionary *lineupDictonary;
 static NSMutableDictionary *soldierLevel; 
 
@@ -36,7 +35,6 @@ static NSMutableDictionary *soldierLevel;
     // If NSDictionary exists, look to see if it holds a saved game state
     if (!unarchivedData)
     {
-        NSLog(@"NSDictionary not exists, reload");
         [self createData];
         [self loadData];
     }
@@ -111,23 +109,6 @@ static NSMutableDictionary *soldierLevel;
     [self saveDictionary:dataToSave];
 }
 
-
-
-//level permission array
-//+ (NSMutableArray *)levelArray {return levelArray;}
-//
-//+ (void)setLevelArray: (NSMutableArray *) array {
-//    levelArray = array;
-//}
-//
-//+ (void)saveLevelArray {
-//    NSMutableDictionary *dataToSave = [self getSavedDictionary];
-//    //update permission array
-//    
-//    [dataToSave setObject:levelArray forKey:@"levelarray"];
-//    [self saveDictionary:dataToSave];
-//}
-
 //audio
 + (BOOL)audio {return audioIsOn;}
 + (void)setAudio: (BOOL) ifOn {
@@ -165,14 +146,6 @@ static NSMutableDictionary *soldierLevel;
     [dataToSave setObject:gameLevel forKey:@"level"];
     NSNumber *totalMoney = [NSNumber numberWithInt:1000];
     [dataToSave setObject:totalMoney forKey:@"money"];
-    
-    // level permission
-//    NSNumber *level1 = [NSNumber numberWithInt:1];
-//    NSNumber *level2 = [NSNumber numberWithInt:1];
-//    NSNumber *level3 = [NSNumber numberWithInt:1];
-//    //  NSNumber *level4 = [NSNumber numberWithInt:0];
-//    levelArray = [NSMutableArray arrayWithObjects:level1, level2, level3, nil];
-//    [dataToSave setObject:levelArray forKey:@"levelarray"];
     
     // maxLevel
     NSNumber *initLevel = [NSNumber numberWithInt:1];
@@ -221,8 +194,6 @@ static NSMutableDictionary *soldierLevel;
         // Write file
         NSError *error;
         BOOL didWrite = [serializedData writeToFile:plistPath options:NSDataWritingFileProtectionComplete error:&error];
-        
-        NSLog(@"Error while writing: %@", [error description]);
         
         if (didWrite)
             NSLog(@"File did write");

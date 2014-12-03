@@ -102,13 +102,11 @@
     if ([lineupDict objectForKey:soldier] != nil) {
         bg.visible = false;
         tick.visible = false;
-        NSLog(@"remove soldier");
        [lineupDict removeObjectForKey:soldier];
     } else {
         bg.visible = true;
         tick.visible = true;
         [lineupDict setObject:[NSString stringWithFormat:@"%@.png", soldier] forKey:soldier];
-        NSLog(@"If contain soldier: %@", ([lineupDict objectForKey:soldier]) != nil ? @"Yes" : @"No");
     }
 }
 
@@ -134,7 +132,6 @@
     
     [SavedData setLineUp:lineupDict];
     [SavedData saveLineupDict];
-    NSLog(@"lineup num: %d", (int)lineupDict.count);
     
     CCScene *playScene = [CCBReader loadAsScene:@"Gameplay"];
     

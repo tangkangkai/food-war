@@ -12,14 +12,7 @@
 
 
 -(void)drop: (CGPoint)start{
-    NSLog(@"Bomb start dropping");
-    //    [_motionManager startAccelerometerUpdates];
     [self schedule:@selector(update) interval:0.005f];
-    /*
-     CCAction *actionMove=[CCActionMoveTo actionWithDuration: duration
-     position:_destPosi];*/
-    //    [_bomb runAction:[CCActionSequence actionWithArray:@[actionMove]]];
-    
 }
 
 
