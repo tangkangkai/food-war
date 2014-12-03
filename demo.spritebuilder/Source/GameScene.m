@@ -16,9 +16,11 @@ static GameScene* GameSceneInstance;
     CGPoint page1;
     CGPoint page2;
     CGPoint page3;
+    CGPoint page4;
     CCNodeColor* _level1;
     CCNodeColor* _level2;
     CCNodeColor* _level3;
+    CCNodeColor* _level4;
 }
 
 +(GameScene*)shareLayer{
@@ -32,7 +34,7 @@ static GameScene* GameSceneInstance;
         page1=CGPointMake(0, 0);
         page2=CGPointMake(524, 0);
         page3=CGPointMake(1032, 0);
-    }
+        page4=CGPointMake(1540, 0);    }
 
     return self;
 }
@@ -57,16 +59,25 @@ static GameScene* GameSceneInstance;
         _level1.opacity=1;
         _level2.opacity=0.5;
         _level3.opacity=0.5;
+        _level4.opacity=0.5;
     }
     if (x>=250&&x<774) {
         _level1.opacity=0.5;
         _level2.opacity=1;
         _level3.opacity=0.5;
+        _level4.opacity=0.5;
     }
-    if (x>=774) {
+    if (x>=774&&x<1298) {
         _level1.opacity=0.5;
         _level2.opacity=0.5;
         _level3.opacity=1;
+        _level4.opacity=0.5;
+    }
+    if (x>=1298) {
+        _level1.opacity=0.5;
+        _level2.opacity=0.5;
+        _level3.opacity=0.5;
+        _level4.opacity=1;
     }
 
 }
