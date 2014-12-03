@@ -43,7 +43,7 @@ static GameScene* GameSceneInstance;
 
     if ([[Levels getSelectedLevel] getLevel]==1) {
         [_selectscroll setScrollPosition:page1];
-        NSLog(@"2");
+        NSLog(@"1");
     }
     if ([[Levels getSelectedLevel] getLevel]==2) {
         [_selectscroll setScrollPosition:page2];

@@ -19,6 +19,10 @@
     CCTextField *_level2;
     CCTextField *_level3;
     NSMutableArray *textArray;
+    CCNodeColor *_level2Back;
+    CCNode *_level2Lock;
+    CCNodeColor *_level3Back;
+    CCNode *_level3Lock;
     
 }
 
@@ -41,14 +45,26 @@
     } else {
         gs.text.string = @"Please choose your level";
     }
-    //levelArray = [SavedData levelArray];
+    
+    NSLog(@"get level %d",[[Levels getSelectedLevel] getLevel]);
+    
+    if ([SavedData level]==2) {
+        NSLog(@"2");
+        _level2Back.visible=0;
+        _level2Lock.visible=0;
+    }
+    
+    if ([SavedData level]==3) {
+        NSLog(@"3");
+        _level3Back.visible=0;
+        _level3Lock.visible=0;
+        _level2Back.visible=0;
+        _level2Lock.visible=0;
+    }
+    
+    
 }
-/*
 
--(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-}
-*/
 - (void)level1 {
     [Levels setSelectedLevel:1];
     [self changeLevel:1];
@@ -66,7 +82,6 @@
     [self changeLevel:3];
     [self transit:3];
 }
-
 
 -(void) showMessage: (CCTextField *)levelText {
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.5f opacity:255];
