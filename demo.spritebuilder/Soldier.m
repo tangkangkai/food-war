@@ -215,6 +215,7 @@
     if( last_attack_time == nil || [ last_attack_time timeIntervalSinceNow ]*-1 >= atkInterval ){
         last_attack_time = [NSDate date];
         if( _fightingAct != nil){
+            [_animationNode stopAction:_fightingAct];
             [_animationNode runAction:_fightingAct];
         }
         [self attackAnimation:target];
