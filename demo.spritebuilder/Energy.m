@@ -58,7 +58,6 @@
 -(void) disappear{
     if( [ last_attack_time timeIntervalSinceNow ]*-1 >= 5 ){
         flash_time=[NSDate date];
-        NSLog(@"1");
         [self unschedule:@selector(disappear)];
         [self schedule:@selector(flash) interval:0.1];
     }

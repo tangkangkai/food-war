@@ -117,8 +117,7 @@
     }
     
     if( [ last_check_time timeIntervalSinceNow ]*-1 >= 4 ){
-    
-        NSLog(@"removing snow");
+
         while([snowArray count] != 0){
             CCSprite* tmpsnow = [snowArray objectAtIndex:0];
             [tmpsnow removeFromParent];

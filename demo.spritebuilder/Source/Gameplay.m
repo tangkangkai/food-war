@@ -164,7 +164,6 @@ static NSMutableArray *itArray;
     [spots addObject:_third];
     [spots addObject:_fourth];
     keys = [soldiers allKeys];
-    NSLog(@"length of lineup: %d", (int)keys.count);
     for (int i = 0; i < (int)keys.count; i++) {
         CCSprite *spot = [spots objectAtIndex:i];
         NSString *soldier = [keys objectAtIndex:i];
@@ -183,7 +182,6 @@ static NSMutableArray *itArray;
         int energyCost = [self getEnergy: soldier
                              soldier_lvl:level];
         [self updateEnergy:i energy:energyCost];
-        NSLog(@"%@", [soldiers objectForKey:soldier]);
     }
     
     for (int i = (int)keys.count; i < spots.count; i++) {
@@ -254,6 +252,7 @@ static NSMutableArray *itArray;
 }
 
 -(void)tick {
+    energy++;
     if(timeFlag == 0){
         if( [[scroll healthBase] isDead]){
             [self gameover];
@@ -340,8 +339,6 @@ static NSMutableArray *itArray;
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    
-    NSLog(@"Button Index =%ld of tag %ld",(long)buttonIndex, (long)[alertView tag]);
     long tag =[alertView tag];
     if (buttonIndex == 0) {
         if(tag == 1) {
@@ -355,9 +352,7 @@ static NSMutableArray *itArray;
             
             //set unlocked game level to the next level
             int currLevel = [[Levels getSelectedLevel] getLevel];
-            NSLog(@"currLevel:%d, maxLevel:%d", currLevel, [SavedData level]);
             if (currLevel != 3 && currLevel == [SavedData level]) {
-                NSLog(@"===");
                 [SavedData setLevel:++currLevel];
                 [SavedData saveLevel];
             }
@@ -377,7 +372,6 @@ static NSMutableArray *itArray;
         }
     }
     else if(buttonIndex == 1) {
-        NSLog(@"You have clicked Quit Game");
         [[CCDirector sharedDirector] resume];
         CCScene *choiceScene = [CCBReader loadAsScene:@"GameScene"];
         CCTransition *trans = [CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:0.5f];
@@ -456,7 +450,6 @@ static NSMutableArray *itArray;
         
         return;
     } else if(CGRectContainsPoint(_iceBucket.boundingBox,touchLocation)){
-        NSLog(@"IceBucket Clicked");
         if (bucketnumber < 1) {
             selected_soldier = NULL;
             selected_soldier_animation = NULL;
@@ -542,7 +535,6 @@ static NSMutableArray *itArray;
         return;
     }
     if([selected_soldier isEqualToString:@"iceBucket"]){
-        NSLog(@"iceBucketMoved");
         _anibomb.position = touchLocation;
         return;
     }
@@ -568,14 +560,12 @@ static NSMutableArray *itArray;
 
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"touch end");
     
     scroll=[_scrollview children][0];
     CGPoint touchLocation = [touch locationInNode:self];
     int laneNum = [[Levels getSelectedLevel] laneNum];
     
     if([selected_soldier_animation isEqualToString:@"blackBomb"] && touchLocation.y > 120) {
-        NSLog(@"release BOMB!");
         [self removeChild: bombRing];
         bombnumber--;
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
@@ -585,7 +575,6 @@ static NSMutableArray *itArray;
             [self launchBomb:scrollPos];
         }
     } else if([selected_soldier isEqualToString:@"iceBucket"] && touchLocation.y > 120){
-        NSLog(@"release Bucket!");
         bucketnumber--;
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+touchLocation.x, touchLocation.y);
         [self launchBucket:scrollPos];
@@ -815,7 +804,6 @@ static NSMutableArray *itArray;
 
 -(void)itemAutoBuild {
     //    int type = arc4random_uniform(100) % 2;
-    NSLog(@"autoBuilding items!!!!");
     int type = 0;
     int x = arc4random_uniform(300) + 100;
     CGPoint rndPosi = CGPointMake(x, 480);
@@ -828,20 +816,14 @@ static NSMutableArray *itArray;
     
     if( type == 0 ){
         
-//        CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
-//        CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
         CCNode *flyingItem = [CCBReader load:@"parachuteBox"];
         Bomb *newBomb = [[Bomb alloc] initBomb:@"blackBomb" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:itArray];
-//        [self addChild: [newBomb item]];
         CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+location.x, location.y);
         [scroll addChild:[newBomb item]];
         [newBomb fly2:location];
-//        [_flyingItems addObject:newBomb];
         [itArray addObject:newBomb];
         
         CGRect boundingBox = flyingItem.boundingBox;
-        NSLog(@"bounding width: %f", boundingBox.size.width);
-        NSLog(@"bounding height: %f", boundingBox.size.height);
     }
 }
 

@@ -1008,7 +1008,6 @@
     explosion.position = _missile.position;
     [_missile.parent addChild:explosion];
     if ([SavedData audio]) {
-        NSLog(@"hehe");
         [audio playEffect:@"explode.mp3"];
     }
     
@@ -1169,7 +1168,6 @@
     explosion.position = missile.position;
     [missile.parent addChild:explosion];
     if ([SavedData audio]) {
-        NSLog(@"hehe");
         [audio playEffect:@"explode.mp3"];
     }
     
