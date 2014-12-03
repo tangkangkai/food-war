@@ -375,6 +375,9 @@
     moving = false;
     [[self ourArray] removeObject:self];
     [[self soldier] removeFromParent];
+    [_soldier stopAllActions];
+    [_animationNode stopAllActions];
+
     [self unschedule:@selector(doAttack)];
     
     if( _animationNode != NULL ){
