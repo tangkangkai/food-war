@@ -198,6 +198,20 @@ static Level *Levelselected;
                                               @"lane":@2,
                                               @"enemyLev":@2,
                                               @"enemies":@[@1,@2,@3] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@6,
+                                              @"lane":@2,
+                                              @"enemyLev":@2,
+                                              @"items":@[@1]}];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@16,
+                                              @"lane":@2,
+                                              @"enemyLev":@2,
+                                              @"items":@[@2]}];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@20,
+                                              @"lane":@2,
+                                              @"enemyLev":@2,
+                                              @"items":@[@1]}];
+
+    
     level3 = [ [Level alloc] initLevel:3
                                laneNum:3
                                   time:200
