@@ -21,5 +21,5 @@
 + (NSMutableArray*) getItArray;
 -(void)addItem:(int) item;
 - (void)dropItem: (int) type position: (CGPoint) location;
--(void)itemAutoBuild;
+-(void)itemAutoBuild: (int) itemType;
 @end

@@ -98,7 +98,11 @@ const int ICEBUCKET = 2;
         if(CGRectContainsPoint([[tmp item] boundingBox],touchLocation)){
             CCScrollView* ccs = (CCScrollView*)[self parent];
             Gameplay* g = (Gameplay*)[ccs parent];
-            [g addItem:BOMB];
+            if(tmp.itemType == 1){
+                [g addItem:BOMB];
+            } else {
+                [g addItem:ICEBUCKET];
+            }
             [tmp disappear];
         }
     }
@@ -151,11 +155,13 @@ const int ICEBUCKET = 2;
             NSNumber *enemyLev = [d objectForKey:@"lane"];
 
             for( int i=0; i<items.count; i++ ){
-                int itemType = [(NSNumber*)items[i] intValue]-1;
+                int itemType = [(NSNumber*)items[i] intValue];
                 // TODO
+                
+                
                 CCScrollView* ccs = (CCScrollView*)[self parent];
                 Gameplay* g = (Gameplay*)[ccs parent];
-                [g itemAutoBuild];
+                [g itemAutoBuild:itemType];
             }
          
             

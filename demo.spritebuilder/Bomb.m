@@ -20,7 +20,7 @@
     self = [super initItem:img animation:ani startPosition:start endPosition:end enemyArr:enemyArray flyingItemsArray:flyingItemsArr];
     accelator = 0;
     self.power = 90;
-    
+    self.itemType = 1;
     
     return self;
 }

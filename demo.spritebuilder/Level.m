@@ -84,7 +84,7 @@ static Level *Levelselected;
                                             @"enemies":@[@2] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@8,
                                             @"lane":@2,
-                                            @"items":@[@1],
+                                            @"items":@[@2],
                                             @"enemyLev":@1,
                                             @"enemies":@[] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@15,
@@ -105,7 +105,7 @@ static Level *Levelselected;
                                             @"enemies":@[@1,@2] } ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@15,
                                             @"lane":@2,
-                                            @"items":@[@1],
+                                            @"items":@[@2],
                                             @"enemyLev":@1} ];
     [lvlOneSeq addObject:(NSDictionary*) @{ @"time":@18,
                                             @"lane":@2,
@@ -152,7 +152,7 @@ static Level *Levelselected;
                                             @"enemies":@[@1,@2] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
                                             @"lane":@2,
-                                            @"items":@[@1],
+                                            @"items":@[@2],
                                             @"enemyLev":@1} ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@14,
                                             @"lane":@2,
