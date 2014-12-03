@@ -100,8 +100,12 @@ const int ICEBUCKET = 2;
             Gameplay* g = (Gameplay*)[ccs parent];
             if(tmp.itemType == 1){
                 [g addItem:BOMB];
+                [g showMessage:@"Bomb Obtained"];
+                
             } else {
                 [g addItem:ICEBUCKET];
+                [g showMessage:@"IceBucket Obtained"];
+                
             }
             [tmp disappear];
         }

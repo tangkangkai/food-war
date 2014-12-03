@@ -22,4 +22,5 @@
 -(void)addItem:(int) item;
 - (void)dropItem: (int) type position: (CGPoint) location;
 -(void)itemAutoBuild: (int) itemType;
+-(void) showMessage: (NSString*) message;
 @end
