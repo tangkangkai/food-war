@@ -812,20 +812,19 @@ static NSMutableArray *itArray;
 }
 
 
--(void)itemAutoBuild {
+-(void)itemAutoBuild:(int) itemType {
     //    int type = arc4random_uniform(100) % 2;
     NSLog(@"autoBuilding items!!!!");
-    int type = 0;
     int x = arc4random_uniform(300) + 100;
     CGPoint rndPosi = CGPointMake(x, 480);
-    [self dropItem:type position:rndPosi];
+    [self dropItem:itemType position:rndPosi];
     
 }
 
 
 - (void)dropItem: (int) type position: (CGPoint) location{
     
-    if( type == 0 ){
+    if( type == 1 ){
         
 //        CCSpriteFrame* itemFrame = [CCSpriteFrame frameWithImageNamed:@"parachuteBox.png"];
 //        CCNode *flyingItem = [CCSprite spriteWithSpriteFrame:itemFrame];
@@ -839,8 +838,17 @@ static NSMutableArray *itArray;
         [itArray addObject:newBomb];
         
         CGRect boundingBox = flyingItem.boundingBox;
-        NSLog(@"bounding width: %f", boundingBox.size.width);
-        NSLog(@"bounding height: %f", boundingBox.size.height);
+    } else {
+        CCNode *flyingItem = [CCBReader load:@"parachuteBox"];
+        IceBucket *newBucket = [[IceBucket alloc] initIceBucket:@"iceBucket" animation:flyingItem startPosition:location endPosition:location enemyArr:[scroll junk_soldiers] flyingItemsArray:itArray];
+        
+        CGPoint scrollPos = CGPointMake([_scrollview scrollPosition].x+location.x, location.y);
+        [scroll addChild:[newBucket item]];
+        [newBucket fly2:location];
+
+        [itArray addObject:newBucket];
+        
+        CGRect boundingBox = flyingItem.boundingBox;
     }
 }
 

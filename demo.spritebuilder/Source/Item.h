@@ -16,6 +16,7 @@
 @property int power;
 @property NSMutableArray* enemies;
 @property NSMutableArray* flyingItems;
+@property int *itemType;
 
 -(id)initItem:(NSString*) img
     animation:(CCNode*) ani

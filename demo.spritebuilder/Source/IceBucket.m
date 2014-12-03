@@ -25,6 +25,7 @@
     accelator = 0;
     snowArray = [[NSMutableArray alloc] init];
     frozenEnemies = [[NSMutableArray alloc] init];
+    self.itemType = 2;
 
     return self;
 }
