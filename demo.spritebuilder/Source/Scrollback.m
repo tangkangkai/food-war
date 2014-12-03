@@ -100,7 +100,6 @@ const int ICEBUCKET = 2;
             Gameplay* g = (Gameplay*)[ccs parent];
             [g addItem:BOMB];
             [tmp disappear];
-            NSLog(@"Item clicked!");
         }
     }
     
@@ -233,10 +232,6 @@ const int ICEBUCKET = 2;
     }
     if( num == 3 )
         [_track3 setVisible:true];
-    
-//    for (Soldier* junk in _junk_soldiers) {
-//        [[junk getSoldier] setZOrder:2000];
-//    }
 }
 
 + (void) fillEnergyArray:(CCNode*)energy{

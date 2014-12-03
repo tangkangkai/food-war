@@ -28,7 +28,6 @@
 }
 
 - (void) didLoadFromCCB {
-    NSLog(@"enter store scene");
     total = [SavedData money];
     
     //update the data of soldier

@@ -22,7 +22,6 @@
 }
 
 - (void) didLoadFromCCB {
-    NSLog(@"enter store scene");
     _selectscroll.delegate = self;
     _message.string = [NSString stringWithFormat:@"You need more money to update"];
     _message.opacity = 0;

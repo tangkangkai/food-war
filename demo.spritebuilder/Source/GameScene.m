@@ -42,19 +42,11 @@ static GameScene* GameSceneInstance;
    // self.userInteractionEnabled = TRUE;
 
     if ([[Levels getSelectedLevel] getLevel]==1) {
-        [_selectscroll setScrollPosition:page1];
-        NSLog(@"2");
-    }
+        [_selectscroll setScrollPosition:page1];    }
     if ([[Levels getSelectedLevel] getLevel]==2) {
-        [_selectscroll setScrollPosition:page2];
-        NSLog(@"2");
-    }
+        [_selectscroll setScrollPosition:page2];    }
     if ([[Levels getSelectedLevel] getLevel]==3) {
         [_selectscroll setScrollPosition:page3];
-        NSLog(@"3");
-    }
-    if ([[Levels getSelectedLevel] getLevel]==Nil) {
-        NSLog(@"nil");
     }
     [self setNodes];
 }
@@ -98,64 +90,25 @@ static GameScene* GameSceneInstance;
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    NSLog(@"stop animation");
-
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //CCActionMoveTo *move;
     float x=[_selectscroll scrollPosition].x;
 
     
     if(x<250){
-        NSLog(@"level 1 scroll x:%f",x);
-        NSLog(@"position ccp(%f,0)",-x);
       //  move = [CCActionMoveTo actionWithDuration:0.5f position:page1];
         [_selectscroll setScrollPosition:page1];
     }
     if (x>=250&&x<774) {
-        NSLog(@"level 2 scroll x:%f",x);
-        NSLog(@"position ccp(%f,0)",524-x);
      //   move = [CCActionMoveTo actionWithDuration:0.5f position:page2];
         [_selectscroll setScrollPosition:page2];
     }
     if (x>=774) {
-        NSLog(@"level 3 scroll x:%f",x);
-        NSLog(@"position ccp(%f,0)",1023-x);
        // move = [CCActionMoveTo actionWithDuration:0.5f position:page3];
         [_selectscroll setScrollPosition:page3];
     }
 }
-/*
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    decelerate=NO;
-    CCActionMoveTo *move;
-    float x=[_selectscroll scrollPosition].x;
-    CGPoint page1=CGPointMake(0, 0);
-    CGPoint page2=CGPointMake(524, 0);
-    CGPoint page3=CGPointMake(1032, 0);
-    
-    if(x<250){
-        move = [CCActionMoveBy actionWithDuration:0.5f position:ccp(-x,0)];
-    }
-    if (x>=250&&x<774) {
-        move = [CCActionMoveBy actionWithDuration:0.5f position:ccp(524-x,0)];
-    }
-    if (x>=774) {
-        move = [CCActionMoveBy actionWithDuration:0.5f position:ccp(1023-x,0)];
-    }
-    [_selectscroll runAction:move];
-
-}
-*/
-
-/*
--(void)scrollViewDidScroll:(UIScrollView *)sender
-{
-    NSLog(@"running");
-
-}
-*/
 
 
 
