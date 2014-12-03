@@ -1253,16 +1253,15 @@
     NSArray *start_positions = @[[sb house4], [sb house5], [sb house6]];
     NSArray *end_positions=@[ [sb house1], [sb house2], [sb house3]];
     int lane = arc4random_uniform(3);
-
     CGPoint destination = CGPointMake([(CCNode*)end_positions[lane] position].x+30,
-                                      [(CCNode*)end_positions[lane] position].y);
+                                      [(CCNode*)end_positions[lane] position].y+8);
     CGPoint selfPos = [[ self getSoldier ] position];
     
     // we move the truck position to make it stand on the lane,
     // so we need to change the position back to the original
     selfPos.y = selfPos.y - 15;
 
-    CGPoint newStart = CGPointMake(selfPos.x - 15, [(CCNode*)start_positions[lane] position].y);
+    CGPoint newStart = CGPointMake(selfPos.x - 15, [(CCNode*)start_positions[lane] position].y+8);
     
     int soldierType = arc4random_uniform(2);
     if( soldierType == 0 ){
