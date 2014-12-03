@@ -127,36 +127,43 @@ static Level *Levelselected;
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
                                             @"lane":@2,
                                             @"enemyLev":@2,
-                                            @"enemies":@[@2] } ];
-    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
+                                            @"enemies":@[@1] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@15,
                                             @"lane":@1,
                                             @"enemyLev":@2,
                                             @"enemies":@[@2] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@15,
                                             @"lane":@2,
-                                            @"enemyLev":@1,
-                                            @"enemies":@[@3] } ];
-    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@20,
+                                            @"enemyLev":@2,
+                                            @"enemies":@[@2] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@55,
+                                            @"lane":@1,
+                                            @"enemyLev":@2,
+                                            @"enemies":@[@1,@2] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@55,
                                             @"lane":@2,
-                                            @"enemies":@[@1] } ];
-    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@50,
+                                            @"enemies":@[@1,@2] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@100,
                                             @"lane":@1,
                                             @"enemies":@[@1,@2] } ];
-    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@80,
-                                            @"lane":@2,
-                                            @"enemyLev":@1,
-                                            @"enemies":@[@3] } ];
     [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@100,
+                                            @"lane":@2,
+                                            @"enemies":@[@1,@2] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@140,
                                             @"lane":@2,
                                             @"enemyLev":@1,
                                             @"enemies":@[@1,@2] } ];
-    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@5,
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@150,
                                             @"lane":@2,
-                                            @"items":@[@2],
-                                            @"enemyLev":@1} ];
-    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@14,
+                                            @"enemyLev":@2,
+                                            @"enemies":@[@1] } ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@60,
                                             @"lane":@2,
                                             @"items":@[@1],
+                                            @"enemyLev":@1} ];
+    [lvlTwoSeq addObject:(NSDictionary*) @{ @"time":@120,
+                                            @"lane":@2,
+                                            @"items":@[@2],
                                             @"enemyLev":@1} ];
     level2 = [ [Level alloc] initLevel:2
                                 laneNum:2
@@ -166,47 +173,59 @@ static Level *Levelselected;
                           enemySequence:lvlTwoSeq ];
     
     NSMutableArray *lvlThreeSeq = [ [NSMutableArray alloc] init ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@1,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@60,
                                               @"lane":@2,
                                               @"enemyLev":@1,
                                               @"enemies":@[@4] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@25,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@5,
                                               @"lane":@1,
                                               @"enemyLev":@2,
                                               @"enemies":@[@1] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@25,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@10,
+                                              @"lane":@3,
+                                              @"enemyLev":@2,
+                                              @"enemies":@[@1,@2] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@30,
                                               @"lane":@2,
                                               @"enemyLev":@1,
-                                              @"enemies":@[@2] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@25,
-                                              @"lane":@3,
-                                              @"enemyLev":@3,
-                                              @"enemies":@[@2] } ];
+                                              @"enemies":@[@1] } ];
     [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@50,
-                                              @"lane":@2,
-                                              @"enemyLev":@2,
-                                              @"enemies":@[@1,@3] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@60,
-                                              @"lane":@2,
-                                              @"enemyLev":@3,
-                                              @"enemies":@[@1,@2] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@70,
-                                              @"lane":@1,
-                                              @"enemyLev":@2,
+                                              @"lane":@3,
+                                              @"enemyLev":@1,
                                               @"enemies":@[@3] } ];
     [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@80,
+                                              @"lane":@1,
+                                              @"enemyLev":@1,
+                                              @"enemies":@[@3] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@120,
                                               @"lane":@2,
                                               @"enemyLev":@2,
+                                              @"enemies":@[@3] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@130,
+                                              @"lane":@2,
+                                              @"enemyLev":@2,
+                                              @"enemies":@[@1] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@135,
+                                              @"lane":@3,
+                                              @"enemyLev":@2,
+                                              @"enemies":@[@1] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@160,
+                                              @"lane":@1,
+                                              @"enemyLev":@2,
+                                              @"enemies":@[@1,@2] } ];
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@200,
+                                              @"lane":@3,
+                                              @"enemyLev":@2,
                                               @"enemies":@[@1,@2,@3] } ];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@6,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@60,
                                               @"lane":@2,
                                               @"enemyLev":@2,
                                               @"items":@[@1]}];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@16,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@120,
                                               @"lane":@2,
                                               @"enemyLev":@2,
                                               @"items":@[@2]}];
-    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@20,
+    [lvlThreeSeq addObject:(NSDictionary*) @{ @"time":@180,
                                               @"lane":@2,
                                               @"enemyLev":@2,
                                               @"items":@[@1]}];
