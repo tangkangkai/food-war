@@ -1236,7 +1236,7 @@
     // Fix the position so that it stand on the lane
     start.y += 15;
     
-    self = [ super initSoldier:@"foodTruck" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
+    self = [ super initSoldier:@"foodtruck" group:1 lane_num:lane_num startPos:start destPos:dest ourArr:ourArray enemyArr:enemyArray level:soldierLevel bgNode:bgNode ];
     
     [self schedule:@selector(countDown) interval:0.5];
     [self schedule:@selector(createSolider) interval:8];
