@@ -1234,7 +1234,7 @@
     atkPower = 40 + 15 * soldierLevel;
     defence = 0.2 + 0.03 * soldierLevel;
     value = 200 + 20 * soldierLevel;
-    health = 400 + 50 * soldierLevel;
+    health = 600 + 50 * soldierLevel;
     total_health = health;
     
     // Fix the position so that it stand on the lane

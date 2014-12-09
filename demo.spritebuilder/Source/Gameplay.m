@@ -522,7 +522,7 @@ static NSMutableArray *itArray;
 -(void) showMessage: (NSString*) message {
     _messagePrompt.string = message;
     CCActionFadeTo* fadeIn = [CCActionFadeTo actionWithDuration:0.1f opacity:255];
-    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:0.5f position:ccp(300, 288)];
+    CCActionMoveTo *moveDown = [CCActionMoveTo actionWithDuration:1.5f position:ccp(300, 288)];
     
     CCActionFadeTo* fadeOut = [CCActionFadeTo actionWithDuration:0.2f opacity:0];
     CCActionMoveTo* moveBack = [CCActionMoveTo actionWithDuration:0.1f position:ccp(200, 288)];
@@ -588,13 +588,13 @@ static NSMutableArray *itArray;
         
     } else if( laneNum!=1 &&  CGRectContainsPoint(CGRectMake([scroll lane1].boundingBox.origin.x, [scroll lane1].boundingBox.origin.y+30, [scroll lane1].boundingBox.size.width, [scroll lane1].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house1] dest:[scroll house4] lane_num:0];
-        [self cooldown:_soldiertype];
+//  [self cooldown:_soldiertype];
     } else if( CGRectContainsPoint(CGRectMake([scroll lane2].boundingBox.origin.x, [scroll lane2].boundingBox.origin.y+35, [scroll lane2].boundingBox.size.width, [scroll lane2].boundingBox.size.height),touchLocation)) {
         [self launchmovingman: [scroll house2] dest:[scroll house5] lane_num:1];
-        [self cooldown:_soldiertype];
+  //      [self cooldown:_soldiertype];
     } else if( laneNum==3 && CGRectContainsPoint(CGRectMake([scroll lane3].boundingBox.origin.x, [scroll lane3].boundingBox.origin.y+40, [scroll track3].boundingBox.size.width, [scroll lane3].boundingBox.size.height),touchLocation)) {
         [self launchmovingman:[scroll house3] dest:[scroll house6] lane_num:2];
-        [self cooldown:_soldiertype];
+//        [self cooldown:_soldiertype];
     } else {
         if( _anibomb != nil){
             [_anibomb removeFromParent];
@@ -786,6 +786,7 @@ static NSMutableArray *itArray;
         }
         [self reduceEnergy:[newSoldier getEnergy]];
     }
+    [self cooldown:_soldiertype];
 }
 
 - (void)addBombExplosion:(CGPoint) posi{
